@@ -93,5 +93,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\View-Spot-of-City.MapView\View-Spot-of-City.MapView.csproj">
+      <Project>{b33e7323-10b1-4335-8414-9d79068b638b}</Project>
+      <Name>View-Spot-of-City.MapView</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

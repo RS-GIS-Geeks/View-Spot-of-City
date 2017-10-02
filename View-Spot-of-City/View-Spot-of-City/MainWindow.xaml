@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City"
+        xmlns:mapview="clr-namespace:View_Spot_of_City.MapView;assembly=View-Spot-of-City.MapView"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <mapview:MapView />
     </Grid>
 </Window>
