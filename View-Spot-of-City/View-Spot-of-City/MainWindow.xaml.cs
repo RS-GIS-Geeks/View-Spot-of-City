@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View_Spot_of_City.ViewModel;
+using Config = System.Configuration.ConfigurationManager;
 
 namespace View_Spot_of_City
 {
@@ -20,9 +23,81 @@ namespace View_Spot_of_City
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 覆盖面板组
+        /// </summary>
+        List<OverlayerItemViewModel> _overlayers = new List<OverlayerItemViewModel>();
+
+        /// <summary>
+        /// 获取覆盖面板组
+        /// </summary>
+        List<OverlayerItemViewModel> Overlayers { get { return _overlayers; } }
+
         public MainWindow()
         {
             InitializeComponent();
+            InitWindows();
+        }
+
+        private void InitWindows()
+        {
+            this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
+            AppTitle.Text = (string)Application.Current.FindResource("MainTitle");
+            
+            /// 添加覆盖层
+            // 静态绑定
+            Overlayers.Add(new OverlayerItemViewModel(
+                "pack://application:,,,/Icon/3D-Glasses.png",
+                "MainNav_SpotQuery",
+                new UserControl())
+            { VAlignType = VerticalAlignment.Top, OverlayerIndicator = OverlayerType.SpotQuery }
+            );
+            Overlayers.Add(new OverlayerItemViewModel(
+                "pack://application:,,,/Icon/Find.png",
+                "MainNav_SpotRecommend",
+                new UserControl())
+            { OverlayerIndicator = OverlayerType.SpotRecommend }
+            );
+            Overlayers.Add(new OverlayerItemViewModel(
+                "pack://application:,,,/Icon/Horizontal-Align-Left.png",
+                "MainNav_Visualization",
+                new UserControl())
+            { OverlayerIndicator = OverlayerType.Visualization }
+            );
+            Overlayers.Add(new OverlayerItemViewModel(
+                "pack://application:,,,/Icon/Talk.png",
+                "MainNav_Share",
+                new UserControl())
+            { OverlayerIndicator = OverlayerType.Share }
+            );
+            MainNavBar.ItemsSource = Overlayers;
+        }
+
+        /// <summary>
+        /// Logo点击响应函数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Logo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Hyperlink link = new Hyperlink();
+            {
+                link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
+            }
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+        }
+
+        /// <summary>
+        /// 切换菜单响应函数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainNavBar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MainNavBar.SelectedIndex != -1 && e.RemovedItems != null && e.RemovedItems.Count > 0)
+            {
+                var removedItem = e.RemovedItems[0] as OverlayerItemViewModel;
+            }
         }
     }
 }

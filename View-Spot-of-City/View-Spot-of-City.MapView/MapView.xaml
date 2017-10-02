@@ -11,6 +11,52 @@
 			 TextOptions.TextFormattingMode="Ideal"
 			 TextOptions.TextRenderingMode="Auto">
     <Grid>
-        <MyGMap:MyGMap x:Name="mapControl"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="26"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <MyGMap:MyGMap x:Name="mapControl" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" >
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="6"  ShadowDepth="2" Opacity="0.3" Direction="-45" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="26"/>
+                </Grid.RowDefinitions>
+                <Button Width="26" Height="26" Grid.Row="0" Click="ZoomInButton_Click"  Style="{DynamicResource MaterialDesignToolButton}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Rectangle Fill="White"/>
+                                <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center">+</TextBlock>
+                                <!--<material:PackIcon Kind="Account" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Width="26" Height="26" Grid.Row="2" Click="ZoomOutButton_Click" Style="{DynamicResource MaterialDesignToolButton}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Rectangle Fill="White"/>
+                                <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center">-</TextBlock>
+                                <!--<material:PackIcon Kind="Database" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

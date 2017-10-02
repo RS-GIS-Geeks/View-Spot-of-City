@@ -4,6 +4,41 @@
              xmlns:local="clr-namespace:View_Spot_of_City"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--#region Material主题资源-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <!--#endregion-->
+                
+                <!--#region 色调-->
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#6289d9"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#4c7bd9"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+                </ResourceDictionary>
+                <!--#endregion-->
+                
+                <!--#region 自定义主题-->
+                <ResourceDictionary Source="Style/StylesDictionary.xaml" />
+                <!--#endregion-->
+                
+                <!--#region 数据模板-->
+                <ResourceDictionary Source="DataTemplate/DataTemplateDictionary.xaml"/>
+                <!--#endregion-->
+
+                <!--#region 语言资源文件-->
+                <ResourceDictionary Source="Language/LanguagesDictionary.xaml" />
+                <!--#endregion-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -9,6 +9,8 @@ using GMap.NET;
 using GMap.NET.WindowsPresentation;
 using System.Collections.Generic;
 
+using Config = System.Configuration.ConfigurationManager;
+
 namespace View_Spot_of_City.MapView
 {
     /// <summary>
@@ -21,18 +23,6 @@ namespace View_Spot_of_City.MapView
             InitializeComponent();
 
             InitMapControl();
-#if DEBUG
-            //operationNow = Operations.Test;
-            //List<Tuple<string, string>> data = new List<Tuple<string, string>>();
-            //for (int i = 0; i < 7; i++)
-            //{
-            //    Tuple<string, string> subData = new Tuple<string, string>("主管中队", "万象市第一中队");
-            //    data.Add(subData);
-            //    subData = new Tuple<string, string>("所属辖区", "万象村万象市");
-            //    data.Add(subData);
-            //}
-            //AddPhoneMarker(mapControl.Position, data);
-#endif
         }
 
         private void InitMapControl()
@@ -41,15 +31,15 @@ namespace View_Spot_of_City.MapView
             //mapControl.MapProvider = GMapProviders.OpenStreetMap;
             myGMapProvider = GeoServerProvider.Instance;
             mapControl.MapProvider = myGMapProvider;
-            mapControl.Position = new PointLatLng(17.962769, 102.614429);
+            mapControl.Position = new PointLatLng(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]));
             mapControl.ShowCenter = false;
             mapControl.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
-            mapControl.MinZoom = 7;
-            mapControl.MaxZoom = 20;
-            mapControl.Zoom = 12;
+            mapControl.MinZoom = Convert.ToInt32(Config.AppSettings["MAP_MIN_ZOOM"]);
+            mapControl.MaxZoom = Convert.ToInt32(Config.AppSettings["MAP_MAX_ZOOM"]);
+            mapControl.Zoom = Convert.ToInt32(Config.AppSettings["MAP_ZOOM"]);
             mapControl.ShowCenter = false;
             mapControl.DragButton = MouseButton.Left;
-            mapControl.Position = new PointLatLng(17.962769, 102.614429);
+            mapControl.Position = new PointLatLng(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]));
             mapControl.Markers.Add(new GMapMarker(mapControl.Position));
 
             // map events
@@ -143,6 +133,18 @@ namespace View_Spot_of_City.MapView
         {
             DeleteMarkersByGuid(guid);
             MessageBox.Show(info, title);
+        }
+
+        private void ZoomInButton_Click(object sender, RoutedEventArgs e)
+        {
+            mapControl.Zoom++;
+            e.Handled = true;
+        }
+
+        private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            mapControl.Zoom--;
+            e.Handled = true;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GMap.NET.MapProviders
         {
             MaxZoom = null;
             RefererUrl = null;
-            Copyright = string.Format("© GeoServer - Map data ©{0} RS-GIS-Geeks", DateTime.Today.Year);
+            Copyright = string.Format("© GeoServer - OpenStreetMap data ©{0} RS-GIS-Geeks", DateTime.Today.Year);
         }
 
         public readonly string ServerLetters = null;
