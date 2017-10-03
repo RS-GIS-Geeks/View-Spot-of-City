@@ -1,0 +1,6 @@
+﻿<UserControl x:Class="View_Spot_of_City.MapView.Markers.MyIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	         Height="40" Width="30" Opacity="10">
+    <Image Name="icon" VerticalAlignment="Center" HorizontalAlignment="Center" />
+</UserControl>

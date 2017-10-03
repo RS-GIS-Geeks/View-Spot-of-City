@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="View_Spot_of_City.MapView.Markers.TooltipForMapPin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View_Spot_of_City.MapView.Markers"
+             mc:Ignorable="d" 
+             d:DesignHeight="0" d:DesignWidth="0" Width="auto" Height="auto" MaxWidth="200" MaxHeight="80" SizeChanged="ContentOfPhoneIcon_SizeChanged">
+
+    <TextBlock x:Name="textBlock" Background="Transparent" Foreground="#ffffff" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"></TextBlock>
+</UserControl>
