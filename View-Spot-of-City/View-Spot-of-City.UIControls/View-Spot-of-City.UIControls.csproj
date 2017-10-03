@@ -74,6 +74,14 @@
     <Compile Include="OverLayer\SpotQuery.xaml.cs">
       <DependentUpon>SpotQuery.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Progress\CircleProgress.xaml.cs">
+      <DependentUpon>CircleProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Progress\CircleProgressBox.cs" />
+    <Compile Include="Progress\FromProgressBox.xaml.cs">
+      <DependentUpon>FromProgressBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Progress\ProgressBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,6 +123,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Progress\CircleProgress.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Progress\FromProgressBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Style\ButtonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +171,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\conversion_pre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

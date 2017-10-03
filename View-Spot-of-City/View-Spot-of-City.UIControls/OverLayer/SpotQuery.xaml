@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <material:ColorZone Background="White"
-							VerticalAlignment="Stretch" Padding="0" material:ShadowAssist.ShadowDepth="Depth1">
+                            VerticalAlignment="Stretch" Padding="0" material:ShadowAssist.ShadowDepth="Depth1">
             <Grid x:Name="SearchGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="StartPositionRow" Height="Auto"/>
@@ -33,7 +33,7 @@
                 <DockPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                         <Button x:Name="ClearStartAddressBtn" Style="{DynamicResource ModifiedFlatButtonStyle}" Height="auto"
-								Foreground="{DynamicResource PrimaryHueMidBrush}"  
+								Foreground="{DynamicResource PrimaryHueMidBrush}"
 								Padding="10" Visibility="Collapsed">
                             <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_02.png" />
                         </Button>
