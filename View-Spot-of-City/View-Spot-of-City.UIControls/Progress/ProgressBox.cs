@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace CoView_Spot_of_City.UIControls.Progressmmon
+namespace View_Spot_of_City.UIControls.Progress
 {
     /// <summary>
     /// 进度条对话框

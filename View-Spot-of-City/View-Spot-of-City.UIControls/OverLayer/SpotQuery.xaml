@@ -64,7 +64,7 @@
                         </ToggleButton>
                         <Button x:Name="PositionSearchBtn" Width="50" 
 								Style="{DynamicResource ModifiedMaterialDesignRaisedDarkButton}" 
-								Padding="10">
+								Padding="10" Click="PositionSearchBtn_Click">
                             <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/search_02.png" Height="20"/>
                         </Button>
                     </StackPanel>

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using SpeechLib;
 using View_Spot_of_City.UIControls.OverLayer;
 using View_Spot_of_City.ViewModel;
 using Config = System.Configuration.ConfigurationManager;
@@ -111,6 +113,12 @@ namespace View_Spot_of_City
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MainNavBar.SelectedIndex = -1;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            App.circleProgressBox.CloseProgress();
+            this.Activate();
         }
     }
 }

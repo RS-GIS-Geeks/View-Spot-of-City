@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Common"
+             xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Progress"
              mc:Ignorable="d" 
              Height="Auto" Width="Auto" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="{x:Null}" SizeToContent="WidthAndHeight">
     <Grid>
@@ -68,9 +68,9 @@
                          Canvas.Top="26.9938" Stretch="Fill" 
                          Fill="Black" Opacity="0.2"/>
 
-                <Ellipse Width="21.835" Height="21.862" 
-                         Canvas.Left="47.2783" 
-                         Canvas.Top="0.5" Stretch="Fill" 
+                <Ellipse Width="22" Height="22" 
+                         Canvas.Left="76" 
+                         Canvas.Top="7" Stretch="Fill" 
                          Fill="Black" Opacity="0.1"/>
 
                 <Canvas.RenderTransform>
