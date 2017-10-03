@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City"
         xmlns:mapview="clr-namespace:View_Spot_of_City.MapView;assembly=View-Spot-of-City.MapView"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
@@ -23,13 +24,17 @@
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+
+            <material:ColorZone Background="White"
+							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">
+                <StackPanel Orientation="Horizontal">
                 <Image Source="pack://application:,,,/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,2,0,2"
                        Cursor="Hand" ToolTip="{DynamicResource LogoTooltip}" MouseDown="Logo_MouseDown"/>
                 <TextBlock x:Name="AppTitle" VerticalAlignment="Center" Margin="10,7" FontSize="24" FontWeight="Bold" Text="{DynamicResource MainTitle}"/>
             </StackPanel>
+                </material:ColorZone>
         </DockPanel>
-        <!--#region 最新采用的导航栏-->
+        <!--#region 导航栏-->
         <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" 
 				 ItemContainerStyle="{StaticResource NavigatorMaterialDesignListBoxItem}" SelectionChanged="MainNavBar_SelectionChanged">
             <ListBox.ItemsPanel>

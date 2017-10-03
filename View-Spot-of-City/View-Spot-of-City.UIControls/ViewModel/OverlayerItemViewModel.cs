@@ -17,7 +17,7 @@ namespace View_Spot_of_City.ViewModel
         Share,
     }
 
-    class OverlayerItemViewModel : INotifyPropertyChanged
+    public class OverlayerItemViewModel : INotifyPropertyChanged
     {
         private string _iconPath;
         private string _title;

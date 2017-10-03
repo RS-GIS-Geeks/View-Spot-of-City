@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View_Spot_of_City.UIControls.OverLayer;
 using View_Spot_of_City.ViewModel;
 using Config = System.Configuration.ConfigurationManager;
 
@@ -43,31 +44,37 @@ namespace View_Spot_of_City
         {
             this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
             AppTitle.Text = (string)Application.Current.FindResource("MainTitle");
-            
+
             /// 添加覆盖层
             // 静态绑定
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/3D-Glasses.png",
-                "MainNav_SpotQuery",
-                new UserControl())
+                "MainNav_MapView",
+                null)
             { VAlignType = VerticalAlignment.Top, OverlayerIndicator = OverlayerType.SpotQuery }
             );
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Find.png",
+                "MainNav_SpotQuery",
+                new SpotQuery())
+            { VAlignType = VerticalAlignment.Top, OverlayerIndicator = OverlayerType.SpotQuery }
+            );
+            Overlayers.Add(new OverlayerItemViewModel(
+                "pack://application:,,,/Icon/Device.png",
                 "MainNav_SpotRecommend",
-                new UserControl())
+                new OverLayerExample())
             { OverlayerIndicator = OverlayerType.SpotRecommend }
             );
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Horizontal-Align-Left.png",
                 "MainNav_Visualization",
-                new UserControl())
+                new OverLayerExample())
             { OverlayerIndicator = OverlayerType.Visualization }
             );
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Talk.png",
                 "MainNav_Share",
-                new UserControl())
+                new OverLayerExample())
             { OverlayerIndicator = OverlayerType.Share }
             );
             MainNavBar.ItemsSource = Overlayers;
@@ -85,6 +92,7 @@ namespace View_Spot_of_City
                 link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
             }
             Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            e.Handled = true;
         }
 
         /// <summary>
@@ -98,6 +106,11 @@ namespace View_Spot_of_City
             {
                 var removedItem = e.RemovedItems[0] as OverlayerItemViewModel;
             }
+        }
+
+        private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainNavBar.SelectedIndex = -1;
         }
     }
 }

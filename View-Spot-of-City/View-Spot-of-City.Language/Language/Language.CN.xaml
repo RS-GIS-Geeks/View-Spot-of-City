@@ -8,10 +8,14 @@
     <!--logo-->
     <sys:String x:Key="LogoTooltip">查看源码</sys:String>
     <!--#region 导航-->
+    <sys:String x:Key="MainNav_MapView">地图浏览</sys:String>
     <sys:String x:Key="MainNav_SpotQuery">景点查询</sys:String>
     <sys:String x:Key="MainNav_SpotRecommend">景点推荐</sys:String>
     <sys:String x:Key="MainNav_Visualization">数据可视化</sys:String>
     <sys:String x:Key="MainNav_Share">评价与分享</sys:String>
+    <!--#endregion-->
+    <!--#region 景点查询-->
+    <sys:String x:Key="AddressSearchHist">输入景点</sys:String>
     <!--#endregion-->
     
 </ResourceDictionary>

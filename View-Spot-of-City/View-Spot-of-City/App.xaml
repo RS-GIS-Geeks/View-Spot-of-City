@@ -27,16 +27,12 @@
                 </ResourceDictionary>
                 <!--#endregion-->
                 
-                <!--#region 自定义主题-->
-                <ResourceDictionary Source="Style/StylesDictionary.xaml" />
-                <!--#endregion-->
-                
-                <!--#region 数据模板-->
-                <ResourceDictionary Source="DataTemplate/DataTemplateDictionary.xaml"/>
+                <!--#region 用户控件资源字典-->
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/UIControls.xaml" />
                 <!--#endregion-->
 
                 <!--#region 语言资源文件-->
-                <ResourceDictionary Source="Language/LanguagesDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.Language;component/Language/LanguagesDictionary.xaml" />
                 <!--#endregion-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
