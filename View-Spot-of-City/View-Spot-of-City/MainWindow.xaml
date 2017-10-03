@@ -4,9 +4,62 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City"
+        xmlns:mapview="clr-namespace:View_Spot_of_City.MapView;assembly=View-Spot-of-City.MapView"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+    <Grid x:Name="Root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="48"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel x:Name="Header" Margin="10,0">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <ComboBox x:Name="LanguageSelecter"
+						  SelectedIndex="0" Margin="5,10,5,10" Height="auto" Padding="2">
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">简体中文</ComboBoxItem>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <material:ColorZone Background="White"
+							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">
+                <StackPanel Orientation="Horizontal">
+                <Image Source="pack://application:,,,/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,2,0,2"
+                       Cursor="Hand" ToolTip="{DynamicResource LogoTooltip}" MouseDown="Logo_MouseDown"/>
+                <TextBlock x:Name="AppTitle" VerticalAlignment="Center" Margin="10,7" FontSize="24" FontWeight="Bold" Text="{DynamicResource MainTitle}"/>
+            </StackPanel>
+                </material:ColorZone>
+        </DockPanel>
+        <!--#region 导航栏-->
+        <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" 
+				 ItemContainerStyle="{StaticResource NavigatorMaterialDesignListBoxItem}" SelectionChanged="MainNavBar_SelectionChanged">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.Style>
+                <Style TargetType="ListBox" >
+                    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ListBox.Style>
+        </ListBox>
+        <!-- 主页 -->
+        <ContentControl Grid.Row="2" >
+            <mapview:MapView />
+        </ContentControl>
+        <ContentControl x:Name="OverlayerContentControl" MinWidth="360" Background="Transparent" Grid.Row="2"
+						Margin="{Binding ElementName=MainNavBar, Path=SelectedItem.OverlayerMargin}"
+						HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+						Content="{Binding ElementName=MainNavBar, Path=SelectedItem.Content}"
+						HorizontalAlignment="{Binding ElementName=MainNavBar, Path=SelectedItem.HAlignType}"
+						VerticalAlignment="{Binding ElementName=MainNavBar, Path=SelectedItem.Content.VerticalAlignment}"/>
     </Grid>
 </Window>
