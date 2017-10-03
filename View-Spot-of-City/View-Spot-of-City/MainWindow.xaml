@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized" Loaded="Window_Loaded">
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>
