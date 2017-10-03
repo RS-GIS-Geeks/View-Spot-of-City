@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="View_Spot_of_City.UIControls.OverLayer.SpotQuery"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:View_Spot_of_City.UIControls.OverLayer"
+			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="250">
+
+    <Grid x:Name="root" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <material:ColorZone Background="White"
+							VerticalAlignment="Stretch" Padding="0" material:ShadowAssist.ShadowDepth="Depth1">
+            <Grid x:Name="SearchGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="StartPositionRow" Height="Auto"/>
+                    <RowDefinition x:Name="SeperatorRow" Height="auto"/>
+                    <RowDefinition x:Name="EndPositionRow" Height="0"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="ExchangeStartEndBtn" Grid.RowSpan="3" Style="{DynamicResource ModifiedFlatButtonStyle}" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Collapsed" Padding="10">
+                    <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/conversion_pre.png" Height="18" Width="18" />
+                </Button>
+                <DockPanel Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                        <Button x:Name="ClearStartAddressBtn" Style="{DynamicResource ModifiedFlatButtonStyle}" Height="auto"
+								Foreground="{DynamicResource PrimaryHueMidBrush}"  
+								Padding="10" Visibility="Collapsed">
+                            <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_02.png" />
+                        </Button>
+                        <Rectangle Style="{DynamicResource SeperatorStyle}" />
+                        <ToggleButton x:Name="RoutePlanToggle" IsChecked="False" 
+									  Foreground="{DynamicResource PrimaryHueMidBrush}" 
+									  Padding="14,0">
+                            <ToggleButton.Style>
+                                <Style BasedOn="{StaticResource ModifiedToggleButtonStyle}" TargetType="{x:Type ToggleButton}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_03.png" Width="10"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="False">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/go_to.png"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <Button x:Name="PositionSearchBtn" Width="50" 
+								Style="{DynamicResource ModifiedMaterialDesignRaisedDarkButton}" 
+								Padding="10">
+                            <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/search_02.png" Height="20"/>
+                        </Button>
+                    </StackPanel>
+                    <TextBox x:Name="StartPointAddress" Height="40" HorizontalAlignment="Stretch"
+							 Style="{DynamicResource ModifiedBorderedMaterialDesignTextBox}" 
+							 BorderThickness="0" material:HintAssist.Hint="{DynamicResource AddressSearchHist}"
+							 VerticalContentAlignment="Center" Padding="5,0"
+							 Text="{Binding Start.FullAddress, Mode=OneWay}"
+							 GotFocus="AddressTextBox_GotFocus" LostFocus="AddressTextBox_LostFocus"/>
+                </DockPanel>
+                <Rectangle x:Name="AddressSperator" Fill="#f2f2f2" Visibility="Collapsed" Height="1" Grid.Column="1" Grid.Row="1" DockPanel.Dock="Bottom" HorizontalAlignment="Left" Width="{Binding ElementName=StartPointAddress, Path=ActualWidth}"/>
+                <DockPanel Grid.Column="1" Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                        <Button Grid.Row="2" Grid.Column="2" Height="auto"
+								Style="{DynamicResource ModifiedFlatButtonStyle}" 
+								Foreground="{DynamicResource PrimaryHueMidBrush}" 
+								Padding="14,0"
+								CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}">
+                            <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/tag.png" Height="20"/>
+                        </Button>
+                        <Rectangle VerticalAlignment="Stretch" Width="{Binding ActualWidth, ElementName=RoutePlanToggle}" />
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </material:ColorZone>
+
+        <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
+							material:ShadowAssist.ShadowDepth="Depth1">
+            
+        </material:ColorZone>
+    </Grid>
+</UserControl>

@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:View_Spot_of_City.style">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ComboBox.xaml" />
+        <ResourceDictionary Source="ListBox.xaml" />
+        <ResourceDictionary Source="ButtonStyles.xaml" />
+        <ResourceDictionary Source="SeperatorStyles.xaml" />
+        <ResourceDictionary Source="ToggleButtonStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
