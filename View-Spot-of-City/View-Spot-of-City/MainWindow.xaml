@@ -6,10 +6,29 @@
         xmlns:local="clr-namespace:View_Spot_of_City"
         xmlns:mapview="clr-namespace:View_Spot_of_City.MapView;assembly=View-Spot-of-City.MapView"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.ArcGISControls;assembly=View-Spot-of-City.ArcGISControls"
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" Loaded="Window_Loaded">
+    <!--<metro:MetroWindow.RightWindowCommands>
+        <metro:WindowCommands>
+            <Button Click="Setting_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Width="16" Height="16" Kind="Settings"/>
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="设置"/>
+                </StackPanel>
+            </Button>
+            <Button Click="Login_Click">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="登录"/>
+                </StackPanel>
+            </Button>
+        </metro:WindowCommands>
+    </metro:MetroWindow.RightWindowCommands>-->
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>
@@ -53,7 +72,11 @@
         </ListBox>
         <!-- 主页 -->
         <ContentControl Grid.Row="2" >
-            <mapview:MapView />
+            <Grid>
+                <mapview:MapView x:Name="GMapView" Visibility="Collapsed"/>
+                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="Collapsed"/>
+                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="Visible"/>
+            </Grid>
         </ContentControl>
         <ContentControl x:Name="OverlayerContentControl" MinWidth="360" Background="Transparent" Grid.Row="2"
 						Margin="{Binding ElementName=MainNavBar, Path=SelectedItem.OverlayerMargin}"

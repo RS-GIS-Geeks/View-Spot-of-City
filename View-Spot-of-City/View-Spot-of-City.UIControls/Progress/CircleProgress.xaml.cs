@@ -28,6 +28,7 @@ namespace View_Spot_of_City.UIControls.Progress
         }
 
         private delegate void ShowDefaultDelegate(string value);
+
         /// <summary>
         /// 设置默认描述信息
         /// </summary>
@@ -39,10 +40,11 @@ namespace View_Spot_of_City.UIControls.Progress
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, new ShowDefaultDelegate(SetDefaultDescription),value);
                 return;
             }
-            SetProgressText(value) ;
+            SetProgressText(value);
         }
 
         private delegate void ShowLogLabelDelegate(string strLog);
+
         /// <summary>
         /// 设置进度条描述信息
         /// </summary>

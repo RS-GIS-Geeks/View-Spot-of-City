@@ -32,6 +32,7 @@ namespace View_Spot_of_City.UIControls.Progress
             m_thread.IsBackground = true;
             m_thread.SetApartmentState(ApartmentState.STA);
             m_thread.Start();
+            Thread.Sleep(1);
         }
 
         private void Show()
@@ -45,7 +46,7 @@ namespace View_Spot_of_City.UIControls.Progress
         /// </summary>
         public void CloseProgress()
         {
-            while (!m_thread.IsAlive) ;
+            while (!m_thread.IsAlive);
             Thread.Sleep(1);
             m_frmProgressBox.RequestStop();
             m_thread.Join();

@@ -23,9 +23,9 @@ namespace View_Spot_of_City.UIControls.helper
                 }
                 return false;
             }
-            Stream s = File.Open(path, FileMode.Open);//打开a.bat文件
+            Stream s = File.Open(path, FileMode.Open);//打开License.bat文件
             BinaryFormatter b = new BinaryFormatter();//创建一个序列化的对象
-            String result = (String)b.Deserialize(s);//将s反序列化回原来的数据格式；
+            String result = (String)b.Deserialize(s);//将s反序列化回原来的数据格式
             try
             {
                 DateTime date = Convert.ToDateTime(result);

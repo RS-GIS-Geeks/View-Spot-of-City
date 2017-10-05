@@ -16,8 +16,6 @@ namespace View_Spot_of_City
     /// </summary>
     public partial class App : Application
     {
-        public static CircleProgressBox circleProgressBox = new CircleProgressBox();
-
         protected override void OnStartup(StartupEventArgs e)
         {
             //验证License
@@ -25,9 +23,6 @@ namespace View_Spot_of_City
             {
                 Environment.Exit(0);
             }
-            //启动界面
-            circleProgressBox.ShowPregress();
-            circleProgressBox.SetDefaultDescription();
             base.OnStartup(e);
         }
     }

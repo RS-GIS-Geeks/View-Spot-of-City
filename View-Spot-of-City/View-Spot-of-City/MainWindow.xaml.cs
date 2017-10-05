@@ -18,6 +18,8 @@ using SpeechLib;
 using View_Spot_of_City.UIControls.OverLayer;
 using View_Spot_of_City.ViewModel;
 using Config = System.Configuration.ConfigurationManager;
+using View_Spot_of_City.UIControls.Progress;
+using MahApps.Metro.Controls;
 
 namespace View_Spot_of_City
 {
@@ -36,9 +38,15 @@ namespace View_Spot_of_City
         /// </summary>
         List<OverlayerItemViewModel> Overlayers { get { return _overlayers; } }
 
+        static CircleProgressBox circleProgressBox = null;
+
         public MainWindow()
         {
             InitializeComponent();
+            //启动界面
+            circleProgressBox = new CircleProgressBox();
+            circleProgressBox.ShowPregress();
+            circleProgressBox.SetDefaultDescription();
             InitWindows();
         }
 
@@ -117,7 +125,8 @@ namespace View_Spot_of_City
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            App.circleProgressBox.CloseProgress();
+            if(circleProgressBox != null)
+                circleProgressBox.CloseProgress();
             this.Activate();
         }
     }
