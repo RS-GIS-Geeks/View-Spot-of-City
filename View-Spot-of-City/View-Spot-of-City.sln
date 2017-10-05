@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View-Spot-of-City.Language"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View-Spot-of-City.ArcGISControls", "View-Spot-of-City.ArcGISControls\View-Spot-of-City.ArcGISControls.csproj", "{F6A3B6F5-C38E-4641-9C59-F90F99D74B98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View-Spot-of-City.VisualControls", "View-Spot-of-City.VisualControls\View-Spot-of-City.VisualControls.csproj", "{4A9AC90B-24E1-47F5-A71F-B00B62A0F26E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F6A3B6F5-C38E-4641-9C59-F90F99D74B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6A3B6F5-C38E-4641-9C59-F90F99D74B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6A3B6F5-C38E-4641-9C59-F90F99D74B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A9AC90B-24E1-47F5-A71F-B00B62A0F26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A9AC90B-24E1-47F5-A71F-B00B62A0F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A9AC90B-24E1-47F5-A71F-B00B62A0F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A9AC90B-24E1-47F5-A71F-B00B62A0F26E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

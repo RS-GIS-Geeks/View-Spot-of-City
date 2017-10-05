@@ -27,13 +27,14 @@
                 </ResourceDictionary>
                 <!--#endregion-->
                 
-                <!--#region 用户控件资源字典-->
-                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/UIControls.xaml" />
-                <!--#endregion-->
+                <!--转换器-->
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City;component/Converter/ConverterDictionary.xaml"/>
 
-                <!--#region 语言资源文件-->
+                <!--用户控件资源字典-->
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/UIControls.xaml" />
+
+                <!--语言资源文件-->
                 <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.Language;component/Language/LanguagesDictionary.xaml" />
-                <!--#endregion-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

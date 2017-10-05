@@ -1,4 +1,5 @@
 ﻿<Window x:Class="View_Spot_of_City.MainWindow"
+        x:Name="mainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,6 +10,7 @@
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.ArcGISControls;assembly=View-Spot-of-City.ArcGISControls"
+        xmlns:converter="clr-namespace:View_Spot_of_City.Converter"
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
@@ -29,12 +31,16 @@
             </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>-->
+    <Window.Resources>
+        <local:MainWindow x:Key="mainWindow"/>
+    </Window.Resources>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <!--Header-->
         <DockPanel x:Name="Header" Margin="10,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                 <ComboBox x:Name="LanguageSelecter"
@@ -43,7 +49,6 @@
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-
             <material:ColorZone Background="White"
 							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">
                 <StackPanel Orientation="Horizontal">
@@ -53,7 +58,7 @@
             </StackPanel>
                 </material:ColorZone>
         </DockPanel>
-        <!--#region 导航栏-->
+        <!--导航栏-->
         <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" 
 				 ItemContainerStyle="{StaticResource NavigatorMaterialDesignListBoxItem}" SelectionChanged="MainNavBar_SelectionChanged">
             <ListBox.ItemsPanel>
@@ -70,19 +75,20 @@
                 </Style>
             </ListBox.Style>
         </ListBox>
-        <!-- 主页 -->
-        <ContentControl Grid.Row="2" >
-            <Grid>
-                <mapview:MapView x:Name="GMapView" Visibility="Collapsed"/>
-                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="Collapsed"/>
-                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="Visible"/>
+        <!--主控件-->
+        <ContentControl Grid.Row="2">
+            <Grid x:Name="mainControlManager">
+                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
+                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
+                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=2}"/>
             </Grid>
         </ContentControl>
+        <!--覆盖层-->
         <ContentControl x:Name="OverlayerContentControl" MinWidth="360" Background="Transparent" Grid.Row="2"
 						Margin="{Binding ElementName=MainNavBar, Path=SelectedItem.OverlayerMargin}"
 						HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
 						Content="{Binding ElementName=MainNavBar, Path=SelectedItem.Content}"
 						HorizontalAlignment="{Binding ElementName=MainNavBar, Path=SelectedItem.HAlignType}"
-						VerticalAlignment="{Binding ElementName=MainNavBar, Path=SelectedItem.Content.VerticalAlignment}"/>
+						VerticalAlignment="{Binding ElementName=MainNavBar, Path=SelectedItem.Content.VerticalAlignment}" />
     </Grid>
 </Window>
