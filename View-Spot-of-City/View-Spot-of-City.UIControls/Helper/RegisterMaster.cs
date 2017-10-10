@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using View_Spot_of_City.UIControls.Form;
 
-namespace View_Spot_of_City.UIControls.helper
+namespace View_Spot_of_City.UIControls.Helper
 {
     public class RegisterMaster
     {

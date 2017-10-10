@@ -25,53 +25,53 @@
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="20.1696" 
                          Canvas.Top="9.76358" 
-                         Stretch="Fill" Fill="Orange" 
+                         Stretch="Fill" Fill="{DynamicResource PrimaryHueMidBrush}" 
                          Opacity="1.0"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="2.86816" 
                          Canvas.Top="29.9581" Stretch="Fill" 
-                         Fill="Black" Opacity="0.9"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.9"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="5.03758e-006" 
                          Canvas.Top="57.9341" Stretch="Fill" 
-                         Fill="Black" Opacity="0.8"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.8"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="12.1203" 
                          Canvas.Top="83.3163" Stretch="Fill" 
-                         Fill="Black" Opacity="0.7"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.7"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="36.5459" 
                          Canvas.Top="98.138" Stretch="Fill" 
-                         Fill="Black" Opacity="0.6"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.6"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="64.6723" 
                          Canvas.Top="96.8411" Stretch="Fill" 
-                         Fill="Black" Opacity="0.5"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.5"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="87.6176" 
                          Canvas.Top="81.2783" Stretch="Fill" 
-                         Fill="Black" Opacity="0.4"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.4"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="98.165" 
                          Canvas.Top="54.414" Stretch="Fill" 
-                         Fill="Black" Opacity="0.3"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.3"/>
 
                 <Ellipse Width="21.835" Height="21.862" 
                          Canvas.Left="92.9838" 
                          Canvas.Top="26.9938" Stretch="Fill" 
-                         Fill="Black" Opacity="0.2"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.2"/>
 
                 <Ellipse Width="22" Height="22" 
                          Canvas.Left="76" 
                          Canvas.Top="7" Stretch="Fill" 
-                         Fill="Black" Opacity="0.1"/>
+                         Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.1"/>
 
                 <Canvas.RenderTransform>
 
@@ -106,7 +106,7 @@
                 </Canvas.Triggers>
 
             </Canvas>
-            <TextBlock Name="tbxInfo" Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="tbxInfo" Text="{DynamicResource ProgressText}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         </Grid>
     </Grid>
 </Window>

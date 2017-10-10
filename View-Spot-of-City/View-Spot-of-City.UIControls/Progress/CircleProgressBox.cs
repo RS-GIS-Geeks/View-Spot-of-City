@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Windows;
+
+using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 
 namespace View_Spot_of_City.UIControls.Progress
 {
@@ -67,10 +70,12 @@ namespace View_Spot_of_City.UIControls.Progress
         {
             while (m_frmProgressBox == null)
             { }
-            string[] text = new string[] { "Loading", "Loading.", "Loading..", "Loading...",
-                "Loading", "Loading.", "Loading..", "Loading...",
-                "Loading", "Loading.", "Loading..", "Loading...",
-                "Loading", "Loading.", "Loading..", "Loading..."};
+            string prefixText = GetString("ProgressText") as string;
+            string[] text = new string[] {
+                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
+                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
+                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
+                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "..."};
             int i = 0;
             Random r = new Random();
             int ran = r.Next(8, 14);

@@ -13,5 +13,19 @@
         <!--#region 主题-->
         <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Theme/ThemesDictionary.xaml"/>
         <!--#endregion-->
+        
+        <!--#region 色调-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#6289d9"/>
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}"/>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#4c7bd9"/>
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+        </ResourceDictionary>
+        <!--#endregion-->
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

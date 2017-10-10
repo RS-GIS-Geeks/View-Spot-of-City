@@ -13,7 +13,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
+using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
+using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 
 namespace View_Spot_of_City.UIControls.Form
 {
@@ -47,13 +50,11 @@ namespace View_Spot_of_City.UIControls.Form
 
         private void OKAndCloseFormCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("OK");
             this.DialogResult = true;
         }
 
         private void CancelAndCloseFormCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Cancel");
             this.DialogResult = false;
         }
 
@@ -61,7 +62,7 @@ namespace View_Spot_of_City.UIControls.Form
         {
             if (e.Parameter == null) return;
             Page = e.Parameter as LoginControls?;
-            this.Title = (Page == LoginControls.Login) ? (Application.Current.FindResource("LoginTitle") as string) : (Application.Current.FindResource("RegisterTitle") as string);
+            this.Title = (Page == LoginControls.Login) ? (GetString("LoginTitle") as string) : (GetString("RegisterTitle") as string);
         }
     }
 }

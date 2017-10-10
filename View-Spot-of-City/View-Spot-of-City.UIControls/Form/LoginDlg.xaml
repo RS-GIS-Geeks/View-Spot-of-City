@@ -12,6 +12,7 @@
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
+        GlowBrush="{DynamicResource PrimaryHueMidBrush}"
         Title="登录">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.OKAndCloseFormCommand}" Executed="OKAndCloseFormCommandBinding_Executed"/>

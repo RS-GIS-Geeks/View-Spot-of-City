@@ -31,9 +31,6 @@
             </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>-->
-    <Window.Resources>
-        <local:MainWindow x:Key="mainWindow"/>
-    </Window.Resources>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>

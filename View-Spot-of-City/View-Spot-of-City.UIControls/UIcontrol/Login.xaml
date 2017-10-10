@@ -13,22 +13,22 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label Content="{DynamicResource LoginUserText}" Margin="5,3"/>
-            <Grid Margin="5,0">
-                <TextBox Name="nameTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False"/>
+            <Label Content="{DynamicResource LoginUserText}" Margin="10,3"/>
+            <Grid Margin="10,0">
+                <TextBox Name="mailTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False"/>
             </Grid>
-            <Label Content="{DynamicResource LoginPasswordText}" Margin="5,3"/>
-            <Grid Margin="5,0">
+            <Label Content="{DynamicResource LoginPasswordText}" Margin="10,3"/>
+            <Grid Margin="10,0">
                 <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20"/>
             </Grid>
         </StackPanel>
         <Grid Grid.Row="2">
-            <Button Name="btnOK" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,155,5" IsDefault="True" Click="btnOK_Click"/>
-            <Button Name="btnCancel" Content="{DynamicResource LoginCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,80,5" Click="btnCancel_Click"/>
+            <Button Name="btnLogin" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,170,5" IsDefault="True" Click="btnLogin_ClickAsync"/>
             <Button Name="btnRegister" Content="{DynamicResource LoginRegister}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnRegister_Click"/>
+                    HorizontalAlignment="Right" Margin="0,5,90,5" Click="btnRegister_Click"/>
+            <Button Name="btnCancel" Content="{DynamicResource LoginCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,10,5" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
 </UserControl>

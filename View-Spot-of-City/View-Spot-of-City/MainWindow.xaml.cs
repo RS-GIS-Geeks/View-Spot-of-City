@@ -14,15 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using Config = System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.ViewModel;
-using View_Spot_of_City.Converter;
 using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.UIControls.OverLayer;
-using SpeechLib;
-using MahApps.Metro.Controls;
-using Config = System.Configuration.ConfigurationManager;
+using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.Converter.Enum2UIControl;
+using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 
 namespace View_Spot_of_City
 {
@@ -96,6 +95,7 @@ namespace View_Spot_of_City
         /// </summary>
         public void InitWindows()
         {
+            CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
             InitMainNavBar();
         }
 
@@ -107,7 +107,7 @@ namespace View_Spot_of_City
             mainControl = MainControls.ArcGISMapView;
 
             this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
-            AppTitle.Text = (string)Application.Current.FindResource("MainTitle");
+            AppTitle.Text = (string)GetString("MainTitle");
 
             // 添加覆盖层
             // 静态绑定

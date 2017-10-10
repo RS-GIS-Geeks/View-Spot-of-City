@@ -13,7 +13,6 @@ namespace View_Spot_of_City.Converter
 {
     public class Enum2UIControl : IValueConverter
     {
-
         /// <summary>
         /// 主控件
         /// </summary>
