@@ -21,7 +21,7 @@ namespace View_Spot_of_City
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            (new LoginDlg()).ShowDialog();
+            //(new LoginDlg()).ShowDialog();
             //验证License
             if (!RegisterMaster.CanStart())
             {
