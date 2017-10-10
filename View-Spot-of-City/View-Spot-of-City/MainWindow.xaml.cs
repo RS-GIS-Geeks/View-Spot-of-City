@@ -132,7 +132,7 @@ namespace View_Spot_of_City
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Horizontal-Align-Left.png",
                 "MainNav_Visualization",
-                new OverLayerExample())
+                new Visualization())
             { OverlayerIndicator = OverlayerType.Visualization }
             );
             Overlayers.Add(new OverlayerItemViewModel(

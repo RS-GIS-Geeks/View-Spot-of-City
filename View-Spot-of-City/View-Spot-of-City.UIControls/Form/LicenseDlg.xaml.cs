@@ -91,10 +91,7 @@ namespace View_Spot_of_City.UIControls.Form
                 if (_toolTip != value)
                 {
                     _toolTip = value;
-                    if (this.PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("toolTip"));
-                    }
+                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("toolTip"));
                 }
             }
         }

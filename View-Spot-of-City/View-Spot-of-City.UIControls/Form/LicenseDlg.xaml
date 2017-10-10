@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Form"
         mc:Ignorable="d"
-        Title="License checking" Height="Auto" SizeToContent="Height" Width="300" WindowStartupLocation="CenterScreen"
+        Title="{DynamicResource LoginTitle}" Height="Auto" SizeToContent="Height" Width="300" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     
     <Grid>
@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label Content="Register code:" Margin="5,3"/>
+            <Label Content="{DynamicResource LicenseTip}" Margin="5,3"/>
             <Grid Margin="5,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -25,8 +25,8 @@
             </Grid>
         </StackPanel>
         <Grid Grid.Row="2">
-            <Button Name="btnOK" Content="OK" FontSize="12" Width="70" Height="22" HorizontalAlignment="Right" Margin="0,5,80,5" Click="btnOK_Click" IsEnabled="{Binding IsCorrect}"/>
-            <Button Name="btnCancel" Content="Cancel" FontSize="12" Width="70" Height="22" HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnCancel_Click"/>
+            <Button Name="btnOK" Content="{DynamicResource LicenseOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100" HorizontalAlignment="Right" Margin="0,5,80,5" Click="btnOK_Click" IsEnabled="{Binding IsCorrect}"/>
+            <Button Name="btnCancel" Content="{DynamicResource LicenseCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100" HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
 </Window>

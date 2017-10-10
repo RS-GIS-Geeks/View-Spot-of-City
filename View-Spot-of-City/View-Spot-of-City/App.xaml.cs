@@ -8,6 +8,7 @@ using System.Windows;
 using View_Spot_of_City.helper;
 using View_Spot_of_City.UIControls.helper;
 using View_Spot_of_City.UIControls.Progress;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City
 {
@@ -18,6 +19,7 @@ namespace View_Spot_of_City
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //(new LoginDlg()).ShowDialog();
             //验证License
             if (!RegisterMaster.CanStart())
             {

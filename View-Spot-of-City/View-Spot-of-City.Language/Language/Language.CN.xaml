@@ -2,7 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:View_Spot_of_City.Language">
-
+    <!--登录界面-->
+    <sys:String x:Key="LoginTitle">登录</sys:String>
+    <sys:String x:Key="LoginUserText">用户名：</sys:String>
+    <sys:String x:Key="LoginPasswordText">密码：</sys:String>
+    <sys:String x:Key="LoginOk">登录</sys:String>
+    <sys:String x:Key="LoginCancel">取消</sys:String>
+    <sys:String x:Key="LoginRegister">注册</sys:String>
+    <!--登录界面-->
+    <sys:String x:Key="LicenseTitle">产品注册</sys:String>
+    <sys:String x:Key="LicenseTip">注册码：</sys:String>
+    <sys:String x:Key="LicenseCode">密码：</sys:String>
+    <sys:String x:Key="LicenseOk">确定</sys:String>
+    <sys:String x:Key="LicenseCancel">取消</sys:String>
     <!--标题-->
     <sys:String x:Key="MainTitle">城市景点推荐系统</sys:String>
     <!--logo-->
