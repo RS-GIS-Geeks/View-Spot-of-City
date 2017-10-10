@@ -20,12 +20,18 @@ namespace View_Spot_of_City.UIControls.Command
         public static RoutedCommand CancelAndCloseFormCommand { set; get; }
 
         /// <summary>
+        /// 改变页面命令
+        /// </summary>
+        public static RoutedCommand ChangePageCommand { set; get; }
+
+        /// <summary>
         /// 静态构造函数
         /// </summary>
         static LoginDlgCommands()
         {
             OKAndCloseFormCommand = new RoutedCommand();
             CancelAndCloseFormCommand = new RoutedCommand();
+            ChangePageCommand = new RoutedCommand();
         }
     }
 }

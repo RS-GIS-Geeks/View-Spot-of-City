@@ -1,20 +1,28 @@
-﻿<Window x:Class="View_Spot_of_City.UIControls.Form.LoginDlg"
+﻿<metro:MetroWindow x:Class="View_Spot_of_City.UIControls.Form.LoginDlg"
+        x:Name="loginDlg"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Form"
         xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
         xmlns:uicommands="clr-namespace:View_Spot_of_City.UIControls.Command"
+        xmlns:converter="clr-namespace:View_Spot_of_City.UIControls.Converter"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        Title="{Binding ElementName=ContentManager, Path=Title}">
+        Title="登录">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.OKAndCloseFormCommand}" Executed="OKAndCloseFormCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.CancelAndCloseFormCommand}" Executed="CancelAndCloseFormCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.ChangePageCommand}" Executed="ChangePageCommandBinding_Executed"/>
     </Window.CommandBindings>
+    <Window.Resources>
+        <converter:Enum2LoginUI x:Key="login2UIcontrol"/>
+    </Window.Resources>
     <Grid>
-        <control:Login x:Name="ContentManager"></control:Login>
+        <control:Login Visibility="{Binding ElementName=loginDlg, Path=Page, Converter={StaticResource login2UIcontrol},ConverterParameter=0}"/>
+        <control:Register Visibility="{Binding ElementName=loginDlg, Path=Page, Converter={StaticResource login2UIcontrol},ConverterParameter=1}"/>
     </Grid>
-</Window>
+</metro:MetroWindow>

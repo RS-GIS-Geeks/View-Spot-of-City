@@ -7,9 +7,8 @@
         <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Style/StylesDictionary.xaml" />
         <!--#endregion-->
 
-        <!--#region 数据模板-->
+        <!--数据模板-->
         <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/DataTemplate/DataTemplateDictionary.xaml"/>
-        <!--#endregion-->
 
         <!--#region 主题-->
         <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Theme/ThemesDictionary.xaml"/>

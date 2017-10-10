@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View_Spot_of_City.UIControls.Command;
+using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -41,6 +43,23 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         public Register()
         {
             InitializeComponent();
+            Title = Application.Current.FindResource("LoginTitle") as string;
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("点击注册按钮");
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            LoginDlgCommands.CancelAndCloseFormCommand.Execute(null, this);
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            LoginDlgCommands.ChangePageCommand.Execute(LoginControls.Login, this);
+        }
+
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using View_Spot_of_City.UIControls.Command;
+using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -47,12 +48,18 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("点击登录按钮");
             LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             LoginDlgCommands.CancelAndCloseFormCommand.Execute(null, this);
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            LoginDlgCommands.ChangePageCommand.Execute(LoginControls.Register, this);
         }
     }
 }

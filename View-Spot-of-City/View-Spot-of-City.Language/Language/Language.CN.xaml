@@ -3,13 +3,22 @@
 					xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:View_Spot_of_City.Language">
     <!--登录界面-->
-    <sys:String x:Key="LoginTitle">登录</sys:String>
-    <sys:String x:Key="LoginUserText">用户名：</sys:String>
+    <sys:String x:Key="LoginTitle">用户登录</sys:String>
+    <sys:String x:Key="LoginUserText">邮箱：</sys:String>
     <sys:String x:Key="LoginPasswordText">密码：</sys:String>
     <sys:String x:Key="LoginOk">登录</sys:String>
     <sys:String x:Key="LoginCancel">取消</sys:String>
     <sys:String x:Key="LoginRegister">注册</sys:String>
-    <!--登录界面-->
+    <!--注册界面-->
+    <sys:String x:Key="RegisterTitle">用户注册</sys:String>
+    <sys:String x:Key="RegisterText">邮箱：</sys:String>
+    <sys:String x:Key="RegisterPasswordText">密码：</sys:String>
+    <sys:String x:Key="RegisterPassword1Text">密码确认：</sys:String>
+    <sys:String x:Key="RegisterCodeText">验证码：</sys:String>
+    <sys:String x:Key="RegisterOk">注册</sys:String>
+    <sys:String x:Key="RegisterCancel">取消</sys:String>
+    <sys:String x:Key="RegisterBack">返回</sys:String>
+    <!--产品界面-->
     <sys:String x:Key="LicenseTitle">产品注册</sys:String>
     <sys:String x:Key="LicenseTip">注册码：</sys:String>
     <sys:String x:Key="LicenseCode">密码：</sys:String>

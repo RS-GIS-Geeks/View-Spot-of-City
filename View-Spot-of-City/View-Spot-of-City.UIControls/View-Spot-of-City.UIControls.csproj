@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\LoginDlgCommands.cs" />
+    <Compile Include="Converter\Enum2LoginUI.cs" />
     <Compile Include="Form\LicenseDlg.xaml.cs">
       <DependentUpon>LicenseDlg.xaml</DependentUpon>
     </Compile>
@@ -226,9 +227,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\View-Spot-of-City.VisualControls\View-Spot-of-City.VisualControls.csproj">
       <Project>{4a9ac90b-24e1-47f5-a71f-b00b62a0f26e}</Project>

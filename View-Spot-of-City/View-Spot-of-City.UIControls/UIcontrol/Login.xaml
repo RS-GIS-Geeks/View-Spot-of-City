@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
              mc:Ignorable="d"
              Height="180" Width="300">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,9 +24,11 @@
         </StackPanel>
         <Grid Grid.Row="2">
             <Button Name="btnOK" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,80,5" IsEnabled="{Binding IsCorrect}" IsDefault="True" Click="btnOK_Click"/>
+                    HorizontalAlignment="Right" Margin="0,5,155,5" IsDefault="True" Click="btnOK_Click"/>
             <Button Name="btnCancel" Content="{DynamicResource LoginCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnCancel_Click"/>
+                    HorizontalAlignment="Right" Margin="0,5,80,5" Click="btnCancel_Click"/>
+            <Button Name="btnRegister" Content="{DynamicResource LoginRegister}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnRegister_Click"/>
         </Grid>
     </Grid>
 </UserControl>

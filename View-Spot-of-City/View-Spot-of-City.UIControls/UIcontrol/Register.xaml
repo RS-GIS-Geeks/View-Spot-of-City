@@ -1,12 +1,42 @@
 ﻿<UserControl x:Class="View_Spot_of_City.UIControls.UIcontrol.Register"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d"
+             Height="300" Width="300">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="{DynamicResource RegisterText}" Margin="5,3"/>
+            <Grid Margin="5,0">
+                <TextBox Name="nameTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterPasswordText}" Margin="5,3"/>
+            <Grid Margin="5,0">
+                <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterPassword1Text}" Margin="5,3"/>
+            <Grid Margin="5,0">
+                <PasswordBox PasswordChar="●" Name="password1TextBox" Margin="3" MaxLength="20"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterCodeText}" Margin="5,3"/>
+            <Grid Margin="5,0">
+                <PasswordBox PasswordChar="●" Name="codeTextBox" Margin="3" MaxLength="6"/>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Button Name="btnRegister" Content="{DynamicResource RegisterOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,155,5" IsDefault="True" Click="btnRegister_Click"/>
+            <Button Name="btnCancel" Content="{DynamicResource RegisterCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,80,5" Click="btnCancel_Click"/>
+            <Button Name="btnBack" Content="{DynamicResource RegisterBack}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnBack_Click"/>
+        </Grid>
     </Grid>
 </UserControl>
