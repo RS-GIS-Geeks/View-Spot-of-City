@@ -6,8 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using View_Spot_of_City.helper;
-using View_Spot_of_City.UIControls.helper;
+using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Progress;
+using View_Spot_of_City.UIControls.Form;
+
+using System.Windows.Media;
 
 namespace View_Spot_of_City
 {
@@ -16,18 +19,14 @@ namespace View_Spot_of_City
     /// </summary>
     public partial class App : Application
     {
-        public static CircleProgressBox circleProgressBox = new CircleProgressBox();
-
         protected override void OnStartup(StartupEventArgs e)
         {
+            //(new LoginDlg()).ShowDialog();
             //验证License
             if (!RegisterMaster.CanStart())
             {
                 Environment.Exit(0);
             }
-            //启动界面
-            circleProgressBox.ShowPregress();
-            circleProgressBox.SetDefaultDescription();
             base.OnStartup(e);
         }
     }

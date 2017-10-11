@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="View_Spot_of_City.UIControls.UIcontrol.Register"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
+             mc:Ignorable="d"
+             Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="{DynamicResource RegisterText}" Margin="10,3"/>
+            <Grid Margin="10,0">
+                <TextBox Name="mailTextBox" Margin="3" MaxLength="30" AcceptsTab="False" AcceptsReturn="False"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterPasswordText}" Margin="10,3"/>
+            <Grid Margin="10,0">
+                <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="16"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterPassword1Text}" Margin="10,3"/>
+            <Grid Margin="10,0">
+                <PasswordBox PasswordChar="●" Name="password1TextBox" Margin="3" MaxLength="16"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
+            <Grid Margin="10,0">
+                <TextBox Name="codeTextBox" Margin="3" MaxLength="6" AcceptsTab="False" AcceptsReturn="False"/>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Button Name="btnRegister" Content="{DynamicResource RegisterOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,170,5" IsDefault="True" Click="btnRegister_ClickAsync"/>
+            <Button Name="btnBack" Content="{DynamicResource RegisterBack}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,90,5" Click="btnBack_Click"/>
+            <Button Name="btnCancel" Content="{DynamicResource RegisterCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,5,10,5" Click="btnCancel_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>

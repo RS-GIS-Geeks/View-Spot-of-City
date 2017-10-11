@@ -17,13 +17,14 @@ using System.Windows.Shapes;
 
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using View_Spot_of_City.UIControls.helper;
+using View_Spot_of_City.UIControls.Helper;
+
 namespace View_Spot_of_City.UIControls.Form
 {
     /// <summary>
     /// LicenseDlg.xaml 的交互逻辑
     /// </summary>
-    public partial class LicenseDlg : Window, INotifyPropertyChanged
+    public partial class LicenseDlg : MetroWindow, INotifyPropertyChanged
     {
         string path = AppDomain.CurrentDomain.BaseDirectory + "License.dat";
         private bool _IsCorrect;
@@ -71,10 +72,7 @@ namespace View_Spot_of_City.UIControls.Form
                 if (_image != value)
                 {
                     _image = value;
-                    if (this.PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("image"));
-                    }
+                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("image"));
                 }
             }
         }
@@ -91,10 +89,7 @@ namespace View_Spot_of_City.UIControls.Form
                 if (_toolTip != value)
                 {
                     _toolTip = value;
-                    if (this.PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("toolTip"));
-                    }
+                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("toolTip"));
                 }
             }
         }
@@ -113,10 +108,7 @@ namespace View_Spot_of_City.UIControls.Form
                     if (_visibility != value)
                     {
                         _visibility = value;
-                        if (this.PropertyChanged != null)
-                        {
-                            this.PropertyChanged(this, new PropertyChangedEventArgs("visibility"));
-                        }
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("visibility"));
                     }
                 }
             }

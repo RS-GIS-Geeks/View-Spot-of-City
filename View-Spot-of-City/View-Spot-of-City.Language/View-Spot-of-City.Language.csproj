@@ -61,6 +61,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Language\LanguageDictionaryHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

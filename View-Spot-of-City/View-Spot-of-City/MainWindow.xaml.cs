@@ -13,19 +13,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-using SpeechLib;
-using View_Spot_of_City.UIControls.OverLayer;
-using View_Spot_of_City.ViewModel;
+using System.ComponentModel;
 using Config = System.Configuration.ConfigurationManager;
+
+using View_Spot_of_City.ViewModel;
+using View_Spot_of_City.UIControls.Progress;
+using View_Spot_of_City.UIControls.OverLayer;
+using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
+using static View_Spot_of_City.Converter.Enum2UIControl;
+using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 
 namespace View_Spot_of_City
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// 覆盖面板组
         /// </summary>
@@ -36,18 +42,74 @@ namespace View_Spot_of_City
         /// </summary>
         List<OverlayerItemViewModel> Overlayers { get { return _overlayers; } }
 
+        /// <summary>
+        /// 圆形启动界面
+        /// </summary>
+        static CircleProgressBox circleProgressBox = null;
+
+        /// <summary>
+        /// 当前显示主控件
+        /// </summary>
+        MainControls? _mainControl = null;
+
+        /// <summary>
+        /// 当前显示主控件
+        /// </summary>
+        public MainControls? mainControl
+        {
+            get { return _mainControl; }
+            set
+            {
+                if(_mainControl != value)
+                {
+                    _mainControl = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("mainControl"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+
+            ShowCircleProgressBox();
+
             InitWindows();
         }
 
-        private void InitWindows()
+        /// <summary>
+        /// 显示圆形进度框
+        /// </summary>
+        public void ShowCircleProgressBox()
         {
-            this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
-            AppTitle.Text = (string)Application.Current.FindResource("MainTitle");
+            circleProgressBox = new CircleProgressBox();
+            circleProgressBox.ShowPregress();
+            circleProgressBox.SetDefaultDescription();
+        }
 
-            /// 添加覆盖层
+        /// <summary>
+        /// 初始化界面
+        /// </summary>
+        public void InitWindows()
+        {
+            CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
+            InitMainNavBar();
+        }
+
+        /// <summary>
+        /// 初始化导航条
+        /// </summary>
+        private void InitMainNavBar()
+        {
+            mainControl = MainControls.ArcGISMapView;
+
+            this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
+            AppTitle.Text = (string)GetString("MainTitle");
+
+            // 添加覆盖层
             // 静态绑定
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/3D-Glasses.png",
@@ -70,7 +132,7 @@ namespace View_Spot_of_City
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Horizontal-Align-Left.png",
                 "MainNav_Visualization",
-                new OverLayerExample())
+                new Visualization())
             { OverlayerIndicator = OverlayerType.Visualization }
             );
             Overlayers.Add(new OverlayerItemViewModel(
@@ -80,6 +142,18 @@ namespace View_Spot_of_City
             { OverlayerIndicator = OverlayerType.Share }
             );
             MainNavBar.ItemsSource = Overlayers;
+        }
+        
+        /// <summary>
+        /// 窗口加载完毕响应事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (circleProgressBox != null)
+                circleProgressBox.CloseProgress();
+            this.Activate();
         }
 
         /// <summary>
@@ -110,15 +184,14 @@ namespace View_Spot_of_City
             }
         }
 
+        /// <summary>
+        /// 点击header事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MainNavBar.SelectedIndex = -1;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            App.circleProgressBox.CloseProgress();
-            this.Activate();
         }
     }
 }
