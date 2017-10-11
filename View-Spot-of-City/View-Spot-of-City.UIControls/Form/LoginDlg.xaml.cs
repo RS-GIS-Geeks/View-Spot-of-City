@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 
@@ -63,6 +62,16 @@ namespace View_Spot_of_City.UIControls.Form
             if (e.Parameter == null) return;
             Page = e.Parameter as LoginControls?;
             this.Title = (Page == LoginControls.Login) ? (GetString("LoginTitle") as string) : (GetString("RegisterTitle") as string);
+        }
+
+        private void loginDlg_Closed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginDlg_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Activate();
         }
     }
 }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.OverLayer"
+             xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
 			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="250">
@@ -11,7 +12,10 @@
     <Grid x:Name="root" Background="Transparent">
         <material:ColorZone Background="White" VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1">
-            <TextBlock Text="example" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid>
+                <control:CircleProgressControl/>
+                <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+            </Grid>
         </material:ColorZone>
     </Grid>
 </UserControl>

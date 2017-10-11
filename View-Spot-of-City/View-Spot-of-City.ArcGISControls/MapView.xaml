@@ -12,6 +12,6 @@
         <viewmodel:MapViewModel x:Key="MapViewModel" />
     </UserControl.Resources>
     <Grid>
-        <esri:MapView Map="{Binding Map, Source={StaticResource MapViewModel}}" />
+        <esri:MapView Map="{Binding Map, Source={StaticResource MapViewModel}}" x:Name="mapView" />
     </Grid>
 </UserControl>

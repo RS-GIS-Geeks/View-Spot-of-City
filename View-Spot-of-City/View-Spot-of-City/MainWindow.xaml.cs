@@ -22,6 +22,8 @@ using View_Spot_of_City.UIControls.OverLayer;
 using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace View_Spot_of_City
 {
@@ -45,12 +47,18 @@ namespace View_Spot_of_City
         /// <summary>
         /// 圆形启动界面
         /// </summary>
-        static CircleProgressBox circleProgressBox = null;
+        //static CircleProgressBox circleProgressBox = null;
+        CircleProgressAsync circleProgressBox = new CircleProgressAsync();
 
         /// <summary>
         /// 当前显示主控件
         /// </summary>
         MainControls? _mainControl = null;
+
+        /// <summary>
+        /// 用于关闭启动进度条的定时器
+        /// </summary>
+        DispatcherTimer closeCircleTimer = new DispatcherTimer();
 
         /// <summary>
         /// 当前显示主控件
@@ -73,11 +81,23 @@ namespace View_Spot_of_City
         /// </summary>
         public MainWindow()
         {
-            InitializeComponent();
-
             ShowCircleProgressBox();
 
+            InitializeComponent();
+
+            InitParams();
+
             InitWindows();
+        }
+
+        /// <summary>
+        /// 初始化变量
+        /// </summary>
+        private void InitParams()
+        {
+            Application.Current.MainWindow = this;
+            closeCircleTimer.Tick += new EventHandler(CloseCircleTimer_Tick);
+            closeCircleTimer.Interval = new TimeSpan(0, 0 ,1);
         }
 
         /// <summary>
@@ -85,9 +105,11 @@ namespace View_Spot_of_City
         /// </summary>
         public void ShowCircleProgressBox()
         {
-            circleProgressBox = new CircleProgressBox();
-            circleProgressBox.ShowPregress();
-            circleProgressBox.SetDefaultDescription();
+            //circleProgressBox = new CircleProgressBox();
+            //circleProgressBox.ShowPregress();
+            //circleProgressBox.SetDefaultDescription();
+            Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin));
+            thread.Start();
         }
 
         /// <summary>
@@ -151,9 +173,22 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //开始计时，计时完成后即关闭启动进度条
+            closeCircleTimer.Start();
+
+            this.Activate();
+        }
+
+        /// <summary>
+        /// 关闭启动进度条的计时器响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseCircleTimer_Tick(object sender, EventArgs e)
+        {
             if (circleProgressBox != null)
                 circleProgressBox.CloseProgress();
-            this.Activate();
+            closeCircleTimer.Stop();
         }
 
         /// <summary>
@@ -192,6 +227,16 @@ namespace View_Spot_of_City
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MainNavBar.SelectedIndex = -1;
+        }
+
+        private void mainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            Application.Current.Shutdown(0);
+        }
+
+        private void mainWindow_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

@@ -21,12 +21,19 @@ namespace View_Spot_of_City
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //(new LoginDlg()).ShowDialog();
+            //应用程序关闭时，才 System.Windows.Application.Shutdown 调用
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             //验证License
             if (!RegisterMaster.CanStart())
             {
                 Environment.Exit(0);
             }
+
+            //登录
+            LoginDlg logindlg = new LoginDlg();
+            logindlg.ShowDialog();
+
             base.OnStartup(e);
         }
     }

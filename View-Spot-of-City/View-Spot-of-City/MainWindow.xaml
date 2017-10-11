@@ -14,7 +14,8 @@
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized" Loaded="Window_Loaded">
+        WindowState="Maximized" Loaded="Window_Loaded"
+        Closing="mainWindow_Closing" Closed="mainWindow_Closed">
     <!--<metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button Click="Setting_Click">

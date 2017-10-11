@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using static System.Configuration.ConfigurationManager;
-
-namespace View_Spot_of_City.ArcGISControls
+namespace View_Spot_of_City.UIControls.UIcontrol
 {
     /// <summary>
-    /// UserControl1.xaml 的交互逻辑
+    /// CircleProgressControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MapView : UserControl
+    public partial class CircleProgressControl : UserControl
     {
-        public MapView()
+        public CircleProgressControl()
         {
             InitializeComponent();
-            //mapView.SetViewpointCenterAsync(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]));
         }
     }
 }
