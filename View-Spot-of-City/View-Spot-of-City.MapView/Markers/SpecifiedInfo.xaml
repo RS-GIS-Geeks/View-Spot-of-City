@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="View_Spot_of_City.MapView.Markers.SpecifiedInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View_Spot_of_City.MapView.Markers"
+             mc:Ignorable="d" 
+             Background="White"
+             BorderThickness="1"
+             BorderBrush="#ff884c"
+             Padding="5">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Name="text1"></TextBlock>
+            <TextBlock Name="text2" Foreground="#c61620" FontWeight="Bold"></TextBlock>
+            <TextBlock Name="text3"></TextBlock>
+        </StackPanel>
+        <TextBlock Name="text4" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"></TextBlock>
+    </Grid>
+</UserControl>
+

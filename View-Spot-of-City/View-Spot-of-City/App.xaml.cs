@@ -5,6 +5,12 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using View_Spot_of_City.helper;
+using View_Spot_of_City.UIControls.Helper;
+using View_Spot_of_City.UIControls.Progress;
+using View_Spot_of_City.UIControls.Form;
+
+using System.Windows.Media;
 
 namespace View_Spot_of_City
 {
@@ -13,5 +19,21 @@ namespace View_Spot_of_City
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            //应用程序关闭时，才 System.Windows.Application.Shutdown 调用
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            //验证License
+            if (!RegisterMaster.CanStart())
+                Environment.Exit(0);
+
+            //登录
+            bool? loginDlgResult = (new LoginDlg()).ShowDialog();
+            if (!loginDlgResult.HasValue || !loginDlgResult.Value)
+                Environment.Exit(0);
+
+            base.OnStartup(e);
+        }
     }
 }

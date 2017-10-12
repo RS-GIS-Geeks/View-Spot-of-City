@@ -4,6 +4,24 @@
              xmlns:local="clr-namespace:View_Spot_of_City"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--#region Material主题资源-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <!--#endregion-->
+                
+                <!--转换器-->
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City;component/Converter/ConverterDictionary.xaml"/>
+
+                <!--用户控件资源字典-->
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/UIControls.xaml" />
+
+                <!--语言资源文件-->
+                <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.Language;component/Language/LanguagesDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
