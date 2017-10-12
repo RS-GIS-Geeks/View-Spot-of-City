@@ -17,12 +17,16 @@
     <sys:String x:Key="RegisterTitle">用户注册</sys:String>
     <sys:String x:Key="RegisterText">邮箱：</sys:String>
     <sys:String x:Key="RegisterPasswordText">密码：</sys:String>
-    <sys:String x:Key="RegisterPassword1Text">密码确认：</sys:String>
+    <sys:String x:Key="RegisterPassword1Text">确认密码：</sys:String>
     <sys:String x:Key="RegisterCodeText">请输入图片中的内容：</sys:String>
     <sys:String x:Key="RegisterCodeButtonTipText">点击更换验证码</sys:String>
     <sys:String x:Key="RegisterOk">注册</sys:String>
     <sys:String x:Key="RegisterCancel">取消</sys:String>
     <sys:String x:Key="RegisterBack">返回</sys:String>
+    <sys:String x:Key="RegisterValidateCodeError">验证码错误</sys:String>
+    <sys:String x:Key="RegisterMailFormatError">邮箱格式错误</sys:String>
+    <sys:String x:Key="RegisterPasswordTooShort">密码太短</sys:String>
+    <sys:String x:Key="RegisterPasswordTooLong">密码过长</sys:String>
     <sys:String x:Key="RegisterMailEcho">该用户已注册，若忘记密码，请联系管理员</sys:String>
     <sys:String x:Key="RegisterOK">注册成功，请返回登录界面</sys:String>
     <!--产品注册界面-->
@@ -49,13 +53,13 @@
     <!--#region 错误和异常显示-->
     <sys:String x:Key="Config_File_Error">配置文件错误，请检查配置文件</sys:String>
     <sys:String x:Key="Two_Passwords_Mismatching">前后两次密码不匹配</sys:String>
-    <sys:String x:Key="Password_Too_Long">输入不能为空</sys:String>
     <sys:String x:Key="Mail_Error">邮箱错误</sys:String>
     <sys:String x:Key="Input_Empty">输入不能为空</sys:String>
     <sys:String x:Key="Server_Connect_Error">无法连接服务器</sys:String>
     <sys:String x:Key="Server_Return_Error">服务器返回错误</sys:String>
     <!--#endregion-->
     <!--#region 对话框-->
+    <sys:String x:Key="MessageBox_Warning_Title">警告</sys:String>
     <sys:String x:Key="MessageBox_Error_Title">错误</sys:String>
     <sys:String x:Key="MessageBox_Exception_Title">异常</sys:String>
     <sys:String x:Key="MessageBox_Tip_Title">提示</sys:String>
