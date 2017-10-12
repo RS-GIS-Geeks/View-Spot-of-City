@@ -25,6 +25,7 @@
     <sys:String x:Key="RegisterBack">返回</sys:String>
     <sys:String x:Key="RegisterValidateCodeError">验证码错误</sys:String>
     <sys:String x:Key="RegisterMailFormatError">邮箱格式错误</sys:String>
+    <sys:String x:Key="RegisterPasswordsMismatching">前后两次密码不匹配</sys:String>
     <sys:String x:Key="RegisterPasswordTooShort">密码太短</sys:String>
     <sys:String x:Key="RegisterPasswordTooLong">密码过长</sys:String>
     <sys:String x:Key="RegisterMailEcho">该用户已注册，若忘记密码，请联系管理员</sys:String>
@@ -52,7 +53,6 @@
 
     <!--#region 错误和异常显示-->
     <sys:String x:Key="Config_File_Error">配置文件错误，请检查配置文件</sys:String>
-    <sys:String x:Key="Two_Passwords_Mismatching">前后两次密码不匹配</sys:String>
     <sys:String x:Key="Mail_Error">邮箱错误</sys:String>
     <sys:String x:Key="Input_Empty">输入不能为空</sys:String>
     <sys:String x:Key="Server_Connect_Error">无法连接服务器</sys:String>

@@ -94,7 +94,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 }
                 if (user_password != user_password1)
                 {
-                    MessageBox.Show(GetString("Two_Passwords_Mismatching"), AppSettings["MessageBox_Error_Title"]);
+                    MessageBox.Show(GetString("RegisterPasswordsMismatching"), AppSettings["MessageBox_Error_Title"]);
                     return;
                 }
                 if (user_password.Length > 16)
