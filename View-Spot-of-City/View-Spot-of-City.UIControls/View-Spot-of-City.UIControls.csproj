@@ -94,6 +94,7 @@
     <Compile Include="Form\LoginDlg.xaml.cs">
       <DependentUpon>LoginDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />
     <Compile Include="Helper\MySqlHelper.cs" />
     <Compile Include="Helper\RegisterMaster.cs" />

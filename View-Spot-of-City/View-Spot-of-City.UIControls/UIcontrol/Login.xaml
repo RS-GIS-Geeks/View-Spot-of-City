@@ -24,11 +24,11 @@
         </StackPanel>
         <Grid Grid.Row="2">
             <Button Name="btnLogin" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,170,5" IsDefault="True" Click="btnLogin_ClickAsync"/>
+                    HorizontalAlignment="Right" Margin="0,10,170,5" IsDefault="True" Click="btnLogin_ClickAsync"/>
             <Button Name="btnRegister" Content="{DynamicResource LoginRegister}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,90,5" Click="btnRegister_Click"/>
+                    HorizontalAlignment="Right" Margin="0,10,90,5" Click="btnRegister_Click"/>
             <Button Name="btnCancel" Content="{DynamicResource LoginCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,5,10,5" Click="btnCancel_Click"/>
+                    HorizontalAlignment="Right" Margin="0,10,10,5" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -21,6 +21,7 @@ using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Helper;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -32,7 +33,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         public event PropertyChangedEventHandler PropertyChanged;
 
         string _title = null;
-
         public string Title
         {
             get { return _title; }
@@ -50,6 +50,14 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         {
             InitializeComponent();
             Title = GetString("LoginTitle");
+            validateImage.Source = CreateValidateCodeImage();
+
+            #region 测试
+            mailTextBox.Text = "990296951@qq.com";
+            passwordTextBox.Password = "19970108";
+            password1TextBox.Password = "19970108";
+            validateCodeTextBox.Text = "1234";
+            #endregion
         }
 
         private async void btnRegister_ClickAsync(object sender, RoutedEventArgs e)
@@ -60,13 +68,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 string user_mail = mailTextBox.Text;
                 string user_password = passwordTextBox.Password;
                 string user_password1 = password1TextBox.Password;
-                string user_identifyingCode = codeTextBox.Text;
-
-                //测试
-                user_mail = "990296951@qq.com";
-                user_password = "19970108";
-                user_password1 = "19970108";
-                user_identifyingCode = "1234";
+                string user_identifyingCode = validateCodeTextBox.Text;
 
                 //验证输入
                 if (user_mail == string.Empty || user_password == string.Empty || user_password1 == string.Empty || user_identifyingCode == string.Empty)

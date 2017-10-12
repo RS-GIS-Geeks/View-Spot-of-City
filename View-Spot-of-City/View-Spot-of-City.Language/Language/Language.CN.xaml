@@ -18,7 +18,8 @@
     <sys:String x:Key="RegisterText">邮箱：</sys:String>
     <sys:String x:Key="RegisterPasswordText">密码：</sys:String>
     <sys:String x:Key="RegisterPassword1Text">密码确认：</sys:String>
-    <sys:String x:Key="RegisterCodeText">验证码：</sys:String>
+    <sys:String x:Key="RegisterCodeText">请输入图片中的内容：</sys:String>
+    <sys:String x:Key="RegisterCodeButtonTipText">点击更换验证码</sys:String>
     <sys:String x:Key="RegisterOk">注册</sys:String>
     <sys:String x:Key="RegisterCancel">取消</sys:String>
     <sys:String x:Key="RegisterBack">返回</sys:String>
