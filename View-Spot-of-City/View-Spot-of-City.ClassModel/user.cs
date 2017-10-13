@@ -13,9 +13,9 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 用户id
         /// </summary>
-        string _id = string.Empty;
+        long _id = long.MinValue;
         [DataMember]
-        public string id
+        public long id
         {
             get { return _id; }
             set { _id = value; }
