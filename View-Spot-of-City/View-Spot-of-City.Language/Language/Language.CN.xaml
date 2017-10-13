@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:View_Spot_of_City.Language.Language">
+    <!--#region 2017.10.13 by CS-Tao-->
     <!--进度条-->
     <sys:String x:Key="ProgressText">正在加载</sys:String>
     <!--登录界面-->
@@ -64,4 +65,5 @@
     <sys:String x:Key="MessageBox_Exception_Title">异常</sys:String>
     <sys:String x:Key="MessageBox_Tip_Title">提示</sys:String>
     <!--#endregion-->
+    <!--endregion-->
 </ResourceDictionary>
