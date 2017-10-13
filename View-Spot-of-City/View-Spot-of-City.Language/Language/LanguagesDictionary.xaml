@@ -4,6 +4,6 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Language.CN.xaml" />
-        <ResourceDictionary Source="Language.EN.xaml" />
+        <!--<ResourceDictionary Source="Language.EN.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

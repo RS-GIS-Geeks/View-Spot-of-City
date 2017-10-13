@@ -33,13 +33,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.IconPacks, Version=1.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.IconPacks.1.9.1\lib\net45\MahApps.Metro.IconPacks.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -86,21 +89,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
     <Compile Include="Converter\Enum2LoginUI.cs" />
-    <Compile Include="Form\LicenseDlg.xaml.cs">
-      <DependentUpon>LicenseDlg.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Form\LoginDlg.xaml.cs">
-      <DependentUpon>LoginDlg.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Form\UserInfoDlg.xaml.cs">
-      <DependentUpon>UserInfoDlg.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />
     <Compile Include="Helper\MySqlHelper.cs" />
-    <Compile Include="Helper\RegisterMaster.cs" />
     <Compile Include="Helper\WebServiceHelper.cs" />
     <Compile Include="OverLayer\OverLayerExample.xaml.cs">
       <DependentUpon>OverLayerExample.xaml</DependentUpon>
@@ -165,18 +159,6 @@
     <Page Include="DataTemplate\MainNavBarDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Form\LicenseDlg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Form\LoginDlg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Form\UserInfoDlg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OverLayer\OverLayerExample.xaml">
       <SubType>Designer</SubType>
@@ -296,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\Microphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Form\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,12 +13,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using View_Spot_of_City.ClassModel;
 
-namespace View_Spot_of_City.UIControls.Form
+namespace View_Spot_of_City.Form
 {
     /// <summary>
     /// LoginDlg.xaml 的交互逻辑
@@ -73,6 +72,12 @@ namespace View_Spot_of_City.UIControls.Form
         private void loginDlg_Loaded(object sender, RoutedEventArgs e)
         {
             this.Activate();
+        }
+
+        private void ChangeCurrentUserCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            App.CurrentUser = e.Parameter as user;
+            //MessageBox.Show("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
         }
     }
 }

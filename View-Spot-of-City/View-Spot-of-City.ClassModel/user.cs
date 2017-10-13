@@ -10,6 +10,8 @@ namespace View_Spot_of_City.ClassModel
     [DataContract]
     public class user
     {
+        public static user NoBody = new user();
+
         /// <summary>
         /// 用户id
         /// </summary>
@@ -85,6 +87,14 @@ namespace View_Spot_of_City.ClassModel
         {
             get { return _city; }
             set { _city = value; }
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public user()
+        {
+
         }
     }
 }

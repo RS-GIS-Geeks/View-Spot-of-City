@@ -13,18 +13,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Windows.Threading;
 using System.ComponentModel;
 using Config = System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.ViewModel;
 using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.UIControls.OverLayer;
+using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.Form;
 using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using System.Threading;
-using System.Windows.Threading;
-using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.Language.Language;
 
 namespace View_Spot_of_City
 {
@@ -130,7 +132,6 @@ namespace View_Spot_of_City
             mainControl = MainControls.ArcGISMapView;
 
             this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
-            AppTitle.Text = (string)GetString("MainTitle");
 
             // 添加覆盖层
             // 静态绑定
@@ -241,6 +242,21 @@ namespace View_Spot_of_City
             userInfoDlg.ShowDialog();
         }
 
+        /// <summary>
+        /// 点击退出登录按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.CurrentUser = user.NoBody;
+
+            //登录
+            bool? loginDlgResult = (new LoginDlg()).ShowDialog();
+            if (!loginDlgResult.HasValue || !loginDlgResult.Value)
+                Environment.Exit(0);
+        }
+
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
             Application.Current.Shutdown(0);
@@ -249,6 +265,23 @@ namespace View_Spot_of_City
         private void mainWindow_Closed(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void LanguageSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /// 切换语言字典
+            string requestedCulture = string.Format(@"pack://application:,,,/View-Spot-of-City.Language;component/Language/Language.{0}.xaml", languageDictionary[LanguageSelecter.SelectedIndex]);
+            ResourceDictionary resourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault((x) =>
+            {
+                return (x.Source == null) ? false : (x.Source.OriginalString.Contains("View-Spot-of-City.Language"));
+            });
+            if (resourceDictionary != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(resourceDictionary);
+                ResourceDictionary requestDictionary = new ResourceDictionary();
+                requestDictionary.Source = new Uri(requestedCulture);
+                Application.Current.Resources.MergedDictionaries.Add(requestDictionary);
+            }
         }
     }
 }

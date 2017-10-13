@@ -13,5 +13,13 @@ namespace View_Spot_of_City.Language.Language
         {
             return Application.Current.FindResource(key) as string;
         }
+
+        public static Dictionary<int, string> languageDictionary = new Dictionary<int, string>(2);
+
+        static LanguageDictionaryHelper()
+        {
+            languageDictionary.Add(0, "CN");
+            languageDictionary.Add(1, "EN");
+        }
     }
 }

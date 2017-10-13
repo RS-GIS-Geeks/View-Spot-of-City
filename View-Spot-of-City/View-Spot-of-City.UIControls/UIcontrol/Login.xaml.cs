@@ -72,8 +72,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         private async void btnLogin_ClickAsync(object sender, RoutedEventArgs e)
         {
             #region 测试
-            LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
-            return;
+            //LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
+            //return;
             #endregion
 
             string user_mail = mailTextBox.Text;
@@ -129,7 +129,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             
             if(user_obiect.password == password_encoded)
             {
-                //MessageBox.Show("登录成功", "测试");
+                //MessageBox.Show("登录成功", "CS-Tao");
+                CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
                 LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
             }
             else
