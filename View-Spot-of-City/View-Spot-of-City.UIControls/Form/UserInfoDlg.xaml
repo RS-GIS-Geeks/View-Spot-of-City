@@ -1,0 +1,13 @@
+﻿<metro:MetroWindow x:Class="View_Spot_of_City.UIControls.Form.UserInfoDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Form"
+        mc:Ignorable="d" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="{DynamicResource UserInfoDlg_Title}" Height="300" Width="300">
+    <Grid>
+        
+    </Grid>
+</metro:MetroWindow>

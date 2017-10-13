@@ -39,13 +39,18 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!--Header-->
-        <DockPanel x:Name="Header" Margin="10,0">
+        <DockPanel x:Name="Header" Margin="0,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                <ComboBox x:Name="LanguageSelecter"
-						  SelectedIndex="0" Margin="5,10,5,10" Height="auto" Padding="2">
+                <ComboBox x:Name="LanguageSelecter" Style="{DynamicResource NoneBorderComboBoxStyle}" material:ComboBoxAssist.ClassicMode="True"
+						  SelectedIndex="0" Margin="5,10,2,10" Height="auto" Padding="2">
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">简体中文</ComboBoxItem>
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
                 </ComboBox>
+                <Button Click="UserInfoButton_Click" Background="Transparent" Margin="10,10" Style="{StaticResource ModifiedFlatButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
             <material:ColorZone Background="White"
 							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">

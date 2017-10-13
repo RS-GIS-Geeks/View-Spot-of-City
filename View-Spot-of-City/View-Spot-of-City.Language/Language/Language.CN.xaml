@@ -66,4 +66,10 @@
     <sys:String x:Key="MessageBox_Tip_Title">提示</sys:String>
     <!--#endregion-->
     <!--endregion-->
+    
+    <!--#region 2017.10.13 night by CS-Tao-->
+    <!--#region 用户信息对话框-->
+    <sys:String x:Key="UserInfoDlg_Title">用户信息</sys:String>
+    <!--endregion-->
+    <!--endregion-->
 </ResourceDictionary>

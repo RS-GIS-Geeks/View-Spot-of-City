@@ -24,6 +24,7 @@ using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using System.Threading;
 using System.Windows.Threading;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City
 {
@@ -227,6 +228,17 @@ namespace View_Spot_of_City
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MainNavBar.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// 点击用户信息按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserInfoDlg userInfoDlg = new UserInfoDlg();
+            userInfoDlg.ShowDialog();
         }
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)

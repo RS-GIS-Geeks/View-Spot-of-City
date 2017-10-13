@@ -94,6 +94,9 @@
     <Compile Include="Form\LoginDlg.xaml.cs">
       <DependentUpon>LoginDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\UserInfoDlg.xaml.cs">
+      <DependentUpon>UserInfoDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />
     <Compile Include="Helper\MySqlHelper.cs" />
@@ -168,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\LoginDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\UserInfoDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
