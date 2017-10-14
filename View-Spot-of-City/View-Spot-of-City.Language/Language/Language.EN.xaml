@@ -4,76 +4,76 @@
                     xmlns:local="clr-namespace:View_Spot_of_City.Language">
     <!--#region 2017.10.13 by CS-Tao-->
     <!--进度条-->
-    <sys:String x:Key="ProgressText">正在加载</sys:String>
+    <sys:String x:Key="ProgressText">Loading</sys:String>
     <!--登录界面-->
-    <sys:String x:Key="LoginTitle">用户登录</sys:String>
-    <sys:String x:Key="LoginUserText">邮箱：</sys:String>
-    <sys:String x:Key="LoginPasswordText">密码：</sys:String>
-    <sys:String x:Key="LoginOk">登录</sys:String>
-    <sys:String x:Key="LoginCancel">退出</sys:String>
-    <sys:String x:Key="LoginRegister">注册</sys:String>
-    <sys:String x:Key="LoginMailError">该邮箱未注册</sys:String>
-    <sys:String x:Key="LoginPasswordError">密码错误</sys:String>
+    <sys:String x:Key="LoginTitle">Member Login</sys:String>
+    <sys:String x:Key="LoginUserText">Email：</sys:String>
+    <sys:String x:Key="LoginPasswordText">Password：</sys:String>
+    <sys:String x:Key="LoginOk">Login</sys:String>
+    <sys:String x:Key="LoginCancel">Sign out</sys:String>
+    <sys:String x:Key="LoginRegister">Register</sys:String>
+    <sys:String x:Key="LoginMailError">The Email has not been signed up</sys:String>
+    <sys:String x:Key="LoginPasswordError">The password is incorrect, please input again</sys:String>
     <!--注册界面-->
-    <sys:String x:Key="RegisterTitle">用户注册</sys:String>
-    <sys:String x:Key="RegisterText">邮箱：</sys:String>
-    <sys:String x:Key="RegisterPasswordText">密码：</sys:String>
-    <sys:String x:Key="RegisterPassword1Text">确认密码：</sys:String>
-    <sys:String x:Key="RegisterCodeText">请输入图片中的内容：</sys:String>
-    <sys:String x:Key="RegisterCodeButtonTipText">点击更换验证码</sys:String>
-    <sys:String x:Key="RegisterOk">注册</sys:String>
-    <sys:String x:Key="RegisterCancel">退出</sys:String>
-    <sys:String x:Key="RegisterBack">返回</sys:String>
-    <sys:String x:Key="RegisterValidateCodeError">验证码错误</sys:String>
-    <sys:String x:Key="RegisterMailFormatError">邮箱格式错误</sys:String>
-    <sys:String x:Key="RegisterPasswordsMismatching">前后两次密码不匹配</sys:String>
-    <sys:String x:Key="RegisterPasswordTooShort">密码太短</sys:String>
-    <sys:String x:Key="RegisterPasswordTooLong">密码过长</sys:String>
-    <sys:String x:Key="RegisterMailEcho">该用户已注册，若忘记密码，请联系管理员</sys:String>
-    <sys:String x:Key="RegisterOK">注册成功，请返回登录界面</sys:String>
+    <sys:String x:Key="RegisterTitle">Register</sys:String>
+    <sys:String x:Key="RegisterText">Emali:</sys:String>
+    <sys:String x:Key="RegisterPasswordText">Password:</sys:String>
+    <sys:String x:Key="RegisterPassword1Text">Confirm Password:</sys:String>
+    <sys:String x:Key="RegisterCodeText">Please input the message in this picture</sys:String>
+    <sys:String x:Key="RegisterCodeButtonTipText">Click to change verification code</sys:String>
+    <sys:String x:Key="RegisterOk">Register</sys:String>
+    <sys:String x:Key="RegisterCancel">Sign out</sys:String>
+    <sys:String x:Key="RegisterBack">Back</sys:String>
+    <sys:String x:Key="RegisterValidateCodeError">The verification code is incorrect</sys:String>
+    <sys:String x:Key="RegisterMailFormatError">The mailbox format is incorrect</sys:String>
+    <sys:String x:Key="RegisterPasswordsMismatching">The two codes are not consistent with each other,please input again</sys:String>
+    <sys:String x:Key="RegisterPasswordTooShort">The password is too short</sys:String>
+    <sys:String x:Key="RegisterPasswordTooLong">The password is too long</sys:String>
+    <sys:String x:Key="RegisterMailEcho">The user has been registered, if you forget the password, please contact the administrator</sys:String>
+    <sys:String x:Key="RegisterOK">Registration successful, please return to login interface</sys:String>
     <!--产品注册界面-->
-    <sys:String x:Key="LicenseTitle">软件注册</sys:String>
-    <sys:String x:Key="LicenseTip">注册码：</sys:String>
-    <sys:String x:Key="LicenseCode">密码：</sys:String>
-    <sys:String x:Key="LicenseOk">确定</sys:String>
-    <sys:String x:Key="LicenseCancel">取消</sys:String>
+    <sys:String x:Key="LicenseTitle">Software Register</sys:String>
+    <sys:String x:Key="LicenseTip">Registration code：</sys:String>
+    <sys:String x:Key="LicenseCode">Password：</sys:String>
+    <sys:String x:Key="LicenseOk">Confirm</sys:String>
+    <sys:String x:Key="LicenseCancel">Cancel</sys:String>
     <!--标题-->
     <sys:String x:Key="MainTitle">CITY VIEW SPOT RECOMMENDER</sys:String>
     <!--logo-->
-    <sys:String x:Key="LogoTooltip">查看源码</sys:String>
+    <sys:String x:Key="LogoTooltip">View Source</sys:String>
     <!--#region 导航-->
-    <sys:String x:Key="MainNav_MapView">地图浏览</sys:String>
-    <sys:String x:Key="MainNav_SpotQuery">景点查询</sys:String>
-    <sys:String x:Key="MainNav_SpotRecommend">景点推荐</sys:String>
-    <sys:String x:Key="MainNav_Visualization">数据可视化</sys:String>
-    <sys:String x:Key="MainNav_Share">评价与分享</sys:String>
+    <sys:String x:Key="MainNav_MapView">Map View</sys:String>
+    <sys:String x:Key="MainNav_SpotQuery">Spot Query</sys:String>
+    <sys:String x:Key="MainNav_SpotRecommend">Spot Recommended</sys:String>
+    <sys:String x:Key="MainNav_Visualization">Data Visualization</sys:String>
+    <sys:String x:Key="MainNav_Share">Evaluation and Sharing</sys:String>
     <!--#endregion-->
     <!--#region 景点查询-->
-    <sys:String x:Key="AddressSearchHist">输入景点</sys:String>
+    <sys:String x:Key="AddressSearchHist">Input spot</sys:String>
     <!--#endregion-->
 
     <!--#region 错误和异常显示-->
-    <sys:String x:Key="Config_File_Error">配置文件错误，请检查配置文件</sys:String>
-    <sys:String x:Key="Mail_Error">邮箱错误</sys:String>
-    <sys:String x:Key="Input_Empty">输入不能为空</sys:String>
-    <sys:String x:Key="Server_Connect_Error">无法连接服务器</sys:String>
-    <sys:String x:Key="Server_Return_Error">服务器返回错误</sys:String>
+    <sys:String x:Key="Config_File_Error">The configuration file is wrong. Please check the configuration file</sys:String>
+    <sys:String x:Key="Mail_Error">The email is incorrect</sys:String>
+    <sys:String x:Key="Input_Empty">Input cannot be empty</sys:String>
+    <sys:String x:Key="Server_Connect_Error">Unable to connect server</sys:String>
+    <sys:String x:Key="Server_Return_Error">Server returns error</sys:String>
     <!--#endregion-->
     <!--#region 对话框-->
-    <sys:String x:Key="MessageBox_Warning_Title">警告</sys:String>
-    <sys:String x:Key="MessageBox_Error_Title">错误</sys:String>
-    <sys:String x:Key="MessageBox_Exception_Title">异常</sys:String>
-    <sys:String x:Key="MessageBox_Tip_Title">提示</sys:String>
+    <sys:String x:Key="MessageBox_Warning_Title">Warning</sys:String>
+    <sys:String x:Key="MessageBox_Error_Title">error</sys:String>
+    <sys:String x:Key="MessageBox_Exception_Title">Exception</sys:String>
+    <sys:String x:Key="MessageBox_Tip_Title">Tip</sys:String>
     <!--#endregion-->
     <!--endregion-->
     
     <!--#region 2017.10.14 by CS-Tao-->
     <!--#region 用户信息对话框-->
-    <sys:String x:Key="UserInfoDlg_ToolTip">个人信息</sys:String>
-    <sys:String x:Key="UserInfoDlg_Title">用户信息</sys:String>
+    <sys:String x:Key="UserInfoDlg_ToolTip">personal information</sys:String>
+    <sys:String x:Key="UserInfoDlg_Title">user info</sys:String>
     <!--endregion-->
 
     <!--退出登录ToolTip-->
-    <sys:String x:Key="Logout_ToolTip">退出当前用户</sys:String>
+    <sys:String x:Key="Logout_ToolTip">Logout</sys:String>
     <!--endregion-->
 </ResourceDictionary>
