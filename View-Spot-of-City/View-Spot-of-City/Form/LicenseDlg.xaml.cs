@@ -46,12 +46,12 @@ namespace View_Spot_of_City.Form
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsCorrect"));
                     if (_IsCorrect)
                     {
-                        image = "pack://Application,,,/Icon/Correct.png";
+                        image = "pack://Application:,,,/Icon/Correct.png";
                         toolTip = "Correct";
                     }
                     else
                     {
-                        image = "pack://Application,,,/Icon/Error.png";
+                        image = "pack://Application:,,,/Icon/Error.png";
                         toolTip = "Error";
                     }
                 }

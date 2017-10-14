@@ -21,7 +21,8 @@ using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Helper;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
+using static View_Spot_of_City.UIControls.Helper.EmailHelper;
+using System.Windows.Threading;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -32,30 +33,34 @@ namespace View_Spot_of_City.UIControls.UIcontrol
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        string _title = null;
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                if (_title != value)
-                {
-                    _title = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
-                }
-            }
-        }
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        char[] validateCode = new char[6];
 
-        char[] validateCode = new char[4];
+        /// <summary>
+        /// 开始验证时的邮箱
+        /// </summary>
+        string user_mail_before_invalidate = string.Empty;
+        
+        /// <summary>
+        /// 用于倒计时的计时器
+        /// </summary>
+        DispatcherTimer sendMailBtnTimer = new DispatcherTimer();
+
+        /// <summary>
+        /// 倒计时
+        /// </summary>
+        int countdown = 60;
 
         public Register()
         {
             InitializeComponent();
-            Title = GetString("LoginTitle");
+            btnGetValidateCode.Content = GetString("RegisterGetValidateCode");
 
-            //生成验证码
-            validateCode = CreatFourRandomChar();
-            validateImage.Source = CreateValidateCodeImage(validateCode);
+            //初始化定时器
+            sendMailBtnTimer.Tick += new EventHandler(BeginChangeTextTimer_Tick);
+            sendMailBtnTimer.Interval = new TimeSpan(0, 0, 1);
 
             #region 测试
             mailTextBox.Text = "990296951@qq.com";
@@ -81,30 +86,30 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                     MessageBox.Show(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
                     return;
                 }
-                string validateCodeStr = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
-                if (user_validateCode.ToLower() != validateCodeStr.ToLower())
-                {
-                    MessageBox.Show(GetString("RegisterValidateCodeError"), AppSettings["MessageBox_Error_Title"]);
-                    return;
-                }
                 if (!IsEmail(user_mail))
                 {
-                    MessageBox.Show(GetString("RegisterMailFormatError"), AppSettings["MessageBox_Error_Title"]);
+                    MessageBox.Show(GetString("RegisterMailFormatError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
                 if (user_password != user_password1)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordsMismatching"), AppSettings["MessageBox_Error_Title"]);
+                    MessageBox.Show(GetString("RegisterPasswordsMismatching"), GetString("MessageBox_Error_Title"));
                     return;
                 }
                 if (user_password.Length > 16)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordTooLong"), AppSettings["MessageBox_Warning_Title"]);
+                    MessageBox.Show(GetString("RegisterPasswordTooLong"), GetString("MessageBox_Warning_Title"));
                     return;
                 }
                 if (user_password.Length < 4)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordTooShort"), AppSettings["MessageBox_Warning_Title"]);
+                    MessageBox.Show(GetString("RegisterPasswordTooShort"), GetString("MessageBox_Warning_Title"));
+                    return;
+                }
+                string validateCodeStr = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
+                if (user_validateCode.ToLower() != validateCodeStr.ToLower() || user_mail != user_mail_before_invalidate)
+                {
+                    MessageBox.Show(GetString("RegisterValidateCodeError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
 
@@ -170,11 +175,92 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             return Regex.IsMatch(str, expression, RegexOptions.Compiled);
         }
 
-        private void validateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void btnGetValidateCode_Click(object sender, RoutedEventArgs e)
         {
-            //生成验证码
-            validateCode = CreatFourRandomChar();
-            validateImage.Source = CreateValidateCodeImage(validateCode);
+            try
+            {
+                //用户注册信息
+                string user_mail = mailTextBox.Text;
+                string user_password = passwordTextBox.Password;
+                string user_password1 = password1TextBox.Password;
+                string user_validateCode = validateCodeTextBox.Text;
+
+                //验证输入
+                if (user_mail == string.Empty || user_password == string.Empty || user_password1 == string.Empty)
+                {
+                    MessageBox.Show(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
+                    return;
+                }
+                if (!IsEmail(user_mail))
+                {
+                    MessageBox.Show(GetString("RegisterMailFormatError"), GetString("MessageBox_Error_Title"));
+                    return;
+                }
+                if (user_password != user_password1)
+                {
+                    MessageBox.Show(GetString("RegisterPasswordsMismatching"), GetString("MessageBox_Error_Title"));
+                    return;
+                }
+                if (user_password.Length > 16)
+                {
+                    MessageBox.Show(GetString("RegisterPasswordTooLong"), GetString("MessageBox_Warning_Title"));
+                    return;
+                }
+                if (user_password.Length < 4)
+                {
+                    MessageBox.Show(GetString("RegisterPasswordTooShort"), GetString("MessageBox_Warning_Title"));
+                    return;
+                }
+                user_mail_before_invalidate = mailTextBox.Text;
+                Random rand = new Random();
+                for(int i=0;i< validateCode.Length;i++)
+                {
+                    validateCode[i] = rand.Next(0, 9).ToString()[0];
+                }
+                if(SendEmail(user_mail_before_invalidate, "CS-Tao测试验证码为：" + Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode))))
+                {
+                    BeginChangeTextTimer();
+                }
+                else
+                {
+                    MessageBox.Show(GetString("RegisterMailSendError"), GetString("MessageBox_Error_Title"));
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                return;
+            }
+        }
+
+        /// <summary>
+        /// 启动定时器
+        /// </summary>
+        private void BeginChangeTextTimer()
+        {
+            btnGetValidateCode.IsEnabled = false;
+            btnGetValidateCode.Content = GetString("RegisterMailSendAgain") + "(" + countdown-- + "s)";
+            sendMailBtnTimer.Start();
+        }
+
+        /// <summary>
+        /// 定时器响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BeginChangeTextTimer_Tick(object sender, EventArgs e)
+        {
+            btnGetValidateCode.Content = GetString("RegisterMailSendAgain") + "(" + countdown-- + "s)";
+            if (countdown <= 0)
+            {
+                sendMailBtnTimer.Stop();
+                btnGetValidateCode.Content = GetString("RegisterGetValidateCode");
+                countdown = 60;
+                btnGetValidateCode.IsEnabled = true;
+            }
         }
     }
 }

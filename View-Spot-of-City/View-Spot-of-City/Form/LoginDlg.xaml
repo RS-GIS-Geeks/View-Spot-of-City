@@ -14,7 +14,7 @@
         SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
         GlowBrush="{DynamicResource PrimaryHueMidBrush}"
-        Title="登录" Closed="loginDlg_Closed" Loaded="loginDlg_Loaded">
+        Title="{DynamicResource LoginTitle}" Closed="loginDlg_Closed" Loaded="loginDlg_Loaded">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.OKAndCloseFormCommand}" Executed="OKAndCloseFormCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.CancelAndCloseFormCommand}" Executed="CancelAndCloseFormCommandBinding_Executed"/>

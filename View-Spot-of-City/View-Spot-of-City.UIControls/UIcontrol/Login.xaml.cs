@@ -24,6 +24,7 @@ using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.ClassModel;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -48,11 +49,21 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 }
             }
         }
+
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        char[] validateCode = new char[4];
+
         public Login()
         {
             InitializeComponent();
             Title = GetString("LoginTitle");
             mailTextBox.Text = AppSettings["DEFAULT_USER_MAIL"];
+
+            //生成验证码
+            validateCode = CreatFourRandomChar();
+            validateImage.Source = CreateValidateCodeImage(validateCode);
 
             #region 测试
             passwordTextBox.Password = "19970108";
@@ -78,11 +89,19 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             string user_mail = mailTextBox.Text;
             string user_password = passwordTextBox.Password;
+            string user_validateCode = validateCodeTextBox.Text;
 
             //验证输入
             if (user_mail == string.Empty || user_password == string.Empty)
             {
                 MessageBox.Show(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
+                return;
+            }
+
+            string validateCodeStr = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
+            if (user_validateCode.ToLower() != validateCodeStr.ToLower())
+            {
+                MessageBox.Show(GetString("LoginValidateCodeError"), GetString("MessageBox_Error_Title"));
                 return;
             }
 
@@ -138,6 +157,13 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 MessageBox.Show(GetString("LoginPasswordError"), GetString("MessageBox_Tip_Title"));
                 return;
             }
+        }
+
+        private void validateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //生成验证码
+            validateCode = CreatFourRandomChar();
+            validateImage.Source = CreateValidateCodeImage(validateCode);
         }
     }
 }
