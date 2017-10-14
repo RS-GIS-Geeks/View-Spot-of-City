@@ -10,12 +10,14 @@ namespace View_Spot_of_City.ClassModel
     [DataContract]
     public class user
     {
+        public static user NoBody = new user();
+
         /// <summary>
         /// 用户id
         /// </summary>
-        string _id = string.Empty;
+        long _id = long.MinValue;
         [DataMember]
-        public string id
+        public long id
         {
             get { return _id; }
             set { _id = value; }
@@ -85,6 +87,14 @@ namespace View_Spot_of_City.ClassModel
         {
             get { return _city; }
             set { _city = value; }
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public user()
+        {
+
         }
     }
 }

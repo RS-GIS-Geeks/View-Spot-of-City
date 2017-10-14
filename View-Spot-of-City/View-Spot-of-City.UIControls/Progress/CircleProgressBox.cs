@@ -35,7 +35,7 @@ namespace View_Spot_of_City.UIControls.Progress
             m_thread.IsBackground = true;
             m_thread.SetApartmentState(ApartmentState.STA);
             m_thread.Start();
-            Thread.Sleep(1);
+            Thread.Sleep(10);
         }
 
         private void Show()
@@ -49,8 +49,9 @@ namespace View_Spot_of_City.UIControls.Progress
         /// </summary>
         public void CloseProgress()
         {
-            while (!m_thread.IsAlive);
-            Thread.Sleep(1);
+            while (!m_thread.IsAlive)
+                Thread.Sleep(10);
+            Thread.Sleep(10);
             m_frmProgressBox.RequestStop();
             m_thread.Join();
         }
@@ -62,14 +63,18 @@ namespace View_Spot_of_City.UIControls.Progress
         public void SetProgressDescription(string strValue)
         {
             while (m_frmProgressBox == null)
-            { }
+            {
+                Thread.Sleep(10);
+            }
             m_frmProgressBox.SetProgressText(strValue);
         }
 
         public void SetDefaultDescription()
         {
             while (m_frmProgressBox == null)
-            { }
+            {
+                Thread.Sleep(10);
+            }
             string prefixText = GetString("ProgressText") as string;
             string[] text = new string[] {
                 prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
@@ -81,7 +86,7 @@ namespace View_Spot_of_City.UIControls.Progress
             int ran = r.Next(8, 14);
             while(i < ran)
             {
-                m_frmProgressBox.SetDefaultDescription(text[i]);
+                m_frmProgressBox.SetDefaultDescriptionAsync(text[i]);
                 Thread.Sleep(300);
                 i++;
             }

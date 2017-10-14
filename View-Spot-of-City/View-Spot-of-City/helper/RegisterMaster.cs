@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.Form;
 
 namespace View_Spot_of_City.UIControls.Helper
 {

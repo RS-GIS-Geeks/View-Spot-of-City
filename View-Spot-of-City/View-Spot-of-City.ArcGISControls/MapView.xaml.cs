@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using static System.Configuration.ConfigurationManager;
+
 namespace View_Spot_of_City.ArcGISControls
 {
     /// <summary>
@@ -23,6 +25,22 @@ namespace View_Spot_of_City.ArcGISControls
         public MapView()
         {
             InitializeComponent();
+            mapView.SetViewpointCenterAsync(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]));
+        }
+
+        private void mapView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //int a = 0;
+        }
+
+        private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ZoomInButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

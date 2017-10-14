@@ -14,7 +14,8 @@
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized" Loaded="Window_Loaded">
+        WindowState="Maximized" Loaded="Window_Loaded"
+        Closing="mainWindow_Closing" Closed="mainWindow_Closed">
     <!--<metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button Click="Setting_Click">
@@ -38,13 +39,24 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!--Header-->
-        <DockPanel x:Name="Header" Margin="10,0">
+        <DockPanel x:Name="Header" Margin="0,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                <ComboBox x:Name="LanguageSelecter"
-						  SelectedIndex="0" Margin="5,10,5,10" Height="auto" Padding="2">
+                <Button IsHitTestVisible="False" Background="Transparent" Padding="0" Margin="0,10,0,10" Style="{StaticResource ModifiedFlatButtonStyle}">
+                    <iconPacks:PackIconModern Kind="Globe"/>
+                </Button>
+                <ComboBox x:Name="LanguageSelecter" Style="{DynamicResource NoneBorderComboBoxStyle}" material:ComboBoxAssist.ClassicMode="True"
+						  SelectedIndex="0" Margin="2,10,10,10" Height="auto" Padding="2" SelectionChanged="LanguageSelecter_SelectionChanged">
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">简体中文</ComboBoxItem>
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
                 </ComboBox>
+                <Button Click="UserInfoButton_Click" Background="Transparent" Padding="5" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
+                        ToolTip="{DynamicResource UserInfoDlg_ToolTip}">
+                    <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
+                </Button>
+                <Button Click="LogoutButton_Click" Background="Transparent" Padding="5" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
+                        ToolTip="{DynamicResource Logout_ToolTip}">
+                    <iconPacks:PackIconModern Width="16" Height="16" Kind="LayoutExpandRight"/>
+                </Button>
             </StackPanel>
             <material:ColorZone Background="White"
 							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">

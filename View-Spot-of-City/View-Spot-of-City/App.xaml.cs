@@ -5,28 +5,48 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.ComponentModel;
+
 using View_Spot_of_City.helper;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Progress;
-using View_Spot_of_City.UIControls.Form;
-
-using System.Windows.Media;
+using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.Form;
 
 namespace View_Spot_of_City
 {
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// 当前在线用户
+        /// </summary>
+        static user _currentUser;
+        public static user CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            //(new LoginDlg()).ShowDialog();
+            //应用程序关闭时，才 System.Windows.Application.Shutdown 调用
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             //验证License
             if (!RegisterMaster.CanStart())
-            {
                 Environment.Exit(0);
-            }
+
+            //登录
+            bool? loginDlgResult = (new LoginDlg()).ShowDialog();
+            if (!loginDlgResult.HasValue || !loginDlgResult.Value)
+                Environment.Exit(0);
+
             base.OnStartup(e);
         }
     }

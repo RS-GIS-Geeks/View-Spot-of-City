@@ -25,6 +25,7 @@ namespace View_Spot_of_City.UIControls.Progress
         {
             InitializeComponent();
             this.ShowInTaskbar = false;
+            this.Topmost = true;
         }
 
         private delegate void ShowDefaultDelegate(string value);
@@ -33,11 +34,11 @@ namespace View_Spot_of_City.UIControls.Progress
         /// 设置默认描述信息
         /// </summary>
         /// <param name="strLog"></param>
-        public void SetDefaultDescription(string value)
+        public void SetDefaultDescriptionAsync(string value)
         {
             if (!Dispatcher.CheckAccess())
             {
-                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, new ShowDefaultDelegate(SetDefaultDescription),value);
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, new ShowDefaultDelegate(SetDefaultDescriptionAsync), value);
                 return;
             }
             SetProgressText(value);

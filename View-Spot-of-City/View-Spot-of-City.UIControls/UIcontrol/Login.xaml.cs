@@ -53,6 +53,10 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             InitializeComponent();
             Title = GetString("LoginTitle");
             mailTextBox.Text = AppSettings["DEFAULT_USER_MAIL"];
+
+            #region 测试
+            passwordTextBox.Password = "19970108";
+            #endregion
         }
         
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -67,6 +71,11 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
         private async void btnLogin_ClickAsync(object sender, RoutedEventArgs e)
         {
+            #region 测试
+            //LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
+            //return;
+            #endregion
+
             string user_mail = mailTextBox.Text;
             string user_password = passwordTextBox.Password;
 
@@ -120,8 +129,9 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             
             if(user_obiect.password == password_encoded)
             {
-                MessageBox.Show("登录成功", "测试");
-                //LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
+                //MessageBox.Show("登录成功", "CS-Tao");
+                CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
+                LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
             }
             else
             {

@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="View_Spot_of_City.UIControls.UIcontrol.Register"
+             x:Name="registerControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -27,7 +28,9 @@
             </Grid>
             <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
             <Grid Margin="10,0">
-                <TextBox Name="codeTextBox" Margin="3" MaxLength="6" AcceptsTab="False" AcceptsReturn="False"/>
+                <Image x:Name="validateImage" Margin="5,3,150,3" ToolTip="{DynamicResource RegisterCodeButtonTipText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                       MouseLeftButtonDown="validateImage_MouseLeftButtonDown"/>
+                <TextBox Name="validateCodeTextBox" Margin="150,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False"/>
             </Grid>
         </StackPanel>
         <Grid Grid.Row="2">
