@@ -79,9 +79,10 @@
     <sys:String x:Key="UserInfoDlg_Title">用户信息</sys:String>
     <!--endregion-->
     
-    <!--退出登录ToolTip-->
+    <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">退出当前用户</sys:String>
-    <!--endregion-->
+    <!--对话框显示-->
+    <sys:String x:Key="Logout_Tip">确认退出当前用户？</sys:String>
 
     <!--用户注册-邮箱模块-->
     <sys:String x:Key="RegisterGetValidateCode">获取验证码</sys:String>

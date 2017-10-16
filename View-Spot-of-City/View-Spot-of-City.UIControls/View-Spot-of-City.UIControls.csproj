@@ -91,7 +91,13 @@
   <ItemGroup>
     <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
+    <Compile Include="Command\MyMessageBoxCommands.cs" />
     <Compile Include="Converter\Enum2LoginUI.cs" />
+    <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
+    <Compile Include="Form\MyMessageBox.xaml.cs">
+      <DependentUpon>MyMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\MyMessageBoxEvents.cs" />
     <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />
@@ -137,6 +143,18 @@
     <Compile Include="UIcontrol\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIcontrol\MyMessageBox_Ok.xaml.cs">
+      <DependentUpon>MyMessageBox_Ok.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\MyMessageBox_OkCancel.xaml.cs">
+      <DependentUpon>MyMessageBox_OkCancel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\MyMessageBox_YesNo.xaml.cs">
+      <DependentUpon>MyMessageBox_YesNo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\MyMessageBox_YesNoCancel.xaml.cs">
+      <DependentUpon>MyMessageBox_YesNoCancel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIcontrol\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -160,6 +178,10 @@
     <Page Include="DataTemplate\MainNavBarDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Form\MyMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="OverLayer\OverLayerExample.xaml">
       <SubType>Designer</SubType>
@@ -209,6 +231,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\WindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Theme\ApplicationAccent_FF6289D9.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Theme\MetroTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,12 +256,28 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIcontrol\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIcontrol\MyMessageBox_Ok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\MyMessageBox_OkCancel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\MyMessageBox_YesNo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\MyMessageBox_YesNoCancel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIcontrol\Register.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -280,8 +326,6 @@
   <ItemGroup>
     <Resource Include="Icon\Microphone.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Form\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

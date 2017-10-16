@@ -271,5 +271,11 @@
   <ItemGroup>
     <Resource Include="Icon\blue_circle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\View-Spot-of-City.UIControls\View-Spot-of-City.UIControls.csproj">
+      <Project>{bc0000cb-54ef-4d53-ba23-97ad64a52dfb}</Project>
+      <Name>View-Spot-of-City.UIControls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,16 +13,16 @@ using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Form;
+using System.Windows.Input;
+using View_Spot_of_City.UIControls.Theme;
 
 namespace View_Spot_of_City
 {
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
-    public partial class App : Application, INotifyPropertyChanged
+    public partial class App : Application
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// 当前在线用户
         /// </summary>
@@ -35,6 +35,8 @@ namespace View_Spot_of_City
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            //MetroThemeMaster.CreateAppStyleBy(this, (Current.FindResource("PrimaryHueLightBrush") as SolidColorBrush).Color, true);
+
             //应用程序关闭时，才 System.Windows.Application.Shutdown 调用
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 

@@ -27,6 +27,7 @@ using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using View_Spot_of_City.Language.Language;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City
 {
@@ -54,14 +55,14 @@ namespace View_Spot_of_City
         CircleProgressAsync circleProgressBox = new CircleProgressAsync();
 
         /// <summary>
-        /// 当前显示主控件
-        /// </summary>
-        MainControls? _mainControl = null;
-
-        /// <summary>
         /// 用于关闭启动进度条的定时器
         /// </summary>
         DispatcherTimer closeCircleTimer = new DispatcherTimer();
+
+        /// <summary>
+        /// 当前显示主控件
+        /// </summary>
+        MainControls? _mainControl = null;
 
         /// <summary>
         /// 当前显示主控件
@@ -120,7 +121,7 @@ namespace View_Spot_of_City
         /// </summary>
         public void InitWindows()
         {
-            CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
+            //CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
             InitMainNavBar();
         }
 
@@ -219,6 +220,10 @@ namespace View_Spot_of_City
             {
                 var removedItem = e.RemovedItems[0] as OverlayerItemViewModel;
             }
+            if (MainNavBar.SelectedIndex == 3)
+                mainControl = MainControls.GMap;
+            else
+                mainControl = MainControls.ArcGISMapView;
         }
 
         /// <summary>
@@ -249,6 +254,8 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            if (MyMessageBox.DialogResults.Yes != MyMessageBox.ShowMyDialog(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MyMessageBox.MyMessageBoxButtons.YesNo))
+                return;
             App.CurrentUser = user.NoBody;
 
             //登录
@@ -282,6 +289,12 @@ namespace View_Spot_of_City
                 requestDictionary.Source = new Uri(requestedCulture);
                 Application.Current.Resources.MergedDictionaries.Add(requestDictionary);
             }
+
+            //固定字符修改
+            Overlayers.ForEach((x) =>
+            {
+                x.TitleKey = x.TitleKey;
+            });
         }
     }
 }

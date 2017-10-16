@@ -13,9 +13,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
+using MahApps.Metro.Controls.Dialogs;
+using View_Spot_of_City.ClassModel;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using View_Spot_of_City.ClassModel;
 
 namespace View_Spot_of_City.Form
 {
@@ -49,12 +51,14 @@ namespace View_Spot_of_City.Form
 
         private void OKAndCloseFormCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.DialogResult = true;
+            try { this.DialogResult = true; }
+            catch { }
         }
 
         private void CancelAndCloseFormCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.DialogResult = false;
+            try { this.DialogResult = false; }
+            catch { }
         }
 
         private void ChangePageCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -77,7 +81,7 @@ namespace View_Spot_of_City.Form
         private void ChangeCurrentUserCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             App.CurrentUser = e.Parameter as user;
-            //MessageBox.Show("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
+            //MyMessageBox.ShowMyDialog("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
         }
     }
 }

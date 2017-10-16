@@ -9,6 +9,7 @@ using View_Spot_of_City.MapView.Markers;
 using GMap.NET;
 using GMap.NET.WindowsPresentation;
 using View_Spot_of_City.MapView.Helpers;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City.MapView
 {
@@ -48,7 +49,7 @@ namespace View_Spot_of_City.MapView
                 default:
                     {
 #if DEBUG
-                        MessageBox.Show("操作错误");
+                        MyMessageBox.ShowMyDialog("操作错误");
 #endif
                         break;
                     }
@@ -76,7 +77,7 @@ namespace View_Spot_of_City.MapView
                 default:
                     {
 #if DEBUG
-                        MessageBox.Show("操作错误");
+                        MyMessageBox.ShowMyDialog("操作错误");
 #endif
                         break;
                     }
@@ -118,7 +119,7 @@ namespace View_Spot_of_City.MapView
                 default:
                     {
 #if DEBUG
-                        MessageBox.Show("操作错误");
+                        MyMessageBox.ShowMyDialog("操作错误");
 #endif
                         break;
                     }

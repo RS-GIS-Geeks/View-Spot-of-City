@@ -23,6 +23,7 @@ using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.EmailHelper;
 using System.Windows.Threading;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -83,38 +84,38 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 //验证输入
                 if (user_mail == string.Empty || user_password == string.Empty || user_password1 == string.Empty || user_validateCode == string.Empty)
                 {
-                    MessageBox.Show(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
+                    MyMessageBox.ShowMyDialog(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
                     return;
                 }
                 if (!IsEmail(user_mail))
                 {
-                    MessageBox.Show(GetString("RegisterMailFormatError"), GetString("MessageBox_Error_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterMailFormatError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
                 if (user_password != user_password1)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordsMismatching"), GetString("MessageBox_Error_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterPasswordsMismatching"), GetString("MessageBox_Error_Title"));
                     return;
                 }
                 if (user_password.Length > 16)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordTooLong"), GetString("MessageBox_Warning_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterPasswordTooLong"), GetString("MessageBox_Warning_Title"));
                     return;
                 }
                 if (user_password.Length < 4)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordTooShort"), GetString("MessageBox_Warning_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterPasswordTooShort"), GetString("MessageBox_Warning_Title"));
                     return;
                 }
                 string validateCodeStr = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
                 if (user_validateCode.ToLower() != validateCodeStr.ToLower() || user_mail != user_mail_before_invalidate)
                 {
-                    MessageBox.Show(GetString("RegisterValidateCodeError"), GetString("MessageBox_Error_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterValidateCodeError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
 
                 #region 测试
-                MessageBox.Show("开发过程需要临时关闭连接数据库功能", "CS-Tao");
+                MyMessageBox.ShowMyDialog("开发过程需要临时关闭连接数据库功能", "CS-Tao");
                 return;
                 #endregion
 
@@ -136,25 +137,25 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 if (qury_result != "true" && qury_result != "false")
                 {
                     //连接服务器错误
-                    MessageBox.Show(GetString("Server_Connect_Error"), GetString("MessageBox_Exception_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("Server_Connect_Error"), GetString("MessageBox_Exception_Title"));
                     return;
                 }
                 else if(qury_result != "true")
                 {
                     //用户已注册
-                    MessageBox.Show(GetString("RegisterMailEcho"), GetString("MessageBox_Tip_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterMailEcho"), GetString("MessageBox_Tip_Title"));
                     return;
                 }
                 else
                 {
-                    MessageBox.Show(GetString("RegisterOK"), GetString("MessageBox_Tip_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterOK"), GetString("MessageBox_Tip_Title"));
                     return;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                MyMessageBox.ShowMyDialog(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
                 return;
             }
         }
@@ -188,27 +189,27 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 //验证输入
                 if (user_mail == string.Empty || user_password == string.Empty || user_password1 == string.Empty)
                 {
-                    MessageBox.Show(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
+                    MyMessageBox.ShowMyDialog(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
                     return;
                 }
                 if (!IsEmail(user_mail))
                 {
-                    MessageBox.Show(GetString("RegisterMailFormatError"), GetString("MessageBox_Error_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterMailFormatError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
                 if (user_password != user_password1)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordsMismatching"), GetString("MessageBox_Error_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterPasswordsMismatching"), GetString("MessageBox_Error_Title"));
                     return;
                 }
                 if (user_password.Length > 16)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordTooLong"), GetString("MessageBox_Warning_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterPasswordTooLong"), GetString("MessageBox_Warning_Title"));
                     return;
                 }
                 if (user_password.Length < 4)
                 {
-                    MessageBox.Show(GetString("RegisterPasswordTooShort"), GetString("MessageBox_Warning_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterPasswordTooShort"), GetString("MessageBox_Warning_Title"));
                     return;
                 }
                 user_mail_before_invalidate = mailTextBox.Text;
@@ -223,7 +224,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 }
                 else
                 {
-                    MessageBox.Show(GetString("RegisterMailSendError"), GetString("MessageBox_Error_Title"));
+                    MyMessageBox.ShowMyDialog(GetString("RegisterMailSendError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
 
@@ -231,7 +232,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                MyMessageBox.ShowMyDialog(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
                 return;
             }
         }

@@ -25,6 +25,7 @@ using View_Spot_of_City.ClassModel;
 using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -94,14 +95,14 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             //验证输入
             if (user_mail == string.Empty || user_password == string.Empty)
             {
-                MessageBox.Show(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
+                MyMessageBox.ShowMyDialog(GetString("Input_Empty"), AppSettings["MessageBox_Error_Title"]);
                 return;
             }
 
             string validateCodeStr = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
             if (user_validateCode.ToLower() != validateCodeStr.ToLower())
             {
-                MessageBox.Show(GetString("LoginValidateCodeError"), GetString("MessageBox_Error_Title"));
+                MyMessageBox.ShowMyDialog(GetString("LoginValidateCodeError"), GetString("MessageBox_Error_Title"));
                 return;
             }
 
@@ -123,7 +124,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(GetString("Server_Connect_Error"), GetString("MessageBox_Error_Title"));
+                MyMessageBox.ShowMyDialog(GetString("Server_Connect_Error"), GetString("MessageBox_Error_Title"));
                 return;
             }
 
@@ -142,19 +143,19 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(GetString("LoginMailError"), GetString("MessageBox_Tip_Title"));
+                MyMessageBox.ShowMyDialog(GetString("LoginMailError"), GetString("MessageBox_Tip_Title"));
                 return;
             }
             
             if(user_obiect.password == password_encoded)
             {
-                //MessageBox.Show("登录成功", "CS-Tao");
+                //MyMessageBox.ShowMyDialog("登录成功", "CS-Tao");
                 CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
                 LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
             }
             else
             {
-                MessageBox.Show(GetString("LoginPasswordError"), GetString("MessageBox_Tip_Title"));
+                MyMessageBox.ShowMyDialog(GetString("LoginPasswordError"), GetString("MessageBox_Tip_Title"));
                 return;
             }
         }
