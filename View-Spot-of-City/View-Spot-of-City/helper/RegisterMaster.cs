@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.Form;
 
 namespace View_Spot_of_City.UIControls.Helper
 {
@@ -14,7 +14,7 @@ namespace View_Spot_of_City.UIControls.Helper
         private static string path = AppDomain.CurrentDomain.BaseDirectory + "License.dat";
         public static bool CanStart()
         {
-            if (!System.IO.File.Exists(path))
+            if (!File.Exists(path))
             {
                 LicenseDlg f = new LicenseDlg();
                 if (f.ShowDialog() == true)

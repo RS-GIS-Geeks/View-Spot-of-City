@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:View_Spot_of_City.style">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="WindowStyles.xaml" />
         <ResourceDictionary Source="ComboBox.xaml" />
         <ResourceDictionary Source="ListBox.xaml" />
         <ResourceDictionary Source="ButtonStyles.xaml" />

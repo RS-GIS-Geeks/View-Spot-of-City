@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.OverLayer"
              xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
 			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="250">
 
@@ -14,7 +15,10 @@
 							material:ShadowAssist.ShadowDepth="Depth1">
             <Grid>
                 <control:CircleProgressControl/>
-                <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                <Button IsHitTestVisible="False" Background="Transparent" Width="auto" Height="auto" Margin="0" Style="{StaticResource ModifiedFlatButtonStyle}">
+                    <iconPacks:PackIconModern Width="45" Height="45" Kind="SocialGithubOctocat"/>
+                </Button>
+                <!--<Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>-->
             </Grid>
         </material:ColorZone>
     </Grid>

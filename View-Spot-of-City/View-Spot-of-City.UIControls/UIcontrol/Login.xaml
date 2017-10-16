@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
              mc:Ignorable="d"
-             Height="180" Width="300">
+             Height="240" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,6 +20,12 @@
             <Label Content="{DynamicResource LoginPasswordText}" Margin="10,3"/>
             <Grid Margin="10,0">
                 <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20"/>
+            </Grid>
+            <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
+            <Grid Margin="10,0">
+                <Image x:Name="validateImage" Margin="5,3,150,3" ToolTip="{DynamicResource RegisterCodeButtonTipText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                       MouseLeftButtonDown="validateImage_MouseLeftButtonDown"/>
+                <TextBox Name="validateCodeTextBox" Margin="150,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False"/>
             </Grid>
         </StackPanel>
         <Grid Grid.Row="2">

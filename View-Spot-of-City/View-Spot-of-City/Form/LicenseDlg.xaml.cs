@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -14,12 +15,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using View_Spot_of_City.helper;
 
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-using View_Spot_of_City.UIControls.Helper;
-
-namespace View_Spot_of_City.UIControls.Form
+namespace View_Spot_of_City.Form
 {
     /// <summary>
     /// LicenseDlg.xaml 的交互逻辑
@@ -48,12 +46,12 @@ namespace View_Spot_of_City.UIControls.Form
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsCorrect"));
                     if (_IsCorrect)
                     {
-                        image = "pack://Application,,,/Icon/Correct.png";
+                        image = "pack://Application:,,,/Icon/Correct.png";
                         toolTip = "Correct";
                     }
                     else
                     {
-                        image = "pack://Application,,,/Icon/Error.png";
+                        image = "pack://Application:,,,/Icon/Error.png";
                         toolTip = "Error";
                     }
                 }

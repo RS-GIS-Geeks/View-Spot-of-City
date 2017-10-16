@@ -10,8 +10,9 @@
     <sys:String x:Key="LoginUserText">邮箱：</sys:String>
     <sys:String x:Key="LoginPasswordText">密码：</sys:String>
     <sys:String x:Key="LoginOk">登录</sys:String>
-    <sys:String x:Key="LoginCancel">取消</sys:String>
+    <sys:String x:Key="LoginCancel">退出</sys:String>
     <sys:String x:Key="LoginRegister">注册</sys:String>
+    <sys:String x:Key="LoginValidateCodeError">验证码错误</sys:String>
     <sys:String x:Key="LoginMailError">该邮箱未注册</sys:String>
     <sys:String x:Key="LoginPasswordError">密码错误</sys:String>
     <!--注册界面-->
@@ -19,10 +20,10 @@
     <sys:String x:Key="RegisterText">邮箱：</sys:String>
     <sys:String x:Key="RegisterPasswordText">密码：</sys:String>
     <sys:String x:Key="RegisterPassword1Text">确认密码：</sys:String>
-    <sys:String x:Key="RegisterCodeText">请输入图片中的内容：</sys:String>
+    <sys:String x:Key="RegisterCodeText">验证码：</sys:String>
     <sys:String x:Key="RegisterCodeButtonTipText">点击更换验证码</sys:String>
     <sys:String x:Key="RegisterOk">注册</sys:String>
-    <sys:String x:Key="RegisterCancel">取消</sys:String>
+    <sys:String x:Key="RegisterCancel">退出</sys:String>
     <sys:String x:Key="RegisterBack">返回</sys:String>
     <sys:String x:Key="RegisterValidateCodeError">验证码错误</sys:String>
     <sys:String x:Key="RegisterMailFormatError">邮箱格式错误</sys:String>
@@ -59,11 +60,33 @@
     <sys:String x:Key="Server_Connect_Error">无法连接服务器</sys:String>
     <sys:String x:Key="Server_Return_Error">服务器返回错误</sys:String>
     <!--#endregion-->
+
     <!--#region 对话框-->
+    <sys:String x:Key="MessageBox_OK">确认</sys:String>
+    <sys:String x:Key="MessageBox_Cancel">取消</sys:String>
+    <sys:String x:Key="MessageBox_Yes">是</sys:String>
+    <sys:String x:Key="MessageBox_No">否</sys:String>
     <sys:String x:Key="MessageBox_Warning_Title">警告</sys:String>
     <sys:String x:Key="MessageBox_Error_Title">错误</sys:String>
     <sys:String x:Key="MessageBox_Exception_Title">异常</sys:String>
     <sys:String x:Key="MessageBox_Tip_Title">提示</sys:String>
     <!--#endregion-->
     <!--endregion-->
+    
+    <!--#region 2017.10.14 by CS-Tao-->
+    <!--#region 用户信息对话框-->
+    <sys:String x:Key="UserInfoDlg_ToolTip">个人信息</sys:String>
+    <sys:String x:Key="UserInfoDlg_Title">用户信息</sys:String>
+    <!--endregion-->
+    
+    <!--ToolTip-->
+    <sys:String x:Key="Logout_ToolTip">退出当前用户</sys:String>
+    <!--对话框显示-->
+    <sys:String x:Key="Logout_Tip">确认退出当前用户？</sys:String>
+
+    <!--用户注册-邮箱模块-->
+    <sys:String x:Key="RegisterGetValidateCode">获取验证码</sys:String>
+    <sys:String x:Key="RegisterMailTitle">景点推荐系统-用户注册</sys:String>
+    <sys:String x:Key="RegisterMailSendError">邮件发送失败</sys:String>
+    <sys:String x:Key="RegisterMailSendAgain">重新发送</sys:String>
 </ResourceDictionary>

@@ -13,17 +13,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Windows.Threading;
 using System.ComponentModel;
 using Config = System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.ViewModel;
 using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.UIControls.OverLayer;
+using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.Form;
 using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using System.Threading;
-using System.Windows.Threading;
+using View_Spot_of_City.Language.Language;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City
 {
@@ -51,14 +55,14 @@ namespace View_Spot_of_City
         CircleProgressAsync circleProgressBox = new CircleProgressAsync();
 
         /// <summary>
-        /// 当前显示主控件
-        /// </summary>
-        MainControls? _mainControl = null;
-
-        /// <summary>
         /// 用于关闭启动进度条的定时器
         /// </summary>
         DispatcherTimer closeCircleTimer = new DispatcherTimer();
+
+        /// <summary>
+        /// 当前显示主控件
+        /// </summary>
+        MainControls? _mainControl = null;
 
         /// <summary>
         /// 当前显示主控件
@@ -117,7 +121,7 @@ namespace View_Spot_of_City
         /// </summary>
         public void InitWindows()
         {
-            CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
+            //CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
             InitMainNavBar();
         }
 
@@ -129,7 +133,6 @@ namespace View_Spot_of_City
             mainControl = MainControls.ArcGISMapView;
 
             this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
-            AppTitle.Text = (string)GetString("MainTitle");
 
             // 添加覆盖层
             // 静态绑定
@@ -217,6 +220,10 @@ namespace View_Spot_of_City
             {
                 var removedItem = e.RemovedItems[0] as OverlayerItemViewModel;
             }
+            if (MainNavBar.SelectedIndex == 3)
+                mainControl = MainControls.GMap;
+            else
+                mainControl = MainControls.ArcGISMapView;
         }
 
         /// <summary>
@@ -229,6 +236,34 @@ namespace View_Spot_of_City
             MainNavBar.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// 点击用户信息按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserInfoDlg userInfoDlg = new UserInfoDlg();
+            userInfoDlg.ShowDialog();
+        }
+
+        /// <summary>
+        /// 点击退出登录按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyMessageBox.DialogResults.Yes != MyMessageBox.ShowMyDialog(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MyMessageBox.MyMessageBoxButtons.YesNo))
+                return;
+            App.CurrentUser = user.NoBody;
+
+            //登录
+            bool? loginDlgResult = (new LoginDlg()).ShowDialog();
+            if (!loginDlgResult.HasValue || !loginDlgResult.Value)
+                Environment.Exit(0);
+        }
+
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
             Application.Current.Shutdown(0);
@@ -237,6 +272,29 @@ namespace View_Spot_of_City
         private void mainWindow_Closed(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void LanguageSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /// 切换语言字典
+            string requestedCulture = string.Format(@"pack://application:,,,/View-Spot-of-City.Language;component/Language/Language.{0}.xaml", languageDictionary[LanguageSelecter.SelectedIndex]);
+            ResourceDictionary resourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault((x) =>
+            {
+                return (x.Source == null) ? false : (x.Source.OriginalString.Contains("View-Spot-of-City.Language"));
+            });
+            if (resourceDictionary != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(resourceDictionary);
+                ResourceDictionary requestDictionary = new ResourceDictionary();
+                requestDictionary.Source = new Uri(requestedCulture);
+                Application.Current.Resources.MergedDictionaries.Add(requestDictionary);
+            }
+
+            //固定字符修改
+            Overlayers.ForEach((x) =>
+            {
+                x.TitleKey = x.TitleKey;
+            });
         }
     }
 }

@@ -1,0 +1,114 @@
+﻿<ResourceDictionary x:Class="View_Spot_of_City.UIControls.Form.MyMessageBoxEvents"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="btnTitleMaxMin" TargetType="Button">
+        <Setter Property="Width" Value="30"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="1,0,1,0"></Setter>
+        <Setter Property="Foreground" Value="DarkRed"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="columnDefinition1" Width="0.982*"/>
+                            <ColumnDefinition x:Name="columnDefinition" Width="0.018*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="rectangle" Background="Transparent" BorderThickness="0" CornerRadius="0" Grid.ColumnSpan="2"></Border>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="rectangle" Value="RoyalBlue"></Setter>
+                            <Setter Property="Foreground"   Value="white"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background"  Value="Transparent"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="btnTitleClose" TargetType="Button">
+        <Setter Property="Width" Value="35"></Setter>
+        <Setter Property="Height" Value="35"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="3"></Setter>
+        <Setter Property="Foreground" Value="DarkRed"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="columnDefinition1" Width="0.982*"/>
+                            <ColumnDefinition x:Name="columnDefinition" Width="0.018*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="rectangle" Background="Transparent" CornerRadius="0,4,0,0" Grid.ColumnSpan="2"></Border>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="rectangle"  Value="Firebrick"></Setter>
+                            <Setter Property="Foreground"   Value="white"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background"  Value="Transparent"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="BaseWindowNoMax" TargetType="Window">
+        <!--<Border BorderBrush="#009ACD"  BorderThickness="2.5" CornerRadius="4">-->
+        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}"  BorderThickness="2.5" CornerRadius="4">
+                <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--<Border Background="#009ACD" BorderBrush="Transparent" MouseDown="Grid_MouseDown"  CornerRadius="1,1,0,0">-->
+                <Grid Background="{DynamicResource PrimaryHueMidBrush}" MouseDown="Grid_MouseDown" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Left" Content="{TemplateBinding Title}" VerticalAlignment="Center"></Label>
+                    <Button Content="0" FontFamily="Webdings"  Name="btnMin" Click="btnMin_Click" HorizontalAlignment="Center" Foreground="White"  Height="26" Style="{DynamicResource btnTitleMaxMin}" VerticalAlignment="Center" Grid.Column="1" />
+                    <Button Content="r" FontFamily="Webdings"  Name="PART_CLOSEBTN" HorizontalAlignment="Center" Foreground="White"  Height="26" Style="{DynamicResource btnTitleClose}" VerticalAlignment="Center" Click="closeButton_Click"   Grid.Column="2" />
+                </Grid>
+                <!--</Border>-->
+                <Grid Grid.Row="1" Background="White" >
+                    <Grid Margin="5,5,5,0">
+                        <AdornerDecorator>
+                            <ContentPresenter></ContentPresenter>
+                        </AdornerDecorator>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Background="White">
+                    <ResizeGrip Name="WindowResizeGrip" Visibility="Collapsed" IsTabStop="False" HorizontalAlignment="Right" FontWeight="Black" VerticalAlignment="Bottom">
+                    </ResizeGrip>
+                </Grid>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                <Setter TargetName="WindowResizeGrip" Property="Visibility" Value="Visible"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <Style x:Key="CustomWindowChromeNoMax" TargetType="Window">
+        <Setter Property="AllowsTransparency" Value="True"></Setter>
+        <Setter Property="WindowStyle" Value="None"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Template" Value="{StaticResource BaseWindowNoMax}"></Setter>
+    </Style>
+</ResourceDictionary>

@@ -5,12 +5,16 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.ComponentModel;
+
 using View_Spot_of_City.helper;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Progress;
-using View_Spot_of_City.UIControls.Form;
-
-using System.Windows.Media;
+using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.Form;
+using System.Windows.Input;
+using View_Spot_of_City.UIControls.Theme;
 
 namespace View_Spot_of_City
 {
@@ -19,8 +23,20 @@ namespace View_Spot_of_City
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// 当前在线用户
+        /// </summary>
+        static user _currentUser;
+        public static user CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
+            //MetroThemeMaster.CreateAppStyleBy(this, (Current.FindResource("PrimaryHueLightBrush") as SolidColorBrush).Color, true);
+
             //应用程序关闭时，才 System.Windows.Application.Shutdown 调用
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 

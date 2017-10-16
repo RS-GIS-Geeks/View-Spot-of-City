@@ -10,6 +10,7 @@ using GMap.NET.WindowsPresentation;
 using System.Collections.Generic;
 
 using Config = System.Configuration.ConfigurationManager;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City.MapView
 {
@@ -132,7 +133,7 @@ namespace View_Spot_of_City.MapView
         private void CancelCurrentOperation(string info, string title, Guid guid)
         {
             DeleteMarkersByGuid(guid);
-            MessageBox.Show(info, title);
+            MyMessageBox.ShowMyDialog(info, title, MyMessageBox.MyMessageBoxButtons.Ok);
         }
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)

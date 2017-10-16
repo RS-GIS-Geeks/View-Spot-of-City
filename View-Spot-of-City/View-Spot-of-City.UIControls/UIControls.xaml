@@ -25,6 +25,8 @@
             <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
             <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
             <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#eeeeee"/>
+            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#DD000000"/>
         </ResourceDictionary>
         <!--#endregion-->
     </ResourceDictionary.MergedDictionaries>
