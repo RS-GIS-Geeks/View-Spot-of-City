@@ -10,6 +10,7 @@ using GMap.NET.WindowsPresentation;
 using System.Collections.Generic;
 
 using Config = System.Configuration.ConfigurationManager;
+using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City.MapView
 {
@@ -34,9 +35,9 @@ namespace View_Spot_of_City.MapView
             mapControl.Position = new PointLatLng(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]));
             mapControl.ShowCenter = false;
             mapControl.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
-            mapControl.MinZoom = Convert.ToInt32(Config.AppSettings["MAP_MIN_ZOOM"]);
-            mapControl.MaxZoom = Convert.ToInt32(Config.AppSettings["MAP_MAX_ZOOM"]);
-            mapControl.Zoom = Convert.ToInt32(Config.AppSettings["MAP_ZOOM"]);
+            mapControl.MinZoom = (int)Convert.ToDouble(Config.AppSettings["MAP_MIN_ZOOM"]);
+            mapControl.MaxZoom = (int)Convert.ToDouble(Config.AppSettings["MAP_MAX_ZOOM"]);
+            mapControl.Zoom = Convert.ToDouble(Config.AppSettings["MAP_ZOOM"]);
             mapControl.ShowCenter = false;
             mapControl.DragButton = MouseButton.Left;
             mapControl.Position = new PointLatLng(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]));
@@ -132,7 +133,7 @@ namespace View_Spot_of_City.MapView
         private void CancelCurrentOperation(string info, string title, Guid guid)
         {
             DeleteMarkersByGuid(guid);
-            MessageBox.Show(info, title);
+            MyMessageBox.ShowMyDialog(info, title, MyMessageBox.MyMessageBoxButtons.Ok);
         }
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.OverLayer"
+             xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
 			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="250">
@@ -16,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <material:ColorZone Background="White"
-							VerticalAlignment="Stretch" Padding="0" material:ShadowAssist.ShadowDepth="Depth1">
+                            VerticalAlignment="Stretch" Padding="0" material:ShadowAssist.ShadowDepth="Depth1">
             <Grid x:Name="SearchGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="StartPositionRow" Height="Auto"/>
@@ -33,28 +34,39 @@
                 <DockPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                         <Button x:Name="ClearStartAddressBtn" Style="{DynamicResource ModifiedFlatButtonStyle}" Height="auto"
-								Foreground="{DynamicResource PrimaryHueMidBrush}"  
+								Foreground="{DynamicResource PrimaryHueMidBrush}"
 								Padding="10" Visibility="Collapsed">
                             <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_02.png" />
                         </Button>
                         <Rectangle Style="{DynamicResource SeperatorStyle}" />
                         <ToggleButton x:Name="RoutePlanToggle" IsChecked="False" 
 									  Foreground="{DynamicResource PrimaryHueMidBrush}" 
-									  Padding="14,0">
+									  Padding="0,0" Width="50" Height="50">
                             <ToggleButton.Style>
                                 <Style BasedOn="{StaticResource ModifiedToggleButtonStyle}" TargetType="{x:Type ToggleButton}">
                                     <Style.Triggers>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="Content">
                                                 <Setter.Value>
-                                                    <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_03.png" Width="10"/>
+                                                    <Grid>
+                                                        <control:CircleProgressControl>
+                                                            <control:CircleProgressControl.RenderTransform>
+                                                                <ScaleTransform ScaleX="0.2" ScaleY="0.2" CenterX="25" CenterY="25"/>
+                                                            </control:CircleProgressControl.RenderTransform>
+                                                        </control:CircleProgressControl>
+                                                        <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_03.png" Width="6"/>
+                                                    </Grid>
                                                 </Setter.Value>
                                             </Setter>
                                         </Trigger>
                                         <Trigger Property="IsChecked" Value="False">
                                             <Setter Property="Content">
                                                 <Setter.Value>
-                                                    <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/go_to.png"/>
+                                                    <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/Microphone.png" Width="50" Height="50">
+                                                        <Image.RenderTransform>
+                                                            <ScaleTransform ScaleX="0.5" ScaleY="0.5" CenterX="25" CenterY="25"/>
+                                                        </Image.RenderTransform>
+                                                    </Image>
                                                 </Setter.Value>
                                             </Setter>
                                         </Trigger>
@@ -64,7 +76,7 @@
                         </ToggleButton>
                         <Button x:Name="PositionSearchBtn" Width="50" 
 								Style="{DynamicResource ModifiedMaterialDesignRaisedDarkButton}" 
-								Padding="10">
+								Padding="10" Click="PositionSearchBtn_Click">
                             <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/search_02.png" Height="20"/>
                         </Button>
                     </StackPanel>
@@ -93,7 +105,6 @@
 
         <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1">
-            
         </material:ColorZone>
     </Grid>
 </UserControl>

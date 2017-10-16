@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeechLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,16 @@ namespace View_Spot_of_City.UIControls.OverLayer
         /// <param name="e"></param>
         private void AddressTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void PositionSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (StartPointAddress.Text != null)
+            {
+                SpVoice voice = new SpVoice();//SAPI 5.4
+                voice.Voice = voice.GetVoices(string.Empty, string.Empty).Item(0);
+                voice.Speak(StartPointAddress.Text);
+            }
         }
     }
 }

@@ -1,5 +1,91 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:View_Spot_of_City.Language">
+    <!--#region 2017.10.13 by CS-Tao-->
+    <!--进度条-->
+    <sys:String x:Key="ProgressText">Loading</sys:String>
+    <!--登录界面-->
+    <sys:String x:Key="LoginTitle">User Login</sys:String>
+    <sys:String x:Key="LoginUserText">Email：</sys:String>
+    <sys:String x:Key="LoginPasswordText">Password：</sys:String>
+    <sys:String x:Key="LoginOk">Login</sys:String>
+    <sys:String x:Key="LoginCancel">Sign out</sys:String>
+    <sys:String x:Key="LoginRegister">Register</sys:String>
+    <sys:String x:Key="LoginValidateCodeError">The verification code is incorrect</sys:String>
+    <sys:String x:Key="LoginMailError">The Email has not been signed up</sys:String>
+    <sys:String x:Key="LoginPasswordError">The password is incorrect, please input again</sys:String>
+    <!--注册界面-->
+    <sys:String x:Key="RegisterTitle">Register</sys:String>
+    <sys:String x:Key="RegisterText">Emali:</sys:String>
+    <sys:String x:Key="RegisterPasswordText">Password:</sys:String>
+    <sys:String x:Key="RegisterPassword1Text">Confirm Password:</sys:String>
+    <sys:String x:Key="RegisterCodeText">Please input the message in this picture</sys:String>
+    <sys:String x:Key="RegisterCodeButtonTipText">Click to change verification code</sys:String>
+    <sys:String x:Key="RegisterOk">Register</sys:String>
+    <sys:String x:Key="RegisterCancel">Sign out</sys:String>
+    <sys:String x:Key="RegisterBack">Back</sys:String>
+    <sys:String x:Key="RegisterValidateCodeError">The verification code is incorrect</sys:String>
+    <sys:String x:Key="RegisterMailFormatError">The mailbox format is incorrect</sys:String>
+    <sys:String x:Key="RegisterPasswordsMismatching">The two codes are not consistent with each other,please input again</sys:String>
+    <sys:String x:Key="RegisterPasswordTooShort">The password is too short</sys:String>
+    <sys:String x:Key="RegisterPasswordTooLong">The password is too long</sys:String>
+    <sys:String x:Key="RegisterMailEcho">The user has been registered, if you forget the password, please contact the administrator</sys:String>
+    <sys:String x:Key="RegisterOK">Registration successful, please return to login interface</sys:String>
+    <!--产品注册界面-->
+    <sys:String x:Key="LicenseTitle">Software Register</sys:String>
+    <sys:String x:Key="LicenseTip">Registration code：</sys:String>
+    <sys:String x:Key="LicenseCode">Password：</sys:String>
+    <sys:String x:Key="LicenseOk">OK</sys:String>
+    <sys:String x:Key="LicenseCancel">Cancel</sys:String>
+    <!--标题-->
+    <sys:String x:Key="MainTitle">CITY VIEW SPOT RECOMMENDER</sys:String>
+    <!--logo-->
+    <sys:String x:Key="LogoTooltip">View Source</sys:String>
+    <!--#region 导航-->
+    <sys:String x:Key="MainNav_MapView">Map View</sys:String>
+    <sys:String x:Key="MainNav_SpotQuery">Spot Query</sys:String>
+    <sys:String x:Key="MainNav_SpotRecommend">Spot Recommended</sys:String>
+    <sys:String x:Key="MainNav_Visualization">Visualization</sys:String>
+    <sys:String x:Key="MainNav_Share">Share</sys:String>
+    <!--#endregion-->
+    <!--#region 景点查询-->
+    <sys:String x:Key="AddressSearchHist">Input spot</sys:String>
+    <!--#endregion-->
+
+    <!--#region 错误和异常显示-->
+    <sys:String x:Key="Config_File_Error">The configuration file is wrong. Please check the configuration file</sys:String>
+    <sys:String x:Key="Mail_Error">The email is incorrect</sys:String>
+    <sys:String x:Key="Input_Empty">Input cannot be empty</sys:String>
+    <sys:String x:Key="Server_Connect_Error">Unable to connect server</sys:String>
+    <sys:String x:Key="Server_Return_Error">Server returns error</sys:String>
+    <!--#endregion-->
+    <!--#region 对话框-->
+    <sys:String x:Key="MessageBox_OK">OK</sys:String>
+    <sys:String x:Key="MessageBox_Cancel">Cancel</sys:String>
+    <sys:String x:Key="MessageBox_Yes">Yes</sys:String>
+    <sys:String x:Key="MessageBox_No">No</sys:String>
+    <sys:String x:Key="MessageBox_Warning_Title">Warning</sys:String>
+    <sys:String x:Key="MessageBox_Error_Title">Error</sys:String>
+    <sys:String x:Key="MessageBox_Exception_Title">Exception</sys:String>
+    <sys:String x:Key="MessageBox_Tip_Title">Tip</sys:String>
+    <!--#endregion-->
+    <!--endregion-->
     
+    <!--#region 2017.10.14 by CS-Tao-->
+    <!--#region 用户信息对话框-->
+    <sys:String x:Key="UserInfoDlg_ToolTip">Personal information</sys:String>
+    <sys:String x:Key="UserInfoDlg_Title">User Information</sys:String>
+    <!--endregion-->
+
+    <!--ToolTip-->
+    <sys:String x:Key="Logout_ToolTip">Logout</sys:String>
+    <!--对话框显示-->
+    <sys:String x:Key="Logout_Tip">Are you sure you want to logout?</sys:String>
+
+    <!--用户注册-邮箱模块-->
+    <sys:String x:Key="RegisterGetValidateCode">Send Email</sys:String>
+    <sys:String x:Key="RegisterMailTitle">CITY VIEW SPOT RECOMMENDER - User Register</sys:String>
+    <sys:String x:Key="RegisterMailSendError">Email Send Failed</sys:String>
+    <sys:String x:Key="RegisterMailSendAgain">Send Again</sys:String>
 </ResourceDictionary>

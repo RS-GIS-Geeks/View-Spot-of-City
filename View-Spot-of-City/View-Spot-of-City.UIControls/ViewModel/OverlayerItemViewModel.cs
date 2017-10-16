@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+
 namespace View_Spot_of_City.ViewModel
 {
     public enum OverlayerType
@@ -28,7 +30,7 @@ namespace View_Spot_of_City.ViewModel
         {
             _iconPath = iconPath;
             _titleKey = titleKey;
-            _title = Application.Current.FindResource(_titleKey) as string;
+            _title = GetString(_titleKey) as string;
             _content = content;
             VAlignType = VerticalAlignment.Stretch;
             HAlignType = HorizontalAlignment.Left;
@@ -53,7 +55,7 @@ namespace View_Spot_of_City.ViewModel
             get => _titleKey;
             set
             {
-                Title = Application.Current.FindResource(_titleKey) as string;
+                Title = GetString(_titleKey) as string;
             }
         }
 

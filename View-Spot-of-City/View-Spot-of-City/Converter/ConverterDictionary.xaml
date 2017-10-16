@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:View_Spot_of_City.Converter">
+    
+    <local:Enum2UIControl x:Key="mainControlVisibilityConverter"/>
+    <local:ImageConverter x:Key="string2image"/>
+</ResourceDictionary>
