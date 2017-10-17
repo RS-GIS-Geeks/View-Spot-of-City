@@ -87,6 +87,7 @@
     <!--用户注册-邮箱模块-->
     <sys:String x:Key="RegisterGetValidateCode">获取验证码</sys:String>
     <sys:String x:Key="RegisterMailTitle">景点推荐系统-用户注册</sys:String>
+    <sys:String x:Key="RegisterMailBody">景点推荐系统-用户注册</sys:String>
     <sys:String x:Key="RegisterMailSendError">邮件发送失败</sys:String>
     <sys:String x:Key="RegisterMailSendAgain">重新发送</sys:String>
 </ResourceDictionary>

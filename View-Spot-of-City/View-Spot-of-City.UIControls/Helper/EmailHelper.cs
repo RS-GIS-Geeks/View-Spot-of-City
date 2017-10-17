@@ -12,15 +12,15 @@ namespace View_Spot_of_City.UIControls.Helper
 {
     public static class EmailHelper
     {
-        public static bool SendEmail(string mail, string content)
+        public static bool SendEmail(string mail, string title, string content)
         {
             MailMessage message = new MailMessage();
             {
                 message.To.Add(mail);
                 message.From = new MailAddress(AppSettings["MANAGER_MAIL_NUM"], AppSettings["MANAGER_MAIL_NAME"], Encoding.UTF8);
-                message.Subject = GetString("RegisterMailTitle");
+                message.Subject =title;
                 message.SubjectEncoding = Encoding.UTF8;
-                message.Body = AppSettings["MANAGER_MAIL_NAME"];
+                message.Body = content;
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = false;
                 message.Priority = MailPriority.Normal;
@@ -28,8 +28,10 @@ namespace View_Spot_of_City.UIControls.Helper
 
             SmtpClient smtp = new SmtpClient();
             {
-                smtp.Credentials = new System.Net.NetworkCredential(AppSettings["MANAGER_MAIL_NUM"], AppSettings["MANAGER_MAIL_PASSWORD"]);
                 smtp.Host = AppSettings["SmtpClient_HOST"];
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential(AppSettings["MANAGER_MAIL_NUM"], AppSettings["MANAGER_MAIL_PASSWORD"]);
             }
             object userState = message;
             try
@@ -37,8 +39,9 @@ namespace View_Spot_of_City.UIControls.Helper
                 smtp.SendAsync(message, userState);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                Console.Write(ex.Message);
                 return false;
             }
         }

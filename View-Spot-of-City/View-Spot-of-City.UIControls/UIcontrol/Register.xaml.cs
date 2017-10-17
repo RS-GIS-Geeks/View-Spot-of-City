@@ -218,7 +218,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 {
                     validateCode[i] = rand.Next(0, 9).ToString()[0];
                 }
-                if(SendEmail(user_mail_before_invalidate, "CS-Tao测试验证码为：" + Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode))))
+                if(SendEmail(user_mail_before_invalidate, GetString("RegisterMailTitle"), "CS-Tao测试验证码为：" + Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode))))
                 {
                     BeginChangeTextTimer();
                 }
