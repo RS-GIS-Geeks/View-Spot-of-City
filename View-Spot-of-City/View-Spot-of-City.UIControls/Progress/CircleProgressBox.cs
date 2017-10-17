@@ -31,6 +31,7 @@ namespace View_Spot_of_City.UIControls.Progress
         /// </summary>
         public void ShowPregress()
         {
+            m_thread.IsBackground = true;
             m_thread = new Thread(Show);
             m_thread.IsBackground = true;
             m_thread.SetApartmentState(ApartmentState.STA);

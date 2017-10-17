@@ -42,12 +42,14 @@ namespace View_Spot_of_City
 
             //验证License
             if (!RegisterMaster.CanStart())
-                Environment.Exit(0);
+                //Environment.Exit(0);
+                this.Shutdown();
 
             //登录
             bool? loginDlgResult = (new LoginDlg()).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
-                Environment.Exit(0);
+                //Environment.Exit(0);
+                this.Shutdown();
 
             base.OnStartup(e);
         }

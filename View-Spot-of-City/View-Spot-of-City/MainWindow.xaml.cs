@@ -113,6 +113,7 @@ namespace View_Spot_of_City
             //circleProgressBox.ShowPregress();
             //circleProgressBox.SetDefaultDescription();
             Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin));
+            thread.IsBackground = true;
             thread.Start();
         }
 
@@ -201,15 +202,15 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void Logo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //Hyperlink link = new Hyperlink();
-            //{
-            //    link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
-            //}
-            //Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
-            //e.Handled = true;
+            Hyperlink link = new Hyperlink();
+            {
+                link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
+            }
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            e.Handled = true;
 
-            mainControl = MainControls.Browser;
-            Browser.Instance.Navigate(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
+            //mainControl = MainControls.Browser;
+            //Browser.Instance.Navigate(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
         }
 
         /// <summary>
@@ -264,7 +265,8 @@ namespace View_Spot_of_City
             //登录
             bool? loginDlgResult = (new LoginDlg()).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
-                Environment.Exit(0);
+                //Environment.Exit(0);
+                Application.Current.Shutdown();
         }
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)
@@ -274,7 +276,8 @@ namespace View_Spot_of_City
 
         private void mainWindow_Closed(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            //Environment.Exit(0);
+            Application.Current.Shutdown();
         }
 
         private void LanguageSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
