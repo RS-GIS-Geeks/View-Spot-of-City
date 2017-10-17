@@ -201,12 +201,15 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void Logo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Hyperlink link = new Hyperlink();
-            {
-                link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
-            }
-            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
-            e.Handled = true;
+            //Hyperlink link = new Hyperlink();
+            //{
+            //    link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
+            //}
+            //Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            //e.Handled = true;
+
+            mainControl = MainControls.Browser;
+            Browser.Instance.Navigate(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
         }
 
         /// <summary>
@@ -254,7 +257,7 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MyMessageBox.DialogResults.Yes != MyMessageBox.ShowMyDialog(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MyMessageBox.MyMessageBoxButtons.YesNo))
+            if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo))
                 return;
             App.CurrentUser = user.NoBody;
 

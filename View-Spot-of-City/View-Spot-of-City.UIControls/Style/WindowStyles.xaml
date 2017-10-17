@@ -105,6 +105,52 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     
+    <ControlTemplate x:Key="BaseWindowNoMaxMin" TargetType="Window">
+        <!--<Border BorderBrush="#009ACD"  BorderThickness="2.5" CornerRadius="4">-->
+        <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}"  BorderThickness="2.5" CornerRadius="4">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--<Border Background="#009ACD" BorderBrush="Transparent" MouseDown="Grid_MouseDown"  CornerRadius="1,1,0,0">-->
+                <Grid Background="{DynamicResource PrimaryHueMidBrush}" MouseDown="Grid_MouseDown" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Left" Content="{TemplateBinding Title}" VerticalAlignment="Center"></Label>
+                    <Button Content="r" FontFamily="Webdings"  Name="PART_CLOSEBTN" HorizontalAlignment="Center" Foreground="White"  Height="26" Style="{DynamicResource btnTitleClose}" VerticalAlignment="Center" Click="closeButton_Click"   Grid.Column="1" />
+                </Grid>
+                <!--</Border>-->
+                <Grid Grid.Row="1" Background="White" >
+                    <Grid Margin="5,5,5,0">
+                        <AdornerDecorator>
+                            <ContentPresenter></ContentPresenter>
+                        </AdornerDecorator>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Background="White">
+                    <ResizeGrip Name="WindowResizeGrip" Visibility="Collapsed" IsTabStop="False" HorizontalAlignment="Right" FontWeight="Black" VerticalAlignment="Bottom">
+                    </ResizeGrip>
+                </Grid>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                <Setter TargetName="WindowResizeGrip" Property="Visibility" Value="Visible"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="CustomWindowChromeNoMaxMin" TargetType="Window">
+        <Setter Property="AllowsTransparency" Value="True"></Setter>
+        <Setter Property="WindowStyle" Value="None"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Template" Value="{StaticResource BaseWindowNoMaxMin}"></Setter>
+    </Style>
+    
     <Style x:Key="CustomWindowChromeNoMax" TargetType="Window">
         <Setter Property="AllowsTransparency" Value="True"></Setter>
         <Setter Property="WindowStyle" Value="None"></Setter>

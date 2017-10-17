@@ -14,17 +14,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using MahApps.Metro.Controls.Dialogs;
 using View_Spot_of_City.ClassModel;
-using static View_Spot_of_City.UIControls.Converter.Enum2LoginUI;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
 
 namespace View_Spot_of_City.Form
 {
     /// <summary>
     /// LoginDlg.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginDlg : MetroWindow, INotifyPropertyChanged
+    public partial class LoginDlg : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -81,7 +80,7 @@ namespace View_Spot_of_City.Form
         private void ChangeCurrentUserCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             App.CurrentUser = e.Parameter as user;
-            //MyMessageBox.ShowMyDialog("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
+            //MessageBoxMaster.Show("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
         }
     }
 }

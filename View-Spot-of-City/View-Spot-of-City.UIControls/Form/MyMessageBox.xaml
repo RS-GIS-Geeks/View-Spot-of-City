@@ -9,9 +9,9 @@
         xmlns:converter="clr-namespace:View_Spot_of_City.UIControls.Converter"
         xmlns:commands="clr-namespace:View_Spot_of_City.UIControls.Command"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        Style="{StaticResource CustomWindowChromeNoMax}" ShowInTaskbar="False"
+        Style="{StaticResource CustomWindowChromeNoMaxMin}" ShowInTaskbar="False"
         Height="auto" Width="auto" SizeToContent="WidthAndHeight" 
-        MinWidth="120" MinHeight="100" MaxWidth="600">
+        MinWidth="120" MinHeight="100" MaxWidth="600" Topmost="True">
     <Window.Resources>
         <converter:MyMessageBoxButtonConverter x:Key="buttonPanelConverter"/>
     </Window.Resources>
@@ -29,7 +29,7 @@
         <Grid Grid.Row="0">
             <TextBlock x:Name="messagetextBox" Margin="15,20,15,20" FontSize="16" TextWrapping="Wrap"/>
         </Grid>
-        <Grid Grid.Row="1" Background="LightGray">
+        <Grid Grid.Row="1">
             <buttonpanel:MyMessageBox_Ok Visibility="{Binding ElementName=dialogwindow, Path=ButtonPanel, Converter={StaticResource buttonPanelConverter},ConverterParameter=0}" HorizontalAlignment="Right"/>
             <buttonpanel:MyMessageBox_OkCancel Visibility="{Binding ElementName=dialogwindow, Path=ButtonPanel, Converter={StaticResource buttonPanelConverter},ConverterParameter=1}" HorizontalAlignment="Right"/>
             <buttonpanel:MyMessageBox_YesNo Visibility="{Binding ElementName=dialogwindow, Path=ButtonPanel, Converter={StaticResource buttonPanelConverter},ConverterParameter=2}" HorizontalAlignment="Right"/>

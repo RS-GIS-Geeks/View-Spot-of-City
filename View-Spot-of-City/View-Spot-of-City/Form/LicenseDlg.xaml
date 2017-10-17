@@ -1,4 +1,4 @@
-﻿<metro:MetroWindow x:Class="View_Spot_of_City.Form.LicenseDlg"
+﻿<Window x:Class="View_Spot_of_City.Form.LicenseDlg"
         x:Name="registerDlg"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,7 +8,8 @@
         xmlns:converter="clr-namespace:View_Spot_of_City.Converter"
         xmlns:local="clr-namespace:View_Spot_of_City.Form"
         mc:Ignorable="d"
-        Title="{DynamicResource LicenseTitle}" Height="Auto"
+        Title="{DynamicResource LicenseTitle}" 
+        Style="{StaticResource CustomWindowChromeNoMax}" Height="Auto"
         SizeToContent="Height" Width="300" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
@@ -38,4 +39,4 @@
                     MinWidth="70" MaxWidth="100" HorizontalAlignment="Right" Margin="0,5,5,5" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
-</metro:MetroWindow>
+</Window>

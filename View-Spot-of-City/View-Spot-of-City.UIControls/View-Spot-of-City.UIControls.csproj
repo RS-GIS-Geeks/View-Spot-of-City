@@ -92,14 +92,15 @@
     <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
     <Compile Include="Command\MyMessageBoxCommands.cs" />
-    <Compile Include="Converter\Enum2LoginUI.cs" />
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
+    <Compile Include="Form\MessageboxMaster.cs" />
     <Compile Include="Form\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\MyMessageBoxEvents.cs" />
     <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="Helper\LoginDlgMaster.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />
     <Compile Include="Helper\MySqlHelper.cs" />
     <Compile Include="Helper\WebServiceHelper.cs" />
@@ -137,6 +138,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Theme\MetroThemeMaster.cs" />
+    <Compile Include="UIcontrol\BrowserControl.xaml.cs">
+      <DependentUpon>BrowserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIcontrol\CircleProgressControl.xaml.cs">
       <DependentUpon>CircleProgressControl.xaml</DependentUpon>
     </Compile>
@@ -248,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\BrowserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
