@@ -10,6 +10,7 @@
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.ArcGISControls;assembly=View-Spot-of-City.ArcGISControls"
+        xmlns:uicontrol="clr-namespace:View_Spot_of_City.UIControls.UIcontrol;assembly=View-Spot-of-City.UIControls"
         xmlns:converter="clr-namespace:View_Spot_of_City.Converter"
         mc:Ignorable="d"
         Height="720" Width="1280"
@@ -87,9 +88,10 @@
         <!--主控件-->
         <ContentControl Grid.Row="2">
             <Grid x:Name="mainControlManager">
-                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
-                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
+                <uicontrol:BrowserControl x:Name="Browser" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
+                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
                 <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=2}"/>
+                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=3}"/>
             </Grid>
         </ContentControl>
         <!--覆盖层-->

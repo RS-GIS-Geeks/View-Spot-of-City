@@ -1,10 +1,8 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,13 +14,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using View_Spot_of_City.helper;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace View_Spot_of_City.Form
 {
     /// <summary>
     /// LicenseDlg.xaml 的交互逻辑
     /// </summary>
-    public partial class LicenseDlg : MetroWindow, INotifyPropertyChanged
+    public partial class LicenseDlg : Window, INotifyPropertyChanged
     {
         string path = AppDomain.CurrentDomain.BaseDirectory + "License.dat";
         private bool _IsCorrect;

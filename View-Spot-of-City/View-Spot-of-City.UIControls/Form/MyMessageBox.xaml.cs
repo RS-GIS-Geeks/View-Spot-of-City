@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 
-using View_Spot_of_City.UIControls.Converter;
-using static View_Spot_of_City.UIControls.Converter.MyMessageBoxButtonConverter;
+using static View_Spot_of_City.UIControls.Form.MessageboxMaster;
 
 namespace View_Spot_of_City.UIControls.Form
 {
@@ -24,22 +23,6 @@ namespace View_Spot_of_City.UIControls.Form
     public partial class MyMessageBox : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public enum MyMessageBoxButtons : int
-        {
-            Ok = 0,
-            OkCancel = 1,
-            YesNo = 2,
-            YesNoCancel = 3
-        }
-
-        public enum DialogResults : int
-        {
-            Ok = 1,
-            Cancel = 2,
-            Yes = 3,
-            No = 4
-        }
 
         /// <summary>
         /// 显示按钮
@@ -61,27 +44,39 @@ namespace View_Spot_of_City.UIControls.Form
             }
         }
 
+        /// <summary>
+        /// 窗口关闭返回值
+        /// </summary>
+        private DialogResults _DialogResult = DialogResults.Cancel;
+        /// <summary>
+        /// 窗口关闭返回值
+        /// </summary>
+        public DialogResults WindowResult
+        {
+            get { return _DialogResult; }
+        }
+
         private MyMessageBox(string message)
         {
             InitializeComponent();
-            messagetextBox.Text = message;
-            Title = null;
+            messagetextBox.Text = message == null ? string.Empty : message ;
+            Title = string.Empty;
             ButtonPanel = MyMessageBoxButtons.Ok;
         }
 
         private MyMessageBox(string message, string title)
         {
             InitializeComponent();
-            messagetextBox.Text = message;
-            Title = title;
+            messagetextBox.Text = message == null ? string.Empty : message;
+            Title = title == null ? string.Empty : title;
             ButtonPanel = MyMessageBoxButtons.Ok;
         }
 
         private MyMessageBox(string message, string title, MyMessageBoxButtons buttons)
         {
             InitializeComponent();
-            messagetextBox.Text = message;
-            Title = title;
+            messagetextBox.Text = message == null ? string.Empty : message;
+            Title = title == null ? string.Empty : title;
             ButtonPanel = buttons;
         }
 
@@ -90,14 +85,11 @@ namespace View_Spot_of_City.UIControls.Form
         /// </summary>
         /// <param name="message">消息内容</param>
         /// <returns>点击OK这返回DialogResults.Ok，否则返回DialogResults.Cancel</returns>
-        public static DialogResults ShowMyDialog(string message)
+        internal static DialogResults ShowMyDialog(string message)
         {
-            bool? dialogresult = (new MyMessageBox(message)).ShowDialog();
-
-            if (dialogresult == true)
-                return DialogResults.Ok;
-            else
-                return DialogResults.Cancel;
+            MyMessageBox mymesaagebox = new MyMessageBox(message);
+            bool? dialogresult = mymesaagebox.ShowDialog();
+            return mymesaagebox.WindowResult;
         }
 
         /// <summary>
@@ -106,14 +98,11 @@ namespace View_Spot_of_City.UIControls.Form
         /// <param name="message">消息内容</param>
         /// <param name="title">标题</param>
         /// <returns>点击OK这返回DialogResults.Ok，否则返回DialogResults.Cancel</returns>
-        public static DialogResults ShowMyDialog(string message, string title)
+        internal static DialogResults ShowMyDialog(string message, string title)
         {
-            bool? dialogresult = (new MyMessageBox(message, title)).ShowDialog();
-
-            if (dialogresult == true)
-                return DialogResults.Ok;
-            else
-                return DialogResults.Cancel;
+            MyMessageBox mymesaagebox = new MyMessageBox(message, title);
+            bool? dialogresult = mymesaagebox.ShowDialog();
+            return mymesaagebox.WindowResult;
         }
 
         /// <summary>
@@ -123,68 +112,57 @@ namespace View_Spot_of_City.UIControls.Form
         /// <param name="title">标题</param>
         /// <param name="buttons">显示哪些按钮</param>
         /// <returns>点击OK这返回DialogResults.Ok，点击Yes返回DialogResults.Yes，点击No返回DialogResults.No，否则返回DialogResults.Cancel</returns>
-        public static DialogResults ShowMyDialog(string message, string title, MyMessageBoxButtons buttons)
+        internal static DialogResults ShowMyDialog(string message, string title, MyMessageBoxButtons buttons)
         {
-            bool? dialogresult = (new MyMessageBox(message, title, buttons)).ShowDialog();
-            
-            if(buttons == MyMessageBoxButtons.Ok)
-            {
-                if (dialogresult == true)
-                    return DialogResults.Ok;
-                else
-                    return DialogResults.Cancel;
-            }
-            else if(buttons == MyMessageBoxButtons.OkCancel)
-            {
-                if (dialogresult == true)
-                    return DialogResults.Ok;
-                else
-                    return DialogResults.Cancel;
-            }
-            else if(buttons == MyMessageBoxButtons.YesNo)
-            {
-                if (dialogresult == true)
-                    return DialogResults.Yes;
-                else
-                    return DialogResults.No;
-            }
-            else if(buttons == MyMessageBoxButtons.YesNoCancel)
-            {
-                if (dialogresult == null)
-                    return DialogResults.Cancel;
-                else if (dialogresult == true)
-                    return DialogResults.Yes;
-                else
-                    return DialogResults.No;
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
+            MyMessageBox mymesaagebox = new MyMessageBox(message, title, buttons);
+            bool? dialogresult = mymesaagebox.ShowDialog();
+            return mymesaagebox.WindowResult;
         }
 
         private void OKCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            try { this.DialogResult = true; }
+            try
+            {
+                this._DialogResult = DialogResults.Ok;
+                this.DialogResult = true;
+            }
             catch { }
         }
 
         private void CancelCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            try { this.DialogResult = null; }
+            try
+            {
+                this._DialogResult = DialogResults.Cancel;
+                this.Close();
+            }
             catch { }
         }
 
         private void YesCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            try { this.DialogResult = true; }
+            try
+            {
+                this._DialogResult = DialogResults.Yes;
+                this.DialogResult = true;
+            }
             catch { }
         }
 
         private void NoCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            try { this.DialogResult = false; }
+            try
+            {
+                this._DialogResult = DialogResults.No;
+                this.DialogResult = false;
+            }
             catch { }
+        }
+
+        [Obsolete]
+        private new void Show()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -113,6 +113,7 @@ namespace View_Spot_of_City
             //circleProgressBox.ShowPregress();
             //circleProgressBox.SetDefaultDescription();
             Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin));
+            thread.IsBackground = true;
             thread.Start();
         }
 
@@ -207,6 +208,9 @@ namespace View_Spot_of_City
             }
             Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
             e.Handled = true;
+
+            //mainControl = MainControls.Browser;
+            //Browser.Instance.Navigate(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
         }
 
         /// <summary>
@@ -254,14 +258,15 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MyMessageBox.DialogResults.Yes != MyMessageBox.ShowMyDialog(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MyMessageBox.MyMessageBoxButtons.YesNo))
+            if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo))
                 return;
             App.CurrentUser = user.NoBody;
 
             //登录
             bool? loginDlgResult = (new LoginDlg()).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
-                Environment.Exit(0);
+                //Environment.Exit(0);
+                Application.Current.Shutdown();
         }
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)
@@ -271,7 +276,8 @@ namespace View_Spot_of_City
 
         private void mainWindow_Closed(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            //Environment.Exit(0);
+            Application.Current.Shutdown();
         }
 
         private void LanguageSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)

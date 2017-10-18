@@ -133,6 +133,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converter\Enum2LoginUI.cs" />
     <Compile Include="Converter\Enum2UIControl.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Form\LicenseDlg.xaml.cs">
