@@ -133,7 +133,7 @@ namespace View_Spot_of_City.MapView
         private void CancelCurrentOperation(string info, string title, Guid guid)
         {
             DeleteMarkersByGuid(guid);
-            MyMessageBox.ShowMyDialog(info, title, MyMessageBox.MyMessageBoxButtons.Ok);
+            MessageboxMaster.Show(info, title, MessageboxMaster.MyMessageBoxButtons.Ok);
         }
 
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)

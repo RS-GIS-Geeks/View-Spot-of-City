@@ -49,7 +49,7 @@ namespace View_Spot_of_City.MapView
                 default:
                     {
 #if DEBUG
-                        MyMessageBox.ShowMyDialog("操作错误");
+                        MessageboxMaster.Show("操作错误");
 #endif
                         break;
                     }
@@ -77,7 +77,7 @@ namespace View_Spot_of_City.MapView
                 default:
                     {
 #if DEBUG
-                        MyMessageBox.ShowMyDialog("操作错误");
+                        MessageboxMaster.Show("操作错误");
 #endif
                         break;
                     }
@@ -119,7 +119,7 @@ namespace View_Spot_of_City.MapView
                 default:
                     {
 #if DEBUG
-                        MyMessageBox.ShowMyDialog("操作错误");
+                        MessageboxMaster.Show("操作错误");
 #endif
                         break;
                     }

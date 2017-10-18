@@ -7,19 +7,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace View_Spot_of_City.UIControls.Converter
+namespace View_Spot_of_City.Converter
 {
     public class Enum2LoginUI : IValueConverter
     {
-        /// <summary>
-        /// 主控件
-        /// </summary>
-        public enum LoginControls : int
-        {
-            Login = 0,
-            Register = 1
-        }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null) { return null; }
