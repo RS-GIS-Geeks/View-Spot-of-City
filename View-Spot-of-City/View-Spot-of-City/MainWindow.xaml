@@ -11,28 +11,15 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.ArcGISControls;assembly=View-Spot-of-City.ArcGISControls"
         xmlns:uicontrol="clr-namespace:View_Spot_of_City.UIControls.UIcontrol;assembly=View-Spot-of-City.UIControls"
-        xmlns:converter="clr-namespace:View_Spot_of_City.Converter"
+        xmlns:converter="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" Loaded="Window_Loaded"
         Closing="mainWindow_Closing" Closed="mainWindow_Closed">
-    <!--<metro:MetroWindow.RightWindowCommands>
-        <metro:WindowCommands>
-            <Button Click="Setting_Click">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="Settings"/>
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="设置"/>
-                </StackPanel>
-            </Button>
-            <Button Click="Login_Click">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="登录"/>
-                </StackPanel>
-            </Button>
-        </metro:WindowCommands>
-    </metro:MetroWindow.RightWindowCommands>-->
+    <Window.Resources>
+        <converter:Mail2AvatarBruahConverter x:Key="mail2avatarbrushconverter"/>
+    </Window.Resources>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>
@@ -50,13 +37,15 @@
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">简体中文</ComboBoxItem>
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
                 </ComboBox>
-                <Button Click="UserInfoButton_Click" Background="Transparent" Padding="5" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
+                <Button Click="UserInfoButton_Click" Background="Transparent" Padding="4" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
                         ToolTip="{DynamicResource UserInfoDlg_ToolTip}">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
+                    <!--<iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>-->
+                    <Rectangle Width="24" Height="24" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail, Converter={StaticResource mail2avatarbrushconverter}}"
+                               Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" IsHitTestVisible="False"></Rectangle>
                 </Button>
-                <Button Click="LogoutButton_Click" Background="Transparent" Padding="5" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
+                <Button Click="LogoutButton_Click" Background="Transparent" Padding="4" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
                         ToolTip="{DynamicResource Logout_ToolTip}">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="LayoutExpandRight"/>
+                    <iconPacks:PackIconModern Width="22" Height="22" Kind="LayoutExpandRight"/>
                 </Button>
             </StackPanel>
             <material:ColorZone Background="White"
@@ -88,10 +77,9 @@
         <!--主控件-->
         <ContentControl Grid.Row="2">
             <Grid x:Name="mainControlManager">
-                <uicontrol:BrowserControl x:Name="Browser" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
-                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
-                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=2}"/>
-                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=3}"/>
+                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
+                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
+                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=2}"/>
             </Grid>
         </ContentControl>
         <!--覆盖层-->

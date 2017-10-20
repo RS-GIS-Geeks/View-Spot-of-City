@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label Content="{DynamicResource RegisterText}" Margin="10,3"/>
+            <Label Content="{DynamicResource RegisterText}" Margin="10,8,10,3"/>
             <Grid Margin="10,0">
                 <TextBox Name="mailTextBox" Margin="3" MaxLength="30" AcceptsTab="False" AcceptsReturn="False"/>
             </Grid>

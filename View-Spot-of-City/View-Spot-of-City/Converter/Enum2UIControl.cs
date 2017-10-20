@@ -18,10 +18,9 @@ namespace View_Spot_of_City.Converter
         /// </summary>
         public enum MainControls : int
         {
-            Browser = 0,
-            GMap = 1,
-            ArcGISSceneView = 2,
-            ArcGISMapView = 3
+            GMap = 0,
+            ArcGISSceneView = 1,
+            ArcGISMapView = 2
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

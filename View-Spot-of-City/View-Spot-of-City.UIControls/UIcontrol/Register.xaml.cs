@@ -62,13 +62,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             //初始化定时器
             sendMailBtnTimer.Tick += new EventHandler(BeginChangeTextTimer_Tick);
             sendMailBtnTimer.Interval = new TimeSpan(0, 0, 1);
-
-            #region 测试
-            mailTextBox.Text = "990296951@qq.com";
-            passwordTextBox.Password = "19970108";
-            password1TextBox.Password = "19970108";
-            //validateCodeTextBox.Text = "1234";
-            #endregion
         }
 
         private async void btnRegister_ClickAsync(object sender, RoutedEventArgs e)
@@ -113,11 +106,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                     MessageboxMaster.Show(GetString("RegisterValidateCodeError"), GetString("MessageBox_Error_Title"));
                     return;
                 }
-
-                #region 测试
-                MessageboxMaster.Show("开发过程需要临时关闭连接数据库功能", "CS-Tao");
-                return;
-                #endregion
 
                 //密码加密
                 string password_encoded = MD5_Encryption.MD5Encode(user_password);
@@ -168,12 +156,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             LoginDlgCommands.ChangePageCommand.Execute(LoginControls.Login, this);
-        }
-
-        public static bool IsEmail(string str)
-        {
-            string expression = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-            return Regex.IsMatch(str, expression, RegexOptions.Compiled);
         }
 
         private void btnGetValidateCode_Click(object sender, RoutedEventArgs e)

@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using System.ComponentModel;
@@ -23,10 +16,8 @@ using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.UIControls.OverLayer;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Form;
-using static View_Spot_of_City.UIControls.Theme.MetroThemeMaster;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using View_Spot_of_City.Language.Language;
 using View_Spot_of_City.UIControls.Form;
 
 namespace View_Spot_of_City
@@ -37,6 +28,23 @@ namespace View_Spot_of_City
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// 当前应用程序实例
+        /// </summary>
+        App _currentApp = null;
+        /// <summary>
+        /// 当前应用程序实例
+        /// </summary>
+        public App CurrentApp
+        {
+            get { return _currentApp; }
+            set
+            {
+                _currentApp = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentApp"));
+            }
+        }
 
         /// <summary>
         /// 覆盖面板组
@@ -100,6 +108,7 @@ namespace View_Spot_of_City
         private void InitParams()
         {
             Application.Current.MainWindow = this;
+            this.CurrentApp = Application.Current as App;
             closeCircleTimer.Tick += new EventHandler(CloseCircleTimer_Tick);
             closeCircleTimer.Interval = new TimeSpan(0, 0 ,1);
         }
@@ -208,9 +217,6 @@ namespace View_Spot_of_City
             }
             Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
             e.Handled = true;
-
-            //mainControl = MainControls.Browser;
-            //Browser.Instance.Navigate(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
         }
 
         /// <summary>
@@ -260,13 +266,14 @@ namespace View_Spot_of_City
         {
             if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo))
                 return;
-            App.CurrentUser = user.NoBody;
+            (Application.Current as App).CurrentUser = user.NoBody;
 
             //登录
             bool? loginDlgResult = (new LoginDlg()).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
                 //Environment.Exit(0);
                 Application.Current.Shutdown();
+            mainWindow.Focus();
         }
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)

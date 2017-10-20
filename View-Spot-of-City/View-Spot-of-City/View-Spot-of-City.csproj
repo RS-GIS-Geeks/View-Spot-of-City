@@ -54,6 +54,9 @@
     <Reference Include="GMap.NET.WindowsPresentation">
       <HintPath>..\packages\GMap.net\lib\new\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
+    <Reference Include="GravatarHelper.NetStandard, Version=1.0.0.27654, Culture=neutral, PublicKeyToken=b363a8deeebd7fb7, processorArchitecture=MSIL">
+      <HintPath>..\packages\GravatarHelper.NetStandard.1.0.0\lib\net452\GravatarHelper.NetStandard.dll</HintPath>
+    </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>

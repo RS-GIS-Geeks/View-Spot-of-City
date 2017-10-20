@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="GravatarHelper.NetStandard, Version=1.0.0.27654, Culture=neutral, PublicKeyToken=b363a8deeebd7fb7, processorArchitecture=MSIL">
+      <HintPath>..\packages\GravatarHelper.NetStandard.1.0.0\lib\net452\GravatarHelper.NetStandard.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -92,12 +95,14 @@
     <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
     <Compile Include="Command\MyMessageBoxCommands.cs" />
+    <Compile Include="Converter\Mail2AvatarBruahConverter.cs" />
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
     <Compile Include="Form\MessageboxMaster.cs" />
     <Compile Include="Form\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\MyMessageBoxEvents.cs" />
+    <Compile Include="Helper\AvatarHelper.cs" />
     <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\LoginDlgMaster.cs" />
@@ -138,9 +143,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Theme\MetroThemeMaster.cs" />
-    <Compile Include="UIcontrol\BrowserControl.xaml.cs">
-      <DependentUpon>BrowserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UIcontrol\CircleProgressControl.xaml.cs">
       <DependentUpon>CircleProgressControl.xaml</DependentUpon>
     </Compile>
@@ -252,10 +254,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UIcontrol\BrowserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

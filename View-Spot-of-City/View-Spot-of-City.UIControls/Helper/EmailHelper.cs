@@ -1,17 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Net.Mail;
 using static System.Configuration.ConfigurationManager;
-
-using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using System.Text.RegularExpressions;
 
 namespace View_Spot_of_City.UIControls.Helper
 {
     public static class EmailHelper
     {
+        /// <summary>
+        /// 判断是否为邮箱
+        /// </summary>
+        /// <param name="str">待判断字符串</param>
+        /// <returns>是否为邮箱</returns>
+        public static bool IsEmail(string str)
+        {
+            try
+            {
+                string expression = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                return Regex.IsMatch(str, expression, RegexOptions.Compiled);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
+        /// <param name="mail">收件邮箱</param>
+        /// <param name="title">邮件主题</param>
+        /// <param name="content">邮件内容</param>
+        /// <returns>是否发送成功</returns>
         public static bool SendEmail(string mail, string title, string content)
         {
             MailMessage message = new MailMessage();

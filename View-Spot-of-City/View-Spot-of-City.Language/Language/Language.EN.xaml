@@ -6,7 +6,8 @@
     <!--进度条-->
     <sys:String x:Key="ProgressText">Loading</sys:String>
     <!--登录界面-->
-    <sys:String x:Key="LoginTitle">User Login</sys:String>
+    <sys:String x:Key="LoginTitle">Login</sys:String>
+    <sys:String x:Key="LoginIconTooltip">change your avatar on gravatar</sys:String>
     <sys:String x:Key="LoginUserText">Email:</sys:String>
     <sys:String x:Key="LoginPasswordText">Password:</sys:String>
     <sys:String x:Key="LoginOk">Login</sys:String>

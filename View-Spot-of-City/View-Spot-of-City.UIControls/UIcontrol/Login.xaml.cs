@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 using System.Runtime.Serialization.Json;
 using static System.Configuration.ConfigurationManager;
 
@@ -61,6 +62,10 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             InitializeComponent();
             Title = GetString("LoginTitle");
             mailTextBox.Text = AppSettings["DEFAULT_USER_MAIL"];
+
+            //生成初始头像
+            string userInputMail = mailTextBox.Text == string.Empty ? "rsgisgeeks@qq.com" : mailTextBox.Text;
+            userImgBox.Fill = new ImageBrush(AvatarHelper.GetAvatarByEmail(userInputMail));
 
             //生成验证码
             validateCode = CreatFourRandomChar();
@@ -165,6 +170,22 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             //生成验证码
             validateCode = CreatFourRandomChar();
             validateImage.Source = CreateValidateCodeImage(validateCode);
+        }
+
+        private void mailTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userInputMail = mailTextBox.Text == string.Empty ? "rsgisgeeks@qq.com" : mailTextBox.Text;
+            userImgBox.Fill = new ImageBrush(AvatarHelper.GetAvatarByEmail(userInputMail));
+        }
+
+        private void userImgBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Hyperlink link = new Hyperlink();
+            {
+                link.NavigateUri = new Uri(@"https://en.gravatar.com/");
+            }
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }

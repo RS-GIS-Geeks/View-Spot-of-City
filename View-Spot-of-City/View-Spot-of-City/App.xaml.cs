@@ -21,16 +21,22 @@ namespace View_Spot_of_City
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// 当前在线用户
         /// </summary>
-        static user _currentUser;
-        public static user CurrentUser
+        user _currentUser;
+        public user CurrentUser
         {
             get { return _currentUser; }
-            set { _currentUser = value; }
+            set
+            {
+                _currentUser = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentUser"));
+            }
         }
 
         protected override void OnStartup(StartupEventArgs e)

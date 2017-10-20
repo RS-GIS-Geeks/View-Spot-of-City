@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace View_Spot_of_City.ClassModel
 {
     [DataContract]
-    public class user
+    public class user : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public static user NoBody = new user();
 
         /// <summary>
@@ -31,7 +34,14 @@ namespace View_Spot_of_City.ClassModel
         public string mail
         {
             get { return _mail; }
-            set { _mail = value; }
+            set
+            {
+                if(_mail != value)
+                {
+                    _mail = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("mail"));
+                }
+            }
         }
 
         /// <summary>
@@ -82,6 +92,7 @@ namespace View_Spot_of_City.ClassModel
         /// 城市
         /// </summary>
         string _city = string.Empty;
+
         [DataMember]
         public string city
         {

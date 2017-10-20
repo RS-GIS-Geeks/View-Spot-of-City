@@ -7,6 +7,7 @@
     <sys:String x:Key="ProgressText">正在加载</sys:String>
     <!--登录界面-->
     <sys:String x:Key="LoginTitle">用户登录</sys:String>
+    <sys:String x:Key="LoginIconTooltip">在Gravatar上更改您的头像</sys:String>
     <sys:String x:Key="LoginUserText">邮箱：</sys:String>
     <sys:String x:Key="LoginPasswordText">密码：</sys:String>
     <sys:String x:Key="LoginOk">登录</sys:String>

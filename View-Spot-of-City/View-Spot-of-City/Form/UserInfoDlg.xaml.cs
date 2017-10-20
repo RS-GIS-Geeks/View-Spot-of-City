@@ -23,7 +23,7 @@ namespace View_Spot_of_City.Form
         public UserInfoDlg()
         {
             InitializeComponent();
-            mailTextBox.Text = App.CurrentUser.id == long.MinValue ? string.Empty : App.CurrentUser.mail;
+            mailTextBox.Text = (Application.Current as App).CurrentUser.id == long.MinValue ? string.Empty : (Application.Current as App).CurrentUser.mail;
         }
     }
 }
