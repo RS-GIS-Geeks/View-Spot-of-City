@@ -121,8 +121,10 @@ namespace View_Spot_of_City
             //circleProgressBox = new CircleProgressBox();
             //circleProgressBox.ShowPregress();
             //circleProgressBox.SetDefaultDescription();
-            Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin));
-            thread.IsBackground = true;
+            Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin))
+            {
+                IsBackground = true
+            };
             thread.Start();
         }
 
@@ -288,7 +290,7 @@ namespace View_Spot_of_City
 
         private void LanguageSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /// 切换语言字典
+            //切换语言字典
             string requestedCulture = string.Format(@"pack://application:,,,/View-Spot-of-City.Language;component/Language/Language.{0}.xaml", languageDictionary[LanguageSelecter.SelectedIndex]);
             ResourceDictionary resourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault((x) =>
             {
@@ -297,8 +299,10 @@ namespace View_Spot_of_City
             if (resourceDictionary != null)
             {
                 Application.Current.Resources.MergedDictionaries.Remove(resourceDictionary);
-                ResourceDictionary requestDictionary = new ResourceDictionary();
-                requestDictionary.Source = new Uri(requestedCulture);
+                ResourceDictionary requestDictionary = new ResourceDictionary()
+                {
+                    Source = new Uri(requestedCulture)
+                };
                 Application.Current.Resources.MergedDictionaries.Add(requestDictionary);
             }
 

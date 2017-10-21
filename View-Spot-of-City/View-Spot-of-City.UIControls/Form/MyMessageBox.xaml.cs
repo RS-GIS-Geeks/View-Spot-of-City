@@ -90,7 +90,7 @@ namespace View_Spot_of_City.UIControls.Form
             InitializeComponent();
             DefaultButton = MyMessageBoxButton.Ok;
             messagetextBox.Text = message ?? string.Empty;
-            Title = title == null ? string.Empty : title;
+            Title = title ?? string.Empty;
             ButtonPanel = MyMessageBoxButtons.Ok;
         }
 
@@ -99,7 +99,7 @@ namespace View_Spot_of_City.UIControls.Form
             InitializeComponent();
             DefaultButton = defaultButton;
             messagetextBox.Text = message ?? string.Empty;
-            Title = title == null ? string.Empty : title;
+            Title = title ?? string.Empty;
             ButtonPanel = buttons;
         }
 

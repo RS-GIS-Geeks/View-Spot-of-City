@@ -56,7 +56,7 @@ namespace View_Spot_of_City.MapView
             }
         }
 
-        async void mapControl_MouseDoubleClickAsync(object sender, MouseButtonEventArgs e)
+        void mapControl_MouseDoubleClickAsync(object sender, MouseButtonEventArgs e)
         {
             Point p = e.GetPosition(mapControl);
             PointLatLng pll = mapControl.FromLocalToLatLng((int)p.X, (int)p.Y);

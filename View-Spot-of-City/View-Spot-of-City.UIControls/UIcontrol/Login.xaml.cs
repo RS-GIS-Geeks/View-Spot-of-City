@@ -93,6 +93,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             #region 测试
             passwordTextBox.Password = "19970108";
+            validateCodeTextBox.Text = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
             #endregion
         }
         
@@ -175,7 +176,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             if(user_obiect.password == password_encoded)
             {
                 ControlVisibity = Visibility.Collapsed;
-                //return;
                 CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
                 LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
             }

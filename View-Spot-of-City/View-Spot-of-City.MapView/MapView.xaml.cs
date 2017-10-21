@@ -53,20 +53,26 @@ namespace View_Spot_of_City.MapView
             mapControl.MouseDoubleClick += new MouseButtonEventHandler(mapControl_MouseDoubleClickAsync);
 
             // set mouse marker
-            mouseMarker = new GMapMarker(mapControl.Position);
-            mouseMarker.ZIndex = int.MaxValue;
-            mouseMarker.Shape = null;
-            mouseMarker.Offset = new Point(-4, -4);
+            mouseMarker = new GMapMarker(mapControl.Position)
+            {
+                ZIndex = int.MaxValue,
+                Shape = null,
+                Offset = new Point(-4, -4)
+            };
             mapControl.Markers.Add(mouseMarker);
 
-            mouseSubMarker = new GMapMarker(mapControl.Position);
-            mouseSubMarker.ZIndex = int.MaxValue;
-            mouseSubMarker.Shape = null;
+            mouseSubMarker = new GMapMarker(mapControl.Position)
+            {
+                ZIndex = int.MaxValue,
+                Shape = null
+            };
             mapControl.Markers.Add(mouseSubMarker);
 
-            mouseTip = new GMapMarker(mapControl.Position);
-            mouseTip.ZIndex = int.MaxValue;
-            mouseTip.Shape = null;
+            mouseTip = new GMapMarker(mapControl.Position)
+            {
+                ZIndex = int.MaxValue,
+                Shape = null
+            };
             mapControl.Markers.Add(mouseTip);
         }
 

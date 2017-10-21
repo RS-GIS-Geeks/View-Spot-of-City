@@ -31,10 +31,12 @@ namespace View_Spot_of_City.ArcGISControls
         private void Initialize()
         {
             // Create new Scene
-            Scene myScene = new Scene();
+            Scene myScene = new Scene()
+            {
 
-            // Set Scene's base map property
-            myScene.Basemap = Basemap.CreateImagery();
+                // Set Scene's base map property
+                Basemap = Basemap.CreateImagery()
+            };
 
             // Create uri to the scene layer
             var serviceUri = new Uri(

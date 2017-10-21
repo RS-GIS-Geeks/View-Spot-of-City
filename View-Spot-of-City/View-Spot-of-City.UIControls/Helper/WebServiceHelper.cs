@@ -20,8 +20,10 @@ namespace View_Spot_of_City.UIControls.Helper
         public static Task<IRestResponse> GetHttpResponse(string URL, string strPostdata, Method method = Method.POST)
         {
             var client = new RestClient(URL);
-            var request = new RestRequest(method);
-            request.Timeout = Convert.ToInt32(AppSettings["NET_WORK_DELAY"]);
+            var request = new RestRequest(method)
+            {
+                Timeout = Convert.ToInt32(AppSettings["NET_WORK_DELAY"])
+            };
             request.AddHeader("cache-control", "no-cache");
             if(strPostdata != string.Empty)
                 request.AddParameter("undefined", strPostdata, ParameterType.RequestBody);

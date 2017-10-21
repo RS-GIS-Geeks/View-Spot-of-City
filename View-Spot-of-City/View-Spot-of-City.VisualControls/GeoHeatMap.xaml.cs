@@ -29,29 +29,30 @@ namespace View_Spot_of_City.VisualControls
 
             var r = new Random();
 
-            Values = new Dictionary<string, double>();
-
-            Values["1495"] = r.Next(0, 100);
-            Values["1512"] = r.Next(0, 100);
-            Values["6318"] = r.Next(0, 100);
-            Values["1226"] = r.Next(0, 100);
-            Values["2283"] = r.Next(0, 100);
-            Values["1876"] = r.Next(0, 100);
-            Values["2322"] = r.Next(0, 100);
-            Values["2039"] = r.Next(0, 100);
-            Values["2327"] = r.Next(0, 100);
-            Values["1923"] = r.Next(0, 100);
-            Values["1896"] = r.Next(0, 100);
-            Values["2286"] = r.Next(0, 100);
-            Values["2285"] = r.Next(0, 100);
-            Values["2329"] = r.Next(0, 100);
-            Values["2330"] = r.Next(0, 100);
-            Values["3664"] = r.Next(0, 100);
-
-            LanguagePack = new Dictionary<string, string>();
-            LanguagePack["1495"] = "重庆";
-            LanguagePack["2322"] = "湖北";
-
+            Values = new Dictionary<string, double>
+            {
+                ["1495"] = r.Next(0, 100),
+                ["1512"] = r.Next(0, 100),
+                ["6318"] = r.Next(0, 100),
+                ["1226"] = r.Next(0, 100),
+                ["2283"] = r.Next(0, 100),
+                ["1876"] = r.Next(0, 100),
+                ["2322"] = r.Next(0, 100),
+                ["2039"] = r.Next(0, 100),
+                ["2327"] = r.Next(0, 100),
+                ["1923"] = r.Next(0, 100),
+                ["1896"] = r.Next(0, 100),
+                ["2286"] = r.Next(0, 100),
+                ["2285"] = r.Next(0, 100),
+                ["2329"] = r.Next(0, 100),
+                ["2330"] = r.Next(0, 100),
+                ["3664"] = r.Next(0, 100)
+            };
+            LanguagePack = new Dictionary<string, string>
+            {
+                ["1495"] = "重庆",
+                ["2322"] = "湖北"
+            };
             DataContext = this;
         }
     }

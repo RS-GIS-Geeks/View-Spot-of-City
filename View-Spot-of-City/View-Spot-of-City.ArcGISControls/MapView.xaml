@@ -25,7 +25,8 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <esri:MapView x:Name="mapView" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3" 
-                      Map="{Binding Map, Source={StaticResource MapViewModel}}" MouseLeftButtonDown="mapView_MouseLeftButtonDown"/>
+                      Map="{Binding Map, Source={StaticResource MapViewModel}}"
+                      GeoViewTapped="mapView_GeoViewTapped"/>
         <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" >
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6"  ShadowDepth="2" Opacity="0.3" Direction="-45" />
