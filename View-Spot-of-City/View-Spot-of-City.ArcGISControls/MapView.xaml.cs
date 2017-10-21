@@ -133,7 +133,7 @@ namespace View_Spot_of_City.ArcGISControls
                 return;
             //AddRouteToGraphicsOverlay(LineOverlay, routeStops, SimpleLineSymbolStyle.Solid, Colors.Blue, 8);
             //routeStops.Clear();
-            AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.Ivory, 2));
+            AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
             e.Handled = true;
         }
 
