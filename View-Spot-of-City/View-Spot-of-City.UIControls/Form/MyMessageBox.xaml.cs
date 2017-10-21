@@ -56,10 +56,31 @@ namespace View_Spot_of_City.UIControls.Form
             get { return _DialogResult; }
         }
 
+        /// <summary>
+        /// 默认响应回车的按钮
+        /// </summary>
+        MyMessageBoxButton _DefaultButton = MyMessageBoxButton.Ok;
+        /// <summary>
+        /// 默认响应回车的按钮
+        /// </summary>
+        internal MyMessageBoxButton DefaultButton
+        {
+            get { return _DefaultButton; }
+            set
+            {
+                _DefaultButton = value;
+                buttonpanel_OK.DefaultButton = value;
+                buttonpanel_OKCancel.DefaultButton = value;
+                buttonpanel_YesNo.DefaultButton = value;
+                buttonpanel_YesNoCancel.DefaultButton = value;
+            }
+        }
+
         private MyMessageBox(string message)
         {
             InitializeComponent();
-            messagetextBox.Text = message == null ? string.Empty : message ;
+            DefaultButton = MyMessageBoxButton.Ok;
+            messagetextBox.Text = message ?? string.Empty;
             Title = string.Empty;
             ButtonPanel = MyMessageBoxButtons.Ok;
         }
@@ -67,15 +88,17 @@ namespace View_Spot_of_City.UIControls.Form
         private MyMessageBox(string message, string title)
         {
             InitializeComponent();
-            messagetextBox.Text = message == null ? string.Empty : message;
+            DefaultButton = MyMessageBoxButton.Ok;
+            messagetextBox.Text = message ?? string.Empty;
             Title = title == null ? string.Empty : title;
             ButtonPanel = MyMessageBoxButtons.Ok;
         }
 
-        private MyMessageBox(string message, string title, MyMessageBoxButtons buttons)
+        private MyMessageBox(string message, string title, MyMessageBoxButtons buttons, MyMessageBoxButton defaultButton)
         {
             InitializeComponent();
-            messagetextBox.Text = message == null ? string.Empty : message;
+            DefaultButton = defaultButton;
+            messagetextBox.Text = message ?? string.Empty;
             Title = title == null ? string.Empty : title;
             ButtonPanel = buttons;
         }
@@ -111,10 +134,11 @@ namespace View_Spot_of_City.UIControls.Form
         /// <param name="message">消息内容</param>
         /// <param name="title">标题</param>
         /// <param name="buttons">显示哪些按钮</param>
+        /// <param name="defaultButton">默认响应回车的按钮</param>
         /// <returns>点击OK这返回DialogResults.Ok，点击Yes返回DialogResults.Yes，点击No返回DialogResults.No，否则返回DialogResults.Cancel</returns>
-        internal static DialogResults ShowMyDialog(string message, string title, MyMessageBoxButtons buttons)
+        internal static DialogResults ShowMyDialog(string message, string title, MyMessageBoxButtons buttons, MyMessageBoxButton defaultButton)
         {
-            MyMessageBox mymesaagebox = new MyMessageBox(message, title, buttons);
+            MyMessageBox mymesaagebox = new MyMessageBox(message, title, buttons, defaultButton);
             bool? dialogresult = mymesaagebox.ShowDialog();
             return mymesaagebox.WindowResult;
         }

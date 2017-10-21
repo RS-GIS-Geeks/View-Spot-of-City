@@ -264,7 +264,7 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo))
+            if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
                 return;
             (Application.Current as App).CurrentUser = user.NoBody;
 
@@ -273,7 +273,6 @@ namespace View_Spot_of_City
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
                 //Environment.Exit(0);
                 Application.Current.Shutdown();
-            mainWindow.Focus();
         }
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)

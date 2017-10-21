@@ -97,6 +97,7 @@
     <Compile Include="Command\MyMessageBoxCommands.cs" />
     <Compile Include="Converter\Mail2AvatarBruahConverter.cs" />
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
+    <Compile Include="Converter\MyMessageBoxDefaultButtonConverter.cs" />
     <Compile Include="Form\MessageboxMaster.cs" />
     <Compile Include="Form\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>

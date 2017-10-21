@@ -27,6 +27,7 @@ using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
 using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
+using System.Threading;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -38,7 +39,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         public event PropertyChangedEventHandler PropertyChanged;
 
         string _title = null;
-
         public string Title
         {
             get { return _title; }
@@ -48,6 +48,26 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 {
                     _title = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 除头像之外的控件的可见性
+        /// </summary>
+        Visibility _controlVisibility = Visibility.Visible;
+        /// <summary>
+        /// 除头像之外的控件的可见性
+        /// </summary>
+        public Visibility ControlVisibity
+        {
+            get { return _controlVisibility; }
+            set
+            {
+                if(_controlVisibility != value)
+                {
+                    _controlVisibility = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ControlVisibity"));
                 }
             }
         }
@@ -154,7 +174,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             
             if(user_obiect.password == password_encoded)
             {
-                //MessageBoxMaster.Show("登录成功", "CS-Tao");
+                ControlVisibity = Visibility.Collapsed;
+                //return;
                 CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
                 LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
             }

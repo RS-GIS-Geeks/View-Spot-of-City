@@ -58,7 +58,7 @@
                 </material:ColorZone>
         </DockPanel>
         <!--导航栏-->
-        <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" 
+        <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" IsTabStop="False"
 				 ItemContainerStyle="{StaticResource NavigatorMaterialDesignListBoxItem}" SelectionChanged="MainNavBar_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

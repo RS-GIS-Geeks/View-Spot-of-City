@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="View_Spot_of_City.UIControls.UIcontrol.Login"
+             x:Name="mainControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,37 +9,38 @@
              Height="340" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <Ellipse x:Name="userImgBox" Width="100" Height="100" Fill="Transparent" Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1"
                      Cursor="Hand" ToolTip="{DynamicResource LoginIconTooltip}" MouseLeftButtonDown="userImgBox_MouseLeftButtonDown"/>
         </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Label Content="{DynamicResource LoginUserText}" Margin="10,1,10,3"/>
-            <Grid Margin="10,0">
-                <TextBox Name="mailTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False" LostFocus="mailTextBox_LostFocus"/>
-            </Grid>
-            <Label Content="{DynamicResource LoginPasswordText}" Margin="10,3"/>
-            <Grid Margin="10,0">
-                <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20"/>
-            </Grid>
-            <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
-            <Grid Margin="10,0">
-                <Image x:Name="validateImage" Margin="5,3,150,3" ToolTip="{DynamicResource RegisterCodeButtonTipText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+        <StackPanel Grid.Row="1" Visibility="{Binding ElementName=mainControl, Path=ControlVisibity}">
+            <StackPanel>
+                <Label Content="{DynamicResource LoginUserText}" Margin="10,1,10,3"/>
+                <Grid Margin="10,0">
+                    <TextBox Name="mailTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False" LostFocus="mailTextBox_LostFocus"/>
+                </Grid>
+                <Label Content="{DynamicResource LoginPasswordText}" Margin="10,3"/>
+                <Grid Margin="10,0">
+                    <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20"/>
+                </Grid>
+                <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
+                <Grid Margin="10,0">
+                    <Image x:Name="validateImage" Margin="5,3,150,3" ToolTip="{DynamicResource RegisterCodeButtonTipText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                        MouseLeftButtonDown="validateImage_MouseLeftButtonDown"/>
-                <TextBox Name="validateCodeTextBox" Margin="150,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False"/>
+                    <TextBox Name="validateCodeTextBox" Margin="150,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False"/>
+                </Grid>
+            </StackPanel>
+            <Grid>
+                <Button Name="btnLogin" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,10,170,5" IsDefault="True" Click="btnLogin_ClickAsync"/>
+                <Button Name="btnRegister" Content="{DynamicResource LoginRegister}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,10,90,5" Click="btnRegister_Click"/>
+                <Button Name="btnCancel" Content="{DynamicResource LoginCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
+                    HorizontalAlignment="Right" Margin="0,10,10,5" Click="btnCancel_Click"/>
             </Grid>
         </StackPanel>
-        <Grid Grid.Row="3">
-            <Button Name="btnLogin" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,10,170,5" IsDefault="True" Click="btnLogin_ClickAsync"/>
-            <Button Name="btnRegister" Content="{DynamicResource LoginRegister}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,10,90,5" Click="btnRegister_Click"/>
-            <Button Name="btnCancel" Content="{DynamicResource LoginCancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
-                    HorizontalAlignment="Right" Margin="0,10,10,5" Click="btnCancel_Click"/>
-        </Grid>
     </Grid>
 </UserControl>
