@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +17,7 @@ namespace View_Spot_of_City.Form
     /// <summary>
     /// UserInfoDlg.xaml 的交互逻辑
     /// </summary>
-    public partial class UserInfoDlg : MetroWindow
+    public partial class UserInfoDlg : Window
     {
         public UserInfoDlg()
         {
