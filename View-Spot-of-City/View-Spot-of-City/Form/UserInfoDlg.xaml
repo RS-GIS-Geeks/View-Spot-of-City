@@ -7,11 +7,14 @@
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         Title="{DynamicResource UserInfoDlg_Title}"
-        Height="300" Width="300">
+        Height="553.153" Width="551.278">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label Content="用户邮箱（示例）" Margin="20,5,20,0"/>
-            <TextBox x:Name="mailTextBox" Margin="20,5,20,5"/>
+            <TextBox x:Name="mailTextBox" Margin="20,5,18.714,5" RenderTransformOrigin="0.485,3.6"/>
+            <Label Content="昵称" HorizontalAlignment="Left" Height="44" Margin="20,0,0,0" Width="66"/>
+            <Label Content="Label"/>
+            <TextBox HorizontalAlignment="Left" Height="44" Margin="86,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="422"/>
         </StackPanel>
     </Grid>
 </metro:MetroWindow>
