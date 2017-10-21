@@ -49,10 +49,10 @@
       <HintPath>..\packages\Esri.ArcGISRuntime.WPF.100.1.0\lib\net452\Esri.ArcGISRuntime.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.Core">
-      <HintPath>..\packages\GMap.net\lib\new\GMap.NET.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\开发小组成果及文件\GMap.net\GMap.net\lib\new\GMap.NET.Core.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.WindowsPresentation">
-      <HintPath>..\packages\GMap.net\lib\new\GMap.NET.WindowsPresentation.dll</HintPath>
+      <HintPath>..\..\..\..\..\开发小组成果及文件\GMap.net\GMap.net\lib\new\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
