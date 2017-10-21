@@ -1,7 +1,4 @@
-﻿using Esri.ArcGISRuntime.Geometry;
-using Esri.ArcGISRuntime.Mapping;
-using Esri.ArcGISRuntime.Symbology;
-using Esri.ArcGISRuntime.UI;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +15,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Esri.ArcGISRuntime.Geometry;
+using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Symbology;
+using Esri.ArcGISRuntime.UI;
+using View_Spot_of_City.ArcGISControls.Helper;
 using static System.Configuration.ConfigurationManager;
 
 namespace View_Spot_of_City.ArcGISControls
@@ -89,7 +91,7 @@ namespace View_Spot_of_City.ArcGISControls
             Esri.ArcGISRuntime.Geometry.Geometry myGeometry = GeometryEngine.Project(mapLocation, SpatialReferences.Wgs84);
             MapPoint projectedLocation = myGeometry as MapPoint;
 
-            Uri pinUri = new Uri("pack://application:,,,/View-Spot-of-City.ArcGISControls;component/Icon/pin.png");
+            Uri pinUri = IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin];
             AddIconToGraphicsOverlay(PointOverlay, projectedLocation, pinUri, 22, 33, 0, 13);
         }
 
@@ -105,8 +107,6 @@ namespace View_Spot_of_City.ArcGISControls
 
         private void AddIconToGraphicsOverlay(GraphicsOverlay overlay, MapPoint point, Uri iconUri, double width, double height, double offsetX, double offsetY)
         {
-            var symbolUri = new Uri("pack://application:,,,/View-Spot-of-City.ArcGISControls;component/Icon/pin.png");
-
             PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(iconUri)
             {
                 Width = width,
