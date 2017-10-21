@@ -8,6 +8,6 @@ namespace View_Spot_of_City.ArcGISControls.Helper
 {
     public static class GisgraphyHelper
     {
-        public static 
+
     }
 }
