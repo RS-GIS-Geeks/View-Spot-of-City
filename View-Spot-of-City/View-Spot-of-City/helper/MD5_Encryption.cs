@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace View_Spot_of_City.helper
+namespace View_Spot_of_City.Helper
 {
     class MD5_Encryption
     {

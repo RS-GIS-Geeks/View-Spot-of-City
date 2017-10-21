@@ -33,7 +33,7 @@
                     <TextBox Name="validateCodeTextBox" Margin="150,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False"/>
                 </Grid>
             </StackPanel>
-            <Grid>
+            <Grid Margin="0,0,0,2">
                 <Button Name="btnLogin" Content="{DynamicResource LoginOk}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"
                     HorizontalAlignment="Right" Margin="0,10,170,5" IsDefault="True" Click="btnLogin_ClickAsync"/>
                 <Button Name="btnRegister" Content="{DynamicResource LoginRegister}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100"

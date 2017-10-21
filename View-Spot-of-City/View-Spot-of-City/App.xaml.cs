@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.ComponentModel;
 
-using View_Spot_of_City.helper;
+using View_Spot_of_City.Helper;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.ClassModel;

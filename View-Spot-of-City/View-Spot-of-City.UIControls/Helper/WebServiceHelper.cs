@@ -25,7 +25,7 @@ namespace View_Spot_of_City.UIControls.Helper
                 Timeout = Convert.ToInt32(AppSettings["NET_WORK_DELAY"])
             };
             request.AddHeader("cache-control", "no-cache");
-            if(strPostdata != string.Empty)
+            if(strPostdata != null || strPostdata != string.Empty)
                 request.AddParameter("undefined", strPostdata, ParameterType.RequestBody);
             return client.ExecuteGetTaskAsync(request);
         }

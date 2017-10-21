@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:View_Spot_of_City.ArcGISControls"
              xmlns:viewmodel="clr-namespace:View_Spot_of_City.ArcGISControls.ViewModel"
              xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <viewmodel:MapViewModel x:Key="MapViewModel" />
@@ -26,7 +26,8 @@
         </Grid.ColumnDefinitions>
         <esri:MapView x:Name="mapView" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3" 
                       Map="{Binding Map, Source={StaticResource MapViewModel}}"
-                      GeoViewTapped="mapView_GeoViewTapped"/>
+                      GeoViewTapped="mapView_GeoViewTapped" GeoViewDoubleTapped="mapView_GeoViewDoubleTapped"
+                      MouseRightButtonDown="mapView_MouseRightButtonDown"/>
         <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" >
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6"  ShadowDepth="2" Opacity="0.3" Direction="-45" />
@@ -37,7 +38,7 @@
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
-                <Button Width="26" Height="26" Grid.Row="0" Click="ZoomInButton_Click"  Style="{DynamicResource MaterialDesignToolButton}">
+                <Button Width="26" Height="26" Grid.Row="0" Click="ZoomInButton_Click" Style="{DynamicResource MaterialDesignToolButton}">
                     <Button.Template>
                         <ControlTemplate>
                             <Grid>

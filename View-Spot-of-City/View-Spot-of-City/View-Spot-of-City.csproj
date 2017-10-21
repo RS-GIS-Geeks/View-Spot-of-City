@@ -148,9 +148,9 @@
     <Compile Include="Form\UserInfoDlg.xaml.cs">
       <DependentUpon>UserInfoDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="helper\MD5_Encryption.cs" />
-    <Compile Include="helper\RegisterMaster.cs" />
-    <Compile Include="helper\SpeechRecognition.cs" />
+    <Compile Include="Helper\MD5_Encryption.cs" />
+    <Compile Include="Helper\RegisterMaster.cs" />
+    <Compile Include="Helper\SpeechRecognition.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
