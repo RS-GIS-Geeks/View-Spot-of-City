@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace View_Spot_of_City.UIControls.Helper
 {
-    public static class CreateValidateCodeImageHelper
+    public static class ValidateCodeHelper
     {
         readonly static string codeSource = "qazwsxedcrfvtgbyhnujmikolQAZXSWEDCVFRTGBNHYUJMKIOLP0123456789";
         public static string CodeSource
@@ -21,7 +21,7 @@ namespace View_Spot_of_City.UIControls.Helper
 
         readonly static List<SolidColorBrush> colors = new List<SolidColorBrush>();
 
-        static CreateValidateCodeImageHelper()
+        static ValidateCodeHelper()
         {
             colors.Add(System.Windows.Media.Brushes.Green);
             colors.Add(System.Windows.Media.Brushes.Blue);

@@ -83,8 +83,8 @@ namespace View_Spot_of_City.ArcGISControls
             {
                 InitialViewpoint = new Viewpoint(new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]))
             };
+
             mapView.Map = map;
-            //mapView.SetViewpointCenterAsync(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]));
             mapView.GraphicsOverlays.Add(PolygonOverlay);
             mapView.GraphicsOverlays.Add(LineOverlay);
             mapView.GraphicsOverlays.Add(PointOverlay);
@@ -115,7 +115,7 @@ namespace View_Spot_of_City.ArcGISControls
             MapPoint projectedLocation = myGeometry as MapPoint;
 
             Uri pinUri = IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin];
-            AddIconToGraphicsOverlay(PointOverlay, projectedLocation, pinUri, 22, 33, 0, 13);
+            AddIconToGraphicsOverlay(PointOverlay, projectedLocation, pinUri, 16, 24, 0, 9.5);
 
             routeStops.Add(projectedLocation);
             polygonVertexes.Add(projectedLocation);
@@ -132,7 +132,6 @@ namespace View_Spot_of_City.ArcGISControls
             if (routeStops == null || routeStops.Count <= 1)
                 return;
             //AddRouteToGraphicsOverlay(LineOverlay, routeStops, SimpleLineSymbolStyle.Solid, Colors.Blue, 8);
-            //routeStops.Clear();
             AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
             e.Handled = true;
         }

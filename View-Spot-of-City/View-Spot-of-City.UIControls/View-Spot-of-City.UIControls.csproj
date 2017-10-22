@@ -104,7 +104,8 @@
     </Compile>
     <Compile Include="Form\MyMessageBoxEvents.cs" />
     <Compile Include="Helper\AvatarHelper.cs" />
-    <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
+    <Compile Include="Helper\SpeechRecognition.cs" />
+    <Compile Include="Helper\ValidateCodeHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\LoginDlgMaster.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />

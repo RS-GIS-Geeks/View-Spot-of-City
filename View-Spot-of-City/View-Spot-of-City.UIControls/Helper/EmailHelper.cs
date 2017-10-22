@@ -54,7 +54,9 @@ namespace View_Spot_of_City.UIControls.Helper
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new System.Net.NetworkCredential(AppSettings["MANAGER_MAIL_NUM"], AppSettings["MANAGER_MAIL_PASSWORD"]);
             }
+
             object userState = message;
+
             try
             {
                 smtp.SendAsync(message, userState);

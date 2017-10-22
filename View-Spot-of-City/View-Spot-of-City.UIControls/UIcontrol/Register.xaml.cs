@@ -119,7 +119,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 string sql_string = "INSERT INTO users(mail, password) VALUES('" + user_mail + "','" + password_encoded + "')";
 
                 //执行SQL查询
-                string qury_result = await MySqlHelper.ExcuteSQL(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_string);
+                string qury_result = await MySqlHelper.ExcuteNonQueryAsync(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_string);
 
                 //判断返回
                 if (qury_result != "true" && qury_result != "false")

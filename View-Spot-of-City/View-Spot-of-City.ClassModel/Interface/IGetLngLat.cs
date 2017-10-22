@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace View_Spot_of_City.ClassModel.Interface
 {
     /// <summary>
-    /// 获得经纬度接口
+    /// 获取经纬度接口
     /// </summary>
     public interface IGetLngLat
     {

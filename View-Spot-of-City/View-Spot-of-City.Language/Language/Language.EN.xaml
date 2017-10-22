@@ -40,7 +40,7 @@
     <sys:String x:Key="LicenseOk">OK</sys:String>
     <sys:String x:Key="LicenseCancel">Cancel</sys:String>
     <!--标题-->
-    <sys:String x:Key="MainTitle">CITY VIEW SPOT RECOMMENDER</sys:String>
+    <sys:String x:Key="MainTitle">VIEW SPOT RECOMMENDER</sys:String>
     <!--logo-->
     <sys:String x:Key="LogoTooltip">View Source</sys:String>
     <!--#region 导航-->
@@ -51,7 +51,9 @@
     <sys:String x:Key="MainNav_Share">Share</sys:String>
     <!--#endregion-->
     <!--#region 景点查询-->
-    <sys:String x:Key="AddressSearchHist">Search</sys:String>
+    <sys:String x:Key="SpotSearchHist">Search</sys:String>
+    <sys:String x:Key="SpotSearch_Error">Error occurs in searching</sys:String>
+    <sys:String x:Key="SpotSearch_Null">No results searched</sys:String>
     <!--#endregion-->
 
     <!--#region 错误和异常显示-->

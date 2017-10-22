@@ -71,7 +71,7 @@ namespace View_Spot_of_City.ClassModel
         public List<MapPoint> RouteStops
         {
             get => _RouteStops;
-            internal set { _RouteStops = value; } 
+            internal set { _RouteStops = value; }
         }
 
         /// <summary>

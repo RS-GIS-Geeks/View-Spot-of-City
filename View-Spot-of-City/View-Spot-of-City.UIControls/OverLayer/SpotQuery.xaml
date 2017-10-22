@@ -74,15 +74,15 @@
                                 </Style>
                             </ToggleButton.Style>
                         </ToggleButton>
-                        <Button x:Name="PositionSearchBtn" Width="50" 
+                        <Button x:Name="SpotSearchBtn" Width="50" 
 								Style="{DynamicResource ModifiedMaterialDesignRaisedDarkButton}" 
-								Padding="10" Click="PositionSearchBtn_Click">
+								Padding="10" Click="SpotSearchBtn_ClickAsync">
                             <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/search_02.png" Height="20"/>
                         </Button>
                     </StackPanel>
                     <TextBox x:Name="StartPointAddress" Height="40" HorizontalAlignment="Stretch"
 							 Style="{DynamicResource ModifiedBorderedMaterialDesignTextBox}" 
-							 BorderThickness="0" material:HintAssist.Hint="{DynamicResource AddressSearchHist}"
+							 BorderThickness="0" material:HintAssist.Hint="{DynamicResource SpotSearchHist}"
 							 VerticalContentAlignment="Center" Padding="5,0"
 							 Text="{Binding Start.FullAddress, Mode=OneWay}"
 							 GotFocus="AddressTextBox_GotFocus" LostFocus="AddressTextBox_LostFocus"/>

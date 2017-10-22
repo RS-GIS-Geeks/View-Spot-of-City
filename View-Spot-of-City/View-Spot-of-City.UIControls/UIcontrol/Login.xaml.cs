@@ -25,7 +25,7 @@ using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
+using static View_Spot_of_City.UIControls.Helper.ValidateCodeHelper;
 using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
 using System.Threading;
 
