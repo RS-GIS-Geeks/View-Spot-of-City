@@ -15,7 +15,7 @@ namespace View_Spot_of_City.ArcGISControls.Helper
     public static class GraphHooperHelper
     {
         /// <summary>
-        /// 获得路径站点
+        /// 获得路径
         /// </summary>
         /// <param name="startPoint">起点</param>
         /// <param name="endPoint">终点</param>

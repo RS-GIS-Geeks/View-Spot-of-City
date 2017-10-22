@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
+using View_Spot_of_City.ClassModel.Interface;
+
 namespace View_Spot_of_City.ClassModel.Base
 {
-    public abstract class CommonPlace : INotifyPropertyChanged
+    public abstract class CommonPlace : INotifyPropertyChanged, IGetLngLat
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -51,6 +53,37 @@ namespace View_Spot_of_City.ClassModel.Base
                 _Lat = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lat"));
             }
+        }
+
+        /// <summary>
+        /// 构造一个可显示地点的
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="lng"></param>
+        /// <param name="lat"></param>
+        public CommonPlace(long id, double lng, double lat)
+        {
+            ID = id;
+            Lng = lng;
+            Lat = lat;
+        }
+
+        /// <summary>
+        /// 获得经度
+        /// </summary>
+        /// <returns>经度</returns>
+        public double GetLng()
+        {
+            return Lng;
+        }
+
+        /// <summary>
+        /// 返回纬度
+        /// </summary>
+        /// <returns>纬度</returns>
+        public double GetLat()
+        {
+            return Lat;
         }
     }
 }
