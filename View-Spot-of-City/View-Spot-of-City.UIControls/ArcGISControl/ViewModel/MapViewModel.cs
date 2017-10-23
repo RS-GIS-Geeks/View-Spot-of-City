@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace View_Spot_of_City.ArcGISControls.ViewModel
+namespace View_Spot_of_City.UIControls.ArcGISControl.ViewModel
 {
     public class MapViewModel : INotifyPropertyChanged
     {

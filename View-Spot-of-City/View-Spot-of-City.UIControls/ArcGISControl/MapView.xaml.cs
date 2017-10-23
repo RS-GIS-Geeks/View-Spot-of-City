@@ -10,9 +10,9 @@ using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
 using static System.Configuration.ConfigurationManager;
 
-using View_Spot_of_City.ArcGISControls.Helper;
+using View_Spot_of_City.UIControls.Helper;
 
-namespace View_Spot_of_City.ArcGISControls
+namespace View_Spot_of_City.UIControls.ArcGISControl
 {
     /// <summary>
     /// UserControl1.xaml 的交互逻辑
@@ -228,6 +228,35 @@ namespace View_Spot_of_City.ArcGISControls
         private void mapView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ResetMapViewStatus();
+        }
+
+        /// <summary>
+        /// 显示普通要素的命令响应函数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShowObjectOnMapCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            Dictionary<string, object> param = e.Parameter as Dictionary<string, object>;
+            GraphicsOverlay graphicsOverlay = PointOverlay;
+            MapPoint location = new MapPoint((double)param["Lng"], (double)param["Lat"]);
+            Uri iconUri = param["IconUri"] as Uri;
+            double width = (double)param["Width"];
+            double height = (double)param["Height"];
+            double offsetX = (double)param["OffsetX"];
+            double offsetY = (double)param["OffsetY"];
+            UserControl callback = param["CallBack"] as UserControl;
+            AddIconToGraphicsOverlay(graphicsOverlay, location, iconUri, width, height, offsetX, offsetY);
+        }
+
+        /// <summary>
+        /// 显示景点的命令响应函数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShowViewSpotOnMapCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+
         }
     }
 }

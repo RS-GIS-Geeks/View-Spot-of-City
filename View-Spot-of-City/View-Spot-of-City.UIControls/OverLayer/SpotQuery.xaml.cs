@@ -22,6 +22,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using View_Spot_of_City.ClassModel;
 using Newtonsoft.Json;
+using View_Spot_of_City.ClassModel.Interface;
+using View_Spot_of_City.UIControls.Command;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -62,7 +64,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
         /// <param name="e"></param>
         private async void SpotSearchBtn_ClickAsync(object sender, RoutedEventArgs e)
         {
-            if (StartPointAddress.Text == null)
+            if (StartPointAddress.Text == null || StartPointAddress.Text == string.Empty)
             {
                 MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Input_Empty"), LanguageDictionaryHelper.GetString("MessageBox_Warning_Title"));
                 return;
@@ -89,9 +91,6 @@ namespace View_Spot_of_City.UIControls.OverLayer
             //景点数量
             int viewCount = -1;
 
-            //创建一个景点实例
-            ViewSpot viewSpot = ViewSpot.NullViewSpot;
-
             try
             {
                 jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_COUNT_BY_NAME"] + "?name=" + sql_regexp, string.Empty, RestSharp.Method.GET)).Content;
@@ -105,10 +104,15 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 viewCount = (int)jtoken["COUNT(*)"];
 
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                return;
+            }
+
+            if(viewCount <= 0)
+            {
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("SpotSearch_Null"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
                 return;
             }
 
@@ -137,7 +141,22 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 return;
             }
 
+            foreach(ViewSpot viewSpot in viewSpotList)
+            {
+                Dictionary<string, object> commandParams = new Dictionary<string, object>(8)
+                {
+                    { "Lng", viewSpot.lng },
+                    { "Lat", viewSpot.lat },
+                    { "IconUri", IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue] },
+                    { "Width", 16 },
+                    { "Height", 24 },
+                    { "OffsetX", 0 },
+                    { "OffsetY", 9.5 },
+                    { "CallBack", new UserControl() }
+                };
+                
 
+            }
         }
     }
 }

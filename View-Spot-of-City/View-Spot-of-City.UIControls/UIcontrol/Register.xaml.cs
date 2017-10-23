@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +29,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
     /// <summary>
     /// Register.xaml 的交互逻辑
     /// </summary>
-    public partial class Register : UserControl, INotifyPropertyChanged
+    public partial class Register : UserControl
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// 验证码
         /// </summary>

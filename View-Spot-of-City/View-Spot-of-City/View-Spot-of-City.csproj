@@ -187,10 +187,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\View-Spot-of-City.ArcGISControls\View-Spot-of-City.ArcGISControls.csproj">
-      <Project>{f6a3b6f5-c38e-4641-9c59-f90f99d74b98}</Project>
-      <Name>View-Spot-of-City.ArcGISControls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\View-Spot-of-City.ClassModel\View-Spot-of-City.ClassModel.csproj">
       <Project>{b0d8c76f-2723-4a36-97fc-65b69e3bd973}</Project>
       <Name>View-Spot-of-City.ClassModel</Name>
@@ -206,10 +202,6 @@
     <ProjectReference Include="..\View-Spot-of-City.UIControls\View-Spot-of-City.UIControls.csproj">
       <Project>{bc0000cb-54ef-4d53-ba23-97ad64a52dfb}</Project>
       <Name>View-Spot-of-City.UIControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\View-Spot-of-City.VisualControls\View-Spot-of-City.VisualControls.csproj">
-      <Project>{4a9ac90b-24e1-47f5-a71f-b00b62a0f26e}</Project>
-      <Name>View-Spot-of-City.VisualControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

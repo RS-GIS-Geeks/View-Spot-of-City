@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace View_Spot_of_City.VisualControls
+namespace View_Spot_of_City.UIControls.VisualizationControl
 {
     /// <summary>
     /// UserControl1.xaml 的交互逻辑

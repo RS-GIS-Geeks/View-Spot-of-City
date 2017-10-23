@@ -10,7 +10,7 @@ using Esri.ArcGISRuntime.Tasks.NetworkAnalysis;
 
 using View_Spot_of_City.UIControls.Helper;
 
-namespace View_Spot_of_City.ArcGISControls.Helper
+namespace View_Spot_of_City.UIControls.Helper
 {
     public static class GraphHooperHelper
     {

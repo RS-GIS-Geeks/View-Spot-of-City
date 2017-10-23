@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace View_Spot_of_City.ArcGISControls
+namespace View_Spot_of_City.UIControls.ArcGISControl
 {
     /// <summary>
     /// SceneView.xaml 的交互逻辑
