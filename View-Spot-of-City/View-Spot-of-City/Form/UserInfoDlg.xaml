@@ -1,19 +1,30 @@
 ﻿<Window x:Class="View_Spot_of_City.Form.UserInfoDlg"
+        x:Name="mainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City.Form"
+        xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         Title="{DynamicResource UserInfoDlg_Title}" Style="{StaticResource CustomWindowChromeNoMax}"
-        Height="553.153" Width="551.278">
+        Height="700" Width="500">
+    <Window.Resources>
+        <converters:Mail2AvatarBruahConverter x:Key="mail2avatarconvert"/>
+    </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Label Content="用户邮箱（示例）" Margin="20,5,20,0"/>
-            <TextBox x:Name="mailTextBox" Margin="20,5,18.714,5" RenderTransformOrigin="0.485,3.6"/>
-            <Label Content="昵称" HorizontalAlignment="Left" Height="44" Margin="20,0,0,0" Width="66"/>
-            <Label Content="Label"/>
-            <TextBox HorizontalAlignment="Left" Height="44" Margin="86,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="422"/>
+            <Grid Height="80" Margin="0,10,0,0">
+                <Rectangle Margin="175,5,175,0" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail, Converter={StaticResource mail2avatarconvert}}"></Rectangle>
+                <Label Content="头像" HorizontalAlignment="Left" Height="31" Margin="310,49,0,0" VerticalAlignment="Top" Width="67"/>
+            </Grid>
+            <Grid Height="500" Margin="100,0,99.571,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Height="50" Margin="50,5,50,45" x:Name="nickname" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.dispaly_name}"></TextBlock>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
