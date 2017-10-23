@@ -19,6 +19,9 @@ using View_Spot_of_City.Form;
 using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using Esri.ArcGISRuntime.UI;
+using Esri.ArcGISRuntime.Geometry;
+using View_Spot_of_City.UIControls.UIcontrol;
 
 namespace View_Spot_of_City
 {
@@ -311,6 +314,25 @@ namespace View_Spot_of_City
             {
                 x.TitleKey = x.TitleKey;
             });
+        }
+
+        /// <summary>
+        /// 在地图上添加要素命令执行函数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShowFeatureOnMapCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Dictionary<string, object> param = e.Parameter as Dictionary<string, object>;
+            GraphicsOverlay graphicsOverlay = ArcGISMapView.PointOverlay;
+            MapPoint location = new MapPoint((double)param["Lng"], (double)param["Lat"], SpatialReferences.Wgs84);
+            Uri iconUri = param["IconUri"] as Uri;
+            double width = (double)param["Width"];
+            double height = (double)param["Height"];
+            double offsetX = (double)param["OffsetX"];
+            double offsetY = (double)param["OffsetY"];
+            ViewSpot data = param["Data"] as ViewSpot;
+            ArcGISMapView.AddIconToGraphicsOverlay(graphicsOverlay, location, iconUri, width, height, offsetX, offsetY, data);
         }
     }
 }

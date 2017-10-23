@@ -13,17 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Configuration.ConfigurationManager;
-
-using View_Spot_of_City.UIControls.Form;
-using View_Spot_of_City.Language.Language;
-using View_Spot_of_City.UIControls.Helper;
-using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Runtime.Serialization.Json;
-using View_Spot_of_City.ClassModel;
+
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.ClassModel.Interface;
 using View_Spot_of_City.UIControls.Command;
+using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.UIControls.Helper;
+using View_Spot_of_City.Language.Language;
+using Esri.ArcGISRuntime.Geometry;
+using View_Spot_of_City.UIControls.UIcontrol;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -143,19 +146,23 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
             foreach(ViewSpot viewSpot in viewSpotList)
             {
+                MapPoint gcjpoint = new MapPoint(viewSpot.lng, viewSpot.lat);
+                MapPoint wgspoint = WGSGCJLatLonHelper.GCJ02ToWGS84(gcjpoint);
+                viewSpot.lng = wgspoint.X;
+                viewSpot.lat = wgspoint.Y;
                 Dictionary<string, object> commandParams = new Dictionary<string, object>(8)
                 {
                     { "Lng", viewSpot.lng },
                     { "Lat", viewSpot.lat },
-                    { "IconUri", IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue] },
-                    { "Width", 16 },
-                    { "Height", 24 },
-                    { "OffsetX", 0 },
+                    { "IconUri", IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue ] },
+                    { "Width", 16.0 },
+                    { "Height", 24.0 },
+                    { "OffsetX", 0.0 },
                     { "OffsetY", 9.5 },
-                    { "CallBack", new UserControl() }
+                    { "Data", viewSpot }
                 };
-                
 
+                ArcGISMapCommands.ShowFeatureOnMap.Execute(commandParams, this);
             }
         }
     }

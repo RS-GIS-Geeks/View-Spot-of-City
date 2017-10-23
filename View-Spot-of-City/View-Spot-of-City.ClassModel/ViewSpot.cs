@@ -29,7 +29,11 @@ namespace View_Spot_of_City.ClassModel
         public string name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                _name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("name"));
+            }
         }
 
         string _type = string.Empty;
@@ -37,7 +41,11 @@ namespace View_Spot_of_City.ClassModel
         public string type
         {
             get { return _name; }
-            set { _type = value; }
+            set
+            {
+                _type = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("type"));
+            }
         }
 
         string _address = string.Empty;
@@ -45,7 +53,11 @@ namespace View_Spot_of_City.ClassModel
         public string address
         {
             get { return _address; }
-            set { _address = value; }
+            set
+            {
+                _address = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("address"));
+            }
         }
 
         string _pname = string.Empty;
@@ -53,7 +65,11 @@ namespace View_Spot_of_City.ClassModel
         public string pname
         {
             get { return pname; }
-            set { _pname = value; }
+            set
+            {
+                _pname = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pname"));
+            }
         }
 
         string _cityname = string.Empty;
@@ -61,7 +77,11 @@ namespace View_Spot_of_City.ClassModel
         public string cityname
         {
             get { return _cityname; }
-            set { _cityname = value; }
+            set
+            {
+                _cityname = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("cityname"));
+            }
         }
 
         string _adminname = string.Empty;
@@ -69,7 +89,11 @@ namespace View_Spot_of_City.ClassModel
         public string adminname
         {
             get { return _adminname; }
-            set { _adminname = value; }
+            set
+            {
+                _adminname = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("adminname"));
+            }
         }
 
         double _lng = double.MinValue;
@@ -77,7 +101,11 @@ namespace View_Spot_of_City.ClassModel
         public double lng
         {
             get { return _lng; }
-            set { _lng = value; }
+            set
+            {
+                _lng = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("lng"));
+            }
         }
 
         double _lat = double.MinValue;
@@ -85,7 +113,11 @@ namespace View_Spot_of_City.ClassModel
         public double lat
         {
             get { return _lat; }
-            set { _lat = value; }
+            set
+            {
+                _lat = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("lat"));
+            }
         }
 
         string _photourl1 = string.Empty;
@@ -93,7 +125,11 @@ namespace View_Spot_of_City.ClassModel
         public string photourl1
         {
             get { return _photourl1; }
-            set { _photourl1 = value; }
+            set
+            {
+                _photourl1 = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("photourl1"));
+            }
         }
 
         string _photourl2 = string.Empty;
@@ -101,7 +137,11 @@ namespace View_Spot_of_City.ClassModel
         public string photourl2
         {
             get { return _photourl2; }
-            set { _photourl2 = value; }
+            set
+            {
+                _photourl2 = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("photourl2"));
+            }
         }
 
         string _photourl3 = string.Empty;
@@ -109,7 +149,11 @@ namespace View_Spot_of_City.ClassModel
         public string photourl3
         {
             get { return _photourl3; }
-            set { _photourl3 = value; }
+            set
+            {
+                _photourl3 = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("photourl3"));
+            }
         }
 
         double _biz_ext_rating = double.MinValue;
@@ -117,7 +161,11 @@ namespace View_Spot_of_City.ClassModel
         public double biz_ext_rating
         {
             get { return _biz_ext_rating; }
-            set { _biz_ext_rating = value; }
+            set
+            {
+                _biz_ext_rating = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("biz_ext_rating"));
+            }
         }
 
         double _biz_ext_cost = double.MinValue;
@@ -125,7 +173,11 @@ namespace View_Spot_of_City.ClassModel
         public double biz_ext_cost
         {
             get { return _biz_ext_cost; }
-            set { _biz_ext_cost = value; }
+            set
+            {
+                _biz_ext_cost = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("biz_ext_cost"));
+            }
         }
 
         string _telephone = string.Empty;
@@ -133,7 +185,11 @@ namespace View_Spot_of_City.ClassModel
         public string telephone
         {
             get { return _telephone; }
-            set { _telephone = value; }
+            set
+            {
+                _telephone = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("telephone"));
+            }
         }
 
         /// <summary>

@@ -12,6 +12,7 @@
         xmlns:uicontrol="clr-namespace:View_Spot_of_City.UIControls.UIcontrol;assembly=View-Spot-of-City.UIControls"
         xmlns:converter="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
         xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.UIControls.ArcGISControl;assembly=View-Spot-of-City.UIControls"
+        xmlns:commands="clr-namespace:View_Spot_of_City.UIControls.Command;assembly=View-Spot-of-City.UIControls"
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
@@ -20,6 +21,9 @@
     <Window.Resources>
         <converter:Mail2AvatarBruahConverter x:Key="mail2avatarbrushconverter"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ShowFeatureOnMap}" Executed="ShowFeatureOnMapCommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>

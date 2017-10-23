@@ -113,9 +113,11 @@
     <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
     <Compile Include="Command\MyMessageBoxCommands.cs" />
+    <Compile Include="Command\ArcGISMapCommands.cs" />
     <Compile Include="Converter\Mail2AvatarBruahConverter.cs" />
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
     <Compile Include="Converter\MyMessageBoxDefaultButtonConverter.cs" />
+    <Compile Include="Converter\String2Image.cs" />
     <Compile Include="Form\MessageboxMaster.cs" />
     <Compile Include="Form\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
@@ -132,6 +134,7 @@
     <Compile Include="Helper\MD5_Encryption.cs" />
     <Compile Include="Helper\MySqlHelper.cs" />
     <Compile Include="Helper\WebServiceHelper.cs" />
+    <Compile Include="Helper\WGSGCJLatLonHelper.cs" />
     <Compile Include="OverLayer\OverLayerExample.xaml.cs">
       <DependentUpon>OverLayerExample.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,9 @@
     </Compile>
     <Compile Include="UIcontrol\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\ViewSpotCallout.xaml.cs">
+      <DependentUpon>ViewSpotCallout.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\OverlayerItemViewModel.cs" />
     <Compile Include="VisualizationControl\GeoHeatMap.xaml.cs">
@@ -318,6 +324,10 @@
     <Page Include="UIcontrol\Register.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIcontrol\ViewSpotCallout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VisualizationControl\GeoHeatMap.xaml">
       <Generator>MSBuild:Compile</Generator>

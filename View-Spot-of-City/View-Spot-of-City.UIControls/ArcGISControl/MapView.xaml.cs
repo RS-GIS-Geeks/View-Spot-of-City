@@ -11,6 +11,10 @@ using Esri.ArcGISRuntime.UI;
 using static System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.UIControls.Helper;
+using Esri.ArcGISRuntime.Data;
+using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.UIControls.UIcontrol;
+using View_Spot_of_City.ClassModel;
 
 namespace View_Spot_of_City.UIControls.ArcGISControl
 {
@@ -108,18 +112,34 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mapView_GeoViewTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        private async void mapView_GeoViewTappedAsync(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             MapPoint mapLocation = e.Location;
             Esri.ArcGISRuntime.Geometry.Geometry myGeometry = GeometryEngine.Project(mapLocation, SpatialReferences.Wgs84);
             MapPoint projectedLocation = myGeometry as MapPoint;
 
-            Uri pinUri = IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin];
-            AddIconToGraphicsOverlay(PointOverlay, projectedLocation, pinUri, 16, 24, 0, 9.5);
-
-            routeStops.Add(projectedLocation);
-            polygonVertexes.Add(projectedLocation);
-            e.Handled = true;
+            double tolerance = 0;
+            int maximumResults = 1;
+            bool onlyReturnPopups = false;
+            
+            IdentifyGraphicsOverlayResult identifyResults = await mapView.IdentifyGraphicsOverlayAsync(
+                PointOverlay,
+                e.Position,
+                tolerance,
+                onlyReturnPopups,
+                maximumResults);
+            
+            if (identifyResults.Graphics.Count > 0)
+            {
+                Graphic graphic = identifyResults.Graphics[0];
+                MapPoint mapPoint = graphic.Geometry as MapPoint;
+                PictureMarkerSymbol iconSymbol = graphic.Symbol as PictureMarkerSymbol;
+                double iconHeight = iconSymbol.Height;
+                ViewSpot viewInfo = graphic.Attributes["Data"] as ViewSpot;
+                //string mapLocationDescription = string.Format("Lat: {0:F3} Long:{1:F3}", mapPoint.Y, mapPoint.X);
+                //CalloutDefinition myCalloutDefinition = new CalloutDefinition("Location:", mapLocationDescription);
+                mapView.ShowCalloutAt(mapPoint, new ViewSpotCallout(viewInfo), new Point(0, iconHeight));
+            }
         }
 
         /// <summary>
@@ -166,17 +186,22 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="height">图片显示高度</param>
         /// <param name="offsetX">图片相对point的横向偏移</param>
         /// <param name="offsetY">图片相对point的纵向偏移</param>
-        private void AddIconToGraphicsOverlay(GraphicsOverlay overlay, MapPoint point, Uri iconUri, double width, double height, double offsetX, double offsetY)
+        public void AddIconToGraphicsOverlay(GraphicsOverlay overlay, MapPoint point, Uri iconUri, double width, double height, double offsetX, double offsetY, object attributeData = null)
         {
-            PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(iconUri)
-            {
-                Width = width,
-                Height = height,
-                OffsetX = offsetX,
-                OffsetY = offsetY
-            };
-            Graphic graphic = new Graphic(point, pictureMarkerSymbol);
-            overlay.Graphics.Add(graphic);
+            //PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(iconUri)
+            //{
+            //    Width = width,
+            //    Height = height,
+            //    OffsetX = offsetX,
+            //    OffsetY = offsetY
+            //};
+            //Graphic graphic = new Graphic(point, pictureMarkerSymbol);
+            //Dictionary<string, object> Attributes = new Dictionary<string, object>(1)
+            //{
+            //    { "Data",attributeData }
+            //};
+            //graphic.Attributes.Add("Data", attributeData);
+            //overlay.Graphics.Add(graphic);
         }
 
         /// <summary>
@@ -187,7 +212,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="pointSymbolStyle">点的呈现样式</param>
         /// <param name="pointColor">颜色</param>
         /// <param name="pointSize">大小</param>
-        private void AddPointToGraphicsOverlay(GraphicsOverlay overlay, MapPoint point, SimpleMarkerSymbolStyle pointSymbolStyle, Color pointColor, double pointSize)
+        public void AddPointToGraphicsOverlay(GraphicsOverlay overlay, MapPoint point, SimpleMarkerSymbolStyle pointSymbolStyle, Color pointColor, double pointSize)
         {
             Graphic graphic = new Graphic(point, new SimpleMarkerSymbol(pointSymbolStyle, pointColor, pointSize));
             overlay.Graphics.Add(graphic);
@@ -228,35 +253,6 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         private void mapView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ResetMapViewStatus();
-        }
-
-        /// <summary>
-        /// 显示普通要素的命令响应函数
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShowObjectOnMapCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-            Dictionary<string, object> param = e.Parameter as Dictionary<string, object>;
-            GraphicsOverlay graphicsOverlay = PointOverlay;
-            MapPoint location = new MapPoint((double)param["Lng"], (double)param["Lat"]);
-            Uri iconUri = param["IconUri"] as Uri;
-            double width = (double)param["Width"];
-            double height = (double)param["Height"];
-            double offsetX = (double)param["OffsetX"];
-            double offsetY = (double)param["OffsetY"];
-            UserControl callback = param["CallBack"] as UserControl;
-            AddIconToGraphicsOverlay(graphicsOverlay, location, iconUri, width, height, offsetX, offsetY);
-        }
-
-        /// <summary>
-        /// 显示景点的命令响应函数
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShowViewSpotOnMapCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-
         }
     }
 }
