@@ -17,7 +17,7 @@ namespace View_Spot_of_City.UIControls.Helper
         ///<param name="URL">url地址</param>
         ///<param name="strPostdata">发送的数据</param>
         ///<returns>返回的数据</returns>
-        public static Task<IRestResponse> GetHttpResponse(string URL, string strPostdata, Method method = Method.POST)
+        public static Task<IRestResponse> GetHttpResponseAsync(string URL, string strPostdata, Method method = Method.POST)
         {
             var client = new RestClient(URL);
             var request = new RestRequest(method)

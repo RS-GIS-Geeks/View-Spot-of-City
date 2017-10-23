@@ -56,6 +56,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\ShowFeatureCommands.cs" />
     <Compile Include="Helper\GisgraphyHelper.cs" />
     <Compile Include="Helper\GraphHooperHelper.cs" />
     <Compile Include="Helper\IconDictionaryHelper.cs" />

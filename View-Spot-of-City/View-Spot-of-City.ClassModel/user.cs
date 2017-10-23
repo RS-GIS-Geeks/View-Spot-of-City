@@ -52,7 +52,14 @@ namespace View_Spot_of_City.ClassModel
         public string password
         {
             get { return _password; }
-            set { _password = value; }
+            set
+            {
+                if(_password != value)
+                {
+                    _password = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("password"));
+                }
+            }
         }
 
         /// <summary>
@@ -63,7 +70,14 @@ namespace View_Spot_of_City.ClassModel
         public string name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                if(_name != value)
+                {
+                    _name = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("name"));
+                }
+            }
         }
 
         /// <summary>
@@ -74,7 +88,14 @@ namespace View_Spot_of_City.ClassModel
         public string dispaly_name
         {
             get { return _display_name; }
-            set { _display_name = value; }
+            set
+            {
+                if(_display_name != value)
+                {
+                    _display_name = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("dispaly_name"));
+                }
+            }
         }
 
         /// <summary>
@@ -85,7 +106,14 @@ namespace View_Spot_of_City.ClassModel
         public string province
         {
             get { return _province; }
-            set { _province = value; }
+            set
+            {
+                if(_province != value)
+                {
+                    _province = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("province"));
+                }
+            }
         }
 
         /// <summary>
@@ -97,7 +125,14 @@ namespace View_Spot_of_City.ClassModel
         public string city
         {
             get { return _city; }
-            set { _city = value; }
+            set
+            {
+                if(_city != value)
+                {
+                    _city = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("city"));
+                }
+            }
         }
 
         /// <summary>

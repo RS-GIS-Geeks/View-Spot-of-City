@@ -16,6 +16,12 @@ using static System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.Language.Language;
+using View_Spot_of_City.UIControls.Helper;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using View_Spot_of_City.ClassModel;
+using Newtonsoft.Json;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -68,13 +74,6 @@ namespace View_Spot_of_City.UIControls.OverLayer
             //逐一分词之后的内容
             char[] input_spot_name_spited = input_spot_name.ToCharArray();
 
-            //数据库信息
-            string mysql_host = AppSettings["MYSQL_HOST"];
-            string mysql_port = AppSettings["MYSQL_PORT"];
-            string mysql_user = AppSettings["MYSQL_USER"];
-            string mysql_password = AppSettings["MYSQK_PASSWORD"];
-            string mysql_database = AppSettings["MYSQK_DATABASE"];
-
             //模糊查询中的内容
             string sql_regexp = "%";
             {
@@ -84,40 +83,61 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 }
             }
 
-            //查询数量的语句
-            string sql_query_count = "SELECT COUNT(*) FROM " + mysql_database + ".ViewSpotData WHERE name LIKE '" + sql_regexp + "';";
+            //API返回内容
+            string jsonString = string.Empty;
 
-            //查询数据的语句
-            string sql_query_content = "SELECT * FROM ViewSpotData WHERE name LIKE '" + sql_regexp + "';";
+            //景点数量
+            int viewCount = -1;
 
-            //执行数量的SQL查询
-            System.Data.Common.DbDataReader countReader = await Helper.MySqlHelper.ExecuteReaderAsync(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_query_count);
-            //object result = await Helper.MySqlHelper.ExecuteScalarAsync(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_query_count);
-            //int placeCount = Convert.ToInt32(result.ToString());
+            //创建一个景点实例
+            ViewSpot viewSpot = ViewSpot.NullViewSpot;
 
-            if (countReader == null)
+            try
             {
-                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("SpotSearch_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_COUNT_BY_NAME"] + "?name=" + sql_regexp, string.Empty, RestSharp.Method.GET)).Content;
+                if (jsonString == "")
+                    throw new Exception("");
+
+                JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+                JToken jtoken = jobject["ViewCount"][0];
+
+                viewCount = (int)jtoken["COUNT(*)"];
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
                 return;
             }
 
-            if (!countReader.HasRows)
+            List<ViewSpot> viewSpotList = new List<ViewSpot>(viewCount);
+
+            try
             {
-                if (!countReader.IsClosed)
-                    countReader.Close();
-                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("SpotSearch_Null"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_INFO_BY_NAME"] + "?name=" + sql_regexp, string.Empty, RestSharp.Method.GET)).Content;
+                if (jsonString == "")
+                    throw new Exception("");
+
+                JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+                string content_string = jobject["ViewInfo"].ToString();
+
+                using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
+                {
+                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<ViewSpot>));
+                    viewSpotList = (List<ViewSpot>)deseralizer.ReadObject(ms);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
                 return;
             }
-            long placeCount = -1;
-            while (countReader.Read())
-                placeCount = countReader.GetInt64(0);
-            if (!countReader.IsClosed)
-                countReader.Close();
 
-            MessageboxMaster.Show("搜索到" + placeCount + "个景点");
 
-            //执行数据的SQL查询
-            //System.Data.Common.DbDataReader contentReader = await Helper.MySqlHelper.ExecuteReaderAsync(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_query_count);
         }
     }
 }

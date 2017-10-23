@@ -26,7 +26,7 @@ namespace View_Spot_of_City.ArcGISControls.Helper
             string grophHooperServiceUrl = AppSettings["GRAPHHOOPER_ROUTE_API_URL"] + "?point=" + startPoint.X + "," + startPoint.Y + "&point=" + endPoint.X + "," + endPoint.Y +
                 "&vehicle=" + AppSettings["GRAPHHOOPER_ROUTE_API_VEHICLE"] + "&debug=" + AppSettings["GRAPHHOOPER_ROUTE_API_DEBUG"] + "&key=" + AppSettings["GRAPHHOOPER_ROUTE_API_KEY"] +
                 "&type=json&points_encoded=false";
-            string responseContent = (await WebServiceHelper.GetHttpResponse(grophHooperServiceUrl, null, RestSharp.Method.GET)).Content;
+            string responseContent = (await WebServiceHelper.GetHttpResponseAsync(grophHooperServiceUrl, null, RestSharp.Method.GET)).Content;
 
             return new List<Stop>();
         }

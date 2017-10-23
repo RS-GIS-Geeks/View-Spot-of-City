@@ -143,7 +143,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             try
             {
-                jsonString = (await WebServiceHelper.GetHttpResponse(url, null, RestSharp.Method.GET)).Content;
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(url, null, RestSharp.Method.GET)).Content;
                 if (jsonString == "")
                     throw new Exception("");
             }

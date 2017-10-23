@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.ArcGISControls"
              xmlns:viewmodel="clr-namespace:View_Spot_of_City.ArcGISControls.ViewModel"
+             xmlns:commands="clr-namespace:View_Spot_of_City.ArcGISControls.Command"
              xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <!--<UserControl.CommandBindings>
+        <CommandBinding Command="{}"
+    </UserControl.CommandBindings>-->
     <UserControl.Resources>
         <viewmodel:MapViewModel x:Key="MapViewModel" />
     </UserControl.Resources>

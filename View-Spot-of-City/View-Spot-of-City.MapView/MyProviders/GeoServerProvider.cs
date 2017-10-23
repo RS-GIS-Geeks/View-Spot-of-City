@@ -585,7 +585,7 @@ namespace GMap.NET.MapProviders
         ///<param name="URL">url地址</param>
         ///<param name="strPostdata">发送的数据</param>
         ///<returns>返回的数据</returns>
-        public Task<IRestResponse> GetHttpResponse(string URL, string strPostdata, Method method = Method.POST)
+        public Task<IRestResponse> GetHttpResponseAsyncAsync(string URL, string strPostdata, Method method = Method.POST)
         {
             var client = new RestClient(URL);
             var request = new RestRequest(method);

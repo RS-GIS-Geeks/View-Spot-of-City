@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace View_Spot_of_City.UIControls.Helper
 {
@@ -27,7 +28,7 @@ namespace View_Spot_of_City.UIControls.Helper
             {
                 string connectStr = "server=" + server +";port="+ port + ";User Id=" +user+ ";password=" + password + ";Database=" + database;
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
-                myConnection.Open();
+                await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
                 int code = await mycmd.ExecuteNonQueryAsync();
                 if (code > 0)
@@ -63,9 +64,8 @@ namespace View_Spot_of_City.UIControls.Helper
             {
                 string connectStr = "server=" + server + ";port=" + port + ";User Id=" + user + ";password=" + password + ";Database=" + database;
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
-                myConnection.Open();
+                await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
-                int code = await mycmd.ExecuteNonQueryAsync();
                 System.Data.Common.DbDataReader dataReader = await mycmd.ExecuteReaderAsync();
                 //await myConnection.CloseAsync();
 
@@ -93,11 +93,8 @@ namespace View_Spot_of_City.UIControls.Helper
             {
                 string connectStr = "server=" + server + ";port=" + port + ";User Id=" + user + ";password=" + password + ";Database=" + database;
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
-                myConnection.Open();
-                MySqlDataAdapter adapter = new MySqlDataAdapter(sql_string, myConnection);
-                
+                await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
-                int code = await mycmd.ExecuteNonQueryAsync();
                 object dataReader = await mycmd.ExecuteScalarAsync();
                 //await myConnection.CloseAsync();
 

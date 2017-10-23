@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.ComponentModel;
+using View_Spot_of_City.ClassModel.Interface;
 
 namespace View_Spot_of_City.ClassModel
 {
     [DataContract]
-    public class ViewSpot
+    public class ViewSpot : INotifyPropertyChanged, IGetLngLat
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public static ViewSpot NullViewSpot = new ViewSpot();
+
         long _id = -1;
         [DataMember]
         public long id
@@ -128,6 +134,32 @@ namespace View_Spot_of_City.ClassModel
         {
             get { return _telephone; }
             set { _telephone = value; }
+        }
+
+        /// <summary>
+        /// 构造一个景点实例
+        /// </summary>
+        public ViewSpot()
+        {
+
+        }
+
+        /// <summary>
+        /// 返回经度
+        /// </summary>
+        /// <returns></returns>
+        public double GetLng()
+        {
+            return lng;
+        }
+
+        /// <summary>
+        /// 返回纬度
+        /// </summary>
+        /// <returns></returns>
+        public double GetLat()
+        {
+            return lat;
         }
     }
 }
