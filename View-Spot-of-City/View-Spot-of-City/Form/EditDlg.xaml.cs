@@ -12,16 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
-
 namespace View_Spot_of_City.Form
 {
     /// <summary>
-    /// UserInfoDlg.xaml 的交互逻辑
+    /// EditDlg.xaml 的交互逻辑
     /// </summary>
-    public partial class UserInfoDlg : Window, INotifyPropertyChanged
+    public partial class EditDlg : Window, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public EditDlg()
+        {
+            InitializeComponent();
+            this.CurrentApp = Application.Current as App;
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         App _CurrentApp = null;
 
         /// <summary>
@@ -36,20 +40,6 @@ namespace View_Spot_of_City.Form
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentApp"));
             }
         }
-
-        public UserInfoDlg()
-        {
-            InitializeComponent();
-
-            this.CurrentApp = Application.Current as App;
-
-            /// mailTextBox.Text = (Application.Current as App).CurrentUser.id == long.MinValue ? string.Empty : (Application.Current as App).CurrentUser.mail;
-        }
-
-        private void edit_Click(object sender, RoutedEventArgs e)
-        {
-            EditDlg editDlg = new EditDlg();
-            editDlg.ShowDialog();
-        }
     }
+
 }

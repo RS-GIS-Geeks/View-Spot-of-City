@@ -1,0 +1,73 @@
+﻿<Window x:Class="View_Spot_of_City.Form.EditDlg"
+        x:Name="mainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View_Spot_of_City.Form"
+        xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Height="730" Width="500">
+    <Window.Resources>
+        <converters:Mail2AvatarBruahConverter x:Key="mail2avatarconvert"/>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Grid Height="688">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="邮箱" Grid.Row="1" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,20,10,20" FontSize="16" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail}"></TextBox>
+
+                <Label Content="昵称" Grid.Row="2" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,20,10,20" FontSize="16" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.dispaly_name}"></TextBox>
+
+                <Label Content="职业" Grid.Row="3" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,20,10,20" FontSize="16" Text="学生"></TextBox>
+
+                <Label Content="所在省" Grid.Row="4" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Margin="0,20,300,20" FontSize="16" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.province}"></TextBox>
+                <Label Content="所在市" Grid.Row="4" Grid.Column="1" Margin="193,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Margin="250,20,10,20" FontSize="16" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.province}"></TextBox>
+
+                <Label Content="公司" Grid.Row="5" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="5" Grid.Column="1" Margin="0,20,10,20" FontSize="16" Text="-"></TextBox>
+
+                <Label Content="学校" Grid.Row="6" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="6" Grid.Column="1" Margin="0,20,10,20" FontSize="16" Text="武汉大学"></TextBox>
+
+                <Label Content="年龄" Grid.Row="7" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="7" Grid.Column="1" Margin="0,20,350,20" FontSize="16" Text="20"></TextBox>
+                <Label Content="性别" Grid.Row="7" Grid.Column="1" Margin="70,15,278,0" FontSize="16" ></Label>
+                <TextBox Grid.Row="7" Grid.Column="1" Margin="150,20,200,20" FontSize="16" Text="男"></TextBox>
+                <Label Content="星座" Grid.Row="7" Grid.Column="1" Margin="225,15,125,0" FontSize="16" ></Label>
+                <TextBox Grid.Row="7" Grid.Column="1" Margin="300,20,10,20" FontSize="16" Text="摩羯座"></TextBox>
+
+                <Label Content="故乡（省）" Grid.Row="8" Grid.Column="0" Margin="12,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="8" Grid.Column="8" Margin="0,20,300,20" FontSize="16" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.province}"></TextBox>
+                <Label Content="故乡（市）" Grid.Row="8" Grid.Column="1" Margin="193,15,0,0" FontSize="16"></Label>
+                <TextBox Grid.Row="8" Grid.Column="1" Margin="280,20,10,20" FontSize="16" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.province}"></TextBox>
+
+                <Button x:Name="btnchange" Content=" 确定" Grid.Row="9" Grid.Column="1" Margin="150.143,0,150.286,20" Height="43" Grid.RowSpan="2" VerticalAlignment="Bottom"></Button>
+                <Button x:Name="cancle" Content=" 取消" Grid.Row="10" Grid.Column="1" Margin="250,0,50,20"></Button>
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

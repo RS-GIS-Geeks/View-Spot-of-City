@@ -12,18 +12,58 @@
     <Window.Resources>
         <converters:Mail2AvatarBruahConverter x:Key="mail2avatarconvert"/>
     </Window.Resources>
+   
     <Grid>
         <StackPanel Orientation="Vertical">
             <Grid Height="80" Margin="0,10,0,0">
-                <Rectangle Margin="175,5,175,0" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail, Converter={StaticResource mail2avatarconvert}}"></Rectangle>
-                <Label Content="头像" HorizontalAlignment="Left" Height="31" Margin="310,49,0,0" VerticalAlignment="Top" Width="67"/>
+                <Ellipse Margin="200,5,200,0" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail, Converter={StaticResource mail2avatarconvert}}"></Ellipse>
+                <Button x:Name="edit" Content="编辑" Margin="300,50,100,0" Click="edit_Click"></Button>
             </Grid>
             <Grid Height="500" Margin="100,0,99.571,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Height="50" Margin="50,5,50,45" x:Name="nickname" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.dispaly_name}"></TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="213.714"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Margin="50,5,50,45"  Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.dispaly_name}" ></TextBlock>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="邮箱" Margin="10,1,5,5" ></Label>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="10,5,5,0" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail}"></TextBlock>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="昵称" Margin="10,1,5,5" ></Label>
+                <TextBlock  Grid.Row="2" Grid.Column="1" Margin="10,5,5,0" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.dispaly_name}" ></TextBlock>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="职业" Margin="10,1,5,5"></Label>
+                <TextBlock Grid.Row="3" Grid.Column="1" Margin="10,5,5,0" Text="学生"></TextBlock>
+
+                <Label Grid.Row="4" Grid.Column="0" Content="所在地" Margin="10,1,5,5"></Label>
+                <TextBlock Grid.Row="4" Grid.Column="1" Margin="10,5,120,0" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.province}"></TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1" Margin="120,5,25,0" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.city}"></TextBlock>
+
+                <Label Grid.Row="5" Grid.Column="0" Content="公司" Margin="10,1,5,5"></Label>
+                <TextBlock Grid.Row="5" Grid.Column="1" Margin="10,5,5,0" Text="-"></TextBlock>
+
+                <Label Grid.Row="6" Grid.Column="0" Content="学校" Margin="10,1,5,5"></Label>
+                <TextBlock Grid.Row="6" Grid.Column="1" Margin="10,5,5,0" Text="武汉大学"></TextBlock>
+
+                <Label Grid.Row="7" Grid.Column="0" Content="个人" Margin="10,1,5,5"></Label>
+                <TextBlock Grid.Row="7" Grid.Column="1" Margin="10,5,5,0" Text="20 男 狮子座"></TextBlock>
+
+                <Label Grid.Row="8" Grid.Column="0" Content="故乡" Margin="10,1,5,5"></Label>
+                <TextBlock Grid.Row="8" Grid.Column="1" Margin="10,5,5,0" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.province}"></TextBlock>
+
             </Grid>
         </StackPanel>
     </Grid>
