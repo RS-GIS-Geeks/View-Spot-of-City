@@ -64,7 +64,7 @@ namespace View_Spot_of_City.ClassModel
         [DataMember]
         public string pname
         {
-            get { return pname; }
+            get { return _pname; }
             set
             {
                 _pname = value;

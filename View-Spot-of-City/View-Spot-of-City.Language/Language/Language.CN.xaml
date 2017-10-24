@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:View_Spot_of_City.Language.Language">
-    <!--#region 2017.10.13 by CS-Tao-->
     <!--进度条-->
     <sys:String x:Key="ProgressText">正在加载</sys:String>
+    
     <!--登录界面-->
     <sys:String x:Key="LoginTitle">用户登录</sys:String>
     <sys:String x:Key="LoginIconTooltip">在Gravatar上更改您的头像</sys:String>
@@ -16,6 +16,7 @@
     <sys:String x:Key="LoginValidateCodeError">验证码错误</sys:String>
     <sys:String x:Key="LoginMailError">该邮箱未注册</sys:String>
     <sys:String x:Key="LoginPasswordError">密码错误</sys:String>
+    
     <!--注册界面-->
     <sys:String x:Key="RegisterTitle">用户注册</sys:String>
     <sys:String x:Key="RegisterText">邮箱：</sys:String>
@@ -33,38 +34,54 @@
     <sys:String x:Key="RegisterPasswordTooLong">密码过长</sys:String>
     <sys:String x:Key="RegisterMailEcho">该用户已注册，若忘记密码，请联系管理员</sys:String>
     <sys:String x:Key="RegisterOK">注册成功，请返回登录界面</sys:String>
+    
     <!--产品注册界面-->
     <sys:String x:Key="LicenseTitle">软件注册</sys:String>
     <sys:String x:Key="LicenseTip">注册码：</sys:String>
     <sys:String x:Key="LicenseCode">密码：</sys:String>
     <sys:String x:Key="LicenseOk">确定</sys:String>
     <sys:String x:Key="LicenseCancel">取消</sys:String>
-    <!--标题-->
+    
+    <!--主界面-->
     <sys:String x:Key="MainTitle">景点推荐系统</sys:String>
+    <sys:String x:Key="MainWindowCloseConfirm">确认退出?</sys:String>
+    
     <!--logo-->
     <sys:String x:Key="LogoTooltip">查看源码</sys:String>
-    <!--#region 导航-->
+    
+    <!--导航-->
     <sys:String x:Key="MainNav_MapView">地图浏览</sys:String>
     <sys:String x:Key="MainNav_SpotQuery">景点查询</sys:String>
     <sys:String x:Key="MainNav_SpotRecommend">景点推荐</sys:String>
     <sys:String x:Key="MainNav_Visualization">数据可视化</sys:String>
     <sys:String x:Key="MainNav_Share">评价与分享</sys:String>
-    <!--#endregion-->
-    <!--#region 景点查询-->
+
+    <!--景点查询-->
     <sys:String x:Key="SpotSearchHist">输入景点</sys:String>
     <sys:String x:Key="SpotSearch_Error">查询出现错误</sys:String>
     <sys:String x:Key="SpotSearch_Null">无查询结果</sys:String>
-    <!--#endregion-->
+    
+    <!--景点显示-->
+    <sys:String x:Key="ShowSpot_Name">景点：</sys:String>
+    <sys:String x:Key="ShowSpot_Location">位置：</sys:String>
+    <sys:String x:Key="ShowSpot_Type">景点类型：</sys:String>
+    <sys:String x:Key="ShowSpot_Lng">经度：</sys:String>
+    <sys:String x:Key="ShowSpot_Lat">维度：</sys:String>
+    <sys:String x:Key="ShowSpot_Cost">门票：</sys:String>
+    <sys:String x:Key="ShowSpot_PreCost">￥</sys:String>
+    <sys:String x:Key="ShowSpot_Tel">联系电话：</sys:String>
+    <sys:String x:Key="ShowSpot_PreImage">上一张</sys:String>
+    <sys:String x:Key="ShowSpot_NextImage">下一张</sys:String>
+    <sys:String x:Key="ShowSpot_GoToTip">去这里</sys:String>
 
-    <!--#region 错误和异常显示-->
+    <!--错误和异常显示-->
     <sys:String x:Key="Config_File_Error">配置文件错误，请检查配置文件</sys:String>
     <sys:String x:Key="Mail_Error">邮箱错误</sys:String>
     <sys:String x:Key="Input_Empty">输入不能为空</sys:String>
     <sys:String x:Key="Server_Connect_Error">无法连接服务器</sys:String>
     <sys:String x:Key="Server_Return_Error">服务器返回错误</sys:String>
-    <!--#endregion-->
 
-    <!--#region 对话框-->
+    <!--对话框-->
     <sys:String x:Key="MessageBox_OK">确认</sys:String>
     <sys:String x:Key="MessageBox_Cancel">取消</sys:String>
     <sys:String x:Key="MessageBox_Yes">是</sys:String>
@@ -73,18 +90,14 @@
     <sys:String x:Key="MessageBox_Error_Title">错误</sys:String>
     <sys:String x:Key="MessageBox_Exception_Title">异常</sys:String>
     <sys:String x:Key="MessageBox_Tip_Title">提示</sys:String>
-    <!--#endregion-->
-    <!--endregion-->
-    
-    <!--#region 2017.10.14 by CS-Tao-->
-    <!--#region 用户信息对话框-->
+
+    <!--用户信息对话框-->
     <sys:String x:Key="UserInfoDlg_ToolTip">个人信息</sys:String>
-    <sys:String x:Key="UserInfoDlg_Title">用户信息</sys:String>
-    <!--endregion-->
-    
+    <sys:String x:Key="UserInfoDlg_Title">您的信息</sys:String>
+    <sys:String x:Key="UserInfoDlgEditor_Title">修改个人信息</sys:String>
+
     <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">退出当前用户</sys:String>
-    <!--对话框显示-->
     <sys:String x:Key="Logout_Tip">确认退出当前用户？</sys:String>
 
     <!--用户注册-邮箱模块-->

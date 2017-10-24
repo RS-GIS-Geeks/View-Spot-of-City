@@ -72,6 +72,17 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         private List<MapPoint> polygonVertexes = new List<MapPoint>();
 
+        private Dictionary<Graphic, object> _GraphicsAttributes = new Dictionary<Graphic, object>();
+
+        /// <summary>
+        /// 图形要素关联的属性
+        /// </summary>
+        public Dictionary<Graphic, object> GraphicsAttributes
+        {
+            get { return _GraphicsAttributes; }
+            set { _GraphicsAttributes = value; }
+        }
+
         public MapView()
         {
             InitializeComponent();
@@ -87,7 +98,6 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             {
                 InitialViewpoint = new Viewpoint(new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]))
             };
-
             mapView.Map = map;
             mapView.GraphicsOverlays.Add(PolygonOverlay);
             mapView.GraphicsOverlays.Add(LineOverlay);
@@ -99,12 +109,17 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         private void ResetMapViewStatus()
         {
+            //清除站点
+            routeStops.Clear();
+            polygonVertexes.Clear();
+
+            //清除回调框
+            mapView.DismissCallout();
+
+            //清除图层
             PointOverlay.Graphics.Clear();
             LineOverlay.Graphics.Clear();
             PolygonOverlay.Graphics.Clear();
-
-            routeStops.Clear();
-            polygonVertexes.Clear();
         }
 
         /// <summary>
@@ -135,10 +150,13 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
                 MapPoint mapPoint = graphic.Geometry as MapPoint;
                 PictureMarkerSymbol iconSymbol = graphic.Symbol as PictureMarkerSymbol;
                 double iconHeight = iconSymbol.Height;
-                ViewSpot viewInfo = graphic.Attributes["Data"] as ViewSpot;
-                //string mapLocationDescription = string.Format("Lat: {0:F3} Long:{1:F3}", mapPoint.Y, mapPoint.X);
-                //CalloutDefinition myCalloutDefinition = new CalloutDefinition("Location:", mapLocationDescription);
-                mapView.ShowCalloutAt(mapPoint, new ViewSpotCallout(viewInfo), new Point(0, iconHeight));
+                ViewSpot viewInfo = GraphicsAttributes.ContainsKey(graphic) ? (GraphicsAttributes[graphic] as ViewSpot) : null;
+                if(viewInfo != null)
+                    mapView.ShowCalloutAt(mapPoint, new ViewSpotCallout(viewInfo), new Point(0, iconHeight));
+            }
+            else
+            {
+                mapView.DismissCallout();
             }
         }
 
@@ -188,20 +206,16 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="offsetY">图片相对point的纵向偏移</param>
         public void AddIconToGraphicsOverlay(GraphicsOverlay overlay, MapPoint point, Uri iconUri, double width, double height, double offsetX, double offsetY, object attributeData = null)
         {
-            //PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(iconUri)
-            //{
-            //    Width = width,
-            //    Height = height,
-            //    OffsetX = offsetX,
-            //    OffsetY = offsetY
-            //};
-            //Graphic graphic = new Graphic(point, pictureMarkerSymbol);
-            //Dictionary<string, object> Attributes = new Dictionary<string, object>(1)
-            //{
-            //    { "Data",attributeData }
-            //};
-            //graphic.Attributes.Add("Data", attributeData);
-            //overlay.Graphics.Add(graphic);
+            PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(iconUri)
+            {
+                Width = width,
+                Height = height,
+                OffsetX = offsetX,
+                OffsetY = offsetY
+            };
+            Graphic graphic = new Graphic(point, pictureMarkerSymbol);
+            GraphicsAttributes.Add(graphic, attributeData);
+            overlay.Graphics.Add(graphic);
         }
 
         /// <summary>
@@ -249,10 +263,25 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             Graphic polygonGraphic = new Graphic(polygon, polygonSymbol);
             overlay.Graphics.Add(polygonGraphic);
         }
-
+        
         private void mapView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ResetMapViewStatus();
+        }
+
+        private void OnDrawStatusChanged(object sender, DrawStatusChangedEventArgs e)
+        {
+            Dispatcher.Invoke(delegate ()
+            {
+                if (e.Status == DrawStatus.InProgress)
+                {
+
+                }
+                else
+                {
+
+                }
+            });
         }
     }
 }

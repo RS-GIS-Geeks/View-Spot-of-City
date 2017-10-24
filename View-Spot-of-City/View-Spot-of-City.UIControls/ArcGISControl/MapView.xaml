@@ -27,8 +27,10 @@
         </Grid.ColumnDefinitions>
         <esri:MapView x:Name="mapView" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3" 
                       Map="{Binding Map, Source={StaticResource MapViewModel}}"
-                      GeoViewTapped="mapView_GeoViewTappedAsync" GeoViewDoubleTapped="mapView_GeoViewDoubleTapped"
-                      MouseRightButtonDown="mapView_MouseRightButtonDown"/>
+                      GeoViewTapped="mapView_GeoViewTappedAsync" 
+                      GeoViewDoubleTapped="mapView_GeoViewDoubleTapped"
+                      MouseRightButtonDown="mapView_MouseRightButtonDown"
+                      DrawStatusChanged="OnDrawStatusChanged"/>
         <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" >
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6"  ShadowDepth="2" Opacity="0.3" Direction="-45" />

@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:View_Spot_of_City.Language">
-    <!--#region 2017.10.13 by CS-Tao-->
     <!--进度条-->
     <sys:String x:Key="ProgressText">Loading</sys:String>
+    
     <!--登录界面-->
     <sys:String x:Key="LoginTitle">Login</sys:String>
     <sys:String x:Key="LoginIconTooltip">change your avatar on gravatar</sys:String>
@@ -16,6 +16,7 @@
     <sys:String x:Key="LoginValidateCodeError">The verification code is incorrect</sys:String>
     <sys:String x:Key="LoginMailError">The Email has not been signed up</sys:String>
     <sys:String x:Key="LoginPasswordError">The password is incorrect, please input again</sys:String>
+    
     <!--注册界面-->
     <sys:String x:Key="RegisterTitle">Register</sys:String>
     <sys:String x:Key="RegisterText">Emali:</sys:String>
@@ -33,37 +34,54 @@
     <sys:String x:Key="RegisterPasswordTooLong">The password is too long</sys:String>
     <sys:String x:Key="RegisterMailEcho">The user has been registered, if you forget the password, please contact the administrator</sys:String>
     <sys:String x:Key="RegisterOK">Registration successful, please return to login interface</sys:String>
+    
     <!--产品注册界面-->
     <sys:String x:Key="LicenseTitle">Software Register</sys:String>
     <sys:String x:Key="LicenseTip">Registration code：</sys:String>
     <sys:String x:Key="LicenseCode">Password:</sys:String>
     <sys:String x:Key="LicenseOk">OK</sys:String>
     <sys:String x:Key="LicenseCancel">Cancel</sys:String>
-    <!--标题-->
+    
+    <!--主界面-->
     <sys:String x:Key="MainTitle">VIEW SPOT RECOMMENDER</sys:String>
+    <sys:String x:Key="MainWindowCloseConfirm">Are you sure to exit?</sys:String>
+    
     <!--logo-->
     <sys:String x:Key="LogoTooltip">View Source</sys:String>
-    <!--#region 导航-->
+    
+    <!--导航-->
     <sys:String x:Key="MainNav_MapView">Map View</sys:String>
     <sys:String x:Key="MainNav_SpotQuery">Query</sys:String>
     <sys:String x:Key="MainNav_SpotRecommend">Recommend</sys:String>
     <sys:String x:Key="MainNav_Visualization">Visualization</sys:String>
     <sys:String x:Key="MainNav_Share">Share</sys:String>
-    <!--#endregion-->
-    <!--#region 景点查询-->
+    
+    <!--景点查询-->
     <sys:String x:Key="SpotSearchHist">Search</sys:String>
     <sys:String x:Key="SpotSearch_Error">Error occurs in searching</sys:String>
     <sys:String x:Key="SpotSearch_Null">No results searched</sys:String>
-    <!--#endregion-->
 
-    <!--#region 错误和异常显示-->
+    <!--景点显示-->
+    <sys:String x:Key="ShowSpot_Name">Name：</sys:String>
+    <sys:String x:Key="ShowSpot_Location">Location：</sys:String>
+    <sys:String x:Key="ShowSpot_Type">Type：</sys:String>
+    <sys:String x:Key="ShowSpot_Lng">Longitude：</sys:String>
+    <sys:String x:Key="ShowSpot_Lat">Latitude：</sys:String>
+    <sys:String x:Key="ShowSpot_Cost">Cost：</sys:String>
+    <sys:String x:Key="ShowSpot_PreCost">￥</sys:String>
+    <sys:String x:Key="ShowSpot_Tel">Tel：</sys:String>
+    <sys:String x:Key="ShowSpot_PreImage">Last image</sys:String>
+    <sys:String x:Key="ShowSpot_NextImage">Next image</sys:String>
+    <sys:String x:Key="ShowSpot_GoToTip">Go to here</sys:String>
+
+    <!--错误和异常显示-->
     <sys:String x:Key="Config_File_Error">The configuration file is wrong. Please check the configuration file</sys:String>
     <sys:String x:Key="Mail_Error">The email is incorrect</sys:String>
     <sys:String x:Key="Input_Empty">Input cannot be empty</sys:String>
     <sys:String x:Key="Server_Connect_Error">Unable to connect server</sys:String>
     <sys:String x:Key="Server_Return_Error">Server returns error</sys:String>
-    <!--#endregion-->
-    <!--#region 对话框-->
+    
+    <!--对话框-->
     <sys:String x:Key="MessageBox_OK">OK</sys:String>
     <sys:String x:Key="MessageBox_Cancel">Cancel</sys:String>
     <sys:String x:Key="MessageBox_Yes">Yes</sys:String>
@@ -72,19 +90,16 @@
     <sys:String x:Key="MessageBox_Error_Title">Error</sys:String>
     <sys:String x:Key="MessageBox_Exception_Title">Exception</sys:String>
     <sys:String x:Key="MessageBox_Tip_Title">Tip</sys:String>
-    <!--#endregion-->
-    <!--endregion-->
     
-    <!--#region 2017.10.14 by CS-Tao-->
-    <!--#region 用户信息对话框-->
-    <sys:String x:Key="UserInfoDlg_ToolTip">Personal information</sys:String>
-    <sys:String x:Key="UserInfoDlg_Title">User Information</sys:String>
-    <!--endregion-->
+    <!--用户信息对话框-->
+    <sys:String x:Key="UserInfoDlg_ToolTip">Profile</sys:String>
+    <sys:String x:Key="UserInfoDlg_Title">Profile</sys:String>
+    <sys:String x:Key="UserInfoDlgEditor_Title">Change your profile</sys:String>
 
     <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">Logout</sys:String>
     <!--对话框显示-->
-    <sys:String x:Key="Logout_Tip">Are you sure you want to logout?</sys:String>
+    <sys:String x:Key="Logout_Tip">Are you sure to logout?</sys:String>
 
     <!--用户注册-邮箱模块-->
     <sys:String x:Key="RegisterGetValidateCode">Send Email</sys:String>

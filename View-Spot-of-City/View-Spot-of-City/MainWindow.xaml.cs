@@ -282,13 +282,14 @@ namespace View_Spot_of_City
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
-            Application.Current.Shutdown(0);
+            if (MessageboxMaster.DialogResults.Yes == MessageboxMaster.Show(GetString("MainWindowCloseConfirm"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
+                Application.Current.Shutdown(0);
         }
 
         private void mainWindow_Closed(object sender, EventArgs e)
         {
             //Environment.Exit(0);
-            Application.Current.Shutdown();
+            //Application.Current.Shutdown();
         }
 
         private void LanguageSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
