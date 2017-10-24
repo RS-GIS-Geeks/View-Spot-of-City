@@ -49,7 +49,7 @@
     <Compile Include="Base\CommonPlace.cs" />
     <Compile Include="Interface\IGetLngLat.cs" />
     <Compile Include="RouteInfo.cs" />
-    <Compile Include="user.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewSpot.cs" />
   </ItemGroup>

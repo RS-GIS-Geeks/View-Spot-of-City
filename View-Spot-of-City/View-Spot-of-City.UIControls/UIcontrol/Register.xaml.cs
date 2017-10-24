@@ -113,7 +113,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 string mysql_user = AppSettings["MYSQL_USER"];
                 string mysql_password = AppSettings["MYSQK_PASSWORD"];
                 string mysql_database = AppSettings["MYSQK_DATABASE"];
-                string sql_string = "INSERT INTO users(mail, password) VALUES('" + user_mail + "','" + password_encoded + "')";
+                string sql_string = "INSERT INTO " + AppSettings["MYSQK_TABLE_USER"] + "(Mail, Password) VALUES('" + user_mail + "','" + password_encoded + "');";
 
                 //执行SQL查询
                 string qury_result = await MySqlHelper.ExcuteNonQueryAsync(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_string);

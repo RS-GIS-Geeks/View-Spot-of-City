@@ -17,16 +17,16 @@ namespace View_Spot_of_City.UIControls.Helper
         /// </summary>
         /// <param name="server">IP</param>
         /// <param name="port">端口</param>
-        /// <param name="user">用户</param>
+        /// <param name="UserInfo">用户</param>
         /// <param name="password">密码</param>
         /// <param name="database">数据库</param>
         /// <param name="sql_string">SQL语句</param>
         /// <returns>返回状态信息，如果成功则返回"true"</returns>
-        public static async Task<string> ExcuteNonQueryAsync(string server, string port, string user, string password, string database, string sql_string)
+        public static async Task<string> ExcuteNonQueryAsync(string server, string port, string UserInfo, string password, string database, string sql_string)
         {
             try
             {
-                string connectStr = "server=" + server +";port="+ port + ";User Id=" +user+ ";password=" + password + ";Database=" + database;
+                string connectStr = "server=" + server +";port="+ port + ";User Id=" +UserInfo+ ";password=" + password + ";Database=" + database;
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
                 await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
@@ -53,16 +53,16 @@ namespace View_Spot_of_City.UIControls.Helper
         /// </summary>
         /// <param name="server">IP</param>
         /// <param name="port">端口</param>
-        /// <param name="user">用户</param>
+        /// <param name="UserInfo">用户</param>
         /// <param name="password">密码</param>
         /// <param name="database">数据库</param>
         /// <param name="sql_string">SQL语句</param>
         /// <returns>从数据源读取流</returns>
-        public static async Task<System.Data.Common.DbDataReader> ExecuteReaderAsync(string server, string port, string user, string password, string database, string sql_string)
+        public static async Task<System.Data.Common.DbDataReader> ExecuteReaderAsync(string server, string port, string UserInfo, string password, string database, string sql_string)
         {
             try
             {
-                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + user + ";password=" + password + ";Database=" + database;
+                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + UserInfo + ";password=" + password + ";Database=" + database;
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
                 await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
@@ -82,16 +82,16 @@ namespace View_Spot_of_City.UIControls.Helper
         /// </summary>
         /// <param name="server">IP</param>
         /// <param name="port">端口</param>
-        /// <param name="user">用户</param>
+        /// <param name="UserInfo">用户</param>
         /// <param name="password">密码</param>
         /// <param name="database">数据库</param>
         /// <param name="sql_string">SQL语句</param>
         /// <returns>单个对象</returns>
-        public static async Task<object> ExecuteScalarAsync(string server, string port, string user, string password, string database, string sql_string)
+        public static async Task<object> ExecuteScalarAsync(string server, string port, string UserInfo, string password, string database, string sql_string)
         {
             try
             {
-                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + user + ";password=" + password + ";Database=" + database;
+                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + UserInfo + ";password=" + password + ";Database=" + database;
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
                 await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);

@@ -32,7 +32,7 @@
     <sys:String x:Key="RegisterPasswordsMismatching">The two codes are not consistent with each other,please input again</sys:String>
     <sys:String x:Key="RegisterPasswordTooShort">The password is too short</sys:String>
     <sys:String x:Key="RegisterPasswordTooLong">The password is too long</sys:String>
-    <sys:String x:Key="RegisterMailEcho">The user has been registered, if you forget the password, please contact the administrator</sys:String>
+    <sys:String x:Key="RegisterMailEcho">The UserInfo has been registered, if you forget the password, please contact the administrator</sys:String>
     <sys:String x:Key="RegisterOK">Registration successful, please return to login interface</sys:String>
     
     <!--产品注册界面-->
@@ -95,10 +95,18 @@
     <sys:String x:Key="UserInfoDlg_ToolTip">Profile</sys:String>
     <sys:String x:Key="UserInfoDlg_Title">Profile</sys:String>
     <sys:String x:Key="UserInfoDlgEditor_Title">Change your profile</sys:String>
+    <sys:String x:Key="UserInfo_Name">Name</sys:String>
+    <sys:String x:Key="UserInfo_HomePage">HomePage</sys:String>
+    <sys:String x:Key="UserInfo_Mail">Mail</sys:String>
+    <sys:String x:Key="UserInfo_Personal">Personal</sys:String>
+    <sys:String x:Key="UserInfo_Profession">Profession</sys:String>
+    <sys:String x:Key="UserInfo_Location">Location</sys:String>
+    <sys:String x:Key="UserInfo_Company">Company</sys:String>
+    <sys:String x:Key="UserInfo_School_Or_University">University/School</sys:String>
+    <sys:String x:Key="UserInfo_Hometown">Hometown</sys:String>
 
     <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">Logout</sys:String>
-    <!--对话框显示-->
     <sys:String x:Key="Logout_Tip">Are you sure to logout?</sys:String>
 
     <!--用户注册-邮箱模块-->

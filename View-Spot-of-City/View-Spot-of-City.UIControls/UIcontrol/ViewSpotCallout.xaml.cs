@@ -104,6 +104,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         private void PreButton_Click(object sender, RoutedEventArgs e)
         {
             //循环显示图片
+            if (CurrentImageIndex == 0)
+                CurrentImageIndex = 3;
             CurrentImageIndex--;
             CurrentImageIndex %= 3;
             CurrentImageUrl = ImageUrls[CurrentImageIndex];

@@ -84,7 +84,7 @@
                             <Setter Property="Opacity" Value=".56" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource NavigationBarBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

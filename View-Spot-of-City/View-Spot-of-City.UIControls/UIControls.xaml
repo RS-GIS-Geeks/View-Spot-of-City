@@ -19,14 +19,17 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#6289d9"/>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#dd6289d9"/>
             <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}"/>
             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#4c7bd9"/>
             <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
             <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
             <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
             <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#eeeeee"/>
-            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#DD000000"/>
+            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#dd000000"/>
+            <SolidColorBrush x:Key="SubWindowsBrush" Color="#bb6289d9"/>
+            <SolidColorBrush x:Key="LowLightTextBlockForegrandBrush" Color="#adadad"/>
+            <SolidColorBrush x:Key="NormalTextBlockForegrandBrush" Color="#000000"/>
         </ResourceDictionary>
         <!--#endregion-->
     </ResourceDictionary.MergedDictionaries>

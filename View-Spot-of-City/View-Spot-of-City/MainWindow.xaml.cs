@@ -149,6 +149,8 @@ namespace View_Spot_of_City
 
             this.Title = Convert.ToString(Config.AppSettings["SOFTWARE_NAME"]) + " - " + Convert.ToString(Config.AppSettings["CITY_NAME"]);
 
+            MainNavBar.IsEnabled = false;
+
             // 添加覆盖层
             // 静态绑定
             Overlayers.Add(new OverlayerItemViewModel(
@@ -182,6 +184,8 @@ namespace View_Spot_of_City
             { OverlayerIndicator = OverlayerType.Share }
             );
             MainNavBar.ItemsSource = Overlayers;
+
+            MainNavBar.IsEnabled = true;
         }
         
         /// <summary>
@@ -271,7 +275,7 @@ namespace View_Spot_of_City
         {
             if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
                 return;
-            (Application.Current as App).CurrentUser = user.NoBody;
+            (Application.Current as App).CurrentUser = UserInfo.NoBody;
 
             //登录
             bool? loginDlgResult = (new LoginDlg()).ShowDialog();
@@ -284,6 +288,8 @@ namespace View_Spot_of_City
         {
             if (MessageboxMaster.DialogResults.Yes == MessageboxMaster.Show(GetString("MainWindowCloseConfirm"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
                 Application.Current.Shutdown(0);
+            else
+                e.Cancel = true;
         }
 
         private void mainWindow_Closed(object sender, EventArgs e)

@@ -95,6 +95,15 @@
     <sys:String x:Key="UserInfoDlg_ToolTip">个人信息</sys:String>
     <sys:String x:Key="UserInfoDlg_Title">您的信息</sys:String>
     <sys:String x:Key="UserInfoDlgEditor_Title">修改个人信息</sys:String>
+    <sys:String x:Key="UserInfo_Name">姓名</sys:String>
+    <sys:String x:Key="UserInfo_HomePage">主页</sys:String>
+    <sys:String x:Key="UserInfo_Mail">邮箱</sys:String>
+    <sys:String x:Key="UserInfo_Personal">个人</sys:String>
+    <sys:String x:Key="UserInfo_Profession">职业</sys:String>
+    <sys:String x:Key="UserInfo_Location">所在地</sys:String>
+    <sys:String x:Key="UserInfo_Company">公司</sys:String>
+    <sys:String x:Key="UserInfo_School_Or_University">学校</sys:String>
+    <sys:String x:Key="UserInfo_Hometown">故乡</sys:String>
 
     <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">退出当前用户</sys:String>

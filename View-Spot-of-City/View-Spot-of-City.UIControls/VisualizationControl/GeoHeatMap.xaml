@@ -11,6 +11,6 @@
              d:DataContext="{d:DesignInstance local:GeoHeatMap}">
     
     <Grid>
-        <lvc:GeoMap x:Name="geoMap" HeatMap="{Binding Values}" Source="Maps/China.xml" LanguagePack="{Binding LanguagePack}" />
+        <lvc:GeoMap x:Name="geoMap" HeatMap="{Binding Values}" Source="VisualizationControl/Maps/China.xml" LanguagePack="{Binding LanguagePack}" />
     </Grid>
 </UserControl>

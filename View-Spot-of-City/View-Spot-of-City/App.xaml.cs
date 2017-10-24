@@ -28,8 +28,8 @@ namespace View_Spot_of_City
         /// <summary>
         /// 当前在线用户
         /// </summary>
-        user _currentUser;
-        public user CurrentUser
+        UserInfo _currentUser;
+        public UserInfo CurrentUser
         {
             get { return _currentUser; }
             set

@@ -79,7 +79,7 @@ namespace View_Spot_of_City.Form
 
         private void ChangeCurrentUserCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            (Application.Current as App).CurrentUser = e.Parameter as user;
+            (Application.Current as App).CurrentUser = e.Parameter as UserInfo;
             //MessageBoxMaster.Show("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
         }
     }

@@ -18,16 +18,16 @@
         <StackPanel Background="Transparent">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Click="PreButton_Click" Background="Transparent" Padding="0" Style="{StaticResource ModifiedFlatButtonStyle}"
-                        ToolTip="{DynamicResource ShowSpot_PreImage}" Width="20" Height="20" Margin="5,10,5,10">
-                    <iconPacks:PackIconModern Width="20" Height="20" Margin="0" Kind="NavigatePrevious"/>
+                        ToolTip="{DynamicResource ShowSpot_PreImage}" Width="22" Height="22" Margin="5,10,5,10">
+                    <iconPacks:PackIconModern Width="18" Height="18" Margin="0" Kind="NavigatePrevious"/>
                 </Button>
                 <Rectangle Fill="{Binding ElementName=mainControl, Path=CurrentImageUrl, Converter={StaticResource string2image}}"
                    Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="2" Margin="0,15,0,10"
                    Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="200" MaxHeight="400"
                    HorizontalAlignment="Center"/>
                 <Button Click="NextButton_Click" Background="Transparent" Padding="0" Style="{StaticResource ModifiedFlatButtonStyle}"
-                        ToolTip="{DynamicResource ShowSpot_NextImage}" Width="20" Height="20" Margin="5,10,5,10">
-                    <iconPacks:PackIconModern Width="20" Height="20" Margin="0" Kind="NavigateNext"/>
+                        ToolTip="{DynamicResource ShowSpot_NextImage}" Width="22" Height="22" Margin="5,10,5,10">
+                    <iconPacks:PackIconModern Width="18" Height="18" Kind="NavigateNext"/>
                 </Button>
             </StackPanel>
             <StackPanel Margin="15,5,15,5" HorizontalAlignment="Center">

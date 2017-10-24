@@ -139,7 +139,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             string jsonString = string.Empty;
 
-            user user_obiect = null;
+            UserInfo user_obiect = null;
 
             try
             {
@@ -162,8 +162,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
                 using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
                 {
-                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(user));
-                    user_obiect = (user)deseralizer.ReadObject(ms);
+                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(UserInfo));
+                    user_obiect = (UserInfo)deseralizer.ReadObject(ms);
                 }
             }
             catch(Exception ex)
@@ -173,7 +173,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 return;
             }
             
-            if(user_obiect.password == password_encoded)
+            if(user_obiect.Password == password_encoded)
             {
                 ControlVisibity = Visibility.Collapsed;
                 CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);

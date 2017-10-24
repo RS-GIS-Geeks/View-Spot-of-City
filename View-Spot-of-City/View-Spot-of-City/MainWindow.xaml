@@ -44,7 +44,7 @@
                 <Button Click="UserInfoButton_Click" Background="Transparent" Padding="4" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
                         ToolTip="{DynamicResource UserInfoDlg_ToolTip}">
                     <!--<iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>-->
-                    <Rectangle Width="24" Height="24" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.mail, Converter={StaticResource mail2avatarbrushconverter}}"
+                    <Rectangle Width="24" Height="24" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail, Converter={StaticResource mail2avatarbrushconverter}}"
                                Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" IsHitTestVisible="False"></Rectangle>
                 </Button>
                 <Button Click="LogoutButton_Click" Background="Transparent" Padding="4" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
