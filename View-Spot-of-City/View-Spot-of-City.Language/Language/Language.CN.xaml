@@ -94,7 +94,7 @@
     <!--用户信息对话框-->
     <sys:String x:Key="UserInfoDlg_ToolTip">个人信息</sys:String>
     <sys:String x:Key="UserInfoDlg_Title">您的信息</sys:String>
-    <sys:String x:Key="UserInfoDlgEditor_Title">修改个人信息</sys:String>
+    <sys:String x:Key="UserInfoDlg_EditTip">编辑资料</sys:String>
     <sys:String x:Key="UserInfo_Name">姓名</sys:String>
     <sys:String x:Key="UserInfo_HomePage">主页</sys:String>
     <sys:String x:Key="UserInfo_Mail">邮箱</sys:String>
@@ -104,6 +104,45 @@
     <sys:String x:Key="UserInfo_Company">公司</sys:String>
     <sys:String x:Key="UserInfo_School_Or_University">学校</sys:String>
     <sys:String x:Key="UserInfo_Hometown">故乡</sys:String>
+
+    <!--更改用户信息对话框-->
+    <sys:String x:Key="UserInfoEdit_Title">编辑资料</sys:String>
+    <sys:String x:Key="UserInfoEdit_DisplayName">昵称</sys:String>
+    <sys:String x:Key="UserInfoEdit_Name">姓名</sys:String>
+    <sys:String x:Key="UserInfoEdit_Gender">性别</sys:String>
+    <sys:String x:Key="UserInfoEdit_Age">年龄</sys:String>
+    <sys:String x:Key="UserInfoEdit_Constellation">星座</sys:String>
+    <sys:String x:Key="UserInfoEdit_Hometown">故乡</sys:String>
+    <sys:String x:Key="UserInfoEdit_Location">地点</sys:String>
+    <sys:String x:Key="UserInfoEdit_Profession">职业</sys:String>
+    <sys:String x:Key="UserInfoEdit_Company">公司</sys:String>
+    <sys:String x:Key="UserInfoEdit_School_Or_University">学校</sys:String>
+    <sys:String x:Key="UserInfoEdit_Mail">邮箱</sys:String>
+    <sys:String x:Key="UserInfoEdit_Save">保存</sys:String>
+    <sys:String x:Key="UserInfoEdit_Cancel">取消</sys:String>
+    <sys:String x:Key="UserInfoEdit_EditedTip">您已做出修改，是否保存？</sys:String>
+    <sys:String x:Key="UserInfoEdit_CountryTip">国家</sys:String>
+    <sys:String x:Key="UserInfoEdit_ProvinceTip">省</sys:String>
+    <sys:String x:Key="UserInfoEdit_CityTip">市</sys:String>
+    <sys:String x:Key="UserInfoEdit_AdminTip">区县</sys:String>
+    <sys:String x:Key="UserInfoEdit_ManTip">男</sys:String>
+    <sys:String x:Key="UserInfoEdit_WomanTip">女</sys:String>
+    <sys:String x:Key="UserInfoEdit_EditError">信息修改失败</sys:String>
+    <sys:String x:Key="UserInfoEdit_EditSuccess">信息修改成功</sys:String>
+
+    <!--十二星座-->
+    <sys:String x:Key="Constellation_Aries">白羊座</sys:String>
+    <sys:String x:Key="Constellation_Taurus">金牛座</sys:String>
+    <sys:String x:Key="Constellation_Gemini">双子座</sys:String>
+    <sys:String x:Key="Constellation_Cancer">巨蟹座</sys:String>
+    <sys:String x:Key="Constellation_Leo">狮子座</sys:String>
+    <sys:String x:Key="Constellation_Virgo">处女座</sys:String>
+    <sys:String x:Key="Constellation_Libra">天秤座</sys:String>
+    <sys:String x:Key="Constellation_Scorpio">天蝎座</sys:String>
+    <sys:String x:Key="Constellation_Sagittarius">射手座</sys:String>
+    <sys:String x:Key="Constellation_Capricorn">摩羯座</sys:String>
+    <sys:String x:Key="Constellation_Aquarius">水瓶座</sys:String>
+    <sys:String x:Key="Constellation_Pisces">双鱼座</sys:String>
 
     <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">退出当前用户</sys:String>

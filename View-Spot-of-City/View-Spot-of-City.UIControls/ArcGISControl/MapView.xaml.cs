@@ -283,5 +283,10 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
                 }
             });
         }
+
+        private void LocaltionButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

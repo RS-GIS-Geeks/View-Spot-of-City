@@ -7,6 +7,7 @@
              xmlns:viewmodel="clr-namespace:View_Spot_of_City.UIControls.ArcGISControl.ViewModel"
              xmlns:commands="clr-namespace:View_Spot_of_City.UIControls.Command"
              xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -15,9 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="26" />
-            <RowDefinition Height="1" />
-            <RowDefinition Height="26" />
+            <RowDefinition Height="85" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,17 +30,29 @@
                       GeoViewDoubleTapped="mapView_GeoViewDoubleTapped"
                       MouseRightButtonDown="mapView_MouseRightButtonDown"
                       DrawStatusChanged="OnDrawStatusChanged"/>
-        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" >
+        <Border Grid.Row="1" Grid.Column="1" >
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6"  ShadowDepth="2" Opacity="0.3" Direction="-45" />
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="26"/>
+                    <RowDefinition Height="6"/>
+                    <RowDefinition Height="26"/>
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
-                <Button Width="26" Height="26" Grid.Row="0" Click="ZoomInButton_Click" Style="{DynamicResource MaterialDesignToolButton}">
+                <Button Width="26" Height="26" Grid.Row="0" Click="ZoomInButton_Click" Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Center">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Rectangle Fill="White"/>
+                                <iconPacks:PackIconModern Width="26" Height="26" Padding="4" Kind="LocationCheckin" IsHitTestVisible="False" Foreground="DarkRed"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Width="26" Height="26" Grid.Row="2" Click="ZoomInButton_Click" Style="{DynamicResource MaterialDesignToolButton}">
                     <Button.Template>
                         <ControlTemplate>
                             <Grid>
@@ -52,7 +63,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Width="26" Height="26" Grid.Row="2" Click="ZoomOutButton_Click" Style="{DynamicResource MaterialDesignToolButton}">
+                <Button Width="26" Height="26" Grid.Row="5" Click="ZoomOutButton_Click" Style="{DynamicResource MaterialDesignToolButton}">
                     <Button.Template>
                         <ControlTemplate>
                             <Grid>

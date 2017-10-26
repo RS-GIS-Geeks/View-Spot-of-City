@@ -13,7 +13,7 @@
         SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource CustomWindowChromeNoMax}"
-        Title="{DynamicResource LoginTitle}" Closed="loginDlg_Closed" Loaded="loginDlg_Loaded">
+        Title="{DynamicResource LoginTitle}" Closing="loginDlg_Closing" Closed="loginDlg_Closed" Loaded="loginDlg_Loaded">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.OKAndCloseFormCommand}" Executed="OKAndCloseFormCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static uicommands:LoginDlgCommands.CancelAndCloseFormCommand}" Executed="CancelAndCloseFormCommandBinding_Executed"/>
@@ -24,7 +24,8 @@
         <converter:Enum2LoginUI x:Key="login2UIcontrol"/>
     </Window.Resources>-->
     <Grid>
-        <control:Login Visibility="{Binding ElementName=loginDlg, Path=Page, Converter={StaticResource login2UIcontrol},ConverterParameter=0}"/>
+        <Border BorderThickness="0.5" BorderBrush="{DynamicResource PrimaryHueLightBrush}"/>
+        <control:Login x:Name="login" Visibility="{Binding ElementName=loginDlg, Path=Page, Converter={StaticResource login2UIcontrol},ConverterParameter=0}"/>
         <control:Register Visibility="{Binding ElementName=loginDlg, Path=Page, Converter={StaticResource login2UIcontrol},ConverterParameter=1}"/>
     </Grid>
 </Window>

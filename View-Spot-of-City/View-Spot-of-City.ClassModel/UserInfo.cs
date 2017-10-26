@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace View_Spot_of_City.ClassModel
 {
     [DataContract]
-    public class UserInfo : INotifyPropertyChanged
+    public class UserInfo :ICloneable, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -102,6 +103,25 @@ namespace View_Spot_of_City.ClassModel
                 {
                     _DisplayName = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DisplayName"));
+                }
+            }
+        }
+
+        string _Country = string.Empty;
+
+        /// <summary>
+        /// 国家
+        /// </summary>
+        [DataMember]
+        public string Country
+        {
+            get { return _Country; }
+            set
+            {
+                if (_Country != value)
+                {
+                    _Country = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Country"));
                 }
             }
         }
@@ -201,13 +221,13 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        string _Age = string.Empty;
+        short _Age = 0;
 
         /// <summary>
         /// 年龄
         /// </summary>
         [DataMember]
-        public string Age
+        public short Age
         {
             get { return _Age; }
             set
@@ -322,7 +342,7 @@ namespace View_Spot_of_City.ClassModel
         /// </summary>
         public UserInfo()
         {
-            
+
         }
 
         /// <summary>
@@ -335,6 +355,15 @@ namespace View_Spot_of_City.ClassModel
             {
                 _IsEmptyOrNullReplaced = true;
             }
+        }
+
+        /// <summary>
+        /// 深克隆一个实例
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

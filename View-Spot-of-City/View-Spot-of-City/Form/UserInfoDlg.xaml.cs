@@ -90,8 +90,13 @@ namespace View_Spot_of_City.Form
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            EditDlg editDlg = new EditDlg();
-            editDlg.ShowDialog();
+            UserInfoEditDlg editDlg = new UserInfoEditDlg();
+            bool? haveSaved = editDlg.ShowDialog();
+            if (true)
+            {
+                LocationDescription = CurrentApp.CurrentUser.Province + " " + CurrentApp.CurrentUser.City + " " + CurrentApp.CurrentUser.Admin;
+                PersonalInfoDescription = CurrentApp.CurrentUser.Age + " " + CurrentApp.CurrentUser.Gender + " " + CurrentApp.CurrentUser.Constellation;
+            }
         }
 
         /// <summary>

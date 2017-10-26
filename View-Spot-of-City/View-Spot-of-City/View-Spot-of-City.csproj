@@ -119,7 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\EditDlg.xaml">
+    <Page Include="Form\UserInfoEditDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,8 +146,8 @@
     <Compile Include="Converter\Enum2LoginUI.cs" />
     <Compile Include="Converter\Enum2UIControl.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
-    <Compile Include="Form\EditDlg.xaml.cs">
-      <DependentUpon>EditDlg.xaml</DependentUpon>
+    <Compile Include="Form\UserInfoEditDlg.xaml.cs">
+      <DependentUpon>UserInfoEditDlg.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\LicenseDlg.xaml.cs">
       <DependentUpon>LicenseDlg.xaml</DependentUpon>

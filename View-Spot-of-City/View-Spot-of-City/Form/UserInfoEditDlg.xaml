@@ -1,0 +1,133 @@
+﻿<Window x:Class="View_Spot_of_City.Form.UserInfoEditDlg"
+        x:Name="mainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View_Spot_of_City.Form"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="{DynamicResource UserInfoEdit_Title}" Style="{StaticResource CustomWindowChromeNoMaxMin}"
+        Height="auto" Width="auto" MinWidth="200" MaxWidth="400" SizeToContent="WidthAndHeight"
+        Loaded="mainWindow_Loaded" Closing="mainWindow_Closing">
+    <Window.Resources>
+        <converters:Mail2AvatarBruahConverter x:Key="mail2avatarconvert"/>
+        <Style x:Key="UserInfoEdit_Combox" TargetType="ComboBox" BasedOn="{StaticResource NoneBorderComboBoxStyle}">
+            <Style.Setters>
+                <Setter Property="Control.Margin" Value="0,0,5,10"/>
+                <Setter Property="Control.Padding" Value="2"/>
+                <Setter Property="Control.Width" Value="50"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="UserInfoEdit_TextBlock" TargetType="TextBlock" BasedOn="{StaticResource LowLightTextBlock}">
+            <Style.Setters>
+                <Setter Property="Control.Margin" Value="5,0,10,10"/>
+            </Style.Setters>
+        </Style>
+        <Style x:Key="UserInfoEdit_TextBox" TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+            <Style.Setters>
+                <Setter Property="Control.Margin" Value="0,0,5,10"/>
+                <Setter Property="Control.Width" Value="250"/>
+                <Setter Property="Control.Height" Value="20"/>
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0.5" BorderBrush="{DynamicResource PrimaryHueLightBrush}" Grid.Row="0" Grid.RowSpan="2"/>
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Name}"/>
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding CurrentUser_Copy.Name, ElementName=mainWindow, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_DisplayName}"/>
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding CurrentUser_Copy.DisplayName, ElementName=mainWindow, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Gender}"/>
+                <ComboBox Style="{DynamicResource UserInfoEdit_Combox}" material:ComboBoxAssist.ClassicMode="True" SelectedIndex="0" Width="40"
+                          Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Gender, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                          SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">-</ComboBoxItem>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource UserInfoEdit_ManTip}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource UserInfoEdit_WomanTip}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">♂♀</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Age}"/>
+                <ComboBox Style="{DynamicResource UserInfoEdit_Combox}" SelectedIndex="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Age, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                          material:ComboBoxAssist.ClassicMode="True" ItemsSource="{Binding ElementName=mainWindow, Path=AgeSource, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Width="40"
+                          SelectionChanged="ComboBox_SelectionChanged"/>
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Constellation}"/>
+                <ComboBox Style="{DynamicResource UserInfoEdit_Combox}" material:ComboBoxAssist.ClassicMode="True" SelectedIndex="0" Width="70"
+                          Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Constellation, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                          SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Aries}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Taurus}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Gemini}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Cancer}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Leo}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Virgo}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Libra}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Scorpio}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Sagittarius}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Capricorn}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Aquarius}"/>
+                    <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource Constellation_Pisces}"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Hometown}"/>
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Hometown, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Location}"/>
+                <TextBox Style="{DynamicResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Country, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Width="55" ToolTip="{StaticResource UserInfoEdit_CountryTip}"/>
+                <TextBox Style="{DynamicResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Province, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Width="60" ToolTip="{StaticResource UserInfoEdit_ProvinceTip}"/>
+                <TextBox Style="{DynamicResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.City, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Width="60" ToolTip="{StaticResource UserInfoEdit_CityTip}"/>
+                <TextBox Style="{DynamicResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Admin, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Width="60" ToolTip="{StaticResource UserInfoEdit_AdminTip}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Profession}"/>
+                <TextBox Style="{DynamicResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Profession, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Company}"/>
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Company, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_School_Or_University}"/>
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.SchoolOrUniversity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Mail}"/>
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged" IsReadOnly="True"
+                         Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Mail, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="0,0,0,10" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="{DynamicResource UserInfoEdit_Save}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100" Margin="0,0,20,0" 
+                    VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="{Binding HaveEdited, ElementName=mainWindow}" IsHitTestVisible="{Binding HaveEdited, ElementName=mainWindow}" 
+                    Click="SaveButton_ClickAsync"/>
+            <Button Content="{DynamicResource UserInfoEdit_Cancel}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100" Margin="0,0,15,0" 
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

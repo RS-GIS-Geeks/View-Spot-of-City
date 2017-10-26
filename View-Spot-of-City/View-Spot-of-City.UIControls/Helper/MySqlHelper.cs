@@ -26,7 +26,7 @@ namespace View_Spot_of_City.UIControls.Helper
         {
             try
             {
-                string connectStr = "server=" + server +";port="+ port + ";User Id=" +UserInfo+ ";password=" + password + ";Database=" + database;
+                string connectStr = "server=" + server +";port="+ port + ";User Id=" +UserInfo+ ";password=" + password + ";Database=" + database + ";Charset=utf8";
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
                 await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
@@ -62,7 +62,7 @@ namespace View_Spot_of_City.UIControls.Helper
         {
             try
             {
-                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + UserInfo + ";password=" + password + ";Database=" + database;
+                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + UserInfo + ";password=" + password + ";Database=" + database + ";Charset=utf8";
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
                 await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);
@@ -91,7 +91,7 @@ namespace View_Spot_of_City.UIControls.Helper
         {
             try
             {
-                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + UserInfo + ";password=" + password + ";Database=" + database;
+                string connectStr = "server=" + server + ";port=" + port + ";User Id=" + UserInfo + ";password=" + password + ";Database=" + database + ";Charset=utf8";
                 MySqlConnection myConnection = new MySqlConnection(connectStr);
                 await myConnection.OpenAsync();
                 MySqlCommand mycmd = new MySqlCommand(sql_string, myConnection);

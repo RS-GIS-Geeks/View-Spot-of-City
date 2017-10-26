@@ -10,5 +10,6 @@
         <ResourceDictionary Source="SeperatorStyles.xaml" />
         <ResourceDictionary Source="ToggleButtonStyles.xaml" />
         <ResourceDictionary Source="TextBlockStyles.xaml" />
+        <ResourceDictionary Source="TextBoxStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

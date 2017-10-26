@@ -230,7 +230,7 @@
                     <Condition Property="IsMouseOver" Value="true" />
                     <Condition Property="Validation.HasError" Value="false" />
                 </MultiTrigger.Conditions>
-                <!--<Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>-->
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
                 <Setter TargetName="Underline" Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
             </MultiTrigger>
         </ControlTemplate.Triggers>
@@ -245,7 +245,7 @@
         <Setter Property="Template" Value="{StaticResource ModifiedMaterialDesignFloatingHintComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">
-                <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="IsTabStop" Value="true" />
                 <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" />
             </Trigger>
             <Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" >

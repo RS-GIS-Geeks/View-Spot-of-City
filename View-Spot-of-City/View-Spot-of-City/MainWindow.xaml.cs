@@ -275,10 +275,11 @@ namespace View_Spot_of_City
         {
             if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
                 return;
+            string mail = CurrentApp.CurrentUser.Mail;
             (Application.Current as App).CurrentUser = UserInfo.NoBody;
 
             //登录
-            bool? loginDlgResult = (new LoginDlg()).ShowDialog();
+            bool? loginDlgResult = (new LoginDlg(mail)).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
                 //Environment.Exit(0);
                 Application.Current.Shutdown();

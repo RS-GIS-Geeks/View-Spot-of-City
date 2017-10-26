@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.ComponentModel;
+using static System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.Helper;
 using View_Spot_of_City.UIControls.Helper;
@@ -52,7 +53,7 @@ namespace View_Spot_of_City
                 this.Shutdown();
 
             //登录
-            bool? loginDlgResult = (new LoginDlg()).ShowDialog();
+            bool? loginDlgResult = (new LoginDlg(AppSettings["DEFAULT_USER_MAIL"])).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
                 //Environment.Exit(0);
                 this.Shutdown();

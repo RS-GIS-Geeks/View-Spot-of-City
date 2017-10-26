@@ -94,10 +94,10 @@
     <!--用户信息对话框-->
     <sys:String x:Key="UserInfoDlg_ToolTip">Profile</sys:String>
     <sys:String x:Key="UserInfoDlg_Title">Profile</sys:String>
-    <sys:String x:Key="UserInfoDlgEditor_Title">Change your profile</sys:String>
+    <sys:String x:Key="UserInfoDlg_EditTip">Edit profile</sys:String>
     <sys:String x:Key="UserInfo_Name">Name</sys:String>
     <sys:String x:Key="UserInfo_HomePage">HomePage</sys:String>
-    <sys:String x:Key="UserInfo_Mail">Mail</sys:String>
+    <sys:String x:Key="UserInfo_Mail">Email</sys:String>
     <sys:String x:Key="UserInfo_Personal">Personal</sys:String>
     <sys:String x:Key="UserInfo_Profession">Profession</sys:String>
     <sys:String x:Key="UserInfo_Location">Location</sys:String>
@@ -105,6 +105,45 @@
     <sys:String x:Key="UserInfo_School_Or_University">University/School</sys:String>
     <sys:String x:Key="UserInfo_Hometown">Hometown</sys:String>
 
+    <!--更改用户信息对话框-->
+    <sys:String x:Key="UserInfoEdit_Title">Edit profile</sys:String>
+    <sys:String x:Key="UserInfoEdit_DisplayName">Nickname</sys:String>
+    <sys:String x:Key="UserInfoEdit_Name">Name</sys:String>
+    <sys:String x:Key="UserInfoEdit_Gender">Gender</sys:String>
+    <sys:String x:Key="UserInfoEdit_Constellation">Constellation</sys:String>
+    <sys:String x:Key="UserInfoEdit_Age">Age</sys:String>
+    <sys:String x:Key="UserInfoEdit_Hometown">Hometown</sys:String>
+    <sys:String x:Key="UserInfoEdit_Location">Location</sys:String>
+    <sys:String x:Key="UserInfoEdit_Profession">Profession</sys:String>
+    <sys:String x:Key="UserInfoEdit_Company">Company</sys:String>
+    <sys:String x:Key="UserInfoEdit_School_Or_University">University/School</sys:String>
+    <sys:String x:Key="UserInfoEdit_Mail">Email</sys:String>
+    <sys:String x:Key="UserInfoEdit_Save">Save</sys:String>
+    <sys:String x:Key="UserInfoEdit_Cancel">Cancel</sys:String>
+    <sys:String x:Key="UserInfoEdit_EditedTip">Profile have edited, save or not?</sys:String>
+    <sys:String x:Key="UserInfoEdit_CountryTip">Country</sys:String>
+    <sys:String x:Key="UserInfoEdit_ProvinceTip">Province</sys:String>
+    <sys:String x:Key="UserInfoEdit_CityTip">City</sys:String>
+    <sys:String x:Key="UserInfoEdit_AdminTip">County</sys:String>
+    <sys:String x:Key="UserInfoEdit_ManTip">Man</sys:String>
+    <sys:String x:Key="UserInfoEdit_WomanTip">Woman</sys:String>
+    <sys:String x:Key="UserInfoEdit_EditError">We're sorry,an error occured when changing your profile.</sys:String>
+    <sys:String x:Key="UserInfoEdit_EditSuccess">Profile changed</sys:String>
+
+    <!--十二星座-->
+    <sys:String x:Key="Constellation_Aries">Aries</sys:String>
+    <sys:String x:Key="Constellation_Taurus">Taurus</sys:String>
+    <sys:String x:Key="Constellation_Gemini">Gemini</sys:String>
+    <sys:String x:Key="Constellation_Cancer">Cancer</sys:String>
+    <sys:String x:Key="Constellation_Leo">Leo</sys:String>
+    <sys:String x:Key="Constellation_Virgo">Virgo</sys:String>
+    <sys:String x:Key="Constellation_Libra">Libra</sys:String>
+    <sys:String x:Key="Constellation_Scorpio">Scorpio</sys:String>
+    <sys:String x:Key="Constellation_Sagittarius">Sagittarius</sys:String>
+    <sys:String x:Key="Constellation_Capricorn">Capricorn</sys:String>
+    <sys:String x:Key="Constellation_Aquarius">Aquarius</sys:String>
+    <sys:String x:Key="Constellation_Pisces">Pisces</sys:String>
+    
     <!--ToolTip-->
     <sys:String x:Key="Logout_ToolTip">Logout</sys:String>
     <sys:String x:Key="Logout_Tip">Are you sure to logout?</sys:String>

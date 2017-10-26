@@ -13,53 +13,80 @@
     <Window.Resources>
         <converters:Mail2AvatarBruahConverter x:Key="mail2avatarconvert"/>
     </Window.Resources>
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Vertical">
-            <Grid Height="auto" Width="auto">
-                <Ellipse Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail, Converter={StaticResource mail2avatarconvert}}" 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0.5" BorderBrush="{DynamicResource PrimaryHueLightBrush}" Grid.Row="0" Grid.RowSpan="3"/>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="3">
+            <StackPanel Orientation="Vertical">
+                <Grid Height="auto" Width="auto" Background="#e3e8ee">
+                    <Ellipse Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail, Converter={StaticResource mail2avatarconvert}}" 
                          Width="100" Height="100" StrokeThickness="1" Cursor="Hand" ToolTip="{DynamicResource LoginIconTooltip}"
                          Margin="0,10,0,10" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Stroke="{StaticResource AccentBaseColorBrush}"/>
-                <!--<Button Content="编辑" Margin="0" Click="EditBtn_Click"/>-->
-            </Grid>
-            <StackPanel Margin="20,0,20,10">
-                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.DisplayName}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <iconPacks:PackIconModern Width="16" Height="16" Margin="10,0,0,10" Kind="LocationCheckin" Foreground="DarkRed"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Margin="5,0,10,10" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.SchoolOrUniversity}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Name}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Name}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Mail}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Personal}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=PersonalInfoDescription}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Profession}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Profession}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Location}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=LocationDescription}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Company}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.Company}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_School_Or_University}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.SchoolOrUniversity}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Hometown}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.Hometown}"/>
+                </Grid>
+                <StackPanel Margin="20,0,20,10">
+                    <TextBlock Style="{StaticResource TitleTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.DisplayName}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <iconPacks:PackIconModern Width="16" Height="16" Margin="10,0,0,10" Kind="LocationCheckin" Foreground="DarkRed" IsHitTestVisible="False"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Margin="5,0,10,10" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.SchoolOrUniversity}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Name}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Name}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Mail}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Personal}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=PersonalInfoDescription}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Profession}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Profession}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Location}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=LocationDescription}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Company}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.Company}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_School_Or_University}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.SchoolOrUniversity}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Hometown}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.Hometown}"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-    </StackPanel>
+        <Button Style="{StaticResource EllipseFlatButtonStyle}" Grid.Row="0" Width="auto" Height="auto" Padding="0" Margin="0,100,10,0" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" Click="EditBtn_Click" ToolTip="{StaticResource UserInfoDlg_EditTip}">
+            <Grid>
+                <Ellipse x:Name="ellipse" Fill="{DynamicResource PrimaryHueLightBrush}" Width="40" Height="40" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Ellipse.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="true">
+                                    <Setter Property="Control.Opacity" Value=".8"/>
+                                    <Setter Property="Control.Background" Value="White"/>
+                                    <Setter Property="Control.Foreground" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <iconPacks:PackIconModern Width="18" Height="18" Margin="0" Kind="Edit" Foreground="White"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False"/>
+            </Grid>
+        </Button>
+    </Grid>
 </Window>

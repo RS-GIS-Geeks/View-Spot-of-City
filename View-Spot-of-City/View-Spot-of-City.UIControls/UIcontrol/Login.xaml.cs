@@ -81,11 +81,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         {
             InitializeComponent();
             Title = GetString("LoginTitle");
-            mailTextBox.Text = AppSettings["DEFAULT_USER_MAIL"];
-
-            //生成初始头像
-            string userInputMail = mailTextBox.Text == string.Empty ? "rsgisgeeks@qq.com" : mailTextBox.Text;
-            userImgBox.Fill = new ImageBrush(AvatarHelper.GetAvatarByEmail(userInputMail));
 
             //生成验证码
             validateCode = CreatFourRandomChar();
@@ -207,6 +202,17 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             }
             Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// 设置默认邮箱
+        /// </summary>
+        /// <param name="defaultMail"></param>
+        public void SetDefautMail(string defaultMail)
+        {
+            mailTextBox.Text = defaultMail;
+            string userInputMail = mailTextBox.Text == string.Empty ? "rsgisgeeks@qq.com" : mailTextBox.Text;
+            userImgBox.Fill = new ImageBrush(AvatarHelper.GetAvatarByEmail(userInputMail));
         }
     }
 }
