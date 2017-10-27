@@ -127,6 +127,7 @@
     <Compile Include="Helper\GisgraphyHelper.cs" />
     <Compile Include="Helper\GraphHooperHelper.cs" />
     <Compile Include="Helper\IconDictionaryHelper.cs" />
+    <Compile Include="Helper\RoutingHelper.cs" />
     <Compile Include="Helper\SpeechRecognition.cs" />
     <Compile Include="Helper\ValidateCodeHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />

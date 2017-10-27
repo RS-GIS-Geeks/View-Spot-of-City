@@ -566,6 +566,8 @@ namespace GMap.NET.MapProviders
         public static readonly string xmlFormatForCartesianToLatLng = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><wps:Execute version=\"1.0.0\" service=\"WPS\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.opengis.net/wps/1.0.0\" xmlns:wfs=\"http://www.opengis.net/wfs\" xmlns:wps=\"http://www.opengis.net/wps/1.0.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:gml=\"http://www.opengis.net/gml\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:wcs=\"http://www.opengis.net/wcs/1.1.1\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xsi:schemaLocation=\"http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd\">\r\n  <ows:Identifier>geo:reproject</ows:Identifier>\r\n  <wps:DataInputs>\r\n    <wps:Input>\r\n      <ows:Identifier>geometry</ows:Identifier>\r\n      <wps:Data>\r\n        <wps:ComplexData mimeType=\"text/xml; subtype=gml/3.1.1\"><![CDATA[{0}({1})]]></wps:ComplexData>\r\n      </wps:Data>\r\n    </wps:Input>\r\n    <wps:Input>\r\n      <ows:Identifier>sourceCRS</ows:Identifier>\r\n      <wps:Data>\r\n        <wps:LiteralData>EPSG:900913</wps:LiteralData>\r\n      </wps:Data>\r\n    </wps:Input>\r\n    <wps:Input>\r\n      <ows:Identifier>targetCRS</ows:Identifier>\r\n      <wps:Data>\r\n        <wps:LiteralData>EPSG:4326</wps:LiteralData>\r\n      </wps:Data>\r\n    </wps:Input>\r\n  </wps:DataInputs>\r\n  <wps:ResponseForm>\r\n    <wps:RawDataOutput mimeType=\"text/xml; subtype=gml/3.1.1\">\r\n      <ows:Identifier>result</ows:Identifier>\r\n    </wps:RawDataOutput>\r\n  </wps:ResponseForm>\r\n</wps:Execute>";
 
         public static readonly string xmlFormatForGetBufferCircle = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><wps:Execute version=\"1.0.0\" service=\"WPS\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.opengis.net/wps/1.0.0\" xmlns:wfs=\"http://www.opengis.net/wfs\" xmlns:wps=\"http://www.opengis.net/wps/1.0.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:gml=\"http://www.opengis.net/gml\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:wcs=\"http://www.opengis.net/wcs/1.1.1\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xsi:schemaLocation=\"http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd\">\r\n  <ows:Identifier>JTS:buffer</ows:Identifier>\r\n  <wps:DataInputs>\r\n    <wps:Input>\r\n      <ows:Identifier>geom</ows:Identifier>\r\n      <wps:Data>\r\n        <wps:ComplexData mimeType=\"text/xml; subtype=gml/3.1.1\"><![CDATA[point({0})]]></wps:ComplexData>\r\n      </wps:Data>\r\n    </wps:Input>\r\n    <wps:Input>\r\n      <ows:Identifier>distance</ows:Identifier>\r\n      <wps:Data>\r\n        <wps:LiteralData>{1}</wps:LiteralData>\r\n      </wps:Data>\r\n    </wps:Input>\r\n  </wps:DataInputs>\r\n  <wps:ResponseForm>\r\n    <wps:RawDataOutput mimeType=\"text/xml; subtype=gml/3.1.1\">\r\n      <ows:Identifier>result</ows:Identifier>\r\n    </wps:RawDataOutput>\r\n  </wps:ResponseForm>\r\n</wps:Execute>";
+        
+        public static readonly string shortestPathUrl = Config.AppSettings["ShortestPathServerApi"] + "shortpath";
         #endregion
 
         string MakeTileImageUrl(GPoint pos, int zoom, string language)
@@ -593,6 +595,60 @@ namespace GMap.NET.MapProviders
             request.AddHeader("cache-control", "no-cache");
             request.AddParameter("undefined", strPostdata, ParameterType.RequestBody);
             return client.ExecutePostTaskAsync(request);
+        }
+        
+        /// <summary>
+        /// 通过访问服务获得两点间的最短路径
+        /// </summary>
+        /// <param name="startPll">起点</param>
+        /// <param name="endPll">终点</param>
+        /// <returns>路径的结点和节点组成的链表</returns>
+        public async Task<List<PointLatLng>> GetShortestRouteAsync(PointLatLng startPll, PointLatLng endPll)
+        {
+            try
+            {
+                string requestUrl = shortestPathUrl + "?x1=" + startPll.Lng + "&y1=" + startPll.Lat + "&x2=" + endPll.Lng + "&y2=" + endPll.Lat;
+
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(requestUrl);
+
+                httpWebRequest.ContentType = "application/xml";
+                httpWebRequest.Method = "GET";
+                //对发送的数据不使用缓存
+                httpWebRequest.AllowWriteStreamBuffering = false;
+                httpWebRequest.Timeout = 300000;
+                httpWebRequest.ServicePoint.Expect100Continue = false;
+
+                HttpWebResponse webRespon = (HttpWebResponse)(await httpWebRequest.GetResponseAsync());
+                Stream webStream = webRespon.GetResponseStream();
+                StreamReader streamReader = new StreamReader(webStream, Encoding.UTF8);
+                string responseContent = streamReader.ReadToEnd();
+
+                webRespon.Close();
+                streamReader.Close();
+                List<PointLatLng> pllList = new List<PointLatLng>();
+                {
+                    XmlDataDocument xmlDataDoc = new XmlDataDocument();
+                    xmlDataDoc.LoadXml(responseContent);
+                    XmlNode root = xmlDataDoc.SelectSingleNode("Route");
+                    XmlNodeList childlist = root.ChildNodes;
+                    string cost = childlist[0].InnerText;
+                    XmlNodeList pointsList = childlist[1].ChildNodes;
+                    PointLatLng tempPoint = new PointLatLng();
+                    foreach (XmlNode pointNode in pointsList)
+                    {
+                        tempPoint.Lng = Convert.ToDouble(pointNode.SelectSingleNode("x").InnerText);
+                        tempPoint.Lat = Convert.ToDouble(pointNode.SelectSingleNode("y").InnerText);
+                        pllList.Add(tempPoint);
+                    }
+                }
+                networkState = true;
+                return pllList;
+            }
+            catch (Exception ex)
+            {
+                networkState = false;
+                return new List<PointLatLng>();
+            }
         }
         #endregion
         /***********************************************************************************************************************************************************/

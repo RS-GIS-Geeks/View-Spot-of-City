@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static System.Configuration.ConfigurationManager;
 
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Tasks.NetworkAnalysis;
-
-using View_Spot_of_City.UIControls.Helper;
 
 namespace View_Spot_of_City.UIControls.Helper
 {
