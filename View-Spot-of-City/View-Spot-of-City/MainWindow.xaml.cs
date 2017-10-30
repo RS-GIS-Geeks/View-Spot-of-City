@@ -342,5 +342,14 @@ namespace View_Spot_of_City
             ViewSpot data = param["Data"] as ViewSpot;
             ArcGISMapView.AddIconToGraphicsOverlay(graphicsOverlay, location, iconUri, width, height, offsetX, offsetY, data);
         }
+
+        /// <summary>
+        /// 点击地图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TapOnMapCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+        }
     }
 }

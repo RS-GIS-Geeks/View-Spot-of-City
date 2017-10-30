@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
+                    xmlns:local="clr-namespace:View_Spot_of_City.UIControls.DataTemplate">
+
+    <DataTemplate x:Key="ViewSpotListItemTemplate" >
+        <DataTemplate.Resources>
+            <converters:ViewSpotCostConverter x:Key="costconverter"/>
+        </DataTemplate.Resources>
+        <StackPanel HorizontalAlignment="Stretch">
+            <TextBlock FontSize="14" Text="{Binding name}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+            <StackPanel Orientation="Horizontal">
+                <material:RatingBar Value="{Binding biz_ext_rating}" Margin="0,5,5,0" IsHitTestVisible="False"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" FontSize="12" Text="{Binding biz_ext_cost, Converter={StaticResource costconverter}}" HorizontalAlignment="Left" Margin="0,5,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

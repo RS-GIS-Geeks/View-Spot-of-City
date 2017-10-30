@@ -60,6 +60,7 @@
     <sys:String x:Key="SpotSearchHist">Search</sys:String>
     <sys:String x:Key="SpotSearch_Error">Error occurs in searching</sys:String>
     <sys:String x:Key="SpotSearch_Null">No results searched</sys:String>
+    <sys:String x:Key="SpotSearch_Cost">Cost</sys:String>
 
     <!--景点显示-->
     <sys:String x:Key="ShowSpot_Name">Name：</sys:String>

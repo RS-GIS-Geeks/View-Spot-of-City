@@ -14,9 +14,15 @@ namespace View_Spot_of_City.UIControls.Command
         /// </summary>
         public static RoutedCommand ShowFeatureOnMap { get; set; }
 
+        /// <summary>
+        /// 点击地图命令
+        /// </summary>
+        public static RoutedCommand TapOnMap { get; set; }
+
         static ArcGISMapCommands()
         {
             ShowFeatureOnMap = new RoutedCommand();
+            TapOnMap = new RoutedCommand();
         }
     }
 }

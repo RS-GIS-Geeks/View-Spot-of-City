@@ -23,6 +23,11 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
     /// </summary>
     public partial class MapView : UserControl
     {
+        /// <summary>
+        /// 地球半径
+        /// </summary>
+        private const double EARTH_RADIUS = 6378137;
+
         private GraphicsOverlay _PointOverlay = new GraphicsOverlay();
         /// <summary>
         /// 点图层
@@ -72,6 +77,9 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         private List<MapPoint> polygonVertexes = new List<MapPoint>();
 
+        /// <summary>
+        /// 图形对应属性
+        /// </summary>
         private Dictionary<Graphic, object> _GraphicsAttributes = new Dictionary<Graphic, object>();
 
         /// <summary>
@@ -83,6 +91,9 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             set { _GraphicsAttributes = value; }
         }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MapView()
         {
             InitializeComponent();
@@ -107,7 +118,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <summary>
         /// 重置地图状态
         /// </summary>
-        private void ResetMapViewStatus()
+        public void ResetMapViewStatus()
         {
             //清除站点
             routeStops.Clear();
@@ -127,11 +138,13 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void mapView_GeoViewTappedAsync(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        public async void mapView_GeoViewTappedAsync(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             MapPoint mapLocation = e.Location;
             Esri.ArcGISRuntime.Geometry.Geometry myGeometry = GeometryEngine.Project(mapLocation, SpatialReferences.Wgs84);
             MapPoint projectedLocation = myGeometry as MapPoint;
+
+            routeStops.Add(projectedLocation);
 
             double tolerance = 0;
             int maximumResults = 1;
@@ -169,8 +182,8 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         {
             if (routeStops == null || routeStops.Count <= 1)
                 return;
-            //AddRouteToGraphicsOverlay(LineOverlay, routeStops, SimpleLineSymbolStyle.Solid, Colors.Blue, 8);
-            AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
+            AddNavigateRouteToGraphicsOverlay(LineOverlay, routeStops, SimpleLineSymbolStyle.Dash, Colors.Blue, 3);
+            //AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
             e.Handled = true;
         }
 
@@ -263,12 +276,46 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             Graphic polygonGraphic = new Graphic(polygon, polygonSymbol);
             overlay.Graphics.Add(polygonGraphic);
         }
+
+        /// <summary>
+        /// 添加导航路线并返回路线长度
+        /// </summary>
+        /// <param name="overlay">图层实例</param>
+        /// <param name="stops">站点</param>
+        /// <param name="lineStyle">线的呈现样式</param>
+        /// <param name="lineColor">颜色</param>
+        /// <param name="lineWidth">线宽</param>
+        /// <returns>路径长度，站点数小于2时返回-1</returns>
+        public double AddNavigateRouteToGraphicsOverlay(GraphicsOverlay overlay, List<MapPoint> stops, SimpleLineSymbolStyle lineStyle, Color lineColor, double lineWidth)
+        {
+            if (stops.Count <= 1)
+                return -1;
+            AddRouteToGraphicsOverlay(overlay, stops, lineStyle, lineColor, lineWidth);
+            AddIconToGraphicsOverlay(overlay, stops[0], IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.start], 16, 24, 0.0, 9.5);
+            AddIconToGraphicsOverlay(overlay, stops[stops.Count - 1], IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.end], 16, 24, 0.0, 9.5);
+            double distance = 0;
+            for (int i=1;i<stops.Count - 1;i++)
+            {
+                distance += GetDistance(stops[i - 1].Y, stops[i - 1].X, stops[i].Y, stops[i].X);
+            }
+            return distance;
+        }
         
+        /// <summary>
+        /// 右键按下响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mapView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ResetMapViewStatus();
         }
 
+        /// <summary>
+        /// 地图状态改变响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnDrawStatusChanged(object sender, DrawStatusChangedEventArgs e)
         {
             Dispatcher.Invoke(delegate ()
@@ -284,9 +331,93 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             });
         }
 
+        /// <summary>
+        /// 定位按钮响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LocaltionButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        #region Calculate
+        /// <summary>
+        /// 经纬度转化成弧度
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        private double Rad(double d)
+        {
+            return d * Math.PI / 180d;
+        }
+
+        /// <summary>
+        /// 计算两点位置的距离，返回两点的距离，单位 米
+        /// 该公式为GOOGLE提供，误差小于0.2米
+        /// </summary>
+        /// <param name="lat1">第一点纬度</param>
+        /// <param name="lng1">第一点经度</param>
+        /// <param name="lat2">第二点纬度</param>
+        /// <param name="lng2">第二点经度</param>
+        /// <returns></returns>
+        private double GetDistance(double lat1, double lng1, double lat2, double lng2)
+        {
+            double radLat1 = Rad(lat1);
+            double radLng1 = Rad(lng1);
+            double radLat2 = Rad(lat2);
+            double radLng2 = Rad(lng2);
+            double a = radLat1 - radLat2;
+            double b = radLng1 - radLng2;
+            double result = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) + Math.Cos(radLat1) * Math.Cos(radLat2) * Math.Pow(Math.Sin(b / 2), 2))) * EARTH_RADIUS;
+            return result;
+        }
+
+        /// <summary>
+        /// Calculate area of a polygon by it's latitute and longitude
+        /// </summary>
+        /// <param name="coordinates"></param>
+        /// <returns></returns>
+        public double CalculatePolygonArea(List<MapPoint> coordinates)
+        {
+            List<MapPoint> xyList = new List<MapPoint>();
+            for (int i = 0; i < coordinates.Count; i++)
+            {
+                xyList.Add(new MapPoint(coordinates[i].X, coordinates[i].Y));
+            }
+
+            double area = 0;
+            if (xyList.Count > 2)
+            {
+                for (var i = 0; i < xyList.Count - 1; i++)
+                {
+                    MapPoint p1, p2;
+                    p1 = xyList[i];
+                    p2 = xyList[i + 1];
+                    area += Rad(p2.X - p1.X) * (2 + Math.Sin(Rad(p1.Y)) + Math.Sin(Rad(p2.Y)));
+                }
+                area = area * Rad(EARTH_RADIUS) * Rad(EARTH_RADIUS) / 2.0;
+            }
+
+            return Math.Abs(area);
+        }
+
+        /// <summary>
+        /// Get the center point of points
+        /// </summary>
+        /// <param name="points">points</param>
+        /// <returns></returns>
+        private MapPoint GetCenterLatLng(List<MapPoint> points)
+        {
+            double sumLat = 0;
+            double sumLng = 0;
+            foreach (MapPoint point in points)
+            {
+                sumLat += point.Y;
+                sumLng += point.X;
+            }
+            return new MapPoint(sumLng / points.Count, sumLat / points.Count);
+        }
+        #endregion
     }
 }

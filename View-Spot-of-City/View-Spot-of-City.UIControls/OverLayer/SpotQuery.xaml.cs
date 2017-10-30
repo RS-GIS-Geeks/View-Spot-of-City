@@ -1,40 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Configuration.ConfigurationManager;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.ComponentModel;
+using static System.Configuration.ConfigurationManager;
+
+using Esri.ArcGISRuntime.Geometry;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using View_Spot_of_City.ClassModel;
-using View_Spot_of_City.ClassModel.Interface;
 using View_Spot_of_City.UIControls.Command;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.Language.Language;
-using Esri.ArcGISRuntime.Geometry;
-using View_Spot_of_City.UIControls.UIcontrol;
+using System.Collections.ObjectModel;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
     /// <summary>
     /// SpotQuery.xaml 的交互逻辑
     /// </summary>
-    public partial class SpotQuery : UserControl
+    public partial class SpotQuery : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        Visibility _PanelVisibility = Visibility.Hidden;
+        
+        /// <summary>
+        /// 面板可见性
+        /// </summary>
+        public Visibility PanelVisibility
+        {
+            get { return _PanelVisibility; }
+            set
+            {
+                _PanelVisibility = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PanelVisibility"));
+            }
+        }
+
+        ObservableCollection<ViewSpot> _ViewSpotList = new ObservableCollection<ViewSpot>();
+
+        /// <summary>
+        /// 查询到的景点列表
+        /// </summary>
+        public ObservableCollection<ViewSpot> ViewSpotList
+        {
+            get { return _ViewSpotList; }
+            set
+            {
+                _ViewSpotList = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ViewSpotList"));
+            }
+        }
+
+        ViewSpot _DetailShowItem = null;
+
+        /// <summary>
+        /// 选中的内容
+        /// </summary>
+        public ViewSpot DetailShowItem
+        {
+            get { return _DetailShowItem; }
+            set
+            {
+                _DetailShowItem = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DetailShowItem"));
+            }
+        }
+
         public SpotQuery()
         {
             InitializeComponent();
@@ -144,6 +183,15 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 return;
             }
 
+            //检查数据
+            for(int i=0;i< viewSpotList.Count;i++)
+            {
+                viewSpotList[i].CheckData();
+            }
+
+            ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
+            PanelVisibility = Visibility.Visible;
+
             foreach(ViewSpot viewSpot in viewSpotList)
             {
                 MapPoint gcjpoint = new MapPoint(viewSpot.lng, viewSpot.lat);
@@ -161,9 +209,46 @@ namespace View_Spot_of_City.UIControls.OverLayer
                     { "OffsetY", 9.5 },
                     { "Data", viewSpot }
                 };
-
+                
                 ArcGISMapCommands.ShowFeatureOnMap.Execute(commandParams, this);
             }
+        }
+
+        private void DataItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DetailShowItem == null)
+                return;
+            
+        }
+
+        private void DataItemListView_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
+        }
+
+        private void HeadPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RearPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataItemListView_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

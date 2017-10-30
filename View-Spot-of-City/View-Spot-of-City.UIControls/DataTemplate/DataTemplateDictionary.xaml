@@ -4,5 +4,6 @@
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MainNavBarDataTemplate.xaml" />
+        <ResourceDictionary Source="ViewSpotListItemTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

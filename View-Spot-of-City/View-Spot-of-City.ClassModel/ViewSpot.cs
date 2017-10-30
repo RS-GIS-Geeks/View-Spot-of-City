@@ -217,5 +217,18 @@ namespace View_Spot_of_City.ClassModel
         {
             return lat;
         }
+
+        /// <summary>
+        /// 检查数据是否合理，如果不合理则改正
+        /// </summary>
+        public void CheckData()
+        {
+            photourl1 = photourl1 == "-1" ? "http://store.is.autonavi.com/showpic/91b0ec91244053f681abe1afc874f2a1" : photourl1;
+            photourl2 = photourl2 == "-1" ? "http://store.is.autonavi.com/showpic/91b0ec91244053f681abe1afc874f2a1" : photourl2;
+            photourl3 = photourl3 == "-1" ? "http://store.is.autonavi.com/showpic/91b0ec91244053f681abe1afc874f2a1" : photourl3;
+            biz_ext_rating = biz_ext_rating == -1 ? 0 : biz_ext_rating;
+            biz_ext_cost = biz_ext_cost == -1 ? 0 : biz_ext_cost;
+            telephone = telephone == "-1" ? " - " : telephone;
+        }
     }
 }
