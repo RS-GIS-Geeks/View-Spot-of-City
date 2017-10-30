@@ -344,12 +344,14 @@ namespace View_Spot_of_City
         }
 
         /// <summary>
-        /// 点击地图
+        /// 设置地图显示
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TapOnMapCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void SetScaleAndLocationCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            ViewSpot data = e.Parameter as ViewSpot;
+            ArcGISMapView.SetScaleAndLoction(new MapPoint(data.GetLng(), data.GetLat(), SpatialReferences.Wgs84), 10000);
         }
     }
 }

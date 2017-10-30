@@ -10,9 +10,10 @@
         </DataTemplate.Resources>
         <StackPanel HorizontalAlignment="Stretch">
             <TextBlock FontSize="14" Text="{Binding name}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-            <StackPanel Orientation="Horizontal">
-                <material:RatingBar Value="{Binding biz_ext_rating}" Margin="0,5,5,0" IsHitTestVisible="False"/>
-                <TextBlock Grid.Row="2" Grid.Column="2" FontSize="12" Text="{Binding biz_ext_cost, Converter={StaticResource costconverter}}" HorizontalAlignment="Left" Margin="0,5,0,0"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <material:RatingBar Value="{Binding biz_ext_rating}" Margin="0,5,5,0" IsHitTestVisible="False" Foreground="DarkGoldenrod"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" FontSize="12" Text="{Binding biz_ext_cost, Converter={StaticResource costconverter}}" 
+                           HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Center"/>
             </StackPanel>
         </StackPanel>
     </DataTemplate>

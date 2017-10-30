@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 using static System.Configuration.ConfigurationManager;
 
 using Esri.ArcGISRuntime.Geometry;
@@ -18,7 +19,6 @@ using View_Spot_of_City.UIControls.Command;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.Language.Language;
-using System.Collections.ObjectModel;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -41,6 +41,31 @@ namespace View_Spot_of_City.UIControls.OverLayer
             {
                 _PanelVisibility = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PanelVisibility"));
+            }
+        }
+
+        /// <summary>
+        /// 显示的面板集
+        /// </summary>
+        public enum CurrentPanel : int
+        {
+            List,
+            Detail,
+            Dicuss
+        }
+
+        CurrentPanel _CurrentGrid = CurrentPanel.List;
+
+        /// <summary>
+        /// 当前显示的面板
+        /// </summary>
+        public CurrentPanel CurrentGrid
+        {
+            get { return _CurrentGrid; }
+            set
+            {
+                _CurrentGrid = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentGrid"));
             }
         }
 
@@ -74,9 +99,14 @@ namespace View_Spot_of_City.UIControls.OverLayer
             }
         }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public SpotQuery()
         {
             InitializeComponent();
+            StartPointAddress.Focus();
+            CurrentGrid = CurrentPanel.List;
         }
         
         /// <summary>
@@ -218,7 +248,8 @@ namespace View_Spot_of_City.UIControls.OverLayer
         {
             if (DetailShowItem == null)
                 return;
-            
+            ArcGISMapCommands.SetScaleAndLocation.Execute(DetailShowItem, Application.Current.MainWindow);
+            CurrentGrid = CurrentPanel.Detail;
         }
 
         private void DataItemListView_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
@@ -249,6 +280,18 @@ namespace View_Spot_of_City.UIControls.OverLayer
         private void DataItemListView_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 返回主页按钮响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackToMasterButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentGrid = CurrentPanel.List;
+            DetailShowItem = null;
+            DataItemListView.SelectedIndex = -1;
         }
     }
 }

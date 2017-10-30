@@ -17,12 +17,12 @@ namespace View_Spot_of_City.UIControls.Command
         /// <summary>
         /// 点击地图命令
         /// </summary>
-        public static RoutedCommand TapOnMap { get; set; }
+        public static RoutedCommand SetScaleAndLocation { get; set; }
 
         static ArcGISMapCommands()
         {
             ShowFeatureOnMap = new RoutedCommand();
-            TapOnMap = new RoutedCommand();
+            SetScaleAndLocation = new RoutedCommand();
         }
     }
 }

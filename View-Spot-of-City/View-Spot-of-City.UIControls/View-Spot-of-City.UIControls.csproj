@@ -117,6 +117,7 @@
     <Compile Include="Converter\Mail2AvatarBruahConverter.cs" />
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
     <Compile Include="Converter\MyMessageBoxDefaultButtonConverter.cs" />
+    <Compile Include="Converter\SpotViewPanel2Visibility.cs" />
     <Compile Include="Converter\ViewSpotItemConverters.cs" />
     <Compile Include="Converter\String2Image.cs" />
     <Compile Include="Form\MessageboxMaster.cs" />

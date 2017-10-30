@@ -9,6 +9,9 @@
 			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="250">
+    <UserControl.Resources>
+        <converters:SpotViewPanel2Visibility x:Key="panel2visibility"/>
+    </UserControl.Resources>
     <Grid x:Name="root" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -105,19 +108,29 @@
         <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1" Visibility="{Binding PanelVisibility, ElementName=mainControl}">
             <Grid>
-                <Grid>
+                <Grid Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}">
                     <ListBox x:Name="DataItemListView" Grid.Row="1" SelectionMode="Single"
                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
                          ItemTemplate="{StaticResource ViewSpotListItemTemplate}"
                          ItemContainerStyle="{StaticResource ModifiedMaterialDesignListBoxItem}"
-				         SelectedItem="{Binding Path=DetailShowItem, Mode=OneWayToSource}"
+				         SelectedItem="{Binding Path=DetailShowItem, Mode=OneWayToSource, ElementName=mainControl}"
 				    	 SelectionChanged="DataItemListView_SelectionChanged"
 				    	 HorizontalContentAlignment="Stretch"
 				    	 Loaded="DataItemListView_Loaded" Binding.TargetUpdated="DataItemListView_TargetUpdated"
                          ItemsSource="{Binding ViewSpotList, ElementName=mainControl}"/>
                 </Grid>
-                <Grid>
-                    
+                <Grid Margin="0" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0" Click="BackToMasterButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <material:PackIcon Kind="ChevronLeft" />
+                            <TextBlock Text="{DynamicResource BackToMasterTitle}"/>
+                        </StackPanel>
+                    </Button>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Right" Text="{Binding DetailShowItem.name, ElementName=mainControl}" VerticalAlignment="Center" FontWeight="Bold"/>
                 </Grid>
             </Grid>
         </material:ColorZone>

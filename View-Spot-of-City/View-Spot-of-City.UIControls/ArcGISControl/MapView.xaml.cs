@@ -138,7 +138,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void mapView_GeoViewTappedAsync(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        private async void mapView_GeoViewTappedAsync(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             MapPoint mapLocation = e.Location;
             Esri.ArcGISRuntime.Geometry.Geometry myGeometry = GeometryEngine.Project(mapLocation, SpatialReferences.Wgs84);
@@ -339,6 +339,24 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         private void LocaltionButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 显示回调框
+        /// </summary>
+        public void ShowCallout(MapPoint mapPoint, UIElement uiElement, Point offset)
+        {
+            mapView.ShowCalloutAt(mapPoint, uiElement, offset);
+        }
+
+        /// <summary>
+        /// 设置地图视图
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="scale"></param>
+        public void SetScaleAndLoction(MapPoint point, double scale)
+        {
+            mapView.SetViewpointCenterAsync(point ,scale);
         }
 
         #region Calculate
