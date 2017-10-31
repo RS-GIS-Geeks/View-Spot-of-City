@@ -90,9 +90,9 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             ViewInfo = viewSpotInfo;
             LocationDescribe = ViewInfo.pname + " " + ViewInfo.cityname + " " + ViewInfo.adminname + " " + ViewInfo.address;
-            ImageUrls[0] = ViewInfo.photourl1 == null ? string.Empty : ViewInfo.photourl1;
-            ImageUrls[1] = ViewInfo.photourl2 == null ? string.Empty : ViewInfo.photourl2;
-            ImageUrls[2] = ViewInfo.photourl3 == null ? string.Empty : ViewInfo.photourl3;
+            ImageUrls[0] = ViewInfo.photourl1 ?? string.Empty;
+            ImageUrls[1] = ViewInfo.photourl2 ?? string.Empty;
+            ImageUrls[2] = ViewInfo.photourl3 ?? string.Empty;
             CurrentImageUrl = ImageUrls[CurrentImageIndex];
         }
 

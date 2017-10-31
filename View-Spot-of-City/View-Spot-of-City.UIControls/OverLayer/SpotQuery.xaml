@@ -7,12 +7,18 @@
              xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
              xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
 			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:commands="clr-namespace:View_Spot_of_City.UIControls.Command"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="250">
+             mc:Ignorable="d" Width="auto" Height="auto">
     <UserControl.Resources>
         <converters:SpotViewPanel2Visibility x:Key="panel2visibility"/>
     </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowViewSpotList}" Executed="ShowViewSpotListCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowViewSpotDetail}" Executed="ShowViewSpotDetailCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.BackToMaster}" Executed="BackToMasterCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowDiscuss}" Executed="ShowDiscussCommandBinding_Executed"/>
+    </UserControl.CommandBindings>
     <Grid x:Name="root" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -109,62 +115,8 @@
         <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1" Visibility="{Binding PanelVisibility, ElementName=mainControl}">
             <Grid>
-                <Grid Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}">
-                    <ListBox x:Name="DataItemListView" Grid.Row="1" SelectionMode="Single"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                         ItemTemplate="{StaticResource ViewSpotListItemTemplate}"
-                         ItemContainerStyle="{StaticResource ModifiedMaterialDesignListBoxItem}"
-				         SelectedItem="{Binding Path=DetailShowItem, Mode=OneWayToSource, ElementName=mainControl}"
-				    	 SelectionChanged="DataItemListView_SelectionChanged"
-				    	 HorizontalContentAlignment="Stretch"
-				    	 Loaded="DataItemListView_Loaded" Binding.TargetUpdated="DataItemListView_TargetUpdated"
-                         ItemsSource="{Binding ViewSpotList, ElementName=mainControl}"/>
-                </Grid>
-                <Grid Margin="20" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0" Click="BackToMasterButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <material:PackIcon Kind="ChevronLeft" />
-                            <TextBlock Text="{DynamicResource SpotSearch_BackToMasterTitle}"/>
-                        </StackPanel>
-                    </Button>
-                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Name}"/>
-                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.name, ElementName=mainControl}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Type}"/>
-                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.type, ElementName=mainControl}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Location}"/>
-                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.address, ElementName=mainControl}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Rating}"/>
-                            <material:RatingBar Value="{Binding DetailShowItem.biz_ext_rating,ElementName=mainControl}" Margin="20,0,10,10" IsHitTestVisible="False" 
-                                                Foreground="DarkGoldenrod"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Cost}"/>
-                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.biz_ext_cost, ElementName=mainControl}"/>
-                        </StackPanel>
-                        <Grid Width="auto" Height="auto" Margin="50,0,50,0">
-                            <Border BorderBrush="{DynamicResource PrimaryHueLightBrush}" BorderThickness="1"/>
-                            <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="12" Width="auto" Height="auto"
-                                 Click="ViewDiscussButton_Click">
-                            </Button>
-                        </Grid>
-                    </StackPanel>
-                </Grid>
+                <control:SpotViewerMaster x:Name="ViewMaster" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}"/>
+                <control:SpotViewerDetail x:Name="ViewDetail" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}"/>
             </Grid>
         </material:ColorZone>
     </Grid>

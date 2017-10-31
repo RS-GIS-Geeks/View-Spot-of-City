@@ -19,6 +19,7 @@ using View_Spot_of_City.UIControls.Command;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.Language.Language;
+using System.Windows.Input;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -66,36 +67,6 @@ namespace View_Spot_of_City.UIControls.OverLayer
             {
                 _CurrentGrid = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentGrid"));
-            }
-        }
-
-        ObservableCollection<ViewSpot> _ViewSpotList = new ObservableCollection<ViewSpot>();
-
-        /// <summary>
-        /// 查询到的景点列表
-        /// </summary>
-        public ObservableCollection<ViewSpot> ViewSpotList
-        {
-            get { return _ViewSpotList; }
-            set
-            {
-                _ViewSpotList = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ViewSpotList"));
-            }
-        }
-
-        ViewSpot _DetailShowItem = null;
-
-        /// <summary>
-        /// 选中的内容
-        /// </summary>
-        public ViewSpot DetailShowItem
-        {
-            get { return _DetailShowItem; }
-            set
-            {
-                _DetailShowItem = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DetailShowItem"));
             }
         }
 
@@ -219,7 +190,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 viewSpotList[i].CheckData();
             }
 
-            ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
+            ViewMaster.ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
             CurrentGrid = CurrentPanel.List;
             PanelVisibility = Visibility.Visible;
 
@@ -245,62 +216,29 @@ namespace View_Spot_of_City.UIControls.OverLayer
             }
         }
 
-        private void DataItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ShowViewSpotListCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (DetailShowItem == null)
-                return;
-            ArcGISMapCommands.SetScaleAndLocation.Execute(DetailShowItem, Application.Current.MainWindow);
+
+        }
+
+        private void ShowViewSpotDetailCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewSpot param = e.Parameter as ViewSpot;
+            ViewDetail.DetailShowItem = param;
+            ViewDetail.ImageUrls[0] = ViewDetail.DetailShowItem.photourl1 ?? string.Empty;
+            ViewDetail.ImageUrls[1] = ViewDetail.DetailShowItem.photourl2 ?? string.Empty;
+            ViewDetail.ImageUrls[2] = ViewDetail.DetailShowItem.photourl3 ?? string.Empty;
+            ViewDetail.CurrentImageUrl = ViewDetail.ImageUrls[ViewDetail.CurrentImageIndex];
             CurrentGrid = CurrentPanel.Detail;
         }
 
-        private void DataItemListView_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-
-        }
-
-        private void HeadPage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PreviousPage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void NextPage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RearPage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DataItemListView_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// 返回主页按钮响应
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BackToMasterButton_Click(object sender, RoutedEventArgs e)
+        private void BackToMasterCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CurrentGrid = CurrentPanel.List;
-            DetailShowItem = null;
-            DataItemListView.SelectedIndex = -1;
+            ViewMaster.DataItemListView.SelectedIndex = -1;
         }
 
-        /// <summary>
-        /// 查看评论按钮点击响应
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ViewDiscussButton_Click(object sender, RoutedEventArgs e)
+        private void ShowDiscussCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
 
         }
