@@ -21,7 +21,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
     /// </summary>
     public partial class SpotViewerDisscuss : UserControl
     {
-        ObservableCollection<>
         public SpotViewerDisscuss()
         {
             InitializeComponent();
