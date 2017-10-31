@@ -40,7 +40,7 @@ namespace View_Spot_of_City.ClassModel
         [DataMember]
         public string type
         {
-            get { return _name; }
+            get { return _type; }
             set
             {
                 _type = value;

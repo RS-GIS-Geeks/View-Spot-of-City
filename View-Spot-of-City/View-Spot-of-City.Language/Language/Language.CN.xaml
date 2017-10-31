@@ -60,8 +60,13 @@
     <sys:String x:Key="SpotSearchHist">输入景点</sys:String>
     <sys:String x:Key="SpotSearch_Error">查询出现错误</sys:String>
     <sys:String x:Key="SpotSearch_Null">无查询结果</sys:String>
-    <sys:String x:Key="SpotSearch_Cost">价格</sys:String>
+    <sys:String x:Key="SpotSearch_Cost">门票</sys:String>
     <sys:String x:Key="SpotSearch_BackToMasterTitle">返回列表</sys:String>
+    <sys:String x:Key="SpotSearch_Name">景点名</sys:String>
+    <sys:String x:Key="SpotSearch_Type">类型</sys:String>
+    <sys:String x:Key="SpotSearch_Location">位置</sys:String>
+    <sys:String x:Key="SpotSearch_Rating">评分</sys:String>
+    <sys:String x:Key="SpotSearch_ViewDiscuss">查看评论</sys:String>
 
     <!--景点显示-->
     <sys:String x:Key="ShowSpot_Name">景点：</sys:String>

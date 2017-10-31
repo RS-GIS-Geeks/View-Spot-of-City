@@ -7,6 +7,7 @@
              xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
              xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
 			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="250">
     <UserControl.Resources>
@@ -119,7 +120,11 @@
 				    	 Loaded="DataItemListView_Loaded" Binding.TargetUpdated="DataItemListView_TargetUpdated"
                          ItemsSource="{Binding ViewSpotList, ElementName=mainControl}"/>
                 </Grid>
-                <Grid Margin="0" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}">
+                <Grid Margin="20" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
@@ -127,10 +132,38 @@
                     <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0" Click="BackToMasterButton_Click">
                         <StackPanel Orientation="Horizontal">
                             <material:PackIcon Kind="ChevronLeft" />
-                            <TextBlock Text="{DynamicResource BackToMasterTitle}"/>
+                            <TextBlock Text="{DynamicResource SpotSearch_BackToMasterTitle}"/>
                         </StackPanel>
                     </Button>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Right" Text="{Binding DetailShowItem.name, ElementName=mainControl}" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Name}"/>
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.name, ElementName=mainControl}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Type}"/>
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.type, ElementName=mainControl}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Location}"/>
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.address, ElementName=mainControl}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Rating}"/>
+                            <material:RatingBar Value="{Binding DetailShowItem.biz_ext_rating,ElementName=mainControl}" Margin="20,0,10,10" IsHitTestVisible="False" 
+                                                Foreground="DarkGoldenrod"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Cost}"/>
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.biz_ext_cost, ElementName=mainControl}"/>
+                        </StackPanel>
+                        <Grid Width="auto" Height="auto" Margin="50,0,50,0">
+                            <Border BorderBrush="{DynamicResource PrimaryHueLightBrush}" BorderThickness="1"/>
+                            <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="12" Width="auto" Height="auto"
+                                 Click="ViewDiscussButton_Click">
+                            </Button>
+                        </Grid>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </material:ColorZone>

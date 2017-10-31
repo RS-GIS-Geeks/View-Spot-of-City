@@ -220,6 +220,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
             }
 
             ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
+            CurrentGrid = CurrentPanel.List;
             PanelVisibility = Visibility.Visible;
 
             foreach(ViewSpot viewSpot in viewSpotList)
@@ -292,6 +293,16 @@ namespace View_Spot_of_City.UIControls.OverLayer
             CurrentGrid = CurrentPanel.List;
             DetailShowItem = null;
             DataItemListView.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// 查看评论按钮点击响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewDiscussButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
