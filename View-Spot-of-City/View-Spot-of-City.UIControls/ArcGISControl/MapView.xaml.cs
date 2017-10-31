@@ -68,6 +68,14 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         }
 
         /// <summary>
+        /// 几何要素图层
+        /// </summary>
+        public GraphicsOverlayCollection GraphicsOverlays
+        {
+            get { return mapView.GraphicsOverlays; }
+        }
+
+        /// <summary>
         /// 路径站点
         /// </summary>
         private List<MapPoint> routeStops = new List<MapPoint>();
@@ -105,11 +113,8 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         private void InitializeMapView()
         {
-            Map map = new Map(Basemap.CreateOpenStreetMap())
-            {
-                InitialViewpoint = new Viewpoint(new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]))
-            };
-            mapView.Map = map;
+            mapView.Map = new Map(new Uri(AppSettings["ARCGIS_BASEMAP"]));
+            mapView.SetViewpointCenterAsync(new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]));
             mapView.GraphicsOverlays.Add(PolygonOverlay);
             mapView.GraphicsOverlays.Add(LineOverlay);
             mapView.GraphicsOverlays.Add(PointOverlay);
@@ -357,6 +362,20 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         public void SetScaleAndLoction(MapPoint point, double scale)
         {
             mapView.SetViewpointCenterAsync(point ,scale);
+        }
+
+        /// <summary>
+        /// 清除指定图层的要素
+        /// </summary>
+        /// <param name="overlay"></param>
+        public void ClearFeatureOnGraphicsOverlay(GraphicsOverlay overlay)
+        {
+            foreach(Graphic g in overlay.Graphics)
+            {
+                if (GraphicsAttributes.ContainsKey(g))
+                    GraphicsAttributes.Remove(g);
+            }
+            overlay.Graphics.Clear();
         }
 
         #region Calculate

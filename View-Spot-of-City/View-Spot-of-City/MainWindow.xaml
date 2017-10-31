@@ -24,6 +24,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ShowFeatureOnMap}" Executed="ShowFeatureOnMapCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.SetScaleAndLocation}" Executed="SetScaleAndLocationCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearFeatures}" Executed="ClearFeaturesCommandBinding_Executed"/>
     </Window.CommandBindings>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>

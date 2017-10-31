@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace View_Spot_of_City.ClassModel
 {
+    /// <summary>
+    /// 评论数据
+    /// </summary>
+    [DataContract]
     public class CommentInfo : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,6 +21,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 评论Id
         /// </summary>
+        [DataMember]
         public long Id
         {
             get { return _Id; }
@@ -31,6 +37,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 景点Id
         /// </summary>
+        [DataMember]
         public long SpotId
         {
             get { return _SpotId; }
@@ -41,11 +48,27 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
+        ViewSpot _Spot = ViewSpot.NullViewSpot;
+
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public ViewSpot Spot
+        {
+            get { return _Spot; }
+            set
+            {
+                _Spot = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Spot"));
+            }
+        }
+
         long _UserId = -1;
 
         /// <summary>
         /// 用户Id
         /// </summary>
+        [DataMember]
         public long UserId
         {
             get { return _UserId; }
@@ -61,6 +84,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 用户名
         /// </summary>
+        [DataMember]
         public string UserName
         {
             get { return _UserName; }
@@ -76,6 +100,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 评分
         /// </summary>
+        [DataMember]
         public double Stars
         {
             get { return _Stars; }
@@ -91,6 +116,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 赞
         /// </summary>
+        [DataMember]
         public int Goods
         {
             get { return _Goods; }
@@ -106,6 +132,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 年
         /// </summary>
+        [DataMember]
         public int Year
         {
             get { return _Year; }
@@ -121,6 +148,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 月
         /// </summary>
+        [DataMember]
         public int Month
         {
             get { return _Month; }
@@ -136,6 +164,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 日
         /// </summary>
+        [DataMember]
         public int Day
         {
             get { return _Day; }
@@ -149,8 +178,9 @@ namespace View_Spot_of_City.ClassModel
         int _Hour = -1;
 
         /// <summary>
-        /// 日
+        /// 时
         /// </summary>
+        [DataMember]
         public int Hour
         {
             get { return _Hour; }
@@ -166,6 +196,7 @@ namespace View_Spot_of_City.ClassModel
         /// <summary>
         /// 分
         /// </summary>
+        [DataMember]
         public int Minute
         {
             get { return _Minute; }
@@ -179,8 +210,9 @@ namespace View_Spot_of_City.ClassModel
         int _Second = -1;
 
         /// <summary>
-        /// 日
+        /// 秒
         /// </summary>
+        [DataMember]
         public int Second
         {
             get { return _Second; }
@@ -191,11 +223,28 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
+        string _TimedForShow = string.Empty;
+
+        /// <summary>
+        /// 用于显示的字符串
+        /// </summary>
+        [DataMember]
+        public string TimedForShow
+        {
+            get { return _TimedForShow; }
+            set
+            {
+                _TimedForShow = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TimedForShow"));
+            }
+        }
+
         string _CommentData = string.Empty;
 
         /// <summary>
-        /// 日
+        /// 评论
         /// </summary>
+        [DataMember]
         public string CommentData
         {
             get { return _CommentData; }
@@ -209,8 +258,9 @@ namespace View_Spot_of_City.ClassModel
         string _PhotoUrl1 = string.Empty;
 
         /// <summary>
-        /// 日
+        /// 照片URL
         /// </summary>
+        [DataMember]
         public string PhotoUrl1
         {
             get { return _PhotoUrl1; }
@@ -224,8 +274,9 @@ namespace View_Spot_of_City.ClassModel
         string _PhotoUrl2 = string.Empty;
 
         /// <summary>
-        /// 日
+        /// 照片URL
         /// </summary>
+        [DataMember]
         public string PhotoUrl2
         {
             get { return _PhotoUrl2; }
@@ -239,8 +290,9 @@ namespace View_Spot_of_City.ClassModel
         string _PhotoUrl3 = string.Empty;
 
         /// <summary>
-        /// 日
+        /// 照片URL
         /// </summary>
+        [DataMember]
         public string PhotoUrl3
         {
             get { return _PhotoUrl3; }

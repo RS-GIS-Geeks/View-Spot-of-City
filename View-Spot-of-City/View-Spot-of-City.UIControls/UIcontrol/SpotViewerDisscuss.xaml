@@ -5,12 +5,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <ListBox x:Name="DataItemListView" Grid.Row="1" SelectionMode="Single"
-             ScrollViewer.VerticalScrollBarVisibility="Auto" 
-             ItemTemplate="{StaticResource ViewSpotListItemTemplate}"
-             ItemContainerStyle="{StaticResource ModifiedMaterialDesignListBoxItem}"
-             HorizontalContentAlignment="Stretch"
-             ItemsSource="{Binding DiscussList, ElementName=mainControl}"/>
+             xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Width="auto" Height="auto">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Margin="20,20,0,5" Grid.Row="0" Style="{StaticResource ModifiedFlatButtonStyle}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0"
+                HorizontalAlignment="Left" Click="BackToMasterButton_Click">
+            <StackPanel Orientation="Horizontal">
+                <material:PackIcon Kind="ChevronLeft" />
+                <TextBlock Text="{DynamicResource SpotSearch_BackToMasterTitle}" Padding="0,0,5,0"/>
+            </StackPanel>
+        </Button>
+        <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="DataItemListView" SelectionMode="Single"
+                 ScrollViewer.PanningMode="VerticalOnly"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 ItemTemplate="{StaticResource CommentListItemTemplate}"
+                 ItemContainerStyle="{StaticResource ModifiedMaterialDesignListBoxItem}"
+                 HorizontalContentAlignment="Stretch"
+                 ItemsSource="{Binding CommentList, ElementName=mainControl}"/>
+    </Grid>
 </UserControl>

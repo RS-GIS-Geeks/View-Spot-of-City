@@ -3,17 +3,6 @@
                     xmlns:local="clr-namespace:View_Spot_of_City.UIControls">
 
     <ResourceDictionary.MergedDictionaries>
-        <!--#region 自定义主题-->
-        <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Style/StylesDictionary.xaml" />
-        <!--#endregion-->
-
-        <!--数据模板-->
-        <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/DataTemplate/DataTemplateDictionary.xaml"/>
-
-        <!--#region 主题-->
-        <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Theme/ThemesDictionary.xaml"/>
-        <!--#endregion-->
-        
         <!--#region 色调-->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,6 +20,17 @@
             <SolidColorBrush x:Key="LowLightTextBlockForegrandBrush" Color="#adadad"/>
             <SolidColorBrush x:Key="NormalTextBlockForegrandBrush" Color="#000000"/>
         </ResourceDictionary>
+        <!--#endregion-->
+        
+        <!--#region 自定义主题-->
+        <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Style/StylesDictionary.xaml" />
+        <!--#endregion-->
+
+        <!--数据模板-->
+        <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/DataTemplate/DataTemplateDictionary.xaml"/>
+
+        <!--#region 主题-->
+        <ResourceDictionary Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Theme/ThemesDictionary.xaml"/>
         <!--#endregion-->
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

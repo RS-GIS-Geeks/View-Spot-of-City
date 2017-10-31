@@ -11,7 +11,13 @@ using System.Windows.Threading;
 using System.ComponentModel;
 using Config = System.Configuration.ConfigurationManager;
 
+using Esri.ArcGISRuntime.UI;
+using Esri.ArcGISRuntime.Geometry;
+using View_Spot_of_City.UIControls.UIcontrol;
+using Esri.ArcGISRuntime.Symbology;
+
 using View_Spot_of_City.ViewModel;
+using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Progress;
 using View_Spot_of_City.UIControls.OverLayer;
 using View_Spot_of_City.ClassModel;
@@ -19,9 +25,6 @@ using View_Spot_of_City.Form;
 using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using Esri.ArcGISRuntime.UI;
-using Esri.ArcGISRuntime.Geometry;
-using View_Spot_of_City.UIControls.UIcontrol;
 
 namespace View_Spot_of_City
 {
@@ -157,13 +160,13 @@ namespace View_Spot_of_City
                 "pack://application:,,,/Icon/3D-Glasses.png",
                 "MainNav_MapView",
                 null)
-            { VAlignType = VerticalAlignment.Top, OverlayerIndicator = OverlayerType.SpotQuery }
+            {OverlayerIndicator = OverlayerType.SpotQuery }
             );
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Find.png",
                 "MainNav_SpotQuery",
                 new SpotQuery())
-            { VAlignType = VerticalAlignment.Top, OverlayerIndicator = OverlayerType.SpotQuery }
+            { OverlayerIndicator = OverlayerType.SpotQuery }
             );
             Overlayers.Add(new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Device.png",
@@ -344,14 +347,59 @@ namespace View_Spot_of_City
         }
 
         /// <summary>
-        /// 设置地图显示
+        /// 设置地图显示，并显示地图中心要素
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SetScaleAndLocationCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ViewSpot data = e.Parameter as ViewSpot;
+
+            foreach (Graphic g in ArcGISMapView.PointOverlay.Graphics)
+            {
+                MapPoint point = g.Geometry as MapPoint;
+                //如果经纬度匹配
+                if (point.X == data.GetLng() && point.Y == data.GetLat())
+                {
+                    //更改图标
+                    PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin])
+                    {
+                        Width = 16,
+                        Height = 24,
+                        OffsetX = 0,
+                        OffsetY = 9.5
+                    };
+                    g.Symbol = pictureMarkerSymbol;
+                }
+                else
+                {
+                    //恢复其他已被改变的图标
+                    if((g.Symbol as PictureMarkerSymbol).Uri != IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue])
+                    {
+                        PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue])
+                        {
+                            Width = 16,
+                            Height = 24,
+                            OffsetX = 0,
+                            OffsetY = 9.5
+                        };
+                        g.Symbol = pictureMarkerSymbol;
+                    }
+                }
+            }
+            //改变地图视角
             ArcGISMapView.SetScaleAndLoction(new MapPoint(data.GetLng(), data.GetLat(), SpatialReferences.Wgs84), 10000);
+        }
+
+        /// <summary>
+        /// 清除指定图层的要素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearFeaturesCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter != null)
+                ArcGISMapView.ClearFeatureOnGraphicsOverlay(ArcGISMapView.GraphicsOverlays[(int)e.Parameter]);
         }
     }
 }

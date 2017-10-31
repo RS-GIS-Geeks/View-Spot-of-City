@@ -117,6 +117,7 @@
             <Grid>
                 <control:SpotViewerMaster x:Name="ViewMaster" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}"/>
                 <control:SpotViewerDetail x:Name="ViewDetail" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}"/>
+                <control:SpotViewerDisscuss x:Name="ViewComment" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=2}"/>
             </Grid>
         </material:ColorZone>
     </Grid>

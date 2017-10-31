@@ -7,10 +7,11 @@
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
              xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
-             mc:Ignorable="d">
+             mc:Ignorable="d" MaxWidth="300">
 
     <UserControl.Resources>
         <converters:String2Image x:Key="string2image"/>
+        <converters:ViewSpotCostConverter x:Key="costconverter"/>
     </UserControl.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -24,7 +25,7 @@
         <Button Style="{StaticResource ModifiedFlatButtonStyle}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0" Click="BackToMasterButton_Click">
             <StackPanel Orientation="Horizontal">
                 <material:PackIcon Kind="ChevronLeft" />
-                <TextBlock Text="{DynamicResource SpotSearch_BackToMasterTitle}"/>
+                <TextBlock Text="{DynamicResource SpotSearch_BackToMasterTitle}" Padding="0,0,5,0"/>
             </StackPanel>
         </Button>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
@@ -35,15 +36,15 @@
             <StackPanel Margin="0,15,0,0" Width="auto" Height="auto">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Name}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.name, ElementName=mainControl}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.name, ElementName=mainControl}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Type}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.type, ElementName=mainControl}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.type, ElementName=mainControl}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Location}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.address, ElementName=mainControl}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.address, ElementName=mainControl}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Rating}"/>
@@ -52,10 +53,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Cost}"/>
-                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.biz_ext_cost, ElementName=mainControl}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.biz_ext_cost, ElementName=mainControl, Converter={StaticResource costconverter}}"/>
                 </StackPanel>
-                <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="12" Width="auto" Height="auto"
-                                 Click="ViewDiscussButton_Click" Margin="0" Padding="5"/>
+                <Grid HorizontalAlignment="Center">
+                    <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
+                    <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
+                                 Click="ViewDiscussButton_Click" Margin="2" Padding="5"/>
+                </Grid>
             </StackPanel>
         </StackPanel>
     </Grid>

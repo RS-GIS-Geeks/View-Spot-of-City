@@ -19,10 +19,16 @@ namespace View_Spot_of_City.UIControls.Command
         /// </summary>
         public static RoutedCommand SetScaleAndLocation { get; set; }
 
+        /// <summary>
+        /// 清除要素
+        /// </summary>
+        public static RoutedCommand ClearFeatures { get; set; }
+
         static ArcGISMapCommands()
         {
             ShowFeatureOnMap = new RoutedCommand();
             SetScaleAndLocation = new RoutedCommand();
+            ClearFeatures = new RoutedCommand();
         }
     }
 }

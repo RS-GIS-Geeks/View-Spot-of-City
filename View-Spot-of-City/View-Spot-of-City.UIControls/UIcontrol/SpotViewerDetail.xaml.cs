@@ -89,7 +89,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         /// <param name="e"></param>
         private void ViewDiscussButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DetailShowItem != null)
+                ViewSpotViewerCommands.ShowDiscuss.Execute(DetailShowItem, this);
         }
     }
 }

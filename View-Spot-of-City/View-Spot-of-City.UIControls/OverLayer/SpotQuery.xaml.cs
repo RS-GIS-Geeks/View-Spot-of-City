@@ -52,7 +52,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
         {
             List,
             Detail,
-            Dicuss
+            Comment
         }
 
         CurrentPanel _CurrentGrid = CurrentPanel.List;
@@ -190,10 +190,19 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 viewSpotList[i].CheckData();
             }
 
+            //设置显示数据
             ViewMaster.ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
+
+            //定义当前显示的面板
             CurrentGrid = CurrentPanel.List;
+
+            //设置面板可见
             PanelVisibility = Visibility.Visible;
 
+            //清除点图层要素
+            ArcGISMapCommands.ClearFeatures.Execute(2, this);
+
+            //绘制要素
             foreach(ViewSpot viewSpot in viewSpotList)
             {
                 MapPoint gcjpoint = new MapPoint(viewSpot.lng, viewSpot.lat);
@@ -230,6 +239,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
             ViewDetail.ImageUrls[2] = ViewDetail.DetailShowItem.photourl3 ?? string.Empty;
             ViewDetail.CurrentImageUrl = ViewDetail.ImageUrls[ViewDetail.CurrentImageIndex];
             CurrentGrid = CurrentPanel.Detail;
+
         }
 
         private void BackToMasterCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -240,7 +250,67 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
         private void ShowDiscussCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
+            ViewSpot param = e.Parameter as ViewSpot;
+            ViewComment.CommentList.Clear();
+            ViewComment.CommentList.Add(new CommentInfo()
+            {
+                Id = -1,
+                UserName = "梦觉知晓",
+                Stars = 3.5,
+                Year = 2017,
+                Month = 8,
+                Day = 15,
+                Hour = 21,
+                Minute = 52,
+                Second = 55,
+                Goods = 112,
+                CommentData = "搭11号线去拍写真😄说好的美丽车厢-没有😔真的很远呀，地铁+公交车都需要2小时左右😔凤凰古村跟版画村很像，但人很少，非常安静，这点很不错👍这是南宋民族英雄文天祥后代的聚集地，一个拥有700多年历史的古老村落，有60多座保存完好的明清时期民居建筑。特别适合拍照[机智]",
+                PhotoUrl1 = @"http://qcloud.dpfile.com/pc/XsSvTLEgsXStMMgBoM_lcldddVGgSUqvx8zaPOONmgp8MJdP1Kqdm4-kPdOGmJWT.jpg",
+                PhotoUrl2 = @"http://qcloud.dpfile.com/pc/TFiBogtkRNymXHhB2DZ8BSu9E93rjYGE0Fk82BseaqMGKtZVVy10_IHGzJTdp2vy.jpg",
+                PhotoUrl3 = @"http://qcloud.dpfile.com/pc/QIEywiBIg9miOs44M6p5ZKy2GEd6XMBArSjSBhgSfZrUOBzXhVSeyTHI_TSgvGWZ.jpg",
+                Spot = param,
+                TimedForShow = "2017-8-15"
+            });
+            ViewComment.CommentList.Add(new CommentInfo()
+            {
+                Id = -1,
+                UserName = "梦觉知晓",
+                Stars = 3.5,
+                Year = 2017,
+                Month = 8,
+                Day = 15,
+                Hour = 21,
+                Minute = 52,
+                Second = 55,
+                Goods = 112,
+                CommentData = "搭11号线去拍写真😄说好的美丽车厢-没有😔真的很远呀，地铁+公交车都需要2小时左右😔凤凰古村跟版画村很像，但人很少，非常安静，这点很不错👍这是南宋民族英雄文天祥后代的聚集地，一个拥有700多年历史的古老村落，有60多座保存完好的明清时期民居建筑。特别适合拍照[机智]",
+                PhotoUrl1 = @"http://qcloud.dpfile.com/pc/XsSvTLEgsXStMMgBoM_lcldddVGgSUqvx8zaPOONmgp8MJdP1Kqdm4-kPdOGmJWT.jpg",
+                PhotoUrl2 = @"http://qcloud.dpfile.com/pc/TFiBogtkRNymXHhB2DZ8BSu9E93rjYGE0Fk82BseaqMGKtZVVy10_IHGzJTdp2vy.jpg",
+                PhotoUrl3 = @"http://qcloud.dpfile.com/pc/QIEywiBIg9miOs44M6p5ZKy2GEd6XMBArSjSBhgSfZrUOBzXhVSeyTHI_TSgvGWZ.jpg",
+                Spot = param,
+                TimedForShow = "2017-8-15"
+            });
+            ViewComment.CommentList.Add(new CommentInfo()
+            {
+                Id = -1,
+                UserName = "梦觉知晓",
+                Year = 2017,
+                Stars = 3.5,
+                Month = 8,
+                Day = 15,
+                Hour = 21,
+                Minute = 52,
+                Second = 55,
+                Goods = 112,
+                CommentData = "搭11号线去拍写真😄说好的美丽车厢-没有😔真的很远呀，地铁+公交车都需要2小时左右😔凤凰古村跟版画村很像，但人很少，非常安静，这点很不错👍这是南宋民族英雄文天祥后代的聚集地，一个拥有700多年历史的古老村落，有60多座保存完好的明清时期民居建筑。特别适合拍照[机智]",
+                PhotoUrl1 = @"http://qcloud.dpfile.com/pc/XsSvTLEgsXStMMgBoM_lcldddVGgSUqvx8zaPOONmgp8MJdP1Kqdm4-kPdOGmJWT.jpg",
+                PhotoUrl2 = @"http://qcloud.dpfile.com/pc/TFiBogtkRNymXHhB2DZ8BSu9E93rjYGE0Fk82BseaqMGKtZVVy10_IHGzJTdp2vy.jpg",
+                PhotoUrl3 = @"http://qcloud.dpfile.com/pc/QIEywiBIg9miOs44M6p5ZKy2GEd6XMBArSjSBhgSfZrUOBzXhVSeyTHI_TSgvGWZ.jpg",
+                Spot = param,
+                TimedForShow = "2017-8-15"
+            });
+            CurrentGrid = CurrentPanel.Comment;
+            ViewMaster.DataItemListView.SelectedIndex = -1;
         }
     }
 }

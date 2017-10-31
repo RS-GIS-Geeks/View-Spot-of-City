@@ -119,6 +119,7 @@
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
     <Compile Include="Converter\MyMessageBoxDefaultButtonConverter.cs" />
     <Compile Include="Converter\SpotViewPanel2Visibility.cs" />
+    <Compile Include="Converter\String2ImageForComment.cs" />
     <Compile Include="Converter\ViewSpotItemConverters.cs" />
     <Compile Include="Converter\String2Image.cs" />
     <Compile Include="Form\MessageboxMaster.cs" />
@@ -233,6 +234,10 @@
     <Page Include="ArcGISControl\SceneView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataTemplate\CommentListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplate\DataTemplateDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>

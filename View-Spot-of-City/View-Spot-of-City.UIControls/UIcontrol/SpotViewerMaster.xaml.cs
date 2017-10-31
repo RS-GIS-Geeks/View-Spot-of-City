@@ -66,8 +66,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         {
             if (DetailShowItem != null)
             {
-                ViewSpotViewerCommands.ShowViewSpotDetail.Execute(DetailShowItem, this);
                 ArcGISMapCommands.SetScaleAndLocation.Execute(DetailShowItem, Application.Current.MainWindow);
+                ViewSpotViewerCommands.ShowViewSpotDetail.Execute(DetailShowItem, this);
             }
         }
     }
