@@ -15,11 +15,17 @@ namespace View_Spot_of_City.UIControls.Command
         public static RoutedCommand ChangeCurrentUserCommand { set; get; }
 
         /// <summary>
+        /// 命令转发
+        /// </summary>
+        public static RoutedCommand CommandsFreightStationToOverlayerCommand { set; get; }
+
+        /// <summary>
         /// 静态构造函数
         /// </summary>
         static CommandForMainWindow()
         {
             ChangeCurrentUserCommand = new RoutedCommand();
+            CommandsFreightStationToOverlayerCommand = new RoutedCommand();
         }
     }
 }

@@ -225,11 +225,6 @@ namespace View_Spot_of_City.UIControls.OverLayer
             }
         }
 
-        private void ShowViewSpotListCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
-
         private void ShowViewSpotDetailCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ViewSpot param = e.Parameter as ViewSpot;
@@ -246,6 +241,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
         {
             CurrentGrid = CurrentPanel.List;
             ViewMaster.DataItemListView.SelectedIndex = -1;
+            ArcGISMapCommands.ClearCallout.Execute(null, Application.Current.MainWindow);
         }
 
         private void ShowDiscussCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)

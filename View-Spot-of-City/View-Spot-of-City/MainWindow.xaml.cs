@@ -25,6 +25,7 @@ using View_Spot_of_City.Form;
 using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using View_Spot_of_City.UIControls.Command;
 
 namespace View_Spot_of_City
 {
@@ -51,16 +52,36 @@ namespace View_Spot_of_City
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentApp"));
             }
         }
-
-        /// <summary>
-        /// 覆盖面板组
-        /// </summary>
-        List<OverlayerItemViewModel> _overlayers = new List<OverlayerItemViewModel>();
-
+        
         /// <summary>
         /// 获取覆盖面板组
         /// </summary>
-        List<OverlayerItemViewModel> Overlayers { get { return _overlayers; } }
+        public List<OverlayerItemViewModel> Overlayers { get; internal set; }
+
+        /// <summary>
+        /// 浏览地图面板
+        /// </summary>
+        public OverlayerItemViewModel ViewMapOverLayer { get; internal set; }
+
+        /// <summary>
+        /// 查询景点面板
+        /// </summary>
+        public OverlayerItemViewModel SpotSearchOverLayer { get; internal set; }
+
+        /// <summary>
+        /// 景点推荐面板
+        /// </summary>
+        public OverlayerItemViewModel SpotRecommendOverlay { get; internal set; }
+
+        /// <summary>
+        /// 可视化面板
+        /// </summary>
+        public OverlayerItemViewModel VisualizationOverlay { get; internal set; }
+
+        /// <summary>
+        /// 分享面板
+        /// </summary>
+        public OverlayerItemViewModel ShareOverlay { get; internal set; }
 
         /// <summary>
         /// 圆形启动界面
@@ -156,38 +177,46 @@ namespace View_Spot_of_City
 
             // 添加覆盖层
             // 静态绑定
-            Overlayers.Add(new OverlayerItemViewModel(
+            ViewMapOverLayer = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/3D-Glasses.png",
                 "MainNav_MapView",
                 null)
-            {OverlayerIndicator = OverlayerType.SpotQuery }
-            );
-            Overlayers.Add(new OverlayerItemViewModel(
+            { OverlayerIndicator = OverlayerType.SpotQuery };
+
+            SpotSearchOverLayer = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Find.png",
                 "MainNav_SpotQuery",
                 new SpotQuery())
-            { OverlayerIndicator = OverlayerType.SpotQuery }
-            );
-            Overlayers.Add(new OverlayerItemViewModel(
+            { OverlayerIndicator = OverlayerType.SpotQuery };
+
+            SpotRecommendOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Device.png",
                 "MainNav_SpotRecommend",
                 new OverLayerExample())
-            { OverlayerIndicator = OverlayerType.SpotRecommend }
-            );
-            Overlayers.Add(new OverlayerItemViewModel(
+            { OverlayerIndicator = OverlayerType.SpotRecommend };
+
+            VisualizationOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Horizontal-Align-Left.png",
                 "MainNav_Visualization",
                 new Visualization())
-            { OverlayerIndicator = OverlayerType.Visualization }
-            );
-            Overlayers.Add(new OverlayerItemViewModel(
+            { OverlayerIndicator = OverlayerType.Visualization };
+
+            ShareOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Talk.png",
                 "MainNav_Share",
                 new OverLayerExample())
-            { OverlayerIndicator = OverlayerType.Share }
-            );
-            MainNavBar.ItemsSource = Overlayers;
+            { OverlayerIndicator = OverlayerType.Share };
 
+            Overlayers = new List<OverlayerItemViewModel>(5)
+            {
+                ViewMapOverLayer,
+                SpotSearchOverLayer,
+                SpotRecommendOverlay,
+                VisualizationOverlay,
+                ShareOverlay
+            };
+
+            MainNavBar.ItemsSource = Overlayers;
             MainNavBar.IsEnabled = true;
         }
         
@@ -321,10 +350,13 @@ namespace View_Spot_of_City
             }
 
             //固定字符修改
-            Overlayers.ForEach((x) =>
+            if (Overlayers != null)
             {
-                x.TitleKey = x.TitleKey;
-            });
+                Overlayers.ForEach((x) =>
+                {
+                    x.TitleKey = x.TitleKey;
+                });
+            }
         }
 
         /// <summary>
@@ -401,5 +433,30 @@ namespace View_Spot_of_City
             if (e.Parameter != null)
                 ArcGISMapView.ClearFeatureOnGraphicsOverlay(ArcGISMapView.GraphicsOverlays[(int)e.Parameter]);
         }
+
+        /// <summary>
+        /// 命令转发到覆盖面板命令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CommandsFreightStationToOverlayerCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tuple<object, int> param = e.Parameter as Tuple<object, int>;
+            ViewSpot viewspot = param.Item1 as ViewSpot;
+            int overlayIndex = param.Item2;
+            if (viewspot != null && overlayIndex >= 0 && overlayIndex < 4)
+                ViewSpotViewerCommands.ShowViewSpotDetail.Execute(viewspot, Overlayers[overlayIndex].Content as UserControl);
+        }
+        
+        /// <summary>
+        /// 清除回调框
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearCalloutCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ArcGISMapView.DismissCallout();
+        }
+        
     }
 }

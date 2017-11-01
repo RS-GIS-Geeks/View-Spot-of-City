@@ -14,7 +14,6 @@
         <converters:SpotViewPanel2Visibility x:Key="panel2visibility"/>
     </UserControl.Resources>
     <UserControl.CommandBindings>
-        <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowViewSpotList}" Executed="ShowViewSpotListCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowViewSpotDetail}" Executed="ShowViewSpotDetailCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.BackToMaster}" Executed="BackToMasterCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowDiscuss}" Executed="ShowDiscussCommandBinding_Executed"/>

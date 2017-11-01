@@ -15,6 +15,7 @@ using Esri.ArcGISRuntime.Data;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.UIcontrol;
 using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.UIControls.Command;
 
 namespace View_Spot_of_City.UIControls.ArcGISControl
 {
@@ -161,16 +162,46 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
                 tolerance,
                 onlyReturnPopups,
                 maximumResults);
-            
+
+            foreach (Graphic g in PointOverlay.Graphics)
+            {
+                PictureMarkerSymbol symbol = g.Symbol as PictureMarkerSymbol;
+                if (symbol.Uri != IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue])
+                {
+                    //恢复所有图标
+                    PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue])
+                    {
+                        Width = symbol.Width,
+                        Height = symbol.Height,
+                        OffsetX = symbol.OffsetX,
+                        OffsetY = symbol.OffsetY
+                    };
+                    g.Symbol = pictureMarkerSymbol;
+                }
+            }
+
             if (identifyResults.Graphics.Count > 0)
             {
                 Graphic graphic = identifyResults.Graphics[0];
                 MapPoint mapPoint = graphic.Geometry as MapPoint;
                 PictureMarkerSymbol iconSymbol = graphic.Symbol as PictureMarkerSymbol;
                 double iconHeight = iconSymbol.Height;
+                //改变选中图标
+                PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin])
+                {
+                    Width = iconSymbol.Width,
+                    Height = iconSymbol.Height,
+                    OffsetX = iconSymbol.OffsetX,
+                    OffsetY = iconSymbol.OffsetY
+                };
+                graphic.Symbol = pictureMarkerSymbol;
                 ViewSpot viewInfo = GraphicsAttributes.ContainsKey(graphic) ? (GraphicsAttributes[graphic] as ViewSpot) : null;
                 if(viewInfo != null)
+                {
                     mapView.ShowCalloutAt(mapPoint, new ViewSpotCallout(viewInfo), new Point(0, iconHeight));
+                    Tuple<object, int> param = new Tuple<object, int>(viewInfo, 1);
+                    CommandForMainWindow.CommandsFreightStationToOverlayerCommand.Execute(param, Application.Current.MainWindow);
+                }
             }
             else
             {
@@ -376,6 +407,14 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
                     GraphicsAttributes.Remove(g);
             }
             overlay.Graphics.Clear();
+        }
+
+        /// <summary>
+        /// 清除回调框
+        /// </summary>
+        public void DismissCallout()
+        {
+            mapView.DismissCallout();
         }
 
         #region Calculate

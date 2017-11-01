@@ -22,9 +22,11 @@
         <converter:Mail2AvatarBruahConverter x:Key="mail2avatarbrushconverter"/>
     </Window.Resources>
     <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commands:CommandForMainWindow.CommandsFreightStationToOverlayerCommand}" Executed="CommandsFreightStationToOverlayerCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ShowFeatureOnMap}" Executed="ShowFeatureOnMapCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.SetScaleAndLocation}" Executed="SetScaleAndLocationCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearFeatures}" Executed="ClearFeaturesCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearCallout}" Executed="ClearCalloutCommandBinding_Executed"/>
     </Window.CommandBindings>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>

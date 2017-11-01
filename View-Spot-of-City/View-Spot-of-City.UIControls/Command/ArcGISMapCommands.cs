@@ -24,11 +24,17 @@ namespace View_Spot_of_City.UIControls.Command
         /// </summary>
         public static RoutedCommand ClearFeatures { get; set; }
 
+        /// <summary>
+        /// 清除回调框
+        /// </summary>
+        public static RoutedCommand ClearCallout { get; set; }
+
         static ArcGISMapCommands()
         {
             ShowFeatureOnMap = new RoutedCommand();
             SetScaleAndLocation = new RoutedCommand();
             ClearFeatures = new RoutedCommand();
+            ClearCallout = new RoutedCommand();
         }
     }
 }

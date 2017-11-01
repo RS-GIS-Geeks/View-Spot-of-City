@@ -13,11 +13,6 @@ namespace View_Spot_of_City.UIControls.Command
     public static class ViewSpotViewerCommands
     {
         /// <summary>
-        /// 显示景点列表命令
-        /// </summary>
-        public static RoutedCommand ShowViewSpotList { get; set; }
-
-        /// <summary>
         /// 显示景点信息命令
         /// </summary>
         public static RoutedCommand ShowViewSpotDetail { get; set; }
@@ -34,7 +29,6 @@ namespace View_Spot_of_City.UIControls.Command
 
         static ViewSpotViewerCommands()
         {
-            ShowViewSpotList = new RoutedCommand();
             ShowViewSpotDetail = new RoutedCommand();
             BackToMaster = new RoutedCommand();
             ShowDiscuss = new RoutedCommand();
