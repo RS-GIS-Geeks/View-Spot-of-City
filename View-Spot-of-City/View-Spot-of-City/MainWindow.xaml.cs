@@ -204,7 +204,7 @@ namespace View_Spot_of_City
             ShareOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Talk.png",
                 "MainNav_Share",
-                new OverLayerExample())
+                new Share())
             { OverlayerIndicator = OverlayerType.Share };
 
             Overlayers = new List<OverlayerItemViewModel>(5)
