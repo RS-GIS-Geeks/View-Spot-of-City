@@ -37,10 +37,17 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
         public event PropertyChangedEventHandler PropertyChanged;
 
         ObservableCollection<ViewSpot> _ViewSpotList = new ObservableCollection<ViewSpot>();
-        List<string> ViewType = new List<string>();//统计的景点类型
-                                                   // List<int> Count = new List<int>();//各个类型的数量
 
-       // int[] number;
+        List<string> ViewType = new List<string>();//统计的景点类型
+        List<string> MostViewType = new List<string>();//统计的达到一定数量的景点
+
+        List<int> TypeNumber = new List<int>();//统计的达到一定数量的景点的数量
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] ViewTypestr { get; set; }//统计的景点类型string[]
+        public int[] number { get; set; }//各个景点的统计数量，对应于ViewType的顺序
+
+
+        // int[] number;
         /// <summary>
         /// 景点列表
         /// </summary>
@@ -59,18 +66,10 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
         /// </summary>
         public HistogramOfType()
         {
-            InitializeComponent();
-            SeriesCollection = new SeriesCollection
-             {
-                 new ColumnSeries
-                 {
-                     Title="景点类型统计",
-                     Values=new ChartValues<int>{100,200,300,400,500,600,700,800}
-                 }
-             };
-            // histogram[1].Values.Add(48d);
-            DataContext = this;
+              InitializeComponent();
             GetViewSpotsDataAsync();
+         
+           
         }
 
         /// <summary>
@@ -78,10 +77,21 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
         /// </summary>
         private void ProcessAfterGetData()
         {
-            GetAllType();
-            Subtract();
-            SumNumber();
-            ShowHistogram();
+            GetAllType();//得到所有景点类型
+            Subtract();//删除重复类型
+            SumNumber();//统计各个类型景点数目
+
+            //显示柱状图
+            SeriesCollection = new SeriesCollection
+             {
+                 new ColumnSeries
+                 {
+                     Title="景点类型统计",
+                  Values=new ChartValues<int>(number)
+                 }
+             };
+
+            DataContext = this;
         }
 
         /// <summary>
@@ -161,23 +171,10 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
         /// </summary>
         public void GetAllType()
         {
-           /* ViewType.Add("风景名胜");
-            ViewType.Add("公园广场");
-            ViewType.Add("城市广场");*/
+          
          
            for(int i=0;i<ViewSpotList.Count;i++)
-            {
-
-                //string[] split = ViewSpotList[i].type.Split(new char[] { ';', '|' });
-                //string[] split = ViewSpotList[i]
-                /*int strlen=ViewSpotList[i].type.Length;
-                 string[] str = new string[strlen];
-                 str= ViewSpotList[i].type.Split(new char[] { ';', '|' });
-                 if (!ViewType.Contains(str))
-                 {
-                      ViewType.Add(str);
-                 }
-                 */
+            {    
                 string[] str = ViewSpotList[i].type.Split(new char[] { ';', '|' }).ToArray();
              
                 foreach(var name in str)
@@ -200,7 +197,7 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
         {
             for(int i=0;i<ViewType.Count;i++)
             {
-                if(ViewType[i].Contains("公园"))
+                if(ViewType[i].Contains("公园")|| ViewType[i].Contains("风景名胜相关"))
                 {
                     ViewType.Remove(ViewType[i]);
                     i--;
@@ -208,6 +205,8 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
 
             }
         }
+
+       
 
 
         /// <summary>
@@ -243,30 +242,23 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
                 }
 
             }
-            number = Count;
-            ViewTypestr = ViewType.ToArray();
+            //筛选数目>10的类型
+            for (int i = 0; i < Count.Length; i++)
+            {
+                if (Count[i] > 10)
+                {
+                    MostViewType.Add(ViewType[i]);
+                    TypeNumber.Add(Count[i]);
+
+                }
+            }
+           
+          
+            ViewTypestr = MostViewType.ToArray();
+            number = TypeNumber.ToArray();
         }
        
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] ViewTypestr { get; set; }//统计的景点类型string[]
-        public int[] number { get; set; }//各个景点的统计数量，对应于ViewType的顺序
-
-        /// <summary>
-        /// 显示柱状图
-        /// </summary>
-        public void ShowHistogram()
-        {
-            SeriesCollection  = new SeriesCollection
-             {
-                 new ColumnSeries
-                 {
-                     Title="景点类型统计",
-                     Values=new ChartValues<int>{100,200,300,400,500,600,700,800}
-                 }
-             };
-            // histogram[1].Values.Add(48d);
-             DataContext = this;
-        }
-     
+        
+       
     }
 }
