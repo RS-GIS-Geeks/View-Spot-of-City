@@ -6,12 +6,22 @@
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.VisualizationControl"
 			 xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:ViewType="clr-namespace:ControlzEx;assembly=MaterialDesignThemes.Wpf" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1">
-            <lvc:PieChart x:Name="Histogram"/>
+            <lvc:PieChart />
+            
         </material:ColorZone>
+        <lvc:CartesianChart x:Name="Histogram" Series="{Binding SeriesCollection }" LegendLocation="Left" >
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Type" Labels="{Binding ViewTypestr}"></lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Number" LabelFormatter="{Binding number}"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
     </Grid>
 </UserControl>
