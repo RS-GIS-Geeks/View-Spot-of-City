@@ -20,6 +20,7 @@ using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.Language.Language;
 using System.Windows.Input;
+using View_Spot_of_City.UIControls.VisualizationControl;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -52,7 +53,8 @@ namespace View_Spot_of_City.UIControls.OverLayer
         {
             List,
             Detail,
-            Comment
+            Comment,
+            Statistics
         }
 
         CurrentPanel _CurrentGrid = CurrentPanel.List;
@@ -243,7 +245,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
             ViewMaster.DataItemListView.SelectedIndex = -1;
             ArcGISMapCommands.ClearCallout.Execute(null, Application.Current.MainWindow);
         }
-
+        
         private void ShowDiscussCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ViewSpot param = e.Parameter as ViewSpot;
@@ -305,7 +307,24 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 Spot = param,
                 TimedForShow = "2017-8-15"
             });
+            ViewComment.DetailShowItem = param;
             CurrentGrid = CurrentPanel.Comment;
+            ViewMaster.DataItemListView.SelectedIndex = -1;
+        }
+
+        private void ShowStatisticsCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewSpot param = e.Parameter as ViewSpot;
+            ViewStatistics.ControlList.Clear();
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.ControlList.Add(new GeoHeatMap());
+            ViewStatistics.DetailShowItem = param;
+            CurrentGrid = CurrentPanel.Statistics;
             ViewMaster.DataItemListView.SelectedIndex = -1;
         }
     }

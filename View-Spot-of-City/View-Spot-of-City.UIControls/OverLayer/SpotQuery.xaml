@@ -17,6 +17,7 @@
         <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowViewSpotDetail}" Executed="ShowViewSpotDetailCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.BackToMaster}" Executed="BackToMasterCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowDiscuss}" Executed="ShowDiscussCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ViewSpotViewerCommands.ShowStatistics}" Executed="ShowStatisticsCommandBinding_Executed"/>
     </UserControl.CommandBindings>
     <Grid x:Name="root" Background="Transparent">
         <Grid.RowDefinitions>
@@ -117,6 +118,7 @@
                 <control:SpotViewerMaster x:Name="ViewMaster" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}"/>
                 <control:SpotViewerDetail x:Name="ViewDetail" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}"/>
                 <control:SpotViewerDisscuss x:Name="ViewComment" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=2}"/>
+                <control:SpotViewerStatistics x:Name="ViewStatistics" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=3}"/>
             </Grid>
         </material:ColorZone>
     </Grid>

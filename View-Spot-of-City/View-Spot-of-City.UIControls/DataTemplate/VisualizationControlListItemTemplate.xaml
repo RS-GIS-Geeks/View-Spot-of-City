@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:View_Spot_of_City.UIControls.DataTemplate"
+                    xmlns:visualizationcontrol="clr-namespace:View_Spot_of_City.UIControls.VisualizationControl">
+
+    <DataTemplate x:Key="VisualizationControlListItemTemplate" >
+        <visualizationcontrol:GeoHeatMap Width="250" Height="250"/>
+    </DataTemplate>
+</ResourceDictionary>

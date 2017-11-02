@@ -61,12 +61,14 @@
     <sys:String x:Key="SpotSearch_Error">Error occurs in searching</sys:String>
     <sys:String x:Key="SpotSearch_Null">No results searched</sys:String>
     <sys:String x:Key="SpotSearch_Cost">Cost</sys:String>
-    <sys:String x:Key="SpotSearch_BackToMasterTitle">返回列表</sys:String>
+    <sys:String x:Key="SpotSearch_BackToMasterTitle">Back</sys:String>
+    <sys:String x:Key="SpotSearch_BackToDetailTitle">Back</sys:String>
     <sys:String x:Key="SpotSearch_Name">Name</sys:String>
     <sys:String x:Key="SpotSearch_Type">Type</sys:String>
     <sys:String x:Key="SpotSearch_Location">Location</sys:String>
     <sys:String x:Key="SpotSearch_Rating">Stars</sys:String>
     <sys:String x:Key="SpotSearch_ViewDiscuss">Comments</sys:String>
+    <sys:String x:Key="SpotSearch_ViewStatistics">Statistics</sys:String>
 
     <!--景点显示-->
     <sys:String x:Key="ShowSpot_Name">Name：</sys:String>

@@ -13,7 +13,7 @@
         <converters:String2Image x:Key="string2image"/>
         <converters:ViewSpotCostConverter x:Key="costconverter"/>
     </UserControl.Resources>
-    <Grid Margin="20">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -55,11 +55,18 @@
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Cost}"/>
                     <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.biz_ext_cost, ElementName=mainControl, Converter={StaticResource costconverter}}"/>
                 </StackPanel>
-                <Grid HorizontalAlignment="Center">
-                    <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
-                    <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Grid HorizontalAlignment="Center" Margin="0,0,15,0">
+                        <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
+                        <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
                                  Click="ViewDiscussButton_Click" Margin="2" Padding="5"/>
-                </Grid>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center">
+                        <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
+                        <Button Content="{DynamicResource SpotSearch_ViewStatistics}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
+                                 Click="ViewStatisticsButton_Click" Margin="2" Padding="5"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

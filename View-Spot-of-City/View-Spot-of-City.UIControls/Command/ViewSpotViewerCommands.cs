@@ -27,11 +27,17 @@ namespace View_Spot_of_City.UIControls.Command
         /// </summary>
         public static RoutedCommand ShowDiscuss { get; set; }
 
+        /// <summary>
+        /// 显示统计命令
+        /// </summary>
+        public static RoutedCommand ShowStatistics { get; set; }
+
         static ViewSpotViewerCommands()
         {
             ShowViewSpotDetail = new RoutedCommand();
             BackToMaster = new RoutedCommand();
             ShowDiscuss = new RoutedCommand();
+            ShowStatistics = new RoutedCommand();
         }
     }
 }

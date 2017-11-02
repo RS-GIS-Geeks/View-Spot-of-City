@@ -62,11 +62,13 @@
     <sys:String x:Key="SpotSearch_Null">无查询结果</sys:String>
     <sys:String x:Key="SpotSearch_Cost">门票</sys:String>
     <sys:String x:Key="SpotSearch_BackToMasterTitle">返回列表</sys:String>
+    <sys:String x:Key="SpotSearch_BackToDetailTitle">返回景点详情</sys:String>
     <sys:String x:Key="SpotSearch_Name">景点名</sys:String>
     <sys:String x:Key="SpotSearch_Type">类型</sys:String>
     <sys:String x:Key="SpotSearch_Location">位置</sys:String>
     <sys:String x:Key="SpotSearch_Rating">评分</sys:String>
     <sys:String x:Key="SpotSearch_ViewDiscuss">查看评论</sys:String>
+    <sys:String x:Key="SpotSearch_ViewStatistics">查看统计</sys:String>
 
     <!--景点显示-->
     <sys:String x:Key="ShowSpot_Name">景点：</sys:String>

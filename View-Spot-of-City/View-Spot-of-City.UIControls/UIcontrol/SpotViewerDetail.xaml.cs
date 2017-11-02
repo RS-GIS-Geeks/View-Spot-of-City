@@ -81,7 +81,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             DetailShowItem = null;
             ViewSpotViewerCommands.BackToMaster.Execute(null, this);
         }
-
+        
         /// <summary>
         /// 查看评论按钮点击响应
         /// </summary>
@@ -91,6 +91,17 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         {
             if (DetailShowItem != null)
                 ViewSpotViewerCommands.ShowDiscuss.Execute(DetailShowItem, this);
+        }
+
+        /// <summary>
+        /// 查看统计按钮点击响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewStatisticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DetailShowItem != null)
+                ViewSpotViewerCommands.ShowStatistics.Execute(DetailShowItem, this);
         }
     }
 }

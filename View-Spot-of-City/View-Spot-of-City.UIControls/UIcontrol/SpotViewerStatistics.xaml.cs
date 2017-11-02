@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +14,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Command;
+using View_Spot_of_City.UIControls.VisualizationControl;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
     /// <summary>
-    /// SpotViewerDisscuss.xaml 的交互逻辑
+    /// SpotViewerStatistics.xaml 的交互逻辑
     /// </summary>
-    public partial class SpotViewerDisscuss : UserControl, INotifyPropertyChanged
+    public partial class SpotViewerStatistics : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -42,25 +43,22 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             }
         }
 
-        ObservableCollection<CommentInfo> _CommentList = new ObservableCollection<CommentInfo>();
+        ObservableCollection<VisualizationControlBase> _ControlList = new ObservableCollection<VisualizationControlBase>();
 
         /// <summary>
         /// 评论列表
         /// </summary>
-        public ObservableCollection<CommentInfo> CommentList
+        public ObservableCollection<VisualizationControlBase> ControlList
         {
-            get { return _CommentList; }
+            get { return _ControlList; }
             set
             {
-                _CommentList = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CommentList"));
+                _ControlList = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ControlList"));
             }
         }
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public SpotViewerDisscuss()
+        public SpotViewerStatistics()
         {
             InitializeComponent();
         }
