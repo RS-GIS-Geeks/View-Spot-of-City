@@ -28,13 +28,13 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        string _ViewId = string.Empty;
+        long _ViewId = -1;
 
         /// <summary>
         /// 景点ID
         /// </summary>
         [DataMember]
-        public string ViewId
+        public long ViewId
         {
             get { return _ViewId; }
             set
@@ -47,13 +47,13 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        string _Year = string.Empty;
+        int _Year = 0;
 
         /// <summary>
         /// 年份
         /// </summary>
         [DataMember]
-        public string Year
+        public int Year
         {
             get { return _Year; }
             set
@@ -66,13 +66,13 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        string _Month = string.Empty;
+        int _Month = 0;
 
         /// <summary>
         /// 月份
         /// </summary>
         [DataMember]
-        public string Month
+        public int Month
         {
             get { return _Month; }
             set
@@ -85,13 +85,13 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        string _Day = string.Empty;
+        int _Day = 0;
 
         /// <summary>
         /// 日期
         /// </summary>
         [DataMember]
-        public string Day
+        public int Day
         {
             get { return _Day; }
             set
@@ -104,13 +104,13 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        string _Visitors = string.Empty;
+        int _Visitors = 0;
 
         /// <summary>
         /// 人流量
         /// </summary>
         [DataMember]
-        public string Visitors
+        public int Visitors
         {
             get { return _Visitors; }
             set

@@ -224,6 +224,7 @@
     <Compile Include="VisualizationControl\VisitorsByYear.xaml.cs">
       <DependentUpon>VisitorsByYear.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualizationControl\VisitorSeries.cs" />
     <Compile Include="VisualizationControl\VisualizationControlBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
