@@ -208,6 +208,9 @@
     <Compile Include="UIcontrol\SpotViewerMaster.xaml.cs">
       <DependentUpon>SpotViewerMaster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIcontrol\SpotViewerStatistics.xaml.cs">
+      <DependentUpon>SpotViewerStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIcontrol\ViewSpotCallout.xaml.cs">
       <DependentUpon>ViewSpotCallout.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,7 @@
     <Compile Include="VisualizationControl\VisitorsByYear.xaml.cs">
       <DependentUpon>VisitorsByYear.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualizationControl\VisualizationControlBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -256,6 +260,10 @@
     <Page Include="DataTemplate\ViewSpotListItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplate\VisualizationControlListItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Form\MyMessageBox.xaml">
       <SubType>Designer</SubType>
@@ -380,6 +388,10 @@
     <Page Include="UIcontrol\SpotViewerMaster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\SpotViewerStatistics.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UIcontrol\ViewSpotCallout.xaml">
       <SubType>Designer</SubType>

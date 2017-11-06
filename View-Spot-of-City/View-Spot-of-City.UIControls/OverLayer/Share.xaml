@@ -9,6 +9,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <!--<visualcontrols:GeoHeatMap/>-->
-        <visualcontrols:HistogramOfType/>
+        <visualcontrols:VisitorsByYear/>
     </Grid>
 </UserControl>
