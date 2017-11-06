@@ -164,4 +164,12 @@
     <sys:String x:Key="RegisterMailSendAgain">Send Again</sys:String>
     <sys:String x:Key="RegisterMailContentBodyPre">Thank you for registering! your Validate Code is:</sys:String>
     <sys:String x:Key="RegisterMailContentBodyPost">. If you didn't request to send this verification mail, please ignore this.</sys:String>
+    
+    <!--数据可视化-->
+    <sys:String x:Key="DataVisualization_ParamsPicker">Select Parameters</sys:String>
+    <sys:String x:Key="DataVisualization_StartTime">Begin time</sys:String>
+    <sys:String x:Key="DataVisualization_EndTime">End time</sys:String>
+    <sys:String x:Key="DataVisualization_ComBoxByYear">By Year</sys:String>
+    <sys:String x:Key="DataVisualization_ComBoxByMonth">By Month</sys:String>
+    <sys:String x:Key="DataVisualization_ComBoxByDay">By Day</sys:String>
 </ResourceDictionary>

@@ -68,6 +68,19 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             }
         }
 
+        private GraphicsOverlay _DataVisualizationOverlay = new GraphicsOverlay();
+        /// <summary>
+        /// 数据可视化图层
+        /// </summary>
+        public GraphicsOverlay DataVisualizationOverlay
+        {
+            get { return _DataVisualizationOverlay; }
+            set
+            {
+                _DataVisualizationOverlay = value;
+            }
+        }
+
         /// <summary>
         /// 几何要素图层
         /// </summary>

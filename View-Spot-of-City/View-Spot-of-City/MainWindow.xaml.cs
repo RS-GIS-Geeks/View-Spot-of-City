@@ -13,7 +13,6 @@ using Config = System.Configuration.ConfigurationManager;
 
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.Geometry;
-using View_Spot_of_City.UIControls.UIcontrol;
 using Esri.ArcGISRuntime.Symbology;
 
 using View_Spot_of_City.ViewModel;
@@ -23,9 +22,9 @@ using View_Spot_of_City.UIControls.OverLayer;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Form;
 using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.UIControls.Command;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using View_Spot_of_City.UIControls.Command;
 
 namespace View_Spot_of_City
 {
@@ -137,7 +136,7 @@ namespace View_Spot_of_City
             Application.Current.MainWindow = this;
             this.CurrentApp = Application.Current as App;
             closeCircleTimer.Tick += new EventHandler(CloseCircleTimer_Tick);
-            closeCircleTimer.Interval = new TimeSpan(0, 0 ,1);
+            closeCircleTimer.Interval = new TimeSpan(0, 0 , Convert.ToInt32(Config.AppSettings["ARCGIS_MAP_NetWork_Delay"]));
         }
 
         /// <summary>
@@ -199,7 +198,7 @@ namespace View_Spot_of_City
                 "pack://application:,,,/Icon/Horizontal-Align-Left.png",
                 "MainNav_Visualization",
                 new Visualization())
-            { OverlayerIndicator = OverlayerType.Visualization };
+            { OverlayerMargin = new Thickness(0), OverlayerIndicator = OverlayerType.Visualization, HAlignType = System.Windows.HorizontalAlignment.Stretch};
 
             ShareOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Talk.png",
@@ -272,7 +271,7 @@ namespace View_Spot_of_City
                 var removedItem = e.RemovedItems[0] as OverlayerItemViewModel;
             }
             if (MainNavBar.SelectedIndex == 3)
-                mainControl = MainControls.GMap;
+                mainControl = MainControls.ArcGISSceneView;
             else
                 mainControl = MainControls.ArcGISMapView;
         }

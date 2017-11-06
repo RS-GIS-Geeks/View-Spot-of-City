@@ -109,6 +109,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -201,10 +204,6 @@
     <ProjectReference Include="..\View-Spot-of-City.Language\View-Spot-of-City.Language.csproj">
       <Project>{719dcc4a-7b1d-46db-84b8-8bcf764883c8}</Project>
       <Name>View-Spot-of-City.Language</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\View-Spot-of-City.MapView\View-Spot-of-City.MapView.csproj">
-      <Project>{b33e7323-10b1-4335-8414-9d79068b638b}</Project>
-      <Name>View-Spot-of-City.MapView</Name>
     </ProjectReference>
     <ProjectReference Include="..\View-Spot-of-City.UIControls\View-Spot-of-City.UIControls.csproj">
       <Project>{bc0000cb-54ef-4d53-ba23-97ad64a52dfb}</Project>

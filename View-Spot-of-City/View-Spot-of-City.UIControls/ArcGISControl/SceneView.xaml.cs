@@ -1,4 +1,7 @@
-﻿using Esri.ArcGISRuntime.Mapping;
+﻿using Esri.ArcGISRuntime.Geometry;
+using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Symbology;
+using Esri.ArcGISRuntime.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Configuration.ConfigurationManager;
 
 namespace View_Spot_of_City.UIControls.ArcGISControl
 {
@@ -21,42 +25,85 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
     /// </summary>
     public partial class SceneView : UserControl
     {
+        /// <summary>
+        /// 人流量可视化图层
+        /// </summary>
+        public GraphicsOverlay CylinderOverlayForVisitorData = new GraphicsOverlay();
+
+        /// <summary>
+        /// 人流量可视化图形
+        /// </summary>
+        public List<List<Graphic>> GraphicForVisitorData = new List<List<Graphic>>();
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public SceneView()
         {
             InitializeComponent();
-
-            Initialize();
+            InitializeSceneView();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// 初始化地图
+        /// </summary>
+        private void InitializeSceneView()
         {
-            // Create new Scene
             Scene myScene = new Scene()
             {
-
-                // Set Scene's base map property
-                Basemap = Basemap.CreateImagery()
+                Basemap = new Basemap(new Uri(AppSettings["ARCGIS_BASEMAP"]))
             };
+            sceneView.Scene = myScene;
+            sceneView.SetViewpointCamera(new Camera(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), 1289, 295, 71, 0));
+            sceneView.GraphicsOverlays.Add(CylinderOverlayForVisitorData);
 
-            // Create uri to the scene layer
-            var serviceUri = new Uri(
-               "https://scene.arcgis.com/arcgis/rest/services/Hosted/Buildings_Brest/SceneServer/0");
+            AddVisitorGraphicToOverlay(3000);
+        }
 
-            // Create new scene layer from the url
-            ArcGISSceneLayer sceneLayer = new ArcGISSceneLayer(serviceUri);
+        /// <summary>
+        /// 重置地图状态
+        /// </summary>
+        public void ResetMapViewStatus()
+        {
+            //清除回调框
+            sceneView.DismissCallout();
 
-            // Add created layer to the operational layers collection
-            myScene.OperationalLayers.Add(sceneLayer);
+            //清除图层
+            CylinderOverlayForVisitorData.Graphics.Clear();
+        }
 
-            // Create a camera with coordinates showing layer data 
-            Camera camera = new Camera(48.378, -4.494, 200, 345, 65, 0);
+        /// <summary>
+        /// 添加图形到指定图层
+        /// </summary>
+        /// <param name="overlay"></param>
+        /// <param name="graphic"></param>
+        public void AddGraphicToOverlay(GraphicsOverlay overlay, Graphic graphic)
+        {
+            overlay.Graphics.Add(graphic);
+        }
 
-            // Assign the Scene to the SceneView
-            MySceneView.Scene = myScene;
-
-            // Set view point of scene view using camera 
-            //MySceneView.SetViewpointCameraAsync(camera);
-
+        /// <summary>
+        /// 添加人流量可视化图形到对应图层
+        /// </summary>
+        /// <param name="height"></param>
+        public void AddVisitorGraphicToOverlay(double height)
+        {
+            AddGraphicToOverlay(
+                CylinderOverlayForVisitorData,
+                new Graphic(
+                    new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]),
+                    Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]),
+                    1000,
+                    SpatialReferences.Wgs84),
+                new SimpleMarkerSceneSymbol
+                {
+                    Style = SimpleMarkerSceneSymbolStyle.Cylinder,
+                    Color = Colors.Red,
+                    Height = height,
+                    Width = 30,
+                    Depth = 30,
+                    AnchorPosition = SceneSymbolAnchorPosition.Center
+                }));
         }
     }
 }

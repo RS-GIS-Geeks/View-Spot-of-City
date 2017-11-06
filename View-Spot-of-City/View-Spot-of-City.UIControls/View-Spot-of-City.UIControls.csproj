@@ -101,6 +101,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArcGISControl\MapView.xaml.cs">
@@ -127,6 +130,9 @@
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\MyMessageBoxEvents.cs" />
+    <Compile Include="Form\VisualizationParamsPicker.xaml.cs">
+      <DependentUpon>VisualizationParamsPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\AvatarHelper.cs" />
     <Compile Include="Helper\GisgraphyHelper.cs" />
     <Compile Include="Helper\GraphHooperHelper.cs" />
@@ -208,6 +214,9 @@
     <Compile Include="UIcontrol\SpotViewerMaster.xaml.cs">
       <DependentUpon>SpotViewerMaster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIcontrol\SpotViewerStatistics.xaml.cs">
+      <DependentUpon>SpotViewerStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIcontrol\ViewSpotCallout.xaml.cs">
       <DependentUpon>ViewSpotCallout.xaml</DependentUpon>
     </Compile>
@@ -221,6 +230,7 @@
     <Compile Include="VisualizationControl\VisitorsByYear.xaml.cs">
       <DependentUpon>VisitorsByYear.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualizationControl\VisualizationControlBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -257,9 +267,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DataTemplate\VisualizationControlListItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Form\MyMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Form\VisualizationParamsPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OverLayer\OverLayerExample.xaml">
       <SubType>Designer</SubType>
@@ -380,6 +398,10 @@
     <Page Include="UIcontrol\SpotViewerMaster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\SpotViewerStatistics.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UIcontrol\ViewSpotCallout.xaml">
       <SubType>Designer</SubType>

@@ -165,4 +165,12 @@
     <sys:String x:Key="RegisterMailSendAgain">重新发送</sys:String>
     <sys:String x:Key="RegisterMailContentBodyPre">感谢您的注册，您的验证码为：</sys:String>
     <sys:String x:Key="RegisterMailContentBodyPost">。若您未请求发送过验证邮件，请忽略。</sys:String>
+
+    <!--数据可视化-->
+    <sys:String x:Key="DataVisualization_ParamsPicker">选择参数</sys:String>
+    <sys:String x:Key="DataVisualization_StartTime">开始时间</sys:String>
+    <sys:String x:Key="DataVisualization_EndTime">结束时间</sys:String>
+    <sys:String x:Key="DataVisualization_ComBoxByYear">按年份展示</sys:String>
+    <sys:String x:Key="DataVisualization_ComBoxByMonth">按月份展示</sys:String>
+    <sys:String x:Key="DataVisualization_ComBoxByDay">按天展示</sys:String>
 </ResourceDictionary>

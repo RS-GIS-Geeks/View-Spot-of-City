@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City"
-        xmlns:mapview="clr-namespace:View_Spot_of_City.MapView;assembly=View-Spot-of-City.MapView"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
@@ -85,9 +84,8 @@
         <!--主控件-->
         <ContentControl Grid.Row="2">
             <Grid x:Name="mainControlManager">
-                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
-                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
-                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=2}"/>
+                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
+                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
             </Grid>
         </ContentControl>
         <!--覆盖层-->

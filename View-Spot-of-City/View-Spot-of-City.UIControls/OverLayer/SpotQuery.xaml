@@ -25,7 +25,6 @@
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <material:ColorZone Background="White"
                             VerticalAlignment="Stretch" Padding="0" material:ShadowAssist.ShadowDepth="Depth1">
             <Grid x:Name="SearchGrid">
