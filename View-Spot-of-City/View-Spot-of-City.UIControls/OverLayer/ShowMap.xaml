@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="View_Spot_of_City.UIControls.OverLayer.ShowMap"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View_Spot_of_City.UIControls.OverLayer"
+             xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+             xmlns:viewmodel="clr-namespace:View_Spot_of_City.UIControls.ArcGISControl.ViewModel"
+             xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="150" Width="100" >
+    <UserControl.Resources>
+        <viewmodel:MapViewModel x:Key="MapViewModel" />
+    </UserControl.Resources>
+    <Grid Background="White" material:ShadowAssist.ShadowDepth="Depth4">
+        <esri:MapView x:Name="mapView" IsHitTestVisible="False"
+                      Map="{Binding Map, Source={StaticResource MapViewModel}}">
+            <esri:MapView.RenderTransform>
+                <ScaleTransform ScaleX="3" ScaleY="2.5" CenterX="50" CenterY="75"></ScaleTransform>
+            </esri:MapView.RenderTransform>
+        </esri:MapView>
+        <Border BorderBrush="{DynamicResource PrimaryHueLightBrush}" BorderThickness="4"/>
+    </Grid>
+</UserControl>

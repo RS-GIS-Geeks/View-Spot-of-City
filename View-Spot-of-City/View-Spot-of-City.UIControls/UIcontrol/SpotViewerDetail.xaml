@@ -33,9 +33,42 @@
                                            Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" Margin="0,5,0,0"
                                            Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="200" MaxHeight="400"
                                            HorizontalAlignment="Center"/>-->
-            <local:VideoPlayer BorderBrush="{StaticResource AccentBaseColorBrush}" BorderThickness="1" Margin="0,5,0,0"
-                               Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400"
-                               HorizontalAlignment="Center"/>
+            <Grid  Margin="0,5,0,0" Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400" HorizontalAlignment="Center"
+                   MouseEnter="Player_MouseEnter" MouseLeave="Player_MouseLeave">
+                <MediaElement x:Name="Player" Source="{Binding DetailShowItem.videourl, ElementName=mainControl}" LoadedBehavior="Manual" />
+                <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1"/>
+                <ToggleButton x:Name="PauseBtn" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
+                      Padding="0,0,0,0" Width="80" Height="80" Click="PauseBtn_Click" Opacity="0.6">
+                    <ToggleButton.Style>
+                        <Style BasedOn="{StaticResource ModifiedToggleButtonStyle}" TargetType="{x:Type ToggleButton}">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Grid>
+                                                <material:PackIcon Kind="Pause" Width="80" Height="80"/>
+                                            </Grid>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <material:PackIcon Kind="Play" Width="80" Height="80"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Foreground" Value="Transparent"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+            </Grid>
             <StackPanel Margin="0,15,0,0" Width="auto" Height="auto">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Name}"/>

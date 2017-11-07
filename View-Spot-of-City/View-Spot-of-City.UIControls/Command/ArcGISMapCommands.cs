@@ -29,12 +29,18 @@ namespace View_Spot_of_City.UIControls.Command
         /// </summary>
         public static RoutedCommand ClearCallout { get; set; }
 
+        /// <summary>
+        /// 导航到指定地点
+        /// </summary>
+        public static RoutedCommand NavigateToSomeWhere { get; set; }
+
         static ArcGISMapCommands()
         {
             ShowFeatureOnMap = new RoutedCommand();
             SetScaleAndLocation = new RoutedCommand();
             ClearFeatures = new RoutedCommand();
             ClearCallout = new RoutedCommand();
+            NavigateToSomeWhere = new RoutedCommand();
         }
     }
 }

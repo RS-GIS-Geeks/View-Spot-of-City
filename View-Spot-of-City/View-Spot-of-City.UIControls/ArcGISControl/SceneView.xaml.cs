@@ -127,5 +127,14 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         {
 
         }
+
+        /// <summary>
+        /// 改变底图
+        /// </summary>
+        /// <param name="url"></param>
+        public void ChangeBaseMap(string url)
+        {
+            sceneView.Scene.Basemap = new Basemap(new Uri(url));
+        }
     }
 }

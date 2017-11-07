@@ -14,9 +14,15 @@ namespace View_Spot_of_City.UIControls.Command
         /// </summary>
         public static RoutedCommand AddVisitorsData { get; set; }
 
+        /// <summary>
+        /// 改变Scene的底图
+        /// </summary>
+        public static RoutedCommand ChangeBaseMap { get; set; }
+
         static ArcGISSceneCommands()
         {
             AddVisitorsData = new RoutedCommand();
+            ChangeBaseMap = new RoutedCommand();
         }
     }
 }

@@ -48,8 +48,8 @@
     
     <!--logo-->
     <sys:String x:Key="LogoTooltip">View Source</sys:String>
-    
-    <!--导航-->
+
+    <!--导航栏-->
     <sys:String x:Key="MainNav_MapView">Map View</sys:String>
     <sys:String x:Key="MainNav_SpotQuery">Query</sys:String>
     <sys:String x:Key="MainNav_SpotRecommend">Recommend</sys:String>
@@ -82,6 +82,8 @@
     <sys:String x:Key="ShowSpot_PreImage">Last image</sys:String>
     <sys:String x:Key="ShowSpot_NextImage">Next image</sys:String>
     <sys:String x:Key="ShowSpot_GoToTip">Go to here</sys:String>
+    <sys:String x:Key="ShowSpot_LocationOff">Location service not open</sys:String>
+    <sys:String x:Key="ShowSpot_FailedToGetRoute">Failed to get route</sys:String>
 
     <!--错误和异常显示-->
     <sys:String x:Key="Config_File_Error">The configuration file is wrong. Please check the configuration file</sys:String>

@@ -125,6 +125,8 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 CanDragSlider = false;
                 StartDate = picker.StartDate;
                 EndDate = picker.EndDate;
+                if (picker.ModeCheckBox.IsChecked == true)
+                    ArcGISSceneCommands.ChangeBaseMap.Execute(AppSettings["ARCGIS_SATELLITE_BASEMAP"], Application.Current.MainWindow);
                 int limit = 100;
                 if (EndDate <= StartDate || ((EndDate.Year == StartDate.Year) && (EndDate.Month == StartDate.Month)))
                 {

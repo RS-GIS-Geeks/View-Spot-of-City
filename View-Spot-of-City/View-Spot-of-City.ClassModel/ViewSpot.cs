@@ -192,6 +192,18 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
+        string _videourl = string.Empty;
+        [DataMember]
+        public string videourl
+        {
+            get { return _videourl; }
+            set
+            {
+                _videourl = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("videourl"));
+            }
+        }
+
         /// <summary>
         /// 构造一个景点实例
         /// </summary>

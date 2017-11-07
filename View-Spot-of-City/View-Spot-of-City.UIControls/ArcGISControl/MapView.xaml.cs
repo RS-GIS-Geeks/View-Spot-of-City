@@ -16,6 +16,7 @@ using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.UIcontrol;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Command;
+using View_Spot_of_City.Language.Language;
 
 namespace View_Spot_of_City.UIControls.ArcGISControl
 {
@@ -123,6 +124,14 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         }
 
         /// <summary>
+        /// 析构函数
+        /// </summary>
+        ~MapView()
+        {
+
+        }
+
+        /// <summary>
         /// 初始化地图
         /// </summary>
         private void InitializeMapView()
@@ -132,6 +141,9 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             mapView.GraphicsOverlays.Add(PolygonOverlay);
             mapView.GraphicsOverlays.Add(LineOverlay);
             mapView.GraphicsOverlays.Add(PointOverlay);
+            if (!mapView.LocationDisplay.IsEnabled)
+                mapView.LocationDisplay.IsEnabled = true;
+            mapView.LocationDisplay.AutoPanMode = LocationDisplayAutoPanMode.CompassNavigation;
         }
 
         /// <summary>
@@ -227,11 +239,13 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mapView_GeoViewDoubleTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        private async void mapView_GeoViewDoubleTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             if (routeStops == null || routeStops.Count <= 1)
                 return;
-            AddNavigateRouteToGraphicsOverlay(LineOverlay, routeStops, SimpleLineSymbolStyle.Dash, Colors.Blue, 3);
+            List<MapPoint> stopList = await GraphHooperHelper.GetRouteStopsAsync(routeStops[0], routeStops[routeStops.Count - 1]);
+            routeStops.Clear();
+            AddNavigateRouteToGraphicsOverlay(LineOverlay, stopList, SimpleLineSymbolStyle.Dash, Colors.Blue, 5);
             //AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
             e.Handled = true;
         }
@@ -243,7 +257,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="e"></param>
         private void ZoomInButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mapView.SetViewpointScaleAsync(mapView.GetCurrentViewpoint(ViewpointType.CenterAndScale).TargetScale / 2.0);
         }
 
         /// <summary>
@@ -253,7 +267,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="e"></param>
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mapView.SetViewpointScaleAsync(mapView.GetCurrentViewpoint(ViewpointType.CenterAndScale).TargetScale * 2.0);
         }
 
         /// <summary>
@@ -340,8 +354,8 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             if (stops.Count <= 1)
                 return -1;
             AddRouteToGraphicsOverlay(overlay, stops, lineStyle, lineColor, lineWidth);
-            AddIconToGraphicsOverlay(overlay, stops[0], IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.start], 16, 24, 0.0, 9.5);
-            AddIconToGraphicsOverlay(overlay, stops[stops.Count - 1], IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.end], 16, 24, 0.0, 9.5);
+            AddIconToGraphicsOverlay(overlay, stops[0], IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.start], 22, 33, 0.0, 13);
+            AddIconToGraphicsOverlay(overlay, stops[stops.Count - 1], IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.end], 22, 33, 0.0, 13);
             double distance = 0;
             for (int i=1;i<stops.Count - 1;i++)
             {
@@ -387,7 +401,8 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="e"></param>
         private void LocaltionButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if(!mapView.LocationDisplay.IsEnabled)
+                mapView.LocationDisplay.IsEnabled = true;
         }
 
         /// <summary>
@@ -428,6 +443,47 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         public void DismissCallout()
         {
             mapView.DismissCallout();
+        }
+
+        /// <summary>
+        /// 设置是否开启定位
+        /// </summary>
+        /// <param name="b"></param>
+        public void ChangeLoctionDisplayEnable(bool b)
+        {
+            if (mapView.LocationDisplay.IsEnabled != b)
+                mapView.LocationDisplay.IsEnabled = b;
+        }
+
+        /// <summary>
+        /// 从硬件位置导航到指定地点
+        /// </summary>
+        /// <param name="destination">目的地</param>
+        public async void NavigateToSomeWhereAsync(MapPoint destination)
+        {
+            if(mapView.LocationDisplay.IsEnabled && mapView.LocationDisplay.Location != null)
+            {
+                //if(GetDistance(mapView.LocationDisplay.Location.Position.Y, mapView.LocationDisplay.Location.Position.X, destination.Y, destination.X) > 100000)
+                //{
+                //    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("ShowSpot_DistanceTooLong"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
+                //    return;
+                //}
+                try
+                {
+                    List<MapPoint> stopList = await GraphHooperHelper.GetRouteStopsAsync(mapView.LocationDisplay.Location.Position, destination);
+                    routeStops.Clear();
+                    AddNavigateRouteToGraphicsOverlay(LineOverlay, stopList, SimpleLineSymbolStyle.Dash, Colors.Blue, 5);
+                }
+                catch
+                {
+                    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("ShowSpot_FailedToGetRoute"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
+                }
+            }
+            else
+            {
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("ShowSpot_LocationOff"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
+                return;
+            }
         }
 
         #region Calculate

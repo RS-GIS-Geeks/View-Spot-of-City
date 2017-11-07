@@ -26,7 +26,9 @@
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.SetScaleAndLocation}" Executed="SetScaleAndLocationCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearFeatures}" Executed="ClearFeaturesCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearCallout}" Executed="ClearCalloutCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.NavigateToSomeWhere}" Executed="NavigateToSomeWhereCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.AddVisitorsData}" Executed="AddVisitorsDataCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.ChangeBaseMap}" Executed="ChangeBaseMapCommandBinding_Executed"/>
     </Window.CommandBindings>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>

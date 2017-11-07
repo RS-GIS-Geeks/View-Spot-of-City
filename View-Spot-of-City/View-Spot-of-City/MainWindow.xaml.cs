@@ -190,7 +190,7 @@ namespace View_Spot_of_City
                 "pack://application:,,,/Icon/3D-Glasses.png",
                 "MainNav_MapView",
                 null)
-            { OverlayerIndicator = OverlayerType.SpotQuery };
+            { OverlayerMargin = new Thickness(0, 20, 20, 0), HAlignType = System.Windows.HorizontalAlignment.Right, VAlignType = System.Windows.VerticalAlignment.Top, OverlayerIndicator = OverlayerType.ShowMap };
 
             SpotSearchOverLayer = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Find.png",
@@ -322,16 +322,20 @@ namespace View_Spot_of_City
             //登录
             bool? loginDlgResult = (new LoginDlg(mail)).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
-                //Environment.Exit(0);
                 Application.Current.Shutdown();
         }
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
             if (MessageboxMaster.DialogResults.Yes == MessageboxMaster.Show(GetString("MainWindowCloseConfirm"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
+            {
+                ArcGISMapView.ChangeLoctionDisplayEnable(false);
                 Application.Current.Shutdown(0);
+            }
             else
+            {
                 e.Cancel = true;
+            }
         }
 
         private void mainWindow_Closed(object sender, EventArgs e)
@@ -444,6 +448,16 @@ namespace View_Spot_of_City
         }
 
         /// <summary>
+        /// 地图导航命令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NavigateToSomeWhereCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ArcGISMapView.NavigateToSomeWhereAsync(e.Parameter as MapPoint);
+        }
+
+        /// <summary>
         /// 命令转发到覆盖面板命令
         /// </summary>
         /// <param name="sender"></param>
@@ -476,6 +490,16 @@ namespace View_Spot_of_City
         {
             List<VisitorItem> visitorList = e.Parameter as List<VisitorItem>;
             ArcGISSceneView.AddVisitorGraphicToOverlay(visitorList);
+        }
+
+        /// <summary>
+        /// 改变Sence底图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeBaseMapCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ArcGISSceneView.ChangeBaseMap(e.Parameter as string);
         }
     }
 }

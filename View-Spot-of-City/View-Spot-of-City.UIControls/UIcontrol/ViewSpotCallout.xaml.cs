@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.UIControls.Command;
+using Esri.ArcGISRuntime.Geometry;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -96,11 +98,21 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             CurrentImageUrl = ImageUrls[CurrentImageIndex];
         }
 
+        /// <summary>
+        /// 导航按钮响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GotoButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageboxMaster.Show("点击'去这里'按钮", "CS-Tao测试");
+            ArcGISMapCommands.NavigateToSomeWhere.Execute(new MapPoint(ViewInfo.lng, ViewInfo.lat, SpatialReferences.Wgs84), Application.Current.MainWindow);
         }
 
+        /// <summary>
+        /// 上一张图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreButton_Click(object sender, RoutedEventArgs e)
         {
             //循环显示图片
@@ -112,6 +124,11 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             e.Handled = true;
         }
 
+        /// <summary>
+        /// 下一张图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             //循环显示图片
@@ -121,6 +138,12 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             e.Handled = true;
         }
 
+        /// <summary>
+        /// 键盘按下事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        [Obsolete]
         private void mainControl_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)

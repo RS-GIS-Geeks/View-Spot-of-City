@@ -147,7 +147,6 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 JToken jtoken = jobject["ViewCount"][0];
 
                 viewCount = (int)jtoken["COUNT(*)"];
-
             }
             catch
             {

@@ -42,7 +42,7 @@
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
-                <Button Width="26" Height="26" Grid.Row="0" Click="ZoomInButton_Click" Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Center">
+                <Button Width="26" Height="26" Grid.Row="0" Click="LocaltionButton_Click" Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Center">
                     <Button.Template>
                         <ControlTemplate>
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">

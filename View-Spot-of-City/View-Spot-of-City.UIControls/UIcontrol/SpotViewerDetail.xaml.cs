@@ -62,6 +62,9 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             set
             {
                 _CurrentImageUrl = value;
+                Player.Pause();
+                PauseBtn.IsChecked = false;
+                PauseBtn.Visibility = Visibility.Visible;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentImageUrl"));
             }
         }
@@ -69,6 +72,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         public SpotViewerDetail()
         {
             InitializeComponent();
+            Player.Pause();
         }
 
         /// <summary>
@@ -102,6 +106,27 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         {
             if (DetailShowItem != null)
                 ViewSpotViewerCommands.ShowStatistics.Execute(DetailShowItem, this);
+        }
+
+        private void PauseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (PauseBtn.IsChecked == true)
+                Player.Play();
+            else
+                Player.Pause();
+        }
+
+        private void Player_MouseEnter(object sender, MouseEventArgs e)
+        {
+            PauseBtn.Visibility = Visibility.Visible;
+        }
+
+        private void Player_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (PauseBtn.IsChecked == true)
+                PauseBtn.Visibility = Visibility.Collapsed;
+            else
+                PauseBtn.Visibility = Visibility.Visible;
         }
     }
 }
