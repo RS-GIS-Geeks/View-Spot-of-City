@@ -135,8 +135,22 @@ namespace View_Spot_of_City
         {
             Application.Current.MainWindow = this;
             this.CurrentApp = Application.Current as App;
+            CurrentApp.GetViewSpotsData();
+
+            Random rand = new Random();
+            List<ViewSpot> viewSpotForShow = new List<ViewSpot>(100);
+            for(int i=0;i<100;i++)
+            {
+                viewSpotForShow.Add(CurrentApp.ViewSpotList[i]);
+            }
+
+            //foreach (ViewSpot view in viewSpotForShow)
+            //{
+            //    ArcGISSceneView.AddVisitorGraphicToOverlay(view.GetLng(), view.GetLat(), rand.Next(5000, 20000));
+            //}
+
             closeCircleTimer.Tick += new EventHandler(CloseCircleTimer_Tick);
-            closeCircleTimer.Interval = new TimeSpan(0, 0 , Convert.ToInt32(Config.AppSettings["ARCGIS_MAP_NetWork_Delay"]));
+            closeCircleTimer.Interval = new TimeSpan(0, 0, Convert.ToInt32(Config.AppSettings["ARCGIS_MAP_NetWork_Delay"]));
         }
 
         /// <summary>
@@ -144,9 +158,6 @@ namespace View_Spot_of_City
         /// </summary>
         public void ShowCircleProgressBox()
         {
-            //circleProgressBox = new CircleProgressBox();
-            //circleProgressBox.ShowPregress();
-            //circleProgressBox.SetDefaultDescription();
             Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin))
             {
                 IsBackground = true
@@ -159,7 +170,6 @@ namespace View_Spot_of_City
         /// </summary>
         public void InitWindows()
         {
-            //CreateAppStyleBy(this, ((SolidColorBrush)Application.Current.FindResource("PrimaryHueMidBrush")).Color, true);
             InitMainNavBar();
         }
 
@@ -198,13 +208,13 @@ namespace View_Spot_of_City
                 "pack://application:,,,/Icon/Horizontal-Align-Left.png",
                 "MainNav_Visualization",
                 new Visualization())
-            { OverlayerMargin = new Thickness(0), OverlayerIndicator = OverlayerType.Visualization, HAlignType = System.Windows.HorizontalAlignment.Stretch};
+            { OverlayerMargin = new Thickness(0), HAlignType = System.Windows.HorizontalAlignment.Stretch, OverlayerIndicator = OverlayerType.Visualization };
 
             ShareOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Talk.png",
                 "MainNav_Share",
                 new Share())
-            { OverlayerIndicator = OverlayerType.Share };
+            { OverlayerMargin = new Thickness(0), HAlignType = System.Windows.HorizontalAlignment.Stretch, OverlayerIndicator = OverlayerType.Share };
 
             Overlayers = new List<OverlayerItemViewModel>(5)
             {
@@ -446,7 +456,7 @@ namespace View_Spot_of_City
             if (viewspot != null && overlayIndex >= 0 && overlayIndex < 4)
                 ViewSpotViewerCommands.ShowViewSpotDetail.Execute(viewspot, Overlayers[overlayIndex].Content as UserControl);
         }
-        
+
         /// <summary>
         /// 清除回调框
         /// </summary>
@@ -456,6 +466,16 @@ namespace View_Spot_of_City
         {
             ArcGISMapView.DismissCallout();
         }
-        
+
+        /// <summary>
+        /// 添加人流量数据到Sence
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddVisitorsDataCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            List<VisitorItem> visitorList = e.Parameter as List<VisitorItem>;
+            ArcGISSceneView.AddVisitorGraphicToOverlay(visitorList);
+        }
     }
 }

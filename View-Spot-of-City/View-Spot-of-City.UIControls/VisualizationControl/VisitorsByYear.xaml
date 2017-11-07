@@ -8,7 +8,7 @@
              xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1200">
-    <Grid>
+    <Grid Background="White">
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis Title="Visitors" LabelFormatter="{Binding Formatter}"></lvc:Axis>

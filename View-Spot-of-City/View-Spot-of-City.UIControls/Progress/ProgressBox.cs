@@ -64,7 +64,6 @@ namespace View_Spot_of_City.UIControls.Progress
         /// </summary>
         public void ShowPregress()
         {
-            m_thread.IsBackground = true;
             m_thread = new Thread(Show)
             {
                 IsBackground = true

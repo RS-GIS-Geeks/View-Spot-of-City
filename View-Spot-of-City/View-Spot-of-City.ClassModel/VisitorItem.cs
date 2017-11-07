@@ -5,11 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using View_Spot_of_City.ClassModel.Interface;
 
 namespace View_Spot_of_City.ClassModel
 {
     [DataContract]
-    public class VisitorItem : INotifyPropertyChanged
+    public class VisitorItem : IGetLngLat, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -121,6 +122,48 @@ namespace View_Spot_of_City.ClassModel
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Visitors"));
                 }
             }
+        }
+
+        double _lng = 0;
+
+        /// <summary>
+        /// 经度
+        /// </summary>
+        [DataMember]
+        public double lng
+        {
+            get { return _lng; }
+            set
+            {
+                _lng = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("lng"));
+            }
+        }
+
+        double _lat = 0;
+
+        /// <summary>
+        /// 纬度
+        /// </summary>
+        [DataMember]
+        public double lat
+        {
+            get { return _lat; }
+            set
+            {
+                _lat = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("lat"));
+            }
+        }
+
+        public double GetLng()
+        {
+            return lng;
+        }
+
+        public double GetLat()
+        {
+            return lat;
         }
     }
 }

@@ -113,6 +113,7 @@
       <DependentUpon>SceneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ArcGISControl\ViewModel\MapViewModel.cs" />
+    <Compile Include="Command\ArcGISSceneCommands.cs" />
     <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
     <Compile Include="Command\MyMessageBoxCommands.cs" />
@@ -158,13 +159,9 @@
     <Compile Include="OverLayer\Visualization.xaml.cs">
       <DependentUpon>Visualization.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Progress\CircleProgress.xaml.cs">
-      <DependentUpon>CircleProgress.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Progress\CircleProgressAsync.xaml.cs">
       <DependentUpon>CircleProgressAsync.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Progress\CircleProgressBox.cs" />
     <Compile Include="Progress\FromProgressBox.xaml.cs">
       <DependentUpon>FromProgressBox.xaml</DependentUpon>
     </Compile>
@@ -216,6 +213,9 @@
     </Compile>
     <Compile Include="UIcontrol\SpotViewerStatistics.xaml.cs">
       <DependentUpon>SpotViewerStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\VideoPlayer.xaml.cs">
+      <DependentUpon>VideoPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIcontrol\ViewSpotCallout.xaml.cs">
       <DependentUpon>ViewSpotCallout.xaml</DependentUpon>
@@ -294,10 +294,6 @@
     <Page Include="OverLayer\Visualization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Progress\CircleProgress.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Progress\CircleProgressAsync.xaml">
       <SubType>Designer</SubType>
@@ -402,6 +398,10 @@
     <Page Include="UIcontrol\SpotViewerStatistics.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIcontrol\VideoPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIcontrol\ViewSpotCallout.xaml">
       <SubType>Designer</SubType>

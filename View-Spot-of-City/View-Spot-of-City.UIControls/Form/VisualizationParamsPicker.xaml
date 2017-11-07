@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Form"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
         Height="auto" Width="auto" ResizeMode="NoResize"
         Title="{DynamicResource DataVisualization_ParamsPicker}" 
         Style="{StaticResource CustomWindowChromeNoMaxMin}"
@@ -13,12 +13,7 @@
     <StackPanel Width="200" Margin="20, 10, 20, 10">
         <DatePicker x:Name="StartDatePicker" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="0,0,0,10" material:HintAssist.Hint="{DynamicResource DataVisualization_StartTime}"/>
         <DatePicker x:Name="EndDatePicker" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="0,0,0,10" material:HintAssist.Hint="{DynamicResource DataVisualization_EndTime}"/>
-        <ComboBox x:Name="ModeCombox" Style="{DynamicResource NoneBorderComboBoxStyle}" material:ComboBoxAssist.ClassicMode="True" SelectedIndex="0" Width="200" 
-                  HorizontalAlignment="Right" Text="{DynamicResource DataVisualization_ComBoxByYear}" Margin="0,0,0,10">
-            <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource DataVisualization_ComBoxByYear}"/>
-            <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource DataVisualization_ComBoxByMonth}"/>
-            <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center" Content="{StaticResource DataVisualization_ComBoxByDay}"/>
-        </ComboBox>
+        <CheckBox x:Name="ModeCheckBox" Width="200" HorizontalAlignment="Right" Margin="0,0,0,10" Style="{StaticResource MaterialDesignCheckBox}" Content="{DynamicResource DataVisualization_SatelliteImage}"/>
         <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
             <Button Content="{DynamicResource MessageBox_OK}" FontSize="12" Width="auto" Height="auto" MinWidth="70" MaxWidth="100" 
                 Margin="50,0,5,0" Click="OkButton_Click" IsDefault="True"/>

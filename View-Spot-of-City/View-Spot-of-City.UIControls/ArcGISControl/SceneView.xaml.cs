@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View_Spot_of_City.ClassModel;
 using static System.Configuration.ConfigurationManager;
 
 namespace View_Spot_of_City.UIControls.ArcGISControl
@@ -33,7 +34,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <summary>
         /// 人流量可视化图形
         /// </summary>
-        public List<List<Graphic>> GraphicForVisitorData = new List<List<Graphic>>();
+        public List<Graphic> GraphicListForVisitorData = new List<Graphic>();
 
         /// <summary>
         /// 构造函数
@@ -52,12 +53,17 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             Scene myScene = new Scene()
             {
                 Basemap = new Basemap(new Uri(AppSettings["ARCGIS_BASEMAP"]))
+                //Basemap = new Basemap(new Uri("http://www.arcgis.com/home/item.html?id=91b46c2b162c48dba264b2190e1dbcff"))
             };
+
+            var elevationSource = new ArcGISTiledElevationSource(new Uri("http://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer"));
+            var sceneSurface = new Surface();
+            sceneSurface.ElevationSources.Add(elevationSource);
+            myScene.BaseSurface = sceneSurface;
+
             sceneView.Scene = myScene;
             sceneView.SetViewpointCamera(new Camera(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), 1289, 295, 71, 0));
             sceneView.GraphicsOverlays.Add(CylinderOverlayForVisitorData);
-
-            AddVisitorGraphicToOverlay(3000);
         }
 
         /// <summary>
@@ -83,27 +89,43 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         }
 
         /// <summary>
-        /// 添加人流量可视化图形到对应图层
+        /// 添加单个人流量可视化图形到对应图层
         /// </summary>
+        /// <param name="lng"></param>
+        /// <param name="lat"></param>
         /// <param name="height"></param>
-        public void AddVisitorGraphicToOverlay(double height)
+        public void AddVisitorGraphicToOverlay(double lng, double lat, double height)
         {
-            AddGraphicToOverlay(
-                CylinderOverlayForVisitorData,
-                new Graphic(
-                    new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]),
-                    Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]),
-                    1000,
-                    SpatialReferences.Wgs84),
+            Graphic graphic = new Graphic(new MapPoint(lng, lat, 1000, SpatialReferences.Wgs84), 
                 new SimpleMarkerSceneSymbol
                 {
                     Style = SimpleMarkerSceneSymbolStyle.Cylinder,
-                    Color = Colors.Red,
+                    Color = Colors.Yellow,
                     Height = height,
-                    Width = 30,
-                    Depth = 30,
+                    Width = 100,
+                    Depth = 100,
                     AnchorPosition = SceneSymbolAnchorPosition.Center
-                }));
+                });
+            GraphicListForVisitorData.Add(graphic);
+            AddGraphicToOverlay(CylinderOverlayForVisitorData,graphic);
+        }
+
+        /// <summary>
+        /// 添加人流量可视化图形到对应图层
+        /// </summary>
+        /// <param name="height"></param>
+        public void AddVisitorGraphicToOverlay(List<VisitorItem> visitorList)
+        {
+            ResetMapViewStatus();
+            foreach (VisitorItem visitor in visitorList)
+            {
+                AddVisitorGraphicToOverlay(visitor.lng, visitor.lat, visitor.Visitors);
+            }
+        }
+
+        public void ChangeAttributesOfVisitorGraphics(List<VisitorItem> visitorList)
+        {
+
         }
     }
 }

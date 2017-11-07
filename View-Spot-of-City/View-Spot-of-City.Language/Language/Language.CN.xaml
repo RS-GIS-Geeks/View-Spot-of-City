@@ -170,7 +170,6 @@
     <sys:String x:Key="DataVisualization_ParamsPicker">选择参数</sys:String>
     <sys:String x:Key="DataVisualization_StartTime">开始时间</sys:String>
     <sys:String x:Key="DataVisualization_EndTime">结束时间</sys:String>
-    <sys:String x:Key="DataVisualization_ComBoxByYear">按年份展示</sys:String>
-    <sys:String x:Key="DataVisualization_ComBoxByMonth">按月份展示</sys:String>
-    <sys:String x:Key="DataVisualization_ComBoxByDay">按天展示</sys:String>
+    <sys:String x:Key="DataVisualization_SatelliteImage">显示卫星图像</sys:String>
+    <sys:String x:Key="DataVisualization_DateChooseError">结束日期不能早与开始日期</sys:String>
 </ResourceDictionary>

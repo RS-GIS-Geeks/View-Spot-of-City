@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.Language.Language;
+using View_Spot_of_City.UIControls.Helper;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using static System.Configuration.ConfigurationManager;
+
+using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.UIControls.Command;
+using System.Windows.Threading;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
@@ -68,21 +70,6 @@ namespace View_Spot_of_City.UIControls.OverLayer
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SliderValue"));
             }
         }
-
-        /// <summary>
-        /// 显示模式枚举
-        /// </summary>
-        public enum ShowMode : int
-        {
-            ByYear = 0,
-            ByMonth = 1,
-            ByDay = 2
-        }
-
-        /// <summary>
-        /// 数据显示模式
-        /// </summary>
-        public ShowMode DataShowMaode = ShowMode.ByDay;
         
         /// <summary>
         /// 开始日期
@@ -95,27 +82,206 @@ namespace View_Spot_of_City.UIControls.OverLayer
         public DateTime EndDate = new DateTime();
 
         /// <summary>
+        /// 按月统计的人流量
+        /// </summary>
+        public List<List<VisitorItem>> VisitorsByMonthAndPlace = new List<List<VisitorItem>>();
+
+        bool _CanDragSilder = false;
+
+        /// <summary>
+        /// 用于设置滑动条的定时器
+        /// </summary>
+        DispatcherTimer ChangeSliderTimer = new DispatcherTimer();
+
+        /// <summary>
+        /// 指示是否可以拖动Slider
+        /// </summary>
+        public bool CanDragSlider
+        {
+            get { return _CanDragSilder; }
+            set
+            {
+                _CanDragSilder = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CanDragSlider"));
+            }
+        }
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         public Visualization()
         {
             InitializeComponent();
+
+            ChangeSliderTimer.Tick += new EventHandler(ChangeSliderTimer_Tick);
+            ChangeSliderTimer.Interval = new TimeSpan(0, 0, 1);
+        }
+
+        private async void SettingBtn_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            VisualizationParamsPicker picker = new VisualizationParamsPicker();
+            if (picker.ShowDialog() == true)
+            {
+                CanDragSlider = false;
+                StartDate = picker.StartDate;
+                EndDate = picker.EndDate;
+                int limit = 100;
+                if (EndDate <= StartDate || ((EndDate.Year == StartDate.Year) && (EndDate.Month == StartDate.Month)))
+                {
+                    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("DataVisualization_DateChooseError"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                    return;
+                }
+
+                for (int month1 = StartDate.Month; month1 <= 12; month1++)
+                {
+                    string jsonString = string.Empty;
+                    try
+                    {
+                        jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VISITORS_BY_YEAR_MONTH"] + "?year=" + Convert.ToString(StartDate.Year) + "&month=" + Convert.ToString(month1) + "&limit=" + Convert.ToString(limit), string.Empty, RestSharp.Method.GET)).Content;
+                        if (jsonString == "")
+                            throw new Exception("");
+
+                        JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+                        string content_string = jobject["VisitorInfo"].ToString();
+
+                        using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
+                        {
+                            DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<VisitorItem>));
+                            VisitorsByMonthAndPlace.Add((List<VisitorItem>)deseralizer.ReadObject(ms));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                        return;
+                    }
+                }
+
+                if (StartDate.Year + 1 < EndDate.Year)
+                {
+                    for (int year = StartDate.Year; year < EndDate.Year; year++)
+                    {
+                        for(int i=1;i<=12;i++)
+                        {
+                            string jsonString = string.Empty;
+                            try
+                            {
+                                jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VISITORS_BY_YEAR_MONTH"] + "?year=" + Convert.ToString(year) + "&month=" + Convert.ToString(i) + "&limit=" + Convert.ToString(limit), string.Empty, RestSharp.Method.GET)).Content;
+                                if (jsonString == "")
+                                    throw new Exception("");
+
+                                JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+                                string content_string = jobject["VisitorInfo"].ToString();
+
+                                using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
+                                {
+                                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<VisitorItem>));
+                                    VisitorsByMonthAndPlace.Add((List<VisitorItem>)deseralizer.ReadObject(ms));
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                if(StartDate.Year < EndDate.Year)
+                {
+                    for (int month2 = 1; month2 <= EndDate.Month; month2++)
+                    {
+                        string jsonString = string.Empty;
+                        try
+                        {
+                            jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VISITORS_BY_YEAR_MONTH"] + "?year=" + Convert.ToString(EndDate.Year) + "&month=" + Convert.ToString(month2) + "&limit=" + Convert.ToString(limit), string.Empty, RestSharp.Method.GET)).Content;
+                            if (jsonString == "")
+                                throw new Exception("");
+
+                            JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+                            string content_string = jobject["VisitorInfo"].ToString();
+
+                            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
+                            {
+                                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<VisitorItem>));
+                                VisitorsByMonthAndPlace.Add((List<VisitorItem>)deseralizer.ReadObject(ms));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                            return;
+                        }
+                    }
+                }
+                MonthSlider.Minimum = 0;
+                MonthSlider.Maximum = VisitorsByMonthAndPlace.Count - 1;
+                MonthSlider.Value = MonthSlider.Minimum;
+                CanDragSlider = true;
+            }
+        }
+
+        private void PauseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (PauseBtn.IsChecked == true)
+                StartChangeSliderTimer();
+            else
+                StopChangeSliderTimer();
+        }
+
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MonthSlider.Value < MonthSlider.Maximum)
+                MonthSlider.Value++;
+        }
+
+        private void PreBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MonthSlider.Value > MonthSlider.Minimum)
+                MonthSlider.Value--;
         }
 
         private void Silder_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            ArcGISSceneCommands.AddVisitorsData.Execute(VisitorsByMonthAndPlace[(int)MonthSlider.Value], Application.Current.MainWindow);
         }
 
-        private void SettingBtn_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 启动定时器
+        /// </summary>
+        private void StartChangeSliderTimer()
         {
-            VisualizationParamsPicker picker = new VisualizationParamsPicker();
-            if(picker.ShowDialog() == true)
-            {
-                StartDate = picker.StartDate;
-                EndDate = picker.EndDate;
-                DataShowMaode = picker.ShowMode;
-            }
+            ChangeSliderTimer.Start();
+        }
+
+        /// <summary>
+        /// 改变Slider值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeSliderTimer_Tick(object sender, EventArgs e)
+        {
+            if (MonthSlider.Value < MonthSlider.Maximum)
+                MonthSlider.Value++;
+            else
+                StopChangeSliderTimer();
+        }
+
+        /// <summary>
+        /// 关闭定时器
+        /// </summary>
+        private void StopChangeSliderTimer()
+        {
+            ChangeSliderTimer.Stop();
+            PauseBtn.IsChecked = false;
+            MonthSlider.Value = MonthSlider.Minimum;
         }
     }
 }

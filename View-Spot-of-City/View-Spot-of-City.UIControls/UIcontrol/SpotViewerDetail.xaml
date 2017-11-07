@@ -29,10 +29,13 @@
             </StackPanel>
         </Button>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Rectangle Fill="{Binding ElementName=mainControl, Path=CurrentImageUrl, Converter={StaticResource string2image}}"
+            <!--<Rectangle Fill="{Binding ElementName=mainControl, Path=CurrentImageUrl, Converter={StaticResource string2image}}"
                                            Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" Margin="0,5,0,0"
                                            Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="200" MaxHeight="400"
-                                           HorizontalAlignment="Center"/>
+                                           HorizontalAlignment="Center"/>-->
+            <local:VideoPlayer BorderBrush="{StaticResource AccentBaseColorBrush}" BorderThickness="1" Margin="0,5,0,0"
+                               Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400"
+                               HorizontalAlignment="Center"/>
             <StackPanel Margin="0,15,0,0" Width="auto" Height="auto">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Name}"/>

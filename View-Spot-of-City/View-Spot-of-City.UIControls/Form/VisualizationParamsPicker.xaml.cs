@@ -32,11 +32,6 @@ namespace View_Spot_of_City.UIControls.Form
         public DateTime EndDate = new DateTime();
 
         /// <summary>
-        /// 选择模式
-        /// </summary>
-        public Visualization.ShowMode ShowMode = Visualization.ShowMode.ByYear;
-
-        /// <summary>
         /// 构造函数
         /// </summary>
         public VisualizationParamsPicker()
@@ -48,12 +43,6 @@ namespace View_Spot_of_City.UIControls.Form
         {
             StartDate = StartDatePicker.SelectedDate ?? new DateTime(2015, 1, 1);
             EndDate = EndDatePicker.SelectedDate ?? new DateTime(2017, 12, 30);
-            if (ModeCombox.SelectedIndex == 1)
-                ShowMode = Visualization.ShowMode.ByMonth;
-            else if (ModeCombox.SelectedIndex == 2)
-                ShowMode = Visualization.ShowMode.ByDay;
-            else
-                ShowMode = Visualization.ShowMode.ByYear;
 
             this.DialogResult = true;
         }

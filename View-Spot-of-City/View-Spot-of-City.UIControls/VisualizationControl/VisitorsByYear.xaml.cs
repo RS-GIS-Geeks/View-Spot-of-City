@@ -7,13 +7,13 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Windows.Controls;
+using static System.Configuration.ConfigurationManager;
+using LiveCharts.Wpf;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Language.Language;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
-using LiveCharts.Definitions.Series;
-using LiveCharts.Wpf;
 
 namespace View_Spot_of_City.UIControls.VisualizationControl
 {
@@ -55,13 +55,13 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
         private async void GetVisitorsInfoFromJsonAsync(SeriesCollection SeriesCollection, List<VisitorItem> visitorItemList, List<int> visitorMonthList, int year, int viewid)
         {
             string jsonString = string.Empty;
-            for (int j = 0; j < 13; j++)
+            for (int j = 0; j < 12; j++)
             {
                 visitorMonthList.Add(new int());
             }
             try
             {
-                jsonString = (await WebServiceHelper.GetHttpResponseAsync("http://39.108.171.209:2901/viewspot/visitorbyyear" + "?year=" + Convert.ToString(year) + "&viewid=" + Convert.ToString(viewid), string.Empty, RestSharp.Method.GET)).Content;
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VISITORS_BY_YEAR"] + "?year=" + Convert.ToString(year) + "&viewid=" + Convert.ToString(viewid), string.Empty, RestSharp.Method.GET)).Content;
                 if (jsonString == "")
                     throw new Exception("");
 
@@ -83,7 +83,7 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
             }
             for (int i = 0; i < visitorItemList.Count; i++)
             {
-                for (int j = 1; j < 13; j++)
+                for (int j = 0; j < 12; j++)
                 {
                     if (visitorItemList[i].Month == j)
                     {
@@ -94,7 +94,7 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
             SeriesCollection.Add(new LineSeries
             {
                 Title = Convert.ToString(year)+"年",
-                Values = new ChartValues<int> { visitorMonthList[1], visitorMonthList[2], visitorMonthList[3], visitorMonthList[4], visitorMonthList[5], visitorMonthList[6], visitorMonthList[7], visitorMonthList[8], visitorMonthList[9], visitorMonthList[10], visitorMonthList[11], visitorMonthList[12] },
+                Values = new ChartValues<int> { visitorMonthList[0], visitorMonthList[1], visitorMonthList[2], visitorMonthList[3], visitorMonthList[4], visitorMonthList[5], visitorMonthList[6], visitorMonthList[7], visitorMonthList[8], visitorMonthList[9], visitorMonthList[10], visitorMonthList[11] },
             });
         }
     }
