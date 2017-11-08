@@ -159,6 +159,9 @@
     <Compile Include="OverLayer\SpotQuery.xaml.cs">
       <DependentUpon>SpotQuery.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OverLayer\SpotRecommend.xaml.cs">
+      <DependentUpon>SpotRecommend.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OverLayer\Visualization.xaml.cs">
       <DependentUpon>Visualization.xaml</DependentUpon>
     </Compile>
@@ -292,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OverLayer\SpotQuery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverLayer\SpotRecommend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

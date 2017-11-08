@@ -22,6 +22,10 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
     /// </summary>
     public partial class VisitorsByYear : UserControl
     {
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<int, string> Formatter { get; set; }
+
         public VisitorsByYear()
         {
             InitializeComponent();
@@ -47,10 +51,6 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
 
             DataContext = this;
         }
-
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
 
         private async void GetVisitorsInfoFromJsonAsync(SeriesCollection SeriesCollection, List<VisitorItem> visitorItemList, List<int> visitorMonthList, int year, int viewid)
         {
@@ -93,10 +93,9 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
             }
             SeriesCollection.Add(new LineSeries
             {
-                Title = Convert.ToString(year)+"年",
+                Title = Convert.ToString(year),
                 Values = new ChartValues<int> { visitorMonthList[0], visitorMonthList[1], visitorMonthList[2], visitorMonthList[3], visitorMonthList[4], visitorMonthList[5], visitorMonthList[6], visitorMonthList[7], visitorMonthList[8], visitorMonthList[9], visitorMonthList[10], visitorMonthList[11] },
             });
         }
     }
-
 }

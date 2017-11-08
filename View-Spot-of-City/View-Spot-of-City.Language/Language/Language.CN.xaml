@@ -174,4 +174,10 @@
     <sys:String x:Key="DataVisualization_EndTime">结束时间</sys:String>
     <sys:String x:Key="DataVisualization_SatelliteImage">显示卫星图像</sys:String>
     <sys:String x:Key="DataVisualization_DateChooseError">结束日期不能早与开始日期</sys:String>
+
+    <!--景点推荐-->
+    <sys:String x:Key="SpotRecommend_OrderByStars">按星级排名</sys:String>
+    <sys:String x:Key="SpotRecommend_OrderByVisitors">按人流量排名</sys:String>
+    <sys:String x:Key="SpotRecommend_OrderByComments">按评论数排名</sys:String>
+    
 </ResourceDictionary>

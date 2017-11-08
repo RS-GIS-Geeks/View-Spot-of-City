@@ -28,7 +28,7 @@ namespace View_Spot_of_City.ClassModel
 
         string _Name = string.Empty;
         [DataMember]
-        public string name
+        public string Name
         {
             get { return _Name; }
             set

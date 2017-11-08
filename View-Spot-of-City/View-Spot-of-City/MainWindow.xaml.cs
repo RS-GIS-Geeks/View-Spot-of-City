@@ -135,19 +135,6 @@ namespace View_Spot_of_City
         {
             Application.Current.MainWindow = this;
             this.CurrentApp = Application.Current as App;
-            CurrentApp.GetViewSpotsData();
-
-            Random rand = new Random();
-            List<ViewSpot> viewSpotForShow = new List<ViewSpot>(100);
-            for(int i=0;i<100;i++)
-            {
-                viewSpotForShow.Add(CurrentApp.ViewSpotList[i]);
-            }
-
-            //foreach (ViewSpot view in viewSpotForShow)
-            //{
-            //    ArcGISSceneView.AddVisitorGraphicToOverlay(view.GetLng(), view.GetLat(), rand.Next(5000, 20000));
-            //}
 
             closeCircleTimer.Tick += new EventHandler(CloseCircleTimer_Tick);
             closeCircleTimer.Interval = new TimeSpan(0, 0, Convert.ToInt32(Config.AppSettings["ARCGIS_MAP_NetWork_Delay"]));
@@ -201,7 +188,7 @@ namespace View_Spot_of_City
             SpotRecommendOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Device.png",
                 "MainNav_SpotRecommend",
-                new OverLayerExample())
+                new SpotRecommend())
             { OverlayerIndicator = OverlayerType.SpotRecommend };
 
             VisualizationOverlay = new OverlayerItemViewModel(
@@ -236,6 +223,15 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CurrentApp.GetViewSpotsData();
+
+            Random rand = new Random();
+            List<ViewSpot> viewSpotForShow = new List<ViewSpot>(100);
+            for (int i = 0; i < 100; i++)
+            {
+                viewSpotForShow.Add(CurrentApp.ViewSpotList[i]);
+            }
+
             //开始计时，计时完成后即关闭启动进度条
             closeCircleTimer.Start();
 
@@ -340,7 +336,7 @@ namespace View_Spot_of_City
 
         private void mainWindow_Closed(object sender, EventArgs e)
         {
-            //Environment.Exit(0);
+            Environment.Exit(0);
             //Application.Current.Shutdown();
         }
 

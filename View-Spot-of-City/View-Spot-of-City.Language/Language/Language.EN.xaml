@@ -173,4 +173,10 @@
     <sys:String x:Key="DataVisualization_EndTime">End time</sys:String>
     <sys:String x:Key="DataVisualization_SatelliteImage">Use satellite image</sys:String>
     <sys:String x:Key="DataVisualization_DateChooseError">The end time should not early than start time</sys:String>
+
+    <!--景点推荐-->
+    <sys:String x:Key="SpotRecommend_OrderByStars">Order by stars</sys:String>
+    <sys:String x:Key="SpotRecommend_OrderByVisitors">Order by visitors</sys:String>
+    <sys:String x:Key="SpotRecommend_OrderByComments">Order by comments</sys:String>
+
 </ResourceDictionary>
