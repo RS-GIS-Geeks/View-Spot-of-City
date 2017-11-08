@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="Base\CommonPlace.cs" />
     <Compile Include="CommentInfo.cs" />
+    <Compile Include="HotelItem.cs" />
     <Compile Include="Interface\IGetLngLat.cs" />
+    <Compile Include="RestaurantItem.cs" />
     <Compile Include="RouteInfo.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
