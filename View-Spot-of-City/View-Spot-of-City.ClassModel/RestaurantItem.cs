@@ -6,7 +6,7 @@ using View_Spot_of_City.ClassModel.Interface;
 
 namespace View_Spot_of_City.ClassModel
 {
-    class RestaurantItem : IGetLngLat, INotifyPropertyChanged
+    public class RestaurantItem : IGetLngLat, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

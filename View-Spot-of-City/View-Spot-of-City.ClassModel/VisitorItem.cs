@@ -156,6 +156,22 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
+        string _ViewSpotName = string.Empty;
+
+        /// <summary>
+        /// 景点名
+        /// </summary>
+        [DataMember]
+        public string ViewSpotName
+        {
+            get { return _ViewSpotName; }
+            set
+            {
+                _ViewSpotName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ViewSpotName"));
+            }
+        }
+
         public double GetLng()
         {
             return lng;
