@@ -230,6 +230,9 @@
     <Compile Include="VisualizationControl\HistogramOfType.xaml.cs">
       <DependentUpon>HistogramOfType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualizationControl\VisitorFlow.xaml.cs">
+      <DependentUpon>VisitorFlow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisualizationControl\VisitorsByYear.xaml.cs">
       <DependentUpon>VisitorsByYear.xaml</DependentUpon>
     </Compile>
@@ -419,6 +422,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="VisualizationControl\HistogramOfType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisualizationControl\VisitorFlow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
