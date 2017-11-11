@@ -108,121 +108,79 @@ namespace View_Spot_of_City.UIControls.OverLayer
         /// <param name="e"></param>
         private async void SpotSearchBtn_ClickAsync(object sender, RoutedEventArgs e)
         {
-            //if (StartPointAddress.Text == null || StartPointAddress.Text == string.Empty)
-            //{
-            //    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Input_Empty"), LanguageDictionaryHelper.GetString("MessageBox_Warning_Title"));
-            //    return;
-            //}
+            if (ModeCombox.SelectedIndex == -1)
+            {
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Input_Empty"), LanguageDictionaryHelper.GetString("MessageBox_Warning_Title"));
+                return;
+            }
+            
+            //API返回内容
+            string jsonString = string.Empty;
 
-            ////用户输入的内容
-            //string input_spot_name = StartPointAddress.Text;
+            List<ViewSpot> viewSpotList = new List<ViewSpot>(100);
 
-            ////逐一分词之后的内容
-            //char[] input_spot_name_spited = input_spot_name.ToCharArray();
+            try
+            {
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_INFO_BY_RATING"] + "?limit=100", string.Empty, RestSharp.Method.GET)).Content;
+                if (jsonString == "")
+                    throw new Exception("");
 
-            ////模糊查询中的内容
-            //string sql_regexp = "%";
-            //{
-            //    foreach (char siglechar in input_spot_name_spited)
-            //    {
-            //        sql_regexp += siglechar + "%";
-            //    }
-            //}
+                JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
-            ////API返回内容
-            //string jsonString = string.Empty;
+                string content_string = jobject["ViewInfo"].ToString();
 
-            ////景点数量
-            //int viewCount = -1;
+                using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
+                {
+                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<ViewSpot>));
+                    viewSpotList = (List<ViewSpot>)deseralizer.ReadObject(ms);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                return;
+            }
 
-            //try
-            //{
-            //    jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_COUNT_BY_NAME"] + "?name=" + sql_regexp, string.Empty, RestSharp.Method.GET)).Content;
-            //    if (jsonString == "")
-            //        throw new Exception("");
+            //检查数据
+            for (int i = 0; i < viewSpotList.Count; i++)
+            {
+                viewSpotList[i].CheckData();
+            }
 
-            //    JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+            //设置显示数据
+            ViewMaster.ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
 
-            //    JToken jtoken = jobject["ViewCount"][0];
+            //定义当前显示的面板
+            CurrentGrid = CurrentPanel.List;
 
-            //    viewCount = (int)jtoken["COUNT(*)"];
-            //}
-            //catch
-            //{
-            //    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
-            //    return;
-            //}
+            //设置面板可见
+            PanelVisibility = Visibility.Visible;
 
-            //if (viewCount <= 0)
-            //{
-            //    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("SpotSearch_Null"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
-            //    return;
-            //}
+            //清除点图层要素
+            ArcGISMapCommands.ClearFeatures.Execute(2, this);
 
-            //List<ViewSpot> viewSpotList = new List<ViewSpot>(viewCount);
+            //绘制要素
+            foreach (ViewSpot viewSpot in viewSpotList)
+            {
+                MapPoint gcjpoint = new MapPoint(viewSpot.lng, viewSpot.lat);
+                MapPoint wgspoint = WGSGCJLatLonHelper.GCJ02ToWGS84(gcjpoint);
+                viewSpot.lng = wgspoint.X;
+                viewSpot.lat = wgspoint.Y;
+                Dictionary<string, object> commandParams = new Dictionary<string, object>(8)
+                {
+                    { "Lng", viewSpot.lng },
+                    { "Lat", viewSpot.lat },
+                    { "IconUri", IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue ] },
+                    { "Width", 16.0 },
+                    { "Height", 24.0 },
+                    { "OffsetX", 0.0 },
+                    { "OffsetY", 9.5 },
+                    { "Data", viewSpot }
+                };
 
-            //try
-            //{
-            //    jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_INFO_BY_NAME"] + "?name=" + sql_regexp, string.Empty, RestSharp.Method.GET)).Content;
-            //    if (jsonString == "")
-            //        throw new Exception("");
-
-            //    JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
-
-            //    string content_string = jobject["ViewInfo"].ToString();
-
-            //    using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
-            //    {
-            //        DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<ViewSpot>));
-            //        viewSpotList = (List<ViewSpot>)deseralizer.ReadObject(ms);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
-            //    return;
-            //}
-
-            ////检查数据
-            //for (int i = 0; i < viewSpotList.Count; i++)
-            //{
-            //    viewSpotList[i].CheckData();
-            //}
-
-            ////设置显示数据
-            //ViewMaster.ViewSpotList = new ObservableCollection<ViewSpot>(viewSpotList);
-
-            ////定义当前显示的面板
-            //CurrentGrid = CurrentPanel.List;
-
-            ////设置面板可见
-            //PanelVisibility = Visibility.Visible;
-
-            ////清除点图层要素
-            //ArcGISMapCommands.ClearFeatures.Execute(2, this);
-
-            ////绘制要素
-            //foreach (ViewSpot viewSpot in viewSpotList)
-            //{
-            //    MapPoint gcjpoint = new MapPoint(viewSpot.lng, viewSpot.lat);
-            //    MapPoint wgspoint = WGSGCJLatLonHelper.GCJ02ToWGS84(gcjpoint);
-            //    viewSpot.lng = wgspoint.X;
-            //    viewSpot.lat = wgspoint.Y;
-            //    Dictionary<string, object> commandParams = new Dictionary<string, object>(8)
-            //    {
-            //        { "Lng", viewSpot.lng },
-            //        { "Lat", viewSpot.lat },
-            //        { "IconUri", IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.pin_blue ] },
-            //        { "Width", 16.0 },
-            //        { "Height", 24.0 },
-            //        { "OffsetX", 0.0 },
-            //        { "OffsetY", 9.5 },
-            //        { "Data", viewSpot }
-            //    };
-
-            //    ArcGISMapCommands.ShowFeatureOnMap.Execute(commandParams, this);
-            //}
+                ArcGISMapCommands.ShowFeatureOnMap.Execute(commandParams, this);
+            }
         }
 
         private void ShowViewSpotDetailCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -324,6 +282,11 @@ namespace View_Spot_of_City.UIControls.OverLayer
             ViewStatistics.DetailShowItem = param;
             CurrentGrid = CurrentPanel.Statistics;
             ViewMaster.DataItemListView.SelectedIndex = -1;
+        }
+
+        private void ViewStatistics_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
