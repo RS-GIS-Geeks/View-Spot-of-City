@@ -156,27 +156,27 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
-        double _biz_ext_rating = double.MinValue;
+        double _rating = double.MinValue;
         [DataMember]
-        public double biz_ext_rating
+        public double rating
         {
-            get { return _biz_ext_rating; }
+            get { return _rating; }
             set
             {
-                _biz_ext_rating = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("biz_ext_rating"));
+                _rating = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("rating"));
             }
         }
 
-        double _biz_ext_cost = double.MinValue;
+        double _cost = double.MinValue;
         [DataMember]
-        public double biz_ext_cost
+        public double cost
         {
-            get { return _biz_ext_cost; }
+            get { return _cost; }
             set
             {
-                _biz_ext_cost = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("biz_ext_cost"));
+                _cost = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("cost"));
             }
         }
 
@@ -238,8 +238,8 @@ namespace View_Spot_of_City.ClassModel
             photourl1 = photourl1 == "-1" ? "http://store.is.autonavi.com/showpic/91b0ec91244053f681abe1afc874f2a1" : photourl1;
             photourl2 = photourl2 == "-1" ? "http://store.is.autonavi.com/showpic/91b0ec91244053f681abe1afc874f2a1" : photourl2;
             photourl3 = photourl3 == "-1" ? "http://store.is.autonavi.com/showpic/91b0ec91244053f681abe1afc874f2a1" : photourl3;
-            biz_ext_rating = biz_ext_rating == -1 ? 0 : biz_ext_rating;
-            biz_ext_cost = biz_ext_cost == -1 ? 0 : biz_ext_cost;
+            rating = rating == -1 ? 0 : rating;
+            cost = cost == -1 ? 0 : cost;
             telephone = telephone == "-1" ? " - " : telephone;
         }
     }
