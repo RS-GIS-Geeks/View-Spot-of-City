@@ -30,9 +30,25 @@ namespace View_Spot_of_City.UIControls.Command
         public static RoutedCommand ClearCallout { get; set; }
 
         /// <summary>
+        /// 添加景点周边要素
+        /// </summary>
+        public static RoutedCommand AddViewSpotAround { get; set; }
+
+        /// <summary>
         /// 导航到指定地点
         /// </summary>
         public static RoutedCommand NavigateToSomeWhere { get; set; }
+
+        /// <summary>
+        /// 景点周边要素
+        /// </summary>
+        public enum ViewSpotArounds : int
+        {
+            GasStation,
+            TrafficStation,
+            Restaurant,
+            Hotel
+        }
 
         static ArcGISMapCommands()
         {
@@ -41,6 +57,7 @@ namespace View_Spot_of_City.UIControls.Command
             ClearFeatures = new RoutedCommand();
             ClearCallout = new RoutedCommand();
             NavigateToSomeWhere = new RoutedCommand();
+            AddViewSpotAround = new RoutedCommand();
         }
     }
 }

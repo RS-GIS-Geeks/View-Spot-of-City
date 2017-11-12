@@ -131,6 +131,9 @@
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\MyMessageBoxEvents.cs" />
+    <Compile Include="Form\SpotStatistics.xaml.cs">
+      <DependentUpon>SpotStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\VisualizationParamsPicker.xaml.cs">
       <DependentUpon>VisualizationParamsPicker.xaml</DependentUpon>
     </Compile>
@@ -147,9 +150,6 @@
     <Compile Include="Helper\MySqlHelper.cs" />
     <Compile Include="Helper\WebServiceHelper.cs" />
     <Compile Include="Helper\WGSGCJLatLonHelper.cs" />
-    <Compile Include="OverLayer\OverLayerExample.xaml.cs">
-      <DependentUpon>OverLayerExample.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OverLayer\Share.xaml.cs">
       <DependentUpon>Share.xaml</DependentUpon>
     </Compile>
@@ -207,6 +207,9 @@
     </Compile>
     <Compile Include="UIcontrol\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\RepoInfo.xaml.cs">
+      <DependentUpon>RepoInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIcontrol\SpotViewerDetail.xaml.cs">
       <DependentUpon>SpotViewerDetail.xaml</DependentUpon>
@@ -266,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="DataTemplate\SpotNameListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataTemplate\ViewSpotListItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -278,11 +285,11 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Form\VisualizationParamsPicker.xaml">
+    <Page Include="Form\SpotStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OverLayer\OverLayerExample.xaml">
+    <Page Include="Form\VisualizationParamsPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -394,6 +401,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UIcontrol\RepoInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UIcontrol\SpotViewerDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -431,6 +442,7 @@
     <Resource Include="Icon\close_02.png" />
     <Resource Include="Icon\close_03.png" />
     <Resource Include="Icon\go_to.png" />
+    <Resource Include="Icon\restaurant2.png" />
     <Resource Include="Icon\search_02.png" />
   </ItemGroup>
   <ItemGroup>
@@ -487,6 +499,9 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Icon\hunt.png" />
+    <Resource Include="Icon\GasStation.png" />
+    <Resource Include="Icon\hotel1.png" />
+    <Resource Include="Icon\station.png" />
     <Content Include="VisualizationControl\Maps\China.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

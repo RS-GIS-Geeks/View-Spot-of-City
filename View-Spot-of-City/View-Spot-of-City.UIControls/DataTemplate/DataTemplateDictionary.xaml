@@ -6,6 +6,7 @@
         <ResourceDictionary Source="MainNavBarDataTemplate.xaml" />
         <ResourceDictionary Source="ViewSpotListItemTemplate.xaml" />
         <ResourceDictionary Source="CommentListItemTemplate.xaml" />
+        <ResourceDictionary Source="SpotNameListItemTemplate.xaml" />
         <ResourceDictionary Source="VisualizationControlListItemTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

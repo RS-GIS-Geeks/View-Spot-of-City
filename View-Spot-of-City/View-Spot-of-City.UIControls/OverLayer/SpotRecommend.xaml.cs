@@ -53,8 +53,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
         {
             List,
             Detail,
-            Comment,
-            Statistics
+            Comment
         }
 
         CurrentPanel _CurrentGrid = CurrentPanel.List;
@@ -108,7 +107,21 @@ namespace View_Spot_of_City.UIControls.OverLayer
         /// <param name="e"></param>
         private async void SpotSearchBtn_ClickAsync(object sender, RoutedEventArgs e)
         {
-            if (ModeCombox.SelectedIndex == -1)
+            int selectedIndex = ModeCombox.SelectedIndex;
+
+            string requestString = null;
+
+            string AscOrDescString = Desc.IsChecked == true ? "desc" : "asc";
+
+            if (selectedIndex == 0)
+            {
+                requestString = AppSettings["WEB_API_GET_VIEW_INFO_BY_RATING"] + "?limit=100&ascordesc=" + AscOrDescString;
+            }
+            else if(selectedIndex == 1)
+            {
+                requestString = AppSettings["WEB_API_GET_VIEW_INFO_BY_COST"] + "?limit=100&ascordesc=" + AscOrDescString;
+            }
+            else
             {
                 MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Input_Empty"), LanguageDictionaryHelper.GetString("MessageBox_Warning_Title"));
                 return;
@@ -121,7 +134,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
             try
             {
-                jsonString = (await WebServiceHelper.GetHttpResponseAsync(AppSettings["WEB_API_GET_VIEW_INFO_BY_RATING"] + "?limit=100", string.Empty, RestSharp.Method.GET)).Content;
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(requestString, string.Empty, RestSharp.Method.GET)).Content;
                 if (jsonString == "")
                     throw new Exception("");
 
@@ -202,91 +215,66 @@ namespace View_Spot_of_City.UIControls.OverLayer
             ArcGISMapCommands.ClearCallout.Execute(null, Application.Current.MainWindow);
         }
 
-        private void ShowDiscussCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private async void ShowDiscussCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ViewSpot param = e.Parameter as ViewSpot;
-            ViewComment.CommentList.Clear();
-            ViewComment.CommentList.Add(new CommentInfo()
-            {
-                Id = -1,
-                UserName = "梦觉知晓",
-                Stars = 3.5,
-                Year = 2017,
-                Month = 8,
-                Day = 15,
-                Hour = 21,
-                Minute = 52,
-                Second = 55,
-                Goods = 112,
-                CommentData = "搭11号线去拍写真😄说好的美丽车厢-没有😔真的很远呀，地铁+公交车都需要2小时左右😔凤凰古村跟版画村很像，但人很少，非常安静，这点很不错👍这是南宋民族英雄文天祥后代的聚集地，一个拥有700多年历史的古老村落，有60多座保存完好的明清时期民居建筑。特别适合拍照[机智]",
-                PhotoUrl1 = @"http://qcloud.dpfile.com/pc/XsSvTLEgsXStMMgBoM_lcldddVGgSUqvx8zaPOONmgp8MJdP1Kqdm4-kPdOGmJWT.jpg",
-                PhotoUrl2 = @"http://qcloud.dpfile.com/pc/TFiBogtkRNymXHhB2DZ8BSu9E93rjYGE0Fk82BseaqMGKtZVVy10_IHGzJTdp2vy.jpg",
-                PhotoUrl3 = @"http://qcloud.dpfile.com/pc/QIEywiBIg9miOs44M6p5ZKy2GEd6XMBArSjSBhgSfZrUOBzXhVSeyTHI_TSgvGWZ.jpg",
-                Spot = param,
-                TimedForShow = "2017-8-15"
-            });
-            ViewComment.CommentList.Add(new CommentInfo()
-            {
-                Id = -1,
-                UserName = "梦觉知晓",
-                Stars = 3.5,
-                Year = 2017,
-                Month = 8,
-                Day = 15,
-                Hour = 21,
-                Minute = 52,
-                Second = 55,
-                Goods = 112,
-                CommentData = "搭11号线去拍写真😄说好的美丽车厢-没有😔真的很远呀，地铁+公交车都需要2小时左右😔凤凰古村跟版画村很像，但人很少，非常安静，这点很不错👍这是南宋民族英雄文天祥后代的聚集地，一个拥有700多年历史的古老村落，有60多座保存完好的明清时期民居建筑。特别适合拍照[机智]",
-                PhotoUrl1 = @"http://qcloud.dpfile.com/pc/XsSvTLEgsXStMMgBoM_lcldddVGgSUqvx8zaPOONmgp8MJdP1Kqdm4-kPdOGmJWT.jpg",
-                PhotoUrl2 = @"http://qcloud.dpfile.com/pc/TFiBogtkRNymXHhB2DZ8BSu9E93rjYGE0Fk82BseaqMGKtZVVy10_IHGzJTdp2vy.jpg",
-                PhotoUrl3 = @"http://qcloud.dpfile.com/pc/QIEywiBIg9miOs44M6p5ZKy2GEd6XMBArSjSBhgSfZrUOBzXhVSeyTHI_TSgvGWZ.jpg",
-                Spot = param,
-                TimedForShow = "2017-8-15"
-            });
-            ViewComment.CommentList.Add(new CommentInfo()
-            {
-                Id = -1,
-                UserName = "梦觉知晓",
-                Year = 2017,
-                Stars = 3.5,
-                Month = 8,
-                Day = 15,
-                Hour = 21,
-                Minute = 52,
-                Second = 55,
-                Goods = 112,
-                CommentData = "搭11号线去拍写真😄说好的美丽车厢-没有😔真的很远呀，地铁+公交车都需要2小时左右😔凤凰古村跟版画村很像，但人很少，非常安静，这点很不错👍这是南宋民族英雄文天祥后代的聚集地，一个拥有700多年历史的古老村落，有60多座保存完好的明清时期民居建筑。特别适合拍照[机智]",
-                PhotoUrl1 = @"http://qcloud.dpfile.com/pc/XsSvTLEgsXStMMgBoM_lcldddVGgSUqvx8zaPOONmgp8MJdP1Kqdm4-kPdOGmJWT.jpg",
-                PhotoUrl2 = @"http://qcloud.dpfile.com/pc/TFiBogtkRNymXHhB2DZ8BSu9E93rjYGE0Fk82BseaqMGKtZVVy10_IHGzJTdp2vy.jpg",
-                PhotoUrl3 = @"http://qcloud.dpfile.com/pc/QIEywiBIg9miOs44M6p5ZKy2GEd6XMBArSjSBhgSfZrUOBzXhVSeyTHI_TSgvGWZ.jpg",
-                Spot = param,
-                TimedForShow = "2017-8-15"
-            });
             ViewComment.DetailShowItem = param;
             CurrentGrid = CurrentPanel.Comment;
             ViewMaster.DataItemListView.SelectedIndex = -1;
+
+            if (ViewComment.DetailShowItem == null)
+                return;
+            
+            string requestString = AppSettings["WEB_API_GET_COMMENT_INFO_BY_VIEW"] + "?viewid=" + ViewComment.DetailShowItem.id;
+
+            //API返回内容
+            string jsonString = string.Empty;
+
+            try
+            {
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(requestString, string.Empty, RestSharp.Method.GET)).Content;
+                if (jsonString == "")
+                    throw new Exception("");
+
+                JObject jobject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+                string content_string = jobject["CommentInfo"].ToString();
+
+                using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
+                {
+                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(ObservableCollection<CommentInfo>));
+                    ViewComment.CommentList = (ObservableCollection<CommentInfo>)deseralizer.ReadObject(ms);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                return;
+            }
+
+            //检查数据
+            for (int i = 0; i < ViewComment.CommentList.Count; i++)
+            {
+                ViewComment.CommentList[i].Spot = ViewComment.DetailShowItem;
+                ViewComment.CommentList[i].CheckData();
+            }
         }
 
         private void ShowStatisticsCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ViewSpot param = e.Parameter as ViewSpot;
-            ViewStatistics.ControlList.Clear();
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.ControlList.Add(new GeoHeatMap());
-            ViewStatistics.DetailShowItem = param;
-            CurrentGrid = CurrentPanel.Statistics;
+            SpotStatistics spotStatistics = new SpotStatistics();
+            spotStatistics.Show();
             ViewMaster.DataItemListView.SelectedIndex = -1;
         }
 
-        private void ViewStatistics_Loaded(object sender, RoutedEventArgs e)
+        private void ModeCombox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (ModeCombox.SelectedIndex == 0)
+                Desc.IsChecked = true;
+            else
+                Desc.IsChecked = false;
         }
     }
 }

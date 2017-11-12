@@ -18,21 +18,23 @@
     </UserControl.Resources>
     <Grid material:ShadowAssist.ShadowDepth="Depth4">
         <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="White" Grid.Row="1" RadiusX="20" RadiusY="20" Margin="100,0,100,0" StrokeThickness="1" Stroke="{DynamicResource PrimaryHueLightBrush}"/>
-        <Rectangle Fill="White" Grid.Row="1" RadiusX="20" RadiusY="20" Margin="100,0,200,0" StrokeThickness="1" Stroke="{DynamicResource PrimaryHueLightBrush}"/>
-        <Slider x:Name="MonthSlider" Minimum="0" Maximum="100" Style="{StaticResource MaterialDesignSlider}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1"
+        <material:MaterialDateDisplay x:Name="DateForShow" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#37d0f2" Margin="20"/>
+        <Rectangle Fill="White" Grid.Row="2" RadiusX="20" RadiusY="20" Margin="100,0,100,0" StrokeThickness="1" Stroke="{DynamicResource PrimaryHueLightBrush}"/>
+        <Rectangle Fill="White" Grid.Row="2" RadiusX="20" RadiusY="20" Margin="100,0,200,0" StrokeThickness="1" Stroke="{DynamicResource PrimaryHueLightBrush}"/>
+        <Slider x:Name="MonthSlider" Minimum="0" Maximum="100" Style="{StaticResource MaterialDesignSlider}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2"
                 Margin="110,0,210,0" Value="{Binding SliderValue, ElementName=mainControl, Mode=OneWayToSource}" ValueChanged="Silder_ValueChanged"
                 IsEnabled="{Binding CanDragSlider,ElementName=mainControl}"/>
-        <Button x:Name="PreBtn" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,175,10" Background="Transparent" 
+        <Button x:Name="PreBtn" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,175,10" Background="Transparent" 
                 Style="{StaticResource ModifiedFlatButtonStyle}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" 
                 Click="PreBtn_Click" IsEnabled="{Binding CanDragSlider,ElementName=mainControl}">
             <material:PackIcon Kind="PageFirst" Width="20" Height="20"/>
         </Button>
-        <ToggleButton x:Name="PauseBtn" Grid.Row="1" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
+        <ToggleButton x:Name="PauseBtn" Grid.Row="2" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
                       Padding="0,0" Width="20" Height="20" Margin="10,10,155,10" HorizontalAlignment="Right" Click="PauseBtn_Click"
                       IsEnabled="{Binding CanDragSlider,ElementName=mainControl}">
             <ToggleButton.Style>
@@ -58,12 +60,12 @@
                 </Style>
             </ToggleButton.Style>
         </ToggleButton>
-        <Button x:Name="NextBtn" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,135,10" Background="Transparent" 
+        <Button x:Name="NextBtn" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,135,10" Background="Transparent" 
                 Style="{StaticResource ModifiedFlatButtonStyle}" IsEnabled="{Binding CanDragSlider,ElementName=mainControl}"
                 Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" Click="NextBtn_Click">
             <material:PackIcon Kind="PageLast" Width="20" Height="20"/>
         </Button>
-        <Button x:Name="SettingBtn" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,110,10" Background="Transparent" Style="{StaticResource ModifiedFlatButtonStyle}"
+        <Button x:Name="SettingBtn" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,110,10" Background="Transparent" Style="{StaticResource ModifiedFlatButtonStyle}"
 									  Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" Click="SettingBtn_ClickAsync">
             <material:PackIcon Kind="Settings" Width="20" Height="20"/>
         </Button>

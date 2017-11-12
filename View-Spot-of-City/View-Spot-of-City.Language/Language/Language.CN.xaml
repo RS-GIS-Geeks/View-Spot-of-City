@@ -68,7 +68,12 @@
     <sys:String x:Key="SpotSearch_Location">位置</sys:String>
     <sys:String x:Key="SpotSearch_Rating">评分</sys:String>
     <sys:String x:Key="SpotSearch_ViewDiscuss">查看评论</sys:String>
-    <sys:String x:Key="SpotSearch_ViewStatistics">查看统计</sys:String>
+    <sys:String x:Key="SpotSearch_ViewStatistics">人流量统计</sys:String>
+    <sys:String x:Key="SpotSearch_VisiotrStatisticsFormTitle">人流量统计</sys:String>
+    <sys:String x:Key="SpotSearch_GasStationTip">加油站</sys:String>
+    <sys:String x:Key="SpotSearch_TrafficStationTip">交通站点</sys:String>
+    <sys:String x:Key="SpotSearch_RestaurantTip">饭店</sys:String>
+    <sys:String x:Key="SpotSearch_HotelTip">酒店/旅馆</sys:String>
 
     <!--景点显示-->
     <sys:String x:Key="ShowSpot_Name">景点：</sys:String>
@@ -177,7 +182,14 @@
 
     <!--景点推荐-->
     <sys:String x:Key="SpotRecommend_OrderByStars">按星级排名</sys:String>
+    <sys:String x:Key="SpotRecommend_OrderByCost">按价格排名</sys:String>
     <sys:String x:Key="SpotRecommend_OrderByVisitors">按人流量排名</sys:String>
-    <sys:String x:Key="SpotRecommend_OrderByComments">按评论数排名</sys:String>
+    <sys:String x:Key="SpotRecommend_Desc">降序排列</sys:String>
+
+    <!--景点分享-->
+    <sys:String x:Key="SpotShare_HaveNoResultTip">暂无查询结果</sys:String>
+    <sys:String x:Key="SpotShare_RichTextBoxTip">您的评论...</sys:String>
+    <sys:String x:Key="SpotShare_AddPicture">添加图片</sys:String>
+    <sys:String x:Key="SpotShare_PublishComment">发表评论</sys:String>
     
 </ResourceDictionary>

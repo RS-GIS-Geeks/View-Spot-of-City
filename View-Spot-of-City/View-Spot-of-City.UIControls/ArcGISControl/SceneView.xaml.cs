@@ -52,17 +52,16 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         {
             Scene myScene = new Scene()
             {
-                Basemap = new Basemap(new Uri(AppSettings["ARCGIS_BASEMAP"]))
-                //Basemap = new Basemap(new Uri("http://www.arcgis.com/home/item.html?id=91b46c2b162c48dba264b2190e1dbcff"))
+                Basemap = new Basemap(new Uri(AppSettings["ARCGIS_THEMATIC_BASEMAP"]))
             };
 
-            var elevationSource = new ArcGISTiledElevationSource(new Uri("http://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer"));
+            var elevationSource = new ArcGISTiledElevationSource(new Uri(AppSettings["ARCGIS_ELEVATION3D"]));
             var sceneSurface = new Surface();
             sceneSurface.ElevationSources.Add(elevationSource);
             myScene.BaseSurface = sceneSurface;
 
             sceneView.Scene = myScene;
-            sceneView.SetViewpointCamera(new Camera(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), 1289, 295, 71, 0));
+            sceneView.SetViewpointCamera(new Camera(Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["ARCGIS_SENCE_HEADING"]), 0, 0, 0));
             sceneView.GraphicsOverlays.Add(CylinderOverlayForVisitorData);
         }
 
@@ -94,18 +93,21 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="lng"></param>
         /// <param name="lat"></param>
         /// <param name="height"></param>
-        public void AddVisitorGraphicToOverlay(double lng, double lat, double height)
+        public void AddVisitorGraphicToOverlay(double lng, double lat, double size)
         {
-            Graphic graphic = new Graphic(new MapPoint(lng, lat, 1000, SpatialReferences.Wgs84), 
-                new SimpleMarkerSceneSymbol
-                {
-                    Style = SimpleMarkerSceneSymbolStyle.Cylinder,
-                    Color = Colors.Yellow,
-                    Height = height,
-                    Width = 100,
-                    Depth = 100,
-                    AnchorPosition = SceneSymbolAnchorPosition.Center
-                });
+            //Graphic graphic = new Graphic(new MapPoint(lng, lat, 1000, SpatialReferences.Wgs84), 
+            //    new SimpleMarkerSceneSymbol
+            //    {
+            //        Style = SimpleMarkerSceneSymbolStyle.Cylinder,
+            //        Color = Color.FromArgb(100, 37, 117, 229),
+            //        Height = height,
+            //        Width = 100,
+            //        Depth = 100,
+            //        AnchorPosition = SceneSymbolAnchorPosition.Center
+            //    });
+
+            Graphic graphic = new Graphic(new MapPoint(lng, lat, 1000, SpatialReferences.Wgs84), new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Circle, 
+                Color.FromArgb(100, 37, 117, 229), size));
             GraphicListForVisitorData.Add(graphic);
             AddGraphicToOverlay(CylinderOverlayForVisitorData,graphic);
         }
@@ -119,13 +121,20 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             ResetMapViewStatus();
             foreach (VisitorItem visitor in visitorList)
             {
-                AddVisitorGraphicToOverlay(visitor.lng, visitor.lat, visitor.Visitors);
+                AddVisitorGraphicToOverlay(visitor.lng, visitor.lat, visitor.Visitors / 500.0);
             }
         }
 
         public void ChangeAttributesOfVisitorGraphics(List<VisitorItem> visitorList)
         {
-
+            if(visitorList.Count == GraphicListForVisitorData.Count)
+            {
+                for(int i=0;i<visitorList.Count;i++)
+                {
+                    GraphicListForVisitorData[i].Symbol = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Circle,
+                Color.FromArgb(100, 37, 117, 229), visitorList[i].Visitors / 500.0);
+                }
+            }
         }
 
         /// <summary>
@@ -135,6 +144,15 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         public void ChangeBaseMap(string url)
         {
             sceneView.Scene.Basemap = new Basemap(new Uri(url));
+        }
+
+        /// <summary>
+        /// 设置场景视图
+        /// </summary>
+        /// <param name="camera"></param>
+        public void SetScaleAndLoction(Camera camera)
+        {
+            sceneView.SetViewpointCamera(camera);
         }
     }
 }

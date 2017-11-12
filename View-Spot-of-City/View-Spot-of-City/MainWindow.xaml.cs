@@ -25,6 +25,10 @@ using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Command;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
+using Esri.ArcGISRuntime.Mapping;
+using static View_Spot_of_City.UIControls.Command.ArcGISMapCommands;
+using View_Spot_of_City.UIControls.UIcontrol;
+using System.Windows.Controls.Primitives;
 
 namespace View_Spot_of_City
 {
@@ -200,8 +204,8 @@ namespace View_Spot_of_City
             ShareOverlay = new OverlayerItemViewModel(
                 "pack://application:,,,/Icon/Talk.png",
                 "MainNav_Share",
-                new Share())
-            { OverlayerMargin = new Thickness(0), HAlignType = System.Windows.HorizontalAlignment.Stretch, OverlayerIndicator = OverlayerType.Share };
+                new Share() { CurrentUser = CurrentApp.CurrentUser })
+            { OverlayerIndicator = OverlayerType.Share };
 
             Overlayers = new List<OverlayerItemViewModel>(5)
             {
@@ -223,14 +227,14 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CurrentApp.GetViewSpotsData();
+            //CurrentApp.GetViewSpotsData();
 
-            Random rand = new Random();
-            List<ViewSpot> viewSpotForShow = new List<ViewSpot>(100);
-            for (int i = 0; i < 100; i++)
-            {
-                viewSpotForShow.Add(CurrentApp.ViewSpotList[i]);
-            }
+            //Random rand = new Random();
+            //List<ViewSpot> viewSpotForShow = new List<ViewSpot>(100);
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    viewSpotForShow.Add(CurrentApp.ViewSpotList[i]);
+            //}
 
             //开始计时，计时完成后即关闭启动进度条
             closeCircleTimer.Start();
@@ -248,6 +252,8 @@ namespace View_Spot_of_City
             if (circleProgressBox != null)
                 circleProgressBox.CloseProgress();
             closeCircleTimer.Stop();
+            ArcGISMapView.SetScaleAndLoction(new MapPoint(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(Config.AppSettings["ARCGIS_MAP_ZOOM"]));
+            ArcGISSceneView.SetScaleAndLoction(new Camera(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(Config.AppSettings["ARCGIS_SENCE_HEADING"]), 0, 0, 0));
         }
 
         /// <summary>
@@ -257,11 +263,7 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void Logo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Hyperlink link = new Hyperlink();
-            {
-                link.NavigateUri = new Uri(@"https://github.com/RS-GIS-Geeks/View-Spot-of-City");
-            }
-            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            (new RepoInfoWindow()).ShowDialog();
             e.Handled = true;
         }
 
@@ -280,6 +282,9 @@ namespace View_Spot_of_City
                 mainControl = MainControls.ArcGISSceneView;
             else
                 mainControl = MainControls.ArcGISMapView;
+
+            if(MainNavBar.SelectedIndex == 0)
+                ArcGISMapView.SetScaleAndLoction(new MapPoint(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(Config.AppSettings["ARCGIS_MAP_ZOOM"]));
         }
 
         /// <summary>
@@ -431,6 +436,7 @@ namespace View_Spot_of_City
             //改变地图视角
             ArcGISMapView.SetScaleAndLoction(new MapPoint(data.GetLng(), data.GetLat(), SpatialReferences.Wgs84), 10000);
         }
+        
 
         /// <summary>
         /// 清除指定图层的要素
@@ -441,6 +447,29 @@ namespace View_Spot_of_City
         {
             if (e.Parameter != null)
                 ArcGISMapView.ClearFeatureOnGraphicsOverlay(ArcGISMapView.GraphicsOverlays[(int)e.Parameter]);
+        }
+
+        /// <summary>
+        /// 添加景点周边要素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddViewSpotAroundCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                Dictionary<string, object> param = e.Parameter as Dictionary<string, object>;
+                ViewSpotArounds type = (ViewSpotArounds)param["type"];
+                List<MapPoint> points = param["points"] as List<MapPoint>;
+                if (type == ViewSpotArounds.GasStation)
+                    ArcGISMapView.AddGasStationToGraphicsOverlay(points);
+                else if(type == ViewSpotArounds.TrafficStation)
+                    ArcGISMapView.AddTrafficStationToGraphicsOverlay(points);
+                else if (type == ViewSpotArounds.Restaurant)
+                    ArcGISMapView.AddRestaurantToGraphicsOverlay(points);
+                else if (type == ViewSpotArounds.Hotel)
+                    ArcGISMapView.AddHotelToGraphicsOverlay(points);
+            }
         }
 
         /// <summary>
@@ -476,7 +505,7 @@ namespace View_Spot_of_City
         {
             ArcGISMapView.DismissCallout();
         }
-
+        
         /// <summary>
         /// 添加人流量数据到Sence
         /// </summary>
@@ -486,6 +515,17 @@ namespace View_Spot_of_City
         {
             List<VisitorItem> visitorList = e.Parameter as List<VisitorItem>;
             ArcGISSceneView.AddVisitorGraphicToOverlay(visitorList);
+        }
+
+        /// <summary>
+        /// 改变Sence中现有人流量数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeVisitorsDataCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            List<VisitorItem> visitorList = e.Parameter as List<VisitorItem>;
+            ArcGISSceneView.ChangeAttributesOfVisitorGraphics(visitorList);
         }
 
         /// <summary>

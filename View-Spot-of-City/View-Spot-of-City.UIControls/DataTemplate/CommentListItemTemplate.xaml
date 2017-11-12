@@ -13,7 +13,7 @@
         </DataTemplate.Resources>
         <StackPanel HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Ellipse Fill="{Binding UserName, Converter={StaticResource mail2img}}" 
+                <Ellipse Fill="{Binding UserMail, Converter={StaticResource mail2img}}" 
                          Width="25" Height="25" StrokeThickness="1" Margin="0,0,10,5" Stroke="{DynamicResource AccentBaseColorBrush}"/>
                 <TextBlock FontSize="20" Text="{Binding UserName}" Style="{DynamicResource TitleTextBlock}" Margin="0,0,5,5" Foreground="{DynamicResource AccentBaseColorBrush}"/>
             </StackPanel>

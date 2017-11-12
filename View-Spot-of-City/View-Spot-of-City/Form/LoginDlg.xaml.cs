@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.UIControls.OverLayer;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
 
@@ -87,6 +88,8 @@ namespace View_Spot_of_City.Form
         private void ChangeCurrentUserCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             (Application.Current as App).CurrentUser = e.Parameter as UserInfo;
+            if((Application.Current as App).MainWindow is MainWindow && ((Application.Current as App).MainWindow as MainWindow).ShareOverlay != null)
+                (((Application.Current as App).MainWindow as MainWindow).ShareOverlay.Content as Share).CurrentUser = e.Parameter as UserInfo;
         }
 
         private void loginDlg_Closing(object sender, CancelEventArgs e)

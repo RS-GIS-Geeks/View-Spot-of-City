@@ -18,7 +18,7 @@ namespace View_Spot_of_City.UIControls.Converter
             string precost = LanguageDictionaryHelper.GetString("ShowSpot_PreCost");
             if (precost == "$")
                 cost /= 6;
-            return LanguageDictionaryHelper.GetString("SpotSearch_Cost") + " " + precost + cost;
+            return precost + cost.ToString("f1");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -69,6 +69,26 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             }
         }
 
+        /// <summary>
+        /// 加油站图层
+        /// </summary>
+        private GraphicsOverlay GasStationOverlay = new GraphicsOverlay();
+
+        /// <summary>
+        /// 交通站图层
+        /// </summary>
+        private GraphicsOverlay TrafficStationOverlay = new GraphicsOverlay();
+
+        /// <summary>
+        /// 饭店图层
+        /// </summary>
+        private GraphicsOverlay RestaurantOverlay = new GraphicsOverlay();
+
+        /// <summary>
+        /// 酒店图层
+        /// </summary>
+        private GraphicsOverlay HotelOverlay = new GraphicsOverlay();
+
         private GraphicsOverlay _DataVisualizationOverlay = new GraphicsOverlay();
         /// <summary>
         /// 数据可视化图层
@@ -115,6 +135,16 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         }
 
         /// <summary>
+        /// 图标默认宽度
+        /// </summary>
+        readonly int IconDefaultWidth = 30;
+
+        /// <summary>
+        /// 图标默认高度
+        /// </summary>
+        readonly int IconDefaultHeight = 30;
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         public MapView()
@@ -137,13 +167,17 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         private void InitializeMapView()
         {
             mapView.Map = new Map(new Uri(AppSettings["ARCGIS_BASEMAP"]));
-            mapView.SetViewpointCenterAsync(new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]));
             mapView.GraphicsOverlays.Add(PolygonOverlay);
             mapView.GraphicsOverlays.Add(LineOverlay);
             mapView.GraphicsOverlays.Add(PointOverlay);
+            mapView.GraphicsOverlays.Add(GasStationOverlay);
+            mapView.GraphicsOverlays.Add(TrafficStationOverlay);
+            mapView.GraphicsOverlays.Add(RestaurantOverlay);
+            mapView.GraphicsOverlays.Add(HotelOverlay);
             if (!mapView.LocationDisplay.IsEnabled)
                 mapView.LocationDisplay.IsEnabled = true;
             mapView.LocationDisplay.AutoPanMode = LocationDisplayAutoPanMode.CompassNavigation;
+            mapView.SetViewpointCenterAsync(new MapPoint(Convert.ToDouble(AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(AppSettings["ARCGIS_MAP_ZOOM"]));
         }
 
         /// <summary>
@@ -162,6 +196,18 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             PointOverlay.Graphics.Clear();
             LineOverlay.Graphics.Clear();
             PolygonOverlay.Graphics.Clear();
+            ClearViewSpotArounds();
+        }
+
+        /// <summary>
+        /// 清除景点周边要素
+        /// </summary>
+        private void ClearViewSpotArounds()
+        {
+            GasStationOverlay.Graphics.Clear();
+            TrafficStationOverlay.Graphics.Clear();
+            RestaurantOverlay.Graphics.Clear();
+            HotelOverlay.Graphics.Clear();
         }
 
         /// <summary>
@@ -241,13 +287,13 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// <param name="e"></param>
         private async void mapView_GeoViewDoubleTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
-            if (routeStops == null || routeStops.Count <= 1)
-                return;
-            List<MapPoint> stopList = await GraphHooperHelper.GetRouteStopsAsync(routeStops[0], routeStops[routeStops.Count - 1]);
-            routeStops.Clear();
-            AddNavigateRouteToGraphicsOverlay(LineOverlay, stopList, SimpleLineSymbolStyle.Dash, Colors.Blue, 5);
-            //AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
-            e.Handled = true;
+            //if (routeStops == null || routeStops.Count <= 1)
+            //    return;
+            //List<MapPoint> stopList = await GraphHooperHelper.GetRouteStopsAsync(routeStops[0], routeStops[routeStops.Count - 1]);
+            //routeStops.Clear();
+            //AddNavigateRouteToGraphicsOverlay(LineOverlay, stopList, SimpleLineSymbolStyle.Dash, Colors.Blue, 5);
+            ////AddPolygonToGraphicsOverlay(PolygonOverlay, polygonVertexes, SimpleFillSymbolStyle.DiagonalCross, Colors.LawnGreen, new SimpleLineSymbol(SimpleLineSymbolStyle.Dash,Colors.DarkBlue, 2));
+            //e.Handled = true;
         }
 
         /// <summary>
@@ -365,13 +411,92 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         }
         
         /// <summary>
+        /// 添加加油站
+        /// </summary>
+        /// <param name="points"></param>
+        public void AddGasStationToGraphicsOverlay(List<MapPoint> points)
+        {
+            PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.gas_station])
+            {
+                Width = IconDefaultWidth,
+                Height = IconDefaultHeight,
+                OffsetX = 0,
+                OffsetY = 0
+            };
+            foreach(MapPoint point in points)
+            {
+                Graphic graphic = new Graphic(point, pictureMarkerSymbol);
+                GasStationOverlay.Graphics.Add(graphic);
+            }
+        }
+
+        /// <summary>
+        /// 添加交通站点
+        /// </summary>
+        /// <param name="points"></param>
+        public void AddTrafficStationToGraphicsOverlay(List<MapPoint> points)
+        {
+            PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.traffic_station])
+            {
+                Width = IconDefaultWidth,
+                Height = IconDefaultHeight,
+                OffsetX = 0,
+                OffsetY = 0
+            };
+            foreach (MapPoint point in points)
+            {
+                Graphic graphic = new Graphic(point, pictureMarkerSymbol);
+                TrafficStationOverlay.Graphics.Add(graphic);
+            }
+        }
+
+        /// <summary>
+        /// 添加饭店
+        /// </summary>
+        /// <param name="points"></param>
+        public void AddRestaurantToGraphicsOverlay(List<MapPoint> points)
+        {
+            PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.restaurant])
+            {
+                Width = IconDefaultWidth,
+                Height = IconDefaultHeight,
+                OffsetX = 0,
+                OffsetY = 0
+            };
+            foreach (MapPoint point in points)
+            {
+                Graphic graphic = new Graphic(point, pictureMarkerSymbol);
+                RestaurantOverlay.Graphics.Add(graphic);
+            }
+        }
+
+        /// <summary>
+        /// 添加酒店
+        /// </summary>
+        public void AddHotelToGraphicsOverlay(List<MapPoint> points)
+        {
+            PictureMarkerSymbol pictureMarkerSymbol = new PictureMarkerSymbol(IconDictionaryHelper.IconDictionary[IconDictionaryHelper.Icons.hotel])
+            {
+                Width = IconDefaultWidth,
+                Height = IconDefaultHeight,
+                OffsetX = 0,
+                OffsetY = 0
+            };
+            foreach (MapPoint point in points)
+            {
+                Graphic graphic = new Graphic(point, pictureMarkerSymbol);
+                HotelOverlay.Graphics.Add(graphic);
+            }
+        }
+
+        /// <summary>
         /// 右键按下响应
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void mapView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ResetMapViewStatus();
+            ClearViewSpotArounds();
         }
 
         /// <summary>

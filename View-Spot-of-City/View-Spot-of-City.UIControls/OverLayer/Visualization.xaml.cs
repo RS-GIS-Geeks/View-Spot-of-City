@@ -113,6 +113,8 @@ namespace View_Spot_of_City.UIControls.OverLayer
         {
             InitializeComponent();
 
+            DateForShow.DisplayDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
             ChangeSliderTimer.Tick += new EventHandler(ChangeSliderTimer_Tick);
             ChangeSliderTimer.Interval = new TimeSpan(0, 0, 1);
         }
@@ -223,10 +225,17 @@ namespace View_Spot_of_City.UIControls.OverLayer
                         }
                     }
                 }
+
                 MonthSlider.Minimum = 0;
                 MonthSlider.Maximum = VisitorsByMonthAndPlace.Count - 1;
                 MonthSlider.Value = MonthSlider.Minimum;
                 CanDragSlider = true;
+
+                if(VisitorsByMonthAndPlace.Count >= 1)
+                {
+                    ArcGISSceneCommands.AddVisitorsData.Execute(VisitorsByMonthAndPlace[0], Application.Current.MainWindow);
+                    DateForShow.DisplayDate = StartDate;
+                }
             }
         }
 
@@ -252,7 +261,8 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
         private void Silder_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            ArcGISSceneCommands.AddVisitorsData.Execute(VisitorsByMonthAndPlace[(int)MonthSlider.Value], Application.Current.MainWindow);
+            ArcGISSceneCommands.ChangeVisitorsData.Execute(VisitorsByMonthAndPlace[(int)MonthSlider.Value], Application.Current.MainWindow);
+            DateForShow.DisplayDate = StartDate.AddMonths((int)MonthSlider.Value);
         }
 
         /// <summary>

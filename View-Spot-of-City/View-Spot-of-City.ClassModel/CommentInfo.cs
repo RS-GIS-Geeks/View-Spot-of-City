@@ -95,6 +95,21 @@ namespace View_Spot_of_City.ClassModel
             }
         }
 
+        string _UserMail = string.Empty;
+
+        /// <summary>
+        /// 用户邮箱
+        /// </summary>
+        public string UserMail
+        {
+            get { return _UserMail; }
+            set
+            {
+                _UserMail = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("UserMail"));
+            }
+        }
+
         double _Stars = -1;
 
         /// <summary>

@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace View_Spot_of_City.UIControls.Helper
-{/// <summary>
- /// 地球坐标系 (WGS-84) 到火星坐标系 (GCJ-02) 的转换 帮助类 
- /// </summary>
+{
+    /// <summary>
+    /// 地球坐标系 (WGS-84) 到火星坐标系 (GCJ-02) 的转换 帮助类 
+    /// </summary>
     public class WGSGCJLatLonHelper
     {
         /*
@@ -107,7 +108,7 @@ namespace View_Spot_of_City.UIControls.Helper
                 return arcgisGcjPoint;
             }
             LatLngPoint _transPoint = Transform(gcjPoint);
-            return new MapPoint(gcjPoint.LonX - _transPoint.LonX, gcjPoint.LatY - _transPoint.LatY);
+            return new MapPoint(gcjPoint.LonX - _transPoint.LonX, gcjPoint.LatY - _transPoint.LatY, SpatialReferences.Wgs84);
         }
         #endregion
 
@@ -125,7 +126,7 @@ namespace View_Spot_of_City.UIControls.Helper
                 return arcgisWgsPoint;
             }
             LatLngPoint _transPoint = Transform(wgsPoint);
-            return new MapPoint(wgsPoint.LonX + _transPoint.LonX, wgsPoint.LatY + _transPoint.LatY);
+            return new MapPoint(wgsPoint.LonX + _transPoint.LonX, wgsPoint.LatY + _transPoint.LatY, SpatialReferences.Wgs84);
         }
         #endregion
     }

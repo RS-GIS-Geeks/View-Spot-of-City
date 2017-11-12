@@ -26,8 +26,10 @@
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.SetScaleAndLocation}" Executed="SetScaleAndLocationCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearFeatures}" Executed="ClearFeaturesCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearCallout}" Executed="ClearCalloutCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.AddViewSpotAround}" Executed="AddViewSpotAroundCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISMapCommands.NavigateToSomeWhere}" Executed="NavigateToSomeWhereCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.AddVisitorsData}" Executed="AddVisitorsDataCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.ChangeVisitorsData}" Executed="ChangeVisitorsDataCommandBinding_Executed"/>
         <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.ChangeBaseMap}" Executed="ChangeBaseMapCommandBinding_Executed"/>
     </Window.CommandBindings>
     <Grid x:Name="Root">
@@ -61,7 +63,7 @@
             <material:ColorZone Background="White"
 							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="pack://application:,,,/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,2,0,2"
+                    <Image Source="pack://application:,,,/Icon/Earth.png" Height="40" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,2,0,2"
                        Cursor="Hand" ToolTip="{DynamicResource LogoTooltip}" MouseDown="Logo_MouseDown"/>
                 <TextBlock x:Name="AppTitle" VerticalAlignment="Center" Margin="10,7" FontSize="24" FontWeight="Bold" Text="{DynamicResource MainTitle}"/>
             </StackPanel>

@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
              mc:Ignorable="d" MaxWidth="300">
@@ -12,6 +13,20 @@
     <UserControl.Resources>
         <converters:String2Image x:Key="string2image"/>
         <converters:ViewSpotCostConverter x:Key="costconverter"/>
+        <Style x:Key="MyPackIconModernStyle" TargetType="iconPacks:PackIconModern">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Control.Foreground" Value="DarkRed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MyPackIconStyle" TargetType="material:PackIcon">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Control.Foreground" Value="DarkRed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -29,13 +44,9 @@
             </StackPanel>
         </Button>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <!--<Rectangle Fill="{Binding ElementName=mainControl, Path=CurrentImageUrl, Converter={StaticResource string2image}}"
-                                           Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" Margin="0,5,0,0"
-                                           Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="200" MaxHeight="400"
-                                           HorizontalAlignment="Center"/>-->
             <Grid  Margin="0,5,0,0" Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400" HorizontalAlignment="Center"
                    MouseEnter="Player_MouseEnter" MouseLeave="Player_MouseLeave">
-                <MediaElement x:Name="Player" Source="{Binding DetailShowItem.videourl, ElementName=mainControl}" LoadedBehavior="Manual" />
+                <MediaElement x:Name="Player" Source="{Binding DetailShowItem.videourl, ElementName=mainControl}" LoadedBehavior="Manual"/>
                 <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1"/>
                 <ToggleButton x:Name="PauseBtn" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
                       Padding="0,0,0,0" Width="80" Height="80" Click="PauseBtn_Click" Opacity="0.6">
@@ -102,6 +113,20 @@
                         <Button Content="{DynamicResource SpotSearch_ViewStatistics}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
                                  Click="ViewStatisticsButton_Click" Margin="2" Padding="5"/>
                     </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <iconPacks:PackIconModern Kind="Gas" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                              Margin="5,0,5,0" MouseDown="GasStationPackIconModern_MouseDown" Style="{StaticResource MyPackIconModernStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_GasStationTip}"/>
+                    <iconPacks:PackIconModern Kind="TransitBus" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                              Margin="5,0,5,0" MouseDown="BusStationPackIconModern_MouseDown" Style="{StaticResource MyPackIconModernStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_TrafficStationTip}"/>
+                    <material:PackIcon Kind="FoodForkDrink" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                       Margin="5,0,5,0" MouseDown="RestaurantPackIconModern_MouseDown" Style="{StaticResource MyPackIconStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_RestaurantTip}"/>
+                    <material:PackIcon Kind="Hotel" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                       Margin="5,0,5,0" MouseDown="HotelPackIconModern_MouseDown" Style="{StaticResource MyPackIconStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_HotelTip}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

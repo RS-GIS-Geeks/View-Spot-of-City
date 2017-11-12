@@ -43,16 +43,8 @@
                 </Button>
                 <DockPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                        <Button x:Name="ClearStartAddressBtn" Style="{DynamicResource ModifiedFlatButtonStyle}" Height="auto"
-								Foreground="{DynamicResource PrimaryHueMidBrush}"
-								Padding="10" Visibility="Collapsed">
-                            <Image Source="pack://application:,,,/View-Spot-of-City.UIControls;component/Icon/close_02.png" />
-                        </Button>
                         <Rectangle Style="{DynamicResource SeperatorStyle}" />
-                        <Button Foreground="{DynamicResource PrimaryHueMidBrush}" 
-									  Padding="0" Width="50" Height="50" Style="{DynamicResource ModifiedFlatButtonStyle}" >
-                            <iconPacks:PackIconModern Width="20" Height="20" Kind="ArrowUpDown" IsHitTestVisible="False"/>
-                        </Button>
+                        <CheckBox x:Name="Desc" Style="{DynamicResource MaterialDesignCheckBox}" Width="auto" Height="50" Margin="10,0,10,0" Content="{DynamicResource SpotRecommend_Desc}"/>
                         <Button x:Name="SpotSearchBtn" Width="50" 
 								Style="{DynamicResource ModifiedMaterialDesignRaisedDarkButton}" 
 								Padding="10" Click="SpotSearchBtn_ClickAsync" IsDefault="True">
@@ -60,10 +52,9 @@
                         </Button>
                     </StackPanel>
                     <ComboBox x:Name="ModeCombox" Height="40" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0" Style="{DynamicResource NoneBorderComboBoxStyle}"
-                              SelectedIndex="0" material:ComboBoxAssist.ClassicMode="True">
+                              SelectedIndex="0" material:ComboBoxAssist.ClassicMode="True" SelectionChanged="ModeCombox_SelectionChanged">
                         <ComboBoxItem Content="{DynamicResource SpotRecommend_OrderByStars}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <ComboBoxItem Content="{DynamicResource SpotRecommend_OrderByVisitors}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <ComboBoxItem Content="{DynamicResource SpotRecommend_OrderByComments}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <ComboBoxItem Content="{DynamicResource SpotRecommend_OrderByCost}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ComboBox>
                 </DockPanel>
                 <Rectangle x:Name="AddressSperator" Fill="#f2f2f2" Visibility="Collapsed" Height="1" Grid.Column="1" Grid.Row="1" DockPanel.Dock="Bottom" HorizontalAlignment="Left" Width="{Binding ElementName=StartPointAddress, Path=ActualWidth}"/>
@@ -87,7 +78,6 @@
                 <control:SpotViewerMaster x:Name="ViewMaster" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}"/>
                 <control:SpotViewerDetail x:Name="ViewDetail" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}"/>
                 <control:SpotViewerDisscuss x:Name="ViewComment" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=2}"/>
-                <control:SpotViewerStatistics x:Name="ViewStatistics" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=3}" Loaded="ViewStatistics_Loaded"/>
             </Grid>
         </material:ColorZone>
     </Grid>

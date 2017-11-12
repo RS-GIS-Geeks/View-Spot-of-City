@@ -69,6 +69,11 @@
     <sys:String x:Key="SpotSearch_Rating">Stars</sys:String>
     <sys:String x:Key="SpotSearch_ViewDiscuss">Comments</sys:String>
     <sys:String x:Key="SpotSearch_ViewStatistics">Statistics</sys:String>
+    <sys:String x:Key="SpotSearch_VisiotrStatisticsFormTitle">Visitor flow Statistic</sys:String>
+    <sys:String x:Key="SpotSearch_GasStationTip">Gas station</sys:String>
+    <sys:String x:Key="SpotSearch_TrafficStationTip">Traffic station</sys:String>
+    <sys:String x:Key="SpotSearch_RestaurantTip">Restaurant</sys:String>
+    <sys:String x:Key="SpotSearch_HotelTip">Hotel</sys:String>
 
     <!--景点显示-->
     <sys:String x:Key="ShowSpot_Name">Name：</sys:String>
@@ -81,7 +86,7 @@
     <sys:String x:Key="ShowSpot_Tel">Tel：</sys:String>
     <sys:String x:Key="ShowSpot_PreImage">Last image</sys:String>
     <sys:String x:Key="ShowSpot_NextImage">Next image</sys:String>
-    <sys:String x:Key="ShowSpot_GoToTip">Go to here</sys:String>
+    <sys:String x:Key="ShowSpot_GoToTip">Go to here</sys:String> 
     <sys:String x:Key="ShowSpot_LocationOff">Location service not open</sys:String>
     <sys:String x:Key="ShowSpot_FailedToGetRoute">Failed to get route</sys:String>
 
@@ -176,7 +181,14 @@
 
     <!--景点推荐-->
     <sys:String x:Key="SpotRecommend_OrderByStars">Order by stars</sys:String>
+    <sys:String x:Key="SpotRecommend_OrderByCost">Order by cost</sys:String>
     <sys:String x:Key="SpotRecommend_OrderByVisitors">Order by visitors</sys:String>
-    <sys:String x:Key="SpotRecommend_OrderByComments">Order by comments</sys:String>
+    <sys:String x:Key="SpotRecommend_Desc">Descending order</sys:String>
+
+    <!--景点分享-->
+    <sys:String x:Key="SpotShare_HaveNoResultTip">Have no results</sys:String>
+    <sys:String x:Key="SpotShare_RichTextBoxTip">Your comment...</sys:String>
+    <sys:String x:Key="SpotShare_AddPicture">Add picture</sys:String>
+    <sys:String x:Key="SpotShare_PublishComment">Comment</sys:String>
 
 </ResourceDictionary>
