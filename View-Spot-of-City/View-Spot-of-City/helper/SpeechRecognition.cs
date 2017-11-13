@@ -1,6 +1,6 @@
 ﻿using SpeechLib;
 
-namespace View_Spot_of_City.helper
+namespace View_Spot_of_City.Helper
 {
     public class SpeechRecognition
     {

@@ -84,7 +84,99 @@
                             <Setter Property="Opacity" Value=".56" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource NavigationBarBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ModifiedMaterialDesignListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="{TemplateBinding Margin}"
+                            ClipToBounds="{TemplateBinding ClipToBounds}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CircleEase EasingMode="EaseOut"/>
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                             To="0.1" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Disabled"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.18" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Unselected"/>
+                                <VisualState Name="SelectedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.03" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Border x:Name="MouseOverBorder"
+                                    Opacity="0"
+                                    Background="#f8f8f8"/>
+
+                            <Border x:Name="SelectedBorder"
+                                    Opacity="0"
+                                    Background="#f8f8f8"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1"/>
+                                </Border.RenderTransform>
+                            </Border>
+                            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                        Focusable="False"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}"/>
+                            <Rectangle Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,0" Fill="#f3f3f3"></Rectangle>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".56" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Background" Value="#f8f8f8" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -5,34 +5,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City"
-        xmlns:mapview="clr-namespace:View_Spot_of_City.MapView;assembly=View-Spot-of-City.MapView"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.ArcGISControls;assembly=View-Spot-of-City.ArcGISControls"
         xmlns:uicontrol="clr-namespace:View_Spot_of_City.UIControls.UIcontrol;assembly=View-Spot-of-City.UIControls"
-        xmlns:converter="clr-namespace:View_Spot_of_City.Converter"
+        xmlns:converter="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
+        xmlns:arcgiscontrols="clr-namespace:View_Spot_of_City.UIControls.ArcGISControl;assembly=View-Spot-of-City.UIControls"
+        xmlns:commands="clr-namespace:View_Spot_of_City.UIControls.Command;assembly=View-Spot-of-City.UIControls"
         mc:Ignorable="d"
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" Loaded="Window_Loaded"
         Closing="mainWindow_Closing" Closed="mainWindow_Closed">
-    <!--<metro:MetroWindow.RightWindowCommands>
-        <metro:WindowCommands>
-            <Button Click="Setting_Click">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="Settings"/>
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="设置"/>
-                </StackPanel>
-            </Button>
-            <Button Click="Login_Click">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="登录"/>
-                </StackPanel>
-            </Button>
-        </metro:WindowCommands>
-    </metro:MetroWindow.RightWindowCommands>-->
+    <Window.Resources>
+        <converter:Mail2AvatarBruahConverter x:Key="mail2avatarbrushconverter"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commands:CommandForMainWindow.CommandsFreightStationToOverlayerCommand}" Executed="CommandsFreightStationToOverlayerCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ShowFeatureOnMap}" Executed="ShowFeatureOnMapCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.SetScaleAndLocation}" Executed="SetScaleAndLocationCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearFeatures}" Executed="ClearFeaturesCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.ClearCallout}" Executed="ClearCalloutCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.AddViewSpotAround}" Executed="AddViewSpotAroundCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISMapCommands.NavigateToSomeWhere}" Executed="NavigateToSomeWhereCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.AddVisitorsData}" Executed="AddVisitorsDataCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.ChangeVisitorsData}" Executed="ChangeVisitorsDataCommandBinding_Executed"/>
+        <CommandBinding Command="{x:Static commands:ArcGISSceneCommands.ChangeBaseMap}" Executed="ChangeBaseMapCommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="48"/>
@@ -43,33 +42,35 @@
         <DockPanel x:Name="Header" Margin="0,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                 <Button IsHitTestVisible="False" Background="Transparent" Padding="0" Margin="0,10,0,10" Style="{StaticResource ModifiedFlatButtonStyle}">
-                    <iconPacks:PackIconModern Kind="Globe"/>
+                    <iconPacks:PackIconModern Kind="Globe" IsHitTestVisible="False"/>
                 </Button>
                 <ComboBox x:Name="LanguageSelecter" Style="{DynamicResource NoneBorderComboBoxStyle}" material:ComboBoxAssist.ClassicMode="True"
 						  SelectedIndex="0" Margin="2,10,10,10" Height="auto" Padding="2" SelectionChanged="LanguageSelecter_SelectionChanged">
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">简体中文</ComboBoxItem>
                     <ComboBoxItem VerticalAlignment="Center" HorizontalAlignment="Center">English</ComboBoxItem>
                 </ComboBox>
-                <Button Click="UserInfoButton_Click" Background="Transparent" Padding="5" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
+                <Button Click="UserInfoButton_Click" Background="Transparent" Padding="4" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
                         ToolTip="{DynamicResource UserInfoDlg_ToolTip}">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>
+                    <!--<iconPacks:PackIconModern Width="16" Height="16" Kind="User"/>-->
+                    <Rectangle Width="24" Height="24" Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail, Converter={StaticResource mail2avatarbrushconverter}}"
+                               Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" IsHitTestVisible="False"></Rectangle>
                 </Button>
-                <Button Click="LogoutButton_Click" Background="Transparent" Padding="5" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
+                <Button Click="LogoutButton_Click" Background="Transparent" Padding="4" Margin="0,10,10,10" Style="{StaticResource ModifiedFlatButtonStyle}"
                         ToolTip="{DynamicResource Logout_ToolTip}">
-                    <iconPacks:PackIconModern Width="16" Height="16" Kind="LayoutExpandRight"/>
+                    <iconPacks:PackIconModern Width="22" Height="22" Kind="LayoutExpandRight" IsHitTestVisible="False"/>
                 </Button>
             </StackPanel>
             <material:ColorZone Background="White"
 							VerticalAlignment="Stretch" Padding="0"  MouseLeftButtonDown="Header_MouseLeftButtonDown" IsHitTestVisible="True">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="pack://application:,,,/Icon/logo.png" Height="40" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,2,0,2"
+                    <Image Source="pack://application:,,,/Icon/Earth.png" Height="40" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,2,0,2"
                        Cursor="Hand" ToolTip="{DynamicResource LogoTooltip}" MouseDown="Logo_MouseDown"/>
                 <TextBlock x:Name="AppTitle" VerticalAlignment="Center" Margin="10,7" FontSize="24" FontWeight="Bold" Text="{DynamicResource MainTitle}"/>
             </StackPanel>
                 </material:ColorZone>
         </DockPanel>
         <!--导航栏-->
-        <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" 
+        <ListBox x:Name="MainNavBar" Grid.Row="1" SelectionMode="Single" ItemTemplate="{StaticResource MainNavBarItemTemplate}" IsTabStop="False"
 				 ItemContainerStyle="{StaticResource NavigatorMaterialDesignListBoxItem}" SelectionChanged="MainNavBar_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -88,10 +89,8 @@
         <!--主控件-->
         <ContentControl Grid.Row="2">
             <Grid x:Name="mainControlManager">
-                <uicontrol:BrowserControl x:Name="Browser" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
-                <mapview:MapView x:Name="GMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
-                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=2}"/>
-                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=3}"/>
+                <arcgiscontrols:SceneView x:Name="ArcGISSceneView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=0}"/>
+                <arcgiscontrols:MapView x:Name="ArcGISMapView" Visibility="{Binding ElementName=mainWindow,Path=mainControl,Converter={StaticResource mainControlVisibilityConverter},ConverterParameter=1}"/>
             </Grid>
         </ContentControl>
         <!--覆盖层-->

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 using System.Runtime.Serialization.Json;
 using static System.Configuration.ConfigurationManager;
 
@@ -24,8 +25,9 @@ using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using static View_Spot_of_City.UIControls.Helper.CreateValidateCodeImageHelper;
+using static View_Spot_of_City.UIControls.Helper.ValidateCodeHelper;
 using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
+using System.Threading;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {
@@ -37,7 +39,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         public event PropertyChangedEventHandler PropertyChanged;
 
         string _title = null;
-
         public string Title
         {
             get { return _title; }
@@ -52,6 +53,26 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         }
 
         /// <summary>
+        /// 除头像之外的控件的可见性
+        /// </summary>
+        Visibility _controlVisibility = Visibility.Visible;
+        /// <summary>
+        /// 除头像之外的控件的可见性
+        /// </summary>
+        public Visibility ControlVisibity
+        {
+            get { return _controlVisibility; }
+            set
+            {
+                if(_controlVisibility != value)
+                {
+                    _controlVisibility = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ControlVisibity"));
+                }
+            }
+        }
+
+        /// <summary>
         /// 验证码
         /// </summary>
         char[] validateCode = new char[4];
@@ -60,7 +81,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         {
             InitializeComponent();
             Title = GetString("LoginTitle");
-            mailTextBox.Text = AppSettings["DEFAULT_USER_MAIL"];
 
             //生成验证码
             validateCode = CreatFourRandomChar();
@@ -68,6 +88,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             #region 测试
             passwordTextBox.Password = "19970108";
+            validateCodeTextBox.Text = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
             #endregion
         }
         
@@ -113,11 +134,11 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
             string jsonString = string.Empty;
 
-            user user_obiect = null;
+            UserInfo user_obiect = null;
 
             try
             {
-                jsonString = (await WebServiceHelper.GetHttpResponse(url, null, RestSharp.Method.GET)).Content;
+                jsonString = (await WebServiceHelper.GetHttpResponseAsync(url, null, RestSharp.Method.GET)).Content;
                 if (jsonString == "")
                     throw new Exception("");
             }
@@ -136,8 +157,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
 
                 using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(content_string)))
                 {
-                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(user));
-                    user_obiect = (user)deseralizer.ReadObject(ms);
+                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(UserInfo));
+                    user_obiect = (UserInfo)deseralizer.ReadObject(ms);
                 }
             }
             catch(Exception ex)
@@ -147,9 +168,9 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 return;
             }
             
-            if(user_obiect.password == password_encoded)
+            if(user_obiect.Password == password_encoded)
             {
-                //MessageBoxMaster.Show("登录成功", "CS-Tao");
+                ControlVisibity = Visibility.Collapsed;
                 CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
                 LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
             }
@@ -165,6 +186,33 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             //生成验证码
             validateCode = CreatFourRandomChar();
             validateImage.Source = CreateValidateCodeImage(validateCode);
+        }
+
+        private void mailTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userInputMail = mailTextBox.Text == string.Empty ? "rsgisgeeks@qq.com" : mailTextBox.Text;
+            userImgBox.Fill = new ImageBrush(AvatarHelper.GetAvatarByEmail(userInputMail));
+        }
+
+        private void userImgBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Hyperlink link = new Hyperlink();
+            {
+                link.NavigateUri = new Uri(@"https://en.gravatar.com/");
+            }
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// 设置默认邮箱
+        /// </summary>
+        /// <param name="defaultMail"></param>
+        public void SetDefautMail(string defaultMail)
+        {
+            mailTextBox.Text = defaultMail;
+            string userInputMail = mailTextBox.Text == string.Empty ? "rsgisgeeks@qq.com" : mailTextBox.Text;
+            userImgBox.Fill = new ImageBrush(AvatarHelper.GetAvatarByEmail(userInputMail));
         }
     }
 }

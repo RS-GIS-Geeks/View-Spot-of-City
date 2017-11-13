@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Style">
+
+    <Style x:Key="NomalTextBox" TargetType="TextBox">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextBlockForegrandBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10,0,10,10"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="IsEnabled" Value="True"/>
+        <Setter Property="IsTabStop" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="True"/>
+        <Setter Property="IsReadOnly" Value="false"/>
+    </Style>
+    
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Padding" Value="0.5,0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border" SnapsToDevicePixels="true"  Background="{TemplateBinding Background}" CornerRadius="0" BorderThickness="1"
+                                        BorderBrush="Gray">
+                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{x:Null}"/>
+                            <Setter Property="Foreground" Value="#CCFFFFFF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Control.BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="Control.BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

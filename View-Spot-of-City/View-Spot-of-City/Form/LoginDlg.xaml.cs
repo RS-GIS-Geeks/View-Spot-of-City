@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using View_Spot_of_City.ClassModel;
+using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.UIControls.OverLayer;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
 
@@ -42,15 +44,21 @@ namespace View_Spot_of_City.Form
             }
         }
 
-        public LoginDlg()
+        /// <summary>
+        /// 是否点击了按钮
+        /// </summary>
+        bool _ClickButton = false;
+
+        public LoginDlg(string defaultMail)
         {
             InitializeComponent();
+            login.SetDefautMail(defaultMail);
             Page = LoginControls.Login;
         }
 
         private void OKAndCloseFormCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            try { this.DialogResult = true; }
+            try { _ClickButton = true; this.DialogResult = true; }
             catch { }
         }
 
@@ -79,8 +87,20 @@ namespace View_Spot_of_City.Form
 
         private void ChangeCurrentUserCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            App.CurrentUser = e.Parameter as user;
-            //MessageBoxMaster.Show("当前用户邮箱为：" + App.CurrentUser.mail, "CS-Tao");
+            (Application.Current as App).CurrentUser = e.Parameter as UserInfo;
+            if((Application.Current as App).MainWindow is MainWindow && ((Application.Current as App).MainWindow as MainWindow).ShareOverlay != null)
+                (((Application.Current as App).MainWindow as MainWindow).ShareOverlay.Content as Share).CurrentUser = e.Parameter as UserInfo;
+        }
+
+        private void loginDlg_Closing(object sender, CancelEventArgs e)
+        {
+            if(!_ClickButton)
+            {
+                if (MessageboxMaster.DialogResults.Yes == MessageboxMaster.Show(GetString("MainWindowCloseConfirm"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
+                    Application.Current.Shutdown(0);
+                else
+                    e.Cancel = true;
+            }
         }
     }
 }

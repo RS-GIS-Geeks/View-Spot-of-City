@@ -64,19 +64,22 @@ namespace View_Spot_of_City.UIControls.Progress
         /// </summary>
         public void ShowPregress()
         {
-            m_thread.IsBackground = true;
-            m_thread = new Thread(Show);
-            m_thread.IsBackground = true;
+            m_thread = new Thread(Show)
+            {
+                IsBackground = true
+            };
             m_thread.SetApartmentState(ApartmentState.STA);
             m_thread.Start();
         }
 
         private void Show()
         {
-            m_frmProgressBox = new FromProgressBox();
-            m_frmProgressBox.Caption = m_Title;
-            m_frmProgressBox.MaxValue = m_MaxValue;
-            m_frmProgressBox.MinValue = m_MinValue;
+            m_frmProgressBox = new FromProgressBox()
+            {
+                Caption = m_Title,
+                MaxValue = m_MaxValue,
+                MinValue = m_MinValue
+            };
             m_frmProgressBox.ShowDialog();
         }
 

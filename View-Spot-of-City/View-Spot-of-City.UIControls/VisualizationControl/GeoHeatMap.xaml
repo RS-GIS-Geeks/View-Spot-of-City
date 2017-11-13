@@ -1,0 +1,16 @@
+﻿<local:VisualizationControlBase x:Class="View_Spot_of_City.UIControls.VisualizationControl.GeoHeatMap"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:View_Spot_of_City.UIControls.VisualizationControl"
+			 xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+			 xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance local:GeoHeatMap}">
+    
+    <Grid>
+        <lvc:GeoMap x:Name="geoMap" HeatMap="{Binding Values}" Source="VisualizationControl/Maps/China.xml" LanguagePack="{Binding LanguagePack}" />
+    </Grid>
+</local:VisualizationControlBase>

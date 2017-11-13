@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
 using static System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.UIControls.Command;
-using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Helper;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.EmailHelper;
@@ -30,10 +17,8 @@ namespace View_Spot_of_City.UIControls.UIcontrol
     /// <summary>
     /// Register.xaml 的交互逻辑
     /// </summary>
-    public partial class Register : UserControl, INotifyPropertyChanged
+    public partial class Register : UserControl
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// 验证码
         /// </summary>
@@ -62,13 +47,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             //初始化定时器
             sendMailBtnTimer.Tick += new EventHandler(BeginChangeTextTimer_Tick);
             sendMailBtnTimer.Interval = new TimeSpan(0, 0, 1);
-
-            #region 测试
-            mailTextBox.Text = "990296951@qq.com";
-            passwordTextBox.Password = "19970108";
-            password1TextBox.Password = "19970108";
-            //validateCodeTextBox.Text = "1234";
-            #endregion
         }
 
         private async void btnRegister_ClickAsync(object sender, RoutedEventArgs e)
@@ -114,11 +92,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                     return;
                 }
 
-                #region 测试
-                MessageboxMaster.Show("开发过程需要临时关闭连接数据库功能", "CS-Tao");
-                return;
-                #endregion
-
                 //密码加密
                 string password_encoded = MD5_Encryption.MD5Encode(user_password);
 
@@ -128,10 +101,10 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 string mysql_user = AppSettings["MYSQL_USER"];
                 string mysql_password = AppSettings["MYSQK_PASSWORD"];
                 string mysql_database = AppSettings["MYSQK_DATABASE"];
-                string sql_string = "INSERT INTO users(mail, password) VALUES('" + user_mail + "','" + password_encoded + "')";
+                string sql_string = "INSERT INTO " + AppSettings["MYSQK_TABLE_USER"] + "(Mail, Password) VALUES('" + user_mail + "','" + password_encoded + "');";
 
                 //执行SQL查询
-                string qury_result = await MySqlHelper.ExcuteSQL(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_string);
+                string qury_result = await MySqlHelper.ExcuteNonQueryAsync(mysql_host, mysql_port, mysql_user, mysql_password, mysql_database, sql_string);
 
                 //判断返回
                 if (qury_result != "true" && qury_result != "false")
@@ -168,12 +141,6 @@ namespace View_Spot_of_City.UIControls.UIcontrol
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             LoginDlgCommands.ChangePageCommand.Execute(LoginControls.Login, this);
-        }
-
-        public static bool IsEmail(string str)
-        {
-            string expression = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-            return Regex.IsMatch(str, expression, RegexOptions.Compiled);
         }
 
         private void btnGetValidateCode_Click(object sender, RoutedEventArgs e)

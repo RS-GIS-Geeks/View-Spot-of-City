@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Style">
+
+    <Style x:Key="TitleTextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextBlockForegrandBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Margin" Value="10,0,10,10"/>
+    </Style>
+    
+    <Style x:Key="LowLightTextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{DynamicResource LowLightTextBlockForegrandBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Margin" Value="10,0,0,10"/>
+    </Style>
+    
+    <Style x:Key="NormalTextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextBlockForegrandBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Margin" Value="20,0,10,10"/>
+    </Style>
+    
+    <Style x:Key="HyberlinkEffect" TargetType="{x:Type Hyperlink}">
+        <Setter Property="Foreground" Value="#3d6490"></Setter>
+        <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Green"></Setter>
+                <Setter Property="TextBlock.TextDecorations">
+                    <Setter.Value>
+                        <TextDecorationCollection>
+                            <TextDecoration Location="Underline"/>
+                        </TextDecorationCollection>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

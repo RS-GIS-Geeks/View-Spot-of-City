@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
              mc:Ignorable="d"
-             Height="300" Width="300">
+             Height="300" Width="270">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label Content="{DynamicResource RegisterText}" Margin="10,3"/>
+            <Label Content="{DynamicResource RegisterText}" Margin="10,8,10,3"/>
             <Grid Margin="10,0">
                 <TextBox Name="mailTextBox" Margin="3" MaxLength="30" AcceptsTab="False" AcceptsReturn="False"/>
             </Grid>
@@ -28,8 +28,8 @@
             </Grid>
             <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
             <Grid Margin="10,0">
-                <TextBox Name="validateCodeTextBox" Margin="3,3,150,3" MaxLength="6" AcceptsTab="False" AcceptsReturn="False"/>
-                <Button Name="btnGetValidateCode" FontSize="12" Height="auto" Width="130"
+                <TextBox Name="validateCodeTextBox" Margin="3,3,130,3" MaxLength="6" AcceptsTab="False" AcceptsReturn="False"/>
+                <Button Name="btnGetValidateCode" FontSize="12" Height="auto" Width="110"
                     HorizontalAlignment="Right" Margin="0,3,3,3" IsDefault="True" Click="btnGetValidateCode_Click"/>
             </Grid>
         </StackPanel>

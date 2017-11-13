@@ -13,6 +13,7 @@ namespace View_Spot_of_City.ViewModel
 {
     public enum OverlayerType
     {
+        ShowMap,
         SpotQuery,
         SpotRecommend,
         Visualization,

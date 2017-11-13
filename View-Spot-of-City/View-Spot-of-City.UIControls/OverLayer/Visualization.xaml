@@ -1,13 +1,86 @@
 ﻿<UserControl x:Class="View_Spot_of_City.UIControls.OverLayer.Visualization"
+             x:Name="mainControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View_Spot_of_City.UIControls.OverLayer"
-             xmlns:visualcontrols="clr-namespace:View_Spot_of_City.VisualControls;assembly=View-Spot-of-City.VisualControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <visualcontrols:GeoHeatMap/>
+             xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:visualcontrols="clr-namespace:View_Spot_of_City.UIControls.VisualizationControl"
+             xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid material:ShadowAssist.ShadowDepth="Depth4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <material:MaterialDateDisplay x:Name="DateForShow" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#37d0f2" Margin="20"/>
+        <Rectangle Fill="White" Grid.Row="2" RadiusX="20" RadiusY="20" Margin="100,0,100,0" StrokeThickness="1" Stroke="{DynamicResource PrimaryHueLightBrush}"/>
+        <Rectangle Fill="White" Grid.Row="2" RadiusX="20" RadiusY="20" Margin="100,0,200,0" StrokeThickness="1" Stroke="{DynamicResource PrimaryHueLightBrush}"/>
+        <Slider x:Name="MonthSlider" Minimum="0" Maximum="100" Style="{StaticResource MaterialDesignSlider}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2"
+                Margin="110,0,210,0" Value="{Binding SliderValue, ElementName=mainControl, Mode=OneWayToSource}" ValueChanged="Silder_ValueChanged"
+                IsEnabled="{Binding CanDragSlider,ElementName=mainControl}"/>
+        <Button x:Name="PreBtn" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,175,10" Background="Transparent" 
+                Style="{StaticResource ModifiedFlatButtonStyle}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" 
+                Click="PreBtn_Click" IsEnabled="{Binding CanDragSlider,ElementName=mainControl}">
+            <material:PackIcon Kind="PageFirst" Width="20" Height="20"/>
+        </Button>
+        <ToggleButton x:Name="PauseBtn" Grid.Row="2" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
+                      Padding="0,0" Width="20" Height="20" Margin="10,10,155,10" HorizontalAlignment="Right" Click="PauseBtn_Click"
+                      IsEnabled="{Binding CanDragSlider,ElementName=mainControl}">
+            <ToggleButton.Style>
+                <Style BasedOn="{StaticResource ModifiedToggleButtonStyle}" TargetType="{x:Type ToggleButton}">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Grid>
+                                        <material:PackIcon Kind="Pause"/>
+                                    </Grid>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <material:PackIcon Kind="Play"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+        <Button x:Name="NextBtn" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,135,10" Background="Transparent" 
+                Style="{StaticResource ModifiedFlatButtonStyle}" IsEnabled="{Binding CanDragSlider,ElementName=mainControl}"
+                Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" Click="NextBtn_Click">
+            <material:PackIcon Kind="PageLast" Width="20" Height="20"/>
+        </Button>
+        <Button x:Name="SettingBtn" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,110,10" Background="Transparent" Style="{StaticResource ModifiedFlatButtonStyle}"
+									  Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" Click="SettingBtn_ClickAsync">
+            <material:PackIcon Kind="Settings" Width="20" Height="20"/>
+        </Button>
+        <material:PopupBox Grid.Row="2" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Margin="0,0,30,0" Width="28">
+            <StackPanel>
+                <Button ToolTip="{DynamicResource Chart_TypeChartTip}" Click="TypeButton_Click">
+                    <material:PackIcon Kind="ChartPie" Height="20" Width="20" />
+                </Button>
+                <Button ToolTip="{DynamicResource Chart_VisitorRankChartTip}" Background="{DynamicResource SecondaryAccentBrush}"
+                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}" Click="VisitorButton_Click">
+                    <material:PackIcon Kind="ChartPie" Height="20" Width="20" />
+                </Button>
+            </StackPanel>
+        </material:PopupBox>
     </Grid>
 </UserControl>

@@ -1,17 +1,92 @@
-﻿<metro:MetroWindow x:Class="View_Spot_of_City.Form.UserInfoDlg"
+﻿<Window x:Class="View_Spot_of_City.Form.UserInfoDlg"
+        x:Name="mainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View_Spot_of_City.Form"
-        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter;assembly=View-Spot-of-City.UIControls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        Title="{DynamicResource UserInfoDlg_Title}"
-        Height="300" Width="300">
+        Title="{DynamicResource UserInfoDlg_Title}" Style="{StaticResource CustomWindowChromeNoMaxMin}"
+        Height="auto" Width="auto" MinWidth="200" MaxWidth="400" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <converters:Mail2AvatarBruahConverter x:Key="mail2avatarconvert"/>
+    </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Label Content="用户邮箱（示例）" Margin="20,5,20,0"/>
-            <TextBox x:Name="mailTextBox" Margin="20,5,20,5"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0.5" BorderBrush="{DynamicResource PrimaryHueLightBrush}" Grid.Row="0" Grid.RowSpan="3"/>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="3">
+            <StackPanel Orientation="Vertical">
+                <Grid Height="auto" Width="auto" Background="#e3e8ee">
+                    <Ellipse Fill="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail, Converter={StaticResource mail2avatarconvert}}" 
+                         Width="100" Height="100" StrokeThickness="1" Cursor="Hand" ToolTip="{DynamicResource LoginIconTooltip}"
+                         Margin="0,10,0,10" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Stroke="{StaticResource AccentBaseColorBrush}"/>
+                </Grid>
+                <StackPanel Margin="20,0,20,10">
+                    <TextBlock Style="{StaticResource TitleTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.DisplayName}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <iconPacks:PackIconModern Width="16" Height="16" Margin="10,0,0,10" Kind="LocationCheckin" Foreground="DarkRed" IsHitTestVisible="False"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Margin="5,0,10,10" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.SchoolOrUniversity}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Name}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Name}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Mail}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Mail}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Personal}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=PersonalInfoDescription}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Profession}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow, Path=CurrentApp.CurrentUser.Profession}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Location}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=LocationDescription}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Company}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.Company}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_School_Or_University}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.SchoolOrUniversity}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource UserInfo_Hometown}"/>
+                        <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding ElementName=mainWindow,Path=CurrentApp.CurrentUser.Hometown}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
+        <Button Style="{StaticResource EllipseFlatButtonStyle}" Grid.Row="0" Width="auto" Height="auto" Padding="0" Margin="0,100,10,0" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" Click="EditBtn_Click" ToolTip="{StaticResource UserInfoDlg_EditTip}">
+            <Grid>
+                <Ellipse x:Name="ellipse" Fill="{DynamicResource PrimaryHueLightBrush}" Width="40" Height="40" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Ellipse.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="true">
+                                    <Setter Property="Control.Opacity" Value=".8"/>
+                                    <Setter Property="Control.Background" Value="White"/>
+                                    <Setter Property="Control.Foreground" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <iconPacks:PackIconModern Width="18" Height="18" Margin="0" Kind="Edit" Foreground="White"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False"/>
+            </Grid>
+        </Button>
     </Grid>
-</metro:MetroWindow>
+</Window>

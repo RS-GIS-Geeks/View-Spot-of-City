@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="View_Spot_of_City.UIControls.UIcontrol.SpotViewerDetail"
+             x:Name="mainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
+             mc:Ignorable="d" MaxWidth="300">
+
+    <UserControl.Resources>
+        <converters:String2Image x:Key="string2image"/>
+        <converters:ViewSpotCostConverter x:Key="costconverter"/>
+        <Style x:Key="MyPackIconModernStyle" TargetType="iconPacks:PackIconModern">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Control.Foreground" Value="DarkRed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MyPackIconStyle" TargetType="material:PackIcon">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Control.Foreground" Value="DarkRed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource ModifiedFlatButtonStyle}" Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0" Click="BackToMasterButton_Click">
+            <StackPanel Orientation="Horizontal">
+                <material:PackIcon Kind="ChevronLeft" />
+                <TextBlock Text="{DynamicResource SpotSearch_BackToMasterTitle}" Padding="0,0,5,0"/>
+            </StackPanel>
+        </Button>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Grid x:Name="PlayerMananager"  Margin="0,5,0,0" Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400" HorizontalAlignment="Center"
+                   MouseEnter="Player_MouseEnter" MouseLeave="Player_MouseLeave">
+                <MediaElement x:Name="Player" Source="{Binding DetailShowItem.videourl, ElementName=mainControl}" LoadedBehavior="Manual" Width="280"
+                              Height="157.5"/>
+                <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1"/>
+                <ToggleButton x:Name="PauseBtn" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
+                      Padding="0,0,0,0" Width="80" Height="80" Click="PauseBtn_Click" Opacity="0.6">
+                    <ToggleButton.Style>
+                        <Style BasedOn="{StaticResource ModifiedToggleButtonStyle}" TargetType="{x:Type ToggleButton}">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Grid>
+                                                <material:PackIcon Kind="Pause" Width="80" Height="80"/>
+                                            </Grid>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <material:PackIcon Kind="Play" Width="80" Height="80"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Foreground" Value="Transparent"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+            </Grid>
+            <StackPanel Margin="0,15,0,0" Width="auto" Height="auto">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Name}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.name, ElementName=mainControl}" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Type}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.type, ElementName=mainControl}" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Location}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.address, ElementName=mainControl}" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Rating}"/>
+                    <material:RatingBar Value="{Binding DetailShowItem.biz_ext_rating,ElementName=mainControl}" Margin="20,0,10,10" IsHitTestVisible="False" 
+                                                Foreground="DarkGoldenrod"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource LowLightTextBlock}" Text="{DynamicResource SpotSearch_Cost}"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DetailShowItem.biz_ext_cost, ElementName=mainControl, Converter={StaticResource costconverter}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Grid HorizontalAlignment="Center" Margin="0,0,15,0">
+                        <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
+                        <Button Content="{DynamicResource SpotSearch_ViewDiscuss}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
+                                 Click="ViewDiscussButton_Click" Margin="2" Padding="5"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center">
+                        <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
+                        <Button Content="{DynamicResource SpotSearch_ViewStatistics}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
+                                 Click="ViewStatisticsButton_Click" Margin="2" Padding="5"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <iconPacks:PackIconModern Kind="Gas" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                              Margin="5,0,5,0" MouseDown="GasStationPackIconModern_MouseDown" Style="{StaticResource MyPackIconModernStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_GasStationTip}"/>
+                    <iconPacks:PackIconModern Kind="TransitBus" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                              Margin="5,0,5,0" MouseDown="BusStationPackIconModern_MouseDown" Style="{StaticResource MyPackIconModernStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_TrafficStationTip}"/>
+                    <material:PackIcon Kind="FoodForkDrink" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                       Margin="5,0,5,0" MouseDown="RestaurantPackIconModern_MouseDown" Style="{StaticResource MyPackIconStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_RestaurantTip}"/>
+                    <material:PackIcon Kind="Hotel" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="30" Height="30" Cursor="Hand"
+                                       Margin="5,0,5,0" MouseDown="HotelPackIconModern_MouseDown" Style="{StaticResource MyPackIconStyle}"
+                                              ToolTip="{DynamicResource SpotSearch_HotelTip}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

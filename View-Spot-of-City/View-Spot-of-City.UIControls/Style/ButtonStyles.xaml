@@ -29,8 +29,8 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
-                            <!--Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/-->
+                        <Trigger Property="IsDefault" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
@@ -102,5 +102,44 @@
     
     <Style x:Key="ModifiedBorderedMaterialDesignTextBox" BasedOn="{StaticResource MaterialDesignTextBox}" TargetType="TextBox">
         <Setter Property="BorderThickness" Value="1 1 1 1" />
+    </Style>
+
+    <Style x:Key="EllipseFlatButtonStyle" TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="TextBlock.FontWeight" Value="Medium"/>
+        <Setter Property="TextBlock.FontSize" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="16 4 16 4"/>
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}" x:Name="border" CornerRadius="0">
+                            <wpf:Ripple Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False" 
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Padding="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="Transparent"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.23"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

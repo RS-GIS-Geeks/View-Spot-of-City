@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:View_Spot_of_City.UIControls.DataTemplate"
+                    xmlns:converters="clr-namespace:View_Spot_of_City.UIControls.Converter"
+                    xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+    
+    <DataTemplate x:Key="CommentListItemTemplate" >
+        <DataTemplate.Resources>
+            <converters:ViewSpotCostConverter x:Key="costconverter"/>
+            <converters:String2ImageForComment x:Key="string2imageforcomment"/>
+            <converters:Mail2AvatarBruahConverter x:Key="mail2img"/>
+        </DataTemplate.Resources>
+        <StackPanel HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Ellipse Fill="{Binding UserMail, Converter={StaticResource mail2img}}" 
+                         Width="25" Height="25" StrokeThickness="1" Margin="0,0,10,5" Stroke="{DynamicResource AccentBaseColorBrush}"/>
+                <TextBlock FontSize="20" Text="{Binding UserName}" Style="{DynamicResource TitleTextBlock}" Margin="0,0,5,5" Foreground="{DynamicResource AccentBaseColorBrush}"/>
+            </StackPanel>
+            <DockPanel VerticalAlignment="Center">
+                <material:RatingBar DockPanel.Dock="Left" Value="{Binding Stars}" Margin="20,0,5,5" IsHitTestVisible="False" Foreground="DarkGoldenrod"/>
+                <TextBlock DockPanel.Dock="Right" Grid.Row="2" Grid.Column="2" FontSize="12" Text="{Binding TimedForShow}" 
+                           HorizontalAlignment="Right" Margin="0,0,20,5" VerticalAlignment="Center"/>
+            </DockPanel>
+            <!--#region 评论区-->
+            <StackPanel Margin="20,0,20,5">
+                <TextBlock FontSize="14" Text="{Binding CommentData}" Style="{DynamicResource NormalTextBlock}" TextWrapping="Wrap" MaxWidth="260" Margin="0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Rectangle Fill="{Binding Path=PhotoUrl1, Converter={StaticResource string2imageforcomment}}"
+                               Stroke="{DynamicResource AccentBaseColorBrush}" StrokeThickness="1" Margin="0,5,10,0"
+                               Width="80" Height="80"/>
+                    <Rectangle Fill="{Binding Path=PhotoUrl2, Converter={StaticResource string2imageforcomment}}"
+                               Stroke="{DynamicResource AccentBaseColorBrush}" StrokeThickness="1" Margin="0,5,10,0"
+                               Width="80" Height="80"/>
+                    <Rectangle Fill="{Binding Path=PhotoUrl2, Converter={StaticResource string2imageforcomment}}"
+                               Stroke="{DynamicResource AccentBaseColorBrush}" StrokeThickness="1" Margin="0,5,0,0"
+                               Width="80" Height="80"/>
+                </StackPanel>
+            </StackPanel>
+            <!--#endregion-->
+            <DockPanel Margin="20,10,20,0" VerticalAlignment="Center">
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconModern Width="16" Height="16" Margin="0,0,5,0" Kind="LocationCheckin" Foreground="DarkRed" IsHitTestVisible="False"/>
+                    <TextBlock Style="{DynamicResource NormalTextBlock}" Margin="0" Text="{Binding Spot.address}"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <iconPacks:PackIconModern Width="16" Height="16" Margin="0,0,5,0" Kind="Heart" Foreground="Red" IsHitTestVisible="False"/>
+                    <TextBlock Style="{DynamicResource NormalTextBlock}" Margin="0" Text="{Binding Goods}"/>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

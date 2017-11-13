@@ -7,12 +7,12 @@ using System.Windows;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("View-Spot-of-City")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("景点推荐系统")]
+[assembly: AssemblyDescription("景点推荐系统")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("View-Spot-of-City")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("景点推荐系统")]
+[assembly: AssemblyCopyright("Copyright © RS-GIS-GEEKS 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

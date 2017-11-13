@@ -1,0 +1,15 @@
+﻿<Window x:Class="View_Spot_of_City.UIControls.Form.ViewTypeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View_Spot_of_City.UIControls.Form"
+        xmlns:visualizationcontrol="clr-namespace:View_Spot_of_City.UIControls.VisualizationControl"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        Height="450" Width="800"
+        Title="{DynamicResource Chart_TypeChartTip}" 
+        Style="{StaticResource CustomWindowChromeNoMaxMin}" Topmost="True">
+    <Grid>
+        <visualizationcontrol:HistogramOfType/>
+    </Grid>
+</Window>

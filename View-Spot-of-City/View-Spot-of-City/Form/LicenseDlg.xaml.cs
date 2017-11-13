@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using View_Spot_of_City.helper;
+using View_Spot_of_City.Helper;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace View_Spot_of_City.Form

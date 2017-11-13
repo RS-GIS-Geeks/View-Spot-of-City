@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +39,18 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Esri.ArcGISRuntime, Version=100.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <HintPath>..\packages\Esri.ArcGISRuntime.WPF.100.1.0\lib\net452\Esri.ArcGISRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="GravatarHelper.NetStandard, Version=1.0.0.27654, Culture=neutral, PublicKeyToken=b363a8deeebd7fb7, processorArchitecture=MSIL">
+      <HintPath>..\packages\GravatarHelper.NetStandard.1.0.0\lib\net452\GravatarHelper.NetStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
@@ -87,39 +101,78 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArcGISControl\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArcGISControl\SceneView.xaml.cs">
+      <DependentUpon>SceneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArcGISControl\ViewModel\MapViewModel.cs" />
+    <Compile Include="Command\ArcGISSceneCommands.cs" />
     <Compile Include="Command\CommandForMainWindow.cs" />
     <Compile Include="Command\LoginDlgCommands.cs" />
     <Compile Include="Command\MyMessageBoxCommands.cs" />
+    <Compile Include="Command\ArcGISMapCommands.cs" />
+    <Compile Include="Command\ViewSpotViewerCommands.cs" />
+    <Compile Include="Converter\Mail2AvatarBruahConverter.cs" />
     <Compile Include="Converter\MyMessageBoxButtonConverter.cs" />
+    <Compile Include="Converter\MyMessageBoxDefaultButtonConverter.cs" />
+    <Compile Include="Converter\SpotViewPanel2Visibility.cs" />
+    <Compile Include="Converter\String2ImageForComment.cs" />
+    <Compile Include="Converter\ViewSpotItemConverters.cs" />
+    <Compile Include="Converter\String2Image.cs" />
     <Compile Include="Form\MessageboxMaster.cs" />
     <Compile Include="Form\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\MyMessageBoxEvents.cs" />
-    <Compile Include="Helper\CreateValidateCodeImageHelper.cs" />
+    <Compile Include="Form\SpotStatistics.xaml.cs">
+      <DependentUpon>SpotStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ViewTypeForm.xaml.cs">
+      <DependentUpon>ViewTypeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\VisitorsForm.xaml.cs">
+      <DependentUpon>VisitorsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\VisualizationParamsPicker.xaml.cs">
+      <DependentUpon>VisualizationParamsPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\AvatarHelper.cs" />
+    <Compile Include="Helper\GisgraphyHelper.cs" />
+    <Compile Include="Helper\GraphHooperHelper.cs" />
+    <Compile Include="Helper\IconDictionaryHelper.cs" />
+    <Compile Include="Helper\RoutingHelper.cs" />
+    <Compile Include="Helper\ValidateCodeHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\LoginDlgMaster.cs" />
     <Compile Include="Helper\MD5_Encryption.cs" />
     <Compile Include="Helper\MySqlHelper.cs" />
     <Compile Include="Helper\WebServiceHelper.cs" />
-    <Compile Include="OverLayer\OverLayerExample.xaml.cs">
-      <DependentUpon>OverLayerExample.xaml</DependentUpon>
+    <Compile Include="Helper\WGSGCJLatLonHelper.cs" />
+    <Compile Include="OverLayer\Share.xaml.cs">
+      <DependentUpon>Share.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OverLayer\ShowMap.xaml.cs">
+      <DependentUpon>ShowMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="OverLayer\SpotQuery.xaml.cs">
       <DependentUpon>SpotQuery.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OverLayer\SpotRecommend.xaml.cs">
+      <DependentUpon>SpotRecommend.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OverLayer\Visualization.xaml.cs">
       <DependentUpon>Visualization.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Progress\CircleProgress.xaml.cs">
-      <DependentUpon>CircleProgress.xaml</DependentUpon>
     </Compile>
     <Compile Include="Progress\CircleProgressAsync.xaml.cs">
       <DependentUpon>CircleProgressAsync.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Progress\CircleProgressBox.cs" />
     <Compile Include="Progress\FromProgressBox.xaml.cs">
       <DependentUpon>FromProgressBox.xaml</DependentUpon>
     </Compile>
@@ -137,10 +190,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Style\WindowStyles.cs" />
     <Compile Include="Theme\MetroThemeMaster.cs" />
-    <Compile Include="UIcontrol\BrowserControl.xaml.cs">
-      <DependentUpon>BrowserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UIcontrol\CircleProgressControl.xaml.cs">
       <DependentUpon>CircleProgressControl.xaml</DependentUpon>
     </Compile>
@@ -162,7 +213,44 @@
     <Compile Include="UIcontrol\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIcontrol\RepoInfo.xaml.cs">
+      <DependentUpon>RepoInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\SpotViewerDetail.xaml.cs">
+      <DependentUpon>SpotViewerDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\SpotViewerDisscuss.xaml.cs">
+      <DependentUpon>SpotViewerDisscuss.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\SpotViewerMaster.xaml.cs">
+      <DependentUpon>SpotViewerMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\SpotViewerStatistics.xaml.cs">
+      <DependentUpon>SpotViewerStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\ViewSpotCallout.xaml.cs">
+      <DependentUpon>ViewSpotCallout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIcontrol\VisitorCallout.xaml.cs">
+      <DependentUpon>VisitorCallout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\OverlayerItemViewModel.cs" />
+    <Compile Include="VisualizationControl\GeoHeatMap.xaml.cs">
+      <DependentUpon>GeoHeatMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationControl\HistogramOfType.xaml.cs">
+      <DependentUpon>HistogramOfType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationControl\VisitorFlow.xaml.cs">
+      <DependentUpon>VisitorFlow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationControl\VisitorsByMonth.xaml.cs">
+      <DependentUpon>VisitorsByMonth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationControl\VisitorsByYear.xaml.cs">
+      <DependentUpon>VisitorsByYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationControl\VisualizationControlBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -175,6 +263,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ArcGISControl\MapView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ArcGISControl\SceneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataTemplate\CommentListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataTemplate\DataTemplateDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -183,11 +283,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="DataTemplate\SpotNameListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplate\ViewSpotListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplate\VisualizationControlListItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Form\MyMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="OverLayer\OverLayerExample.xaml">
+    <Page Include="Form\SpotStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\ViewTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\VisitorsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\VisualizationParamsPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverLayer\Share.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverLayer\ShowMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,13 +327,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OverLayer\Visualization.xaml">
+    <Page Include="OverLayer\SpotRecommend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Progress\CircleProgress.xaml">
+    <Page Include="OverLayer\Visualization.xaml">
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Progress\CircleProgressAsync.xaml">
       <SubType>Designer</SubType>
@@ -223,6 +355,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Style\PopupBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\SeperatorStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +366,14 @@
     <Page Include="Style\StylesDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\TextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\ToggleButtonStyles.xaml">
       <SubType>Designer</SubType>
@@ -252,10 +396,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UIcontrol\BrowserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,11 +427,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UIcontrol\RepoInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\SpotViewerDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\SpotViewerDisscuss.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\SpotViewerMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\SpotViewerStatistics.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIcontrol\ViewSpotCallout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIcontrol\VisitorCallout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisualizationControl\GeoHeatMap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VisualizationControl\HistogramOfType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisualizationControl\VisitorFlow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VisualizationControl\VisitorsByMonth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisualizationControl\VisitorsByYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\close_02.png" />
     <Resource Include="Icon\close_03.png" />
     <Resource Include="Icon\go_to.png" />
+    <Resource Include="Icon\restaurant2.png" />
     <Resource Include="Icon\search_02.png" />
   </ItemGroup>
   <ItemGroup>
@@ -299,17 +488,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\conversion_pre.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="SpeechLib">
-      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>4</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\logo_blue.png" />
@@ -323,10 +501,6 @@
       <Project>{719dcc4a-7b1d-46db-84b8-8bcf764883c8}</Project>
       <Name>View-Spot-of-City.Language</Name>
     </ProjectReference>
-    <ProjectReference Include="..\View-Spot-of-City.VisualControls\View-Spot-of-City.VisualControls.csproj">
-      <Project>{4a9ac90b-24e1-47f5-a71f-b00b62a0f26e}</Project>
-      <Name>View-Spot-of-City.VisualControls</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\logo.png" />
@@ -334,6 +508,41 @@
   <ItemGroup>
     <Resource Include="Icon\Microphone.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\pin_bule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\end.png" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Icon\hunt.png" />
+    <Resource Include="Icon\GasStation.png" />
+    <Resource Include="Icon\hotel1.png" />
+    <Resource Include="Icon\station.png" />
+    <Content Include="VisualizationControl\Maps\China.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VisualizationControl\Maps\World.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('..\packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Esri.ArcGISRuntime.WPF.100.1.0\build\net452\Esri.ArcGISRuntime.WPF.targets'))" />
+  </Target>
 </Project>
