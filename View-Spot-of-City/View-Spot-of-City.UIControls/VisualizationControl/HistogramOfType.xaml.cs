@@ -245,14 +245,15 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
             //筛选数目>10的类型
             for (int i = 0; i < Count.Length; i++)
             {
-                if (Count[i] > 10)
+                if (Count[i] > 9)
                 {
                     MostViewType.Add(ViewType[i]);
                     TypeNumber.Add(Count[i]);
 
                 }
             }
-           
+            TypeNumber.RemoveAt(0);
+            MostViewType.RemoveAt(0);
           
             ViewTypestr = MostViewType.ToArray();
             number = TypeNumber.ToArray();
