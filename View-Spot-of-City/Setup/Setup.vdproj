@@ -286,7 +286,7 @@
         "Entry"
         {
         "MsmKey" = "8:_FE2B284255A032C280F3F3FCFC7EB9CA"
-        "OwnerKey" = "8:_2C9352765B07EDB3C76B0062D7E0B4D0"
+        "OwnerKey" = "8:_A9F01A588D9005CFEEE1D2E64777E34B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -298,13 +298,7 @@
         "Entry"
         {
         "MsmKey" = "8:_FE2B284255A032C280F3F3FCFC7EB9CA"
-        "OwnerKey" = "8:_A9F01A588D9005CFEEE1D2E64777E34B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FE2B284255A032C280F3F3FCFC7EB9CA"
+        "OwnerKey" = "8:_2C9352765B07EDB3C76B0062D7E0B4D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -445,6 +439,12 @@
         "OwnerKey" = "8:_2C9352765B07EDB3C76B0062D7E0B4D0"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FE2B284255A032C280F3F3FCFC7EB9CA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -463,6 +463,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -479,6 +487,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -1296,7 +1312,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
+        "ProductName" = "8:View Recommender"
         "ProductCode" = "8:{A627C029-9F46-44ED-9865-4D6DB7F1212D}"
         "PackageCode" = "8:{82375801-658A-4D56-A95B-7BF00EBDF7DF}"
         "UpgradeCode" = "8:{83007E93-DF8B-4B61-AFD9-E8E75CF848D0}"
@@ -1304,18 +1320,18 @@
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:RS-GIS-GEEKS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Default Company Name"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:景点推荐系统"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_2CB81CA5E5C148E2B07EB483461E7C3F"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1429,7 +1445,7 @@
             "Target" = "8:_0B9B5F4C34914F0CA95F792B0071D94E"
             "Folder" = "8:_2F1B840732F64D408BAB935AA03C09C5"
             "WorkingFolder" = "8:_F0604C4227D449F6B3D84387F9429EFA"
-            "Icon" = "8:"
+            "Icon" = "8:_2CB81CA5E5C148E2B07EB483461E7C3F"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4828A3E512B44386BD3F124F167BEDB7"
@@ -1443,7 +1459,7 @@
             "Target" = "8:_0B9B5F4C34914F0CA95F792B0071D94E"
             "Folder" = "8:_A1312AEC6CC5444F8154E3EB69B5D188"
             "WorkingFolder" = "8:_F0604C4227D449F6B3D84387F9429EFA"
-            "Icon" = "8:"
+            "Icon" = "8:_2CB81CA5E5C148E2B07EB483461E7C3F"
             "Feature" = "8:"
             }
         }
