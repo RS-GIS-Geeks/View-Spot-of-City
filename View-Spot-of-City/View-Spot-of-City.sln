@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View-Spot-of-City.Language"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View-Spot-of-City.ClassModel", "View-Spot-of-City.ClassModel\View-Spot-of-City.ClassModel.csproj", "{B0D8C76F-2723-4A36-97FC-65B69E3BD973}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{5AC4CE0D-684E-4587-8DBB-5848AC87E745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{B0D8C76F-2723-4A36-97FC-65B69E3BD973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0D8C76F-2723-4A36-97FC-65B69E3BD973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0D8C76F-2723-4A36-97FC-65B69E3BD973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC4CE0D-684E-4587-8DBB-5848AC87E745}.Debug|Any CPU.ActiveCfg = Debug
+		{5AC4CE0D-684E-4587-8DBB-5848AC87E745}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
