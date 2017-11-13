@@ -12,8 +12,9 @@
     <Grid>
         <material:ColorZone Background="White"  VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1" >
-            <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom" Grid.Column="0" Grid.Row="0"  AutomationProperties.IsRowHeader="True"  >
+            <lvc:CartesianChart Series="{Binding SeriesCollection}"   LegendLocation="Bottom" Grid.Column="0" Grid.Row="0"  AutomationProperties.IsRowHeader="True"  >
 
+               
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Title="VisitorFlow" LabelFormatter="{Binding Formatter}" Foreground="#FF4857A6" HorizontalAlignment="Left"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>

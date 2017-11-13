@@ -100,10 +100,16 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
             //显示柱状图
             SeriesCollection = new SeriesCollection
              {
+                
                  new RowSeries
                  {
-                     Title="2015年1月",
-                  Values=new ChartValues<int>(VisitorNumber)
+                     StrokeThickness =0.2,
+                    // Stroke=new SolidColorBrush(Color.FromArgb(150,100,100,100))
+                    Stroke=Brushes.Olive,
+                    
+                     Width =0.1,
+                     Title="人流量",
+                     Values =new ChartValues<int>(VisitorNumber),
                  }
              };
             
