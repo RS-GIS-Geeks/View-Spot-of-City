@@ -53,7 +53,7 @@
     <sys:String x:Key="MainNav_MapView">地图浏览</sys:String>
     <sys:String x:Key="MainNav_SpotQuery">景点查询</sys:String>
     <sys:String x:Key="MainNav_SpotRecommend">景点推荐</sys:String>
-    <sys:String x:Key="MainNav_Visualization">数据可视化</sys:String>
+    <sys:String x:Key="MainNav_Visualization">数据统计</sys:String>
     <sys:String x:Key="MainNav_Share">评价与分享</sys:String>
 
     <!--景点查询-->
@@ -191,5 +191,9 @@
     <sys:String x:Key="SpotShare_RichTextBoxTip">您的评论...</sys:String>
     <sys:String x:Key="SpotShare_AddPicture">添加图片</sys:String>
     <sys:String x:Key="SpotShare_PublishComment">发表评论</sys:String>
+    
+    <!--图表-->
+    <sys:String x:Key="Chart_TypeChartTip">景点类型统计</sys:String>
+    <sys:String x:Key="Chart_VisitorRankChartTip">人流量统计</sys:String>
     
 </ResourceDictionary>

@@ -110,62 +110,63 @@
         </material:ColorZone>
 
         <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
-							material:ShadowAssist.ShadowDepth="Depth1" Visibility="{Binding PanelVisibility, ElementName=mainControl}"
-                            ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <StackPanel Width="300" Margin="0,20,0,0">
-                <ComboBox x:Name="SpotsCombox" Height="40" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0" Style="{DynamicResource NoneBorderComboBoxStyle}"
+							material:ShadowAssist.ShadowDepth="Depth1" Visibility="{Binding PanelVisibility, ElementName=mainControl}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Width="300" Margin="0,20,0,0">
+                    <ComboBox x:Name="SpotsCombox" Height="40" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0" Style="{DynamicResource NoneBorderComboBoxStyle}"
                           SelectedIndex="0" material:ComboBoxAssist.ClassicMode="True" Margin="10,10,10,0" ItemsSource="{Binding ViewSpotList, ElementName=mainControl}" BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                           BorderThickness="1" ItemTemplate="{StaticResource SpotNameListItemTemplate}" SelectionChanged="SpotsCombox_SelectionChanged" material:HintAssist.Hint="{DynamicResource SpotShare_HaveNoResultTip}"/>
-                <Grid Height="150" Margin="10,30,10,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Width="40" Height="40" Grid.Column="0" Fill="{Binding ElementName=mainControl, Path=CurrentUser.Mail, Converter={StaticResource mail2img}}"
+                    <Grid Height="150" Margin="10,30,10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Width="40" Height="40" Grid.Column="0" Fill="{Binding ElementName=mainControl, Path=CurrentUser.Mail, Converter={StaticResource mail2img}}"
                                Stroke="{StaticResource AccentBaseColorBrush}" StrokeThickness="1" IsHitTestVisible="False" VerticalAlignment="Top"/>
-                    <RichTextBox Grid.Column="2" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" HorizontalAlignment="Stretch"
+                        <RichTextBox Grid.Column="2" BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" HorizontalAlignment="Stretch"
                              ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                                  material:HintAssist.Hint="{DynamicResource SpotShare_RichTextBoxTip}"/>
-                </Grid>
-                <Grid Height="75" Margin="10,5,10,0" IsHitTestVisible="True">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="1" x:Name="g1" IsHitTestVisible="True" Cursor="Hand" ToolTip="{DynamicResource SpotShare_AddPicture}">
-                        <Canvas>
-                            <iconPacks:PackIconModern Width="{Binding ElementName=g1, Path=ActualWidth}" Height="{Binding ElementName=g1, Path=ActualHeight}" Kind="Add" IsHitTestVisible="True" Foreground="{DynamicResource PrimaryHueMidBrush}"
-                                                      Padding="25"/>
-                            <Rectangle IsHitTestVisible="True" Cursor="Hand" Width="{Binding ElementName=g1, Path=ActualWidth}" Height="{Binding ElementName=g1, Path=ActualHeight}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeDashArray="4,2" StrokeThickness="1"/>
-                        </Canvas>
                     </Grid>
-                    <Grid Grid.Column="3" x:Name="g3" IsHitTestVisible="True" Cursor="Hand" ToolTip="{DynamicResource SpotShare_AddPicture}">
-                        <Canvas>
-                            <iconPacks:PackIconModern Width="{Binding ElementName=g3, Path=ActualWidth}" Height="{Binding ElementName=g3, Path=ActualHeight}" Kind="Add" IsHitTestVisible="True" Foreground="{DynamicResource PrimaryHueMidBrush}"
+                    <Grid Height="75" Margin="10,5,10,0" IsHitTestVisible="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" x:Name="g1" IsHitTestVisible="True" Cursor="Hand" ToolTip="{DynamicResource SpotShare_AddPicture}">
+                            <Canvas>
+                                <iconPacks:PackIconModern Width="{Binding ElementName=g1, Path=ActualWidth}" Height="{Binding ElementName=g1, Path=ActualHeight}" Kind="Add" IsHitTestVisible="True" Foreground="{DynamicResource PrimaryHueMidBrush}"
                                                       Padding="25"/>
-                            <Rectangle IsHitTestVisible="True" Cursor="Hand" Width="{Binding ElementName=g3, Path=ActualWidth}" Height="{Binding ElementName=g3, Path=ActualHeight}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeDashArray="4,2" StrokeThickness="1"/>
-                        </Canvas>
-                    </Grid>
-                    <Grid Grid.Column="5" x:Name="g5" IsHitTestVisible="True" Cursor="Hand" ToolTip="{DynamicResource SpotShare_AddPicture}">
-                        <Canvas>
-                            <iconPacks:PackIconModern Width="{Binding ElementName=g5, Path=ActualWidth}" Height="{Binding ElementName=g5, Path=ActualHeight}" Kind="Add" IsHitTestVisible="True" Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                <Rectangle IsHitTestVisible="True" Cursor="Hand" Width="{Binding ElementName=g1, Path=ActualWidth}" Height="{Binding ElementName=g1, Path=ActualHeight}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeDashArray="4,2" StrokeThickness="1"/>
+                            </Canvas>
+                        </Grid>
+                        <Grid Grid.Column="3" x:Name="g3" IsHitTestVisible="True" Cursor="Hand" ToolTip="{DynamicResource SpotShare_AddPicture}">
+                            <Canvas>
+                                <iconPacks:PackIconModern Width="{Binding ElementName=g3, Path=ActualWidth}" Height="{Binding ElementName=g3, Path=ActualHeight}" Kind="Add" IsHitTestVisible="True" Foreground="{DynamicResource PrimaryHueMidBrush}"
                                                       Padding="25"/>
-                            <Rectangle IsHitTestVisible="True" Cursor="Hand" Width="{Binding ElementName=g5, Path=ActualWidth}" Height="{Binding ElementName=g5, Path=ActualHeight}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeDashArray="4,2" StrokeThickness="1"/>
-                        </Canvas>
+                                <Rectangle IsHitTestVisible="True" Cursor="Hand" Width="{Binding ElementName=g3, Path=ActualWidth}" Height="{Binding ElementName=g3, Path=ActualHeight}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeDashArray="4,2" StrokeThickness="1"/>
+                            </Canvas>
+                        </Grid>
+                        <Grid Grid.Column="5" x:Name="g5" IsHitTestVisible="True" Cursor="Hand" ToolTip="{DynamicResource SpotShare_AddPicture}">
+                            <Canvas>
+                                <iconPacks:PackIconModern Width="{Binding ElementName=g5, Path=ActualWidth}" Height="{Binding ElementName=g5, Path=ActualHeight}" Kind="Add" IsHitTestVisible="True" Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                      Padding="25"/>
+                                <Rectangle IsHitTestVisible="True" Cursor="Hand" Width="{Binding ElementName=g5, Path=ActualWidth}" Height="{Binding ElementName=g5, Path=ActualHeight}" Stroke="{DynamicResource PrimaryHueMidBrush}" StrokeDashArray="4,2" StrokeThickness="1"/>
+                            </Canvas>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <material:RatingBar Value="{Binding biz_ext_rating}" Margin="60,5,10,0" Foreground="DarkGoldenrod" HorizontalAlignment="Left" Cursor="Hand"/>
-                <Grid HorizontalAlignment="Right" Margin="0,0,20,10">
-                    <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
-                    <Button Content="{DynamicResource SpotShare_PublishComment}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
+                    <material:RatingBar Value="{Binding biz_ext_rating}" Margin="60,5,10,0" Foreground="DarkGoldenrod" HorizontalAlignment="Left" Cursor="Hand"/>
+                    <Grid HorizontalAlignment="Right" Margin="0,0,20,10">
+                        <Border BorderBrush="{DynamicResource SubWindowsBrush}"  BorderThickness="1" CornerRadius="4"/>
+                        <Button Content="{DynamicResource SpotShare_PublishComment}" Style="{StaticResource ModifiedFlatButtonStyle}" FontSize="14" Width="auto" Height="auto"
                                  Click="PublishComment_Click" Margin="2" Padding="5"/>
-                </Grid>
-            </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
         </material:ColorZone>
     </Grid>
 </UserControl>

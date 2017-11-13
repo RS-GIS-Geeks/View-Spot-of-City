@@ -7,7 +7,9 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Windows.Controls;
+using System.ComponentModel;
 using static System.Configuration.ConfigurationManager;
+
 using LiveCharts.Wpf;
 
 using View_Spot_of_City.ClassModel;
@@ -20,9 +22,22 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
     /// <summary>
     /// VisitorsByYear.xaml 的交互逻辑
     /// </summary>
-    public partial class VisitorsByYear : UserControl
+    public partial class VisitorsByYear : UserControl, INotifyPropertyChanged
     {
-        public SeriesCollection SeriesCollection { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        SeriesCollection _SeriesCollection = new SeriesCollection();
+
+        public SeriesCollection SeriesCollection
+        {
+            get { return _SeriesCollection; }
+            set
+            {
+                _SeriesCollection = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SeriesCollection"));
+            }
+        }
+
         public string[] Labels { get; set; }
         public Func<int, string> Formatter { get; set; }
 
@@ -31,6 +46,15 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
             InitializeComponent();
             Labels = new [] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
             Formatter = value => value.ToString("N");
+
+            DataContext = this;
+        }
+
+        /// <summary>
+        /// 外部初始化
+        /// </summary>
+        public void Init(long viewId)
+        {
             SeriesCollection = new SeriesCollection();
 
             List<List<VisitorItem>> visitorItemList = new List<List<VisitorItem>>();
@@ -45,14 +69,12 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
                 visitorMonthList.Add(new List<int>());
                 visitorMonthList.Add(new List<int>());
             }
-            GetVisitorsInfoFromJsonAsync(SeriesCollection,visitorItemList[0], visitorMonthList[0], 2015, 3);
-            GetVisitorsInfoFromJsonAsync(SeriesCollection,visitorItemList[1], visitorMonthList[1], 2016, 3);
-            GetVisitorsInfoFromJsonAsync(SeriesCollection,visitorItemList[2], visitorMonthList[2], 2017, 3);
-
-            DataContext = this;
+            GetVisitorsInfoFromJsonAsync(SeriesCollection, visitorItemList[0], visitorMonthList[0], 2015, viewId);
+            GetVisitorsInfoFromJsonAsync(SeriesCollection, visitorItemList[1], visitorMonthList[1], 2016, viewId);
+            GetVisitorsInfoFromJsonAsync(SeriesCollection, visitorItemList[2], visitorMonthList[2], 2017, viewId);
         }
 
-        private async void GetVisitorsInfoFromJsonAsync(SeriesCollection SeriesCollection, List<VisitorItem> visitorItemList, List<int> visitorMonthList, int year, int viewid)
+        private async void GetVisitorsInfoFromJsonAsync(SeriesCollection SeriesCollection, List<VisitorItem> visitorItemList, List<int> visitorMonthList, int year, long viewid)
         {
             string jsonString = string.Empty;
             for (int j = 0; j < 12; j++)

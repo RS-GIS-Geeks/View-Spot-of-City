@@ -44,9 +44,10 @@
             </StackPanel>
         </Button>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Grid  Margin="0,5,0,0" Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400" HorizontalAlignment="Center"
+            <Grid x:Name="PlayerMananager"  Margin="0,5,0,0" Width="auto" Height="auto" MinWidth="200" MaxWidth="400" MinHeight="100" MaxHeight="400" HorizontalAlignment="Center"
                    MouseEnter="Player_MouseEnter" MouseLeave="Player_MouseLeave">
-                <MediaElement x:Name="Player" Source="{Binding DetailShowItem.videourl, ElementName=mainControl}" LoadedBehavior="Manual"/>
+                <MediaElement x:Name="Player" Source="{Binding DetailShowItem.videourl, ElementName=mainControl}" LoadedBehavior="Manual" Width="280"
+                              Height="157.5"/>
                 <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1"/>
                 <ToggleButton x:Name="PauseBtn" IsChecked="False" Foreground="{DynamicResource PrimaryHueMidBrush}"
                       Padding="0,0,0,0" Width="80" Height="80" Click="PauseBtn_Click" Opacity="0.6">

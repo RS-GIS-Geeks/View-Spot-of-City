@@ -11,5 +11,6 @@
         <ResourceDictionary Source="ToggleButtonStyles.xaml" />
         <ResourceDictionary Source="TextBlockStyles.xaml" />
         <ResourceDictionary Source="TextBoxStyles.xaml" />
+        <ResourceDictionary Source="PopupBoxStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

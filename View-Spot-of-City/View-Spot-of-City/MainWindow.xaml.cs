@@ -513,7 +513,7 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void AddVisitorsDataCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            List<VisitorItem> visitorList = e.Parameter as List<VisitorItem>;
+            List<List<VisitorItem>> visitorList = e.Parameter as List<List<VisitorItem>>;
             ArcGISSceneView.AddVisitorGraphicToOverlay(visitorList);
         }
 
@@ -527,7 +527,7 @@ namespace View_Spot_of_City
             List<VisitorItem> visitorList = e.Parameter as List<VisitorItem>;
             ArcGISSceneView.ChangeAttributesOfVisitorGraphics(visitorList);
         }
-
+        
         /// <summary>
         /// 改变Sence底图
         /// </summary>

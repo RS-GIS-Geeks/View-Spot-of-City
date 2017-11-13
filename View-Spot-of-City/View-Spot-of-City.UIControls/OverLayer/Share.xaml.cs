@@ -134,10 +134,10 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
         private void SpotsCombox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(SpotsCombox.SelectedIndex != -1 && SpotsCombox.SelectedIndex <= ViewSpotList.Count)
-            {
-                ArcGISMapCommands.SetScaleAndLocation.Execute(ViewSpotList[SpotsCombox.SelectedIndex], Application.Current.MainWindow);
-            }
+            //if(SpotsCombox.SelectedIndex != -1 && SpotsCombox.SelectedIndex <= ViewSpotList.Count)
+            //{
+            //    ArcGISMapCommands.SetScaleAndLocation.Execute(ViewSpotList[SpotsCombox.SelectedIndex], Application.Current.MainWindow);
+            //}
         }
     }
 }

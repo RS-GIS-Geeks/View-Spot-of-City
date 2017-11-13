@@ -10,6 +10,6 @@
         Title="{DynamicResource SpotSearch_VisiotrStatisticsFormTitle}" 
         Style="{StaticResource CustomWindowChromeNoMaxMin}" Topmost="True">
     <Grid>
-        <visualcontrols:VisitorsByYear/>
+        <visualcontrols:VisitorsByYear x:Name="visitorsByYear"/>
     </Grid>
 </Window>

@@ -10,19 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View_Spot_of_City.ClassModel;
 
-namespace View_Spot_of_City.UIControls.Form
+namespace View_Spot_of_City.UIControls.UIcontrol
 {
     /// <summary>
-    /// SpotStatistics.xaml 的交互逻辑
+    /// VisitorCallout.xaml 的交互逻辑
     /// </summary>
-    public partial class SpotStatistics : Window
+    public partial class VisitorCallout : UserControl
     {
-        public SpotStatistics(long viewId)
+        public VisitorCallout(List<VisitorItem> visitorItemList)
         {
             InitializeComponent();
-            visitorsByYear.Init(viewId);
+            LineChart.Init(visitorItemList);
         }
     }
 }

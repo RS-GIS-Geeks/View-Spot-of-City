@@ -226,12 +226,18 @@
     <Compile Include="UIcontrol\ViewSpotCallout.xaml.cs">
       <DependentUpon>ViewSpotCallout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIcontrol\VisitorCallout.xaml.cs">
+      <DependentUpon>VisitorCallout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\OverlayerItemViewModel.cs" />
     <Compile Include="VisualizationControl\GeoHeatMap.xaml.cs">
       <DependentUpon>GeoHeatMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualizationControl\HistogramOfType.xaml.cs">
       <DependentUpon>HistogramOfType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationControl\VisitorsByMonth.xaml.cs">
+      <DependentUpon>VisitorsByMonth.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualizationControl\VisitorsByYear.xaml.cs">
       <DependentUpon>VisitorsByYear.xaml</DependentUpon>
@@ -333,6 +339,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Style\PopupBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\SeperatorStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -425,11 +435,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UIcontrol\VisitorCallout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VisualizationControl\GeoHeatMap.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="VisualizationControl\HistogramOfType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisualizationControl\VisitorsByMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

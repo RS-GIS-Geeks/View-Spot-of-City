@@ -53,7 +53,7 @@
     <sys:String x:Key="MainNav_MapView">Map View</sys:String>
     <sys:String x:Key="MainNav_SpotQuery">Query</sys:String>
     <sys:String x:Key="MainNav_SpotRecommend">Recommend</sys:String>
-    <sys:String x:Key="MainNav_Visualization">Visualization</sys:String>
+    <sys:String x:Key="MainNav_Visualization">Statistics</sys:String>
     <sys:String x:Key="MainNav_Share">Share</sys:String>
     
     <!--景点查询-->
@@ -190,5 +190,9 @@
     <sys:String x:Key="SpotShare_RichTextBoxTip">Your comment...</sys:String>
     <sys:String x:Key="SpotShare_AddPicture">Add picture</sys:String>
     <sys:String x:Key="SpotShare_PublishComment">Comment</sys:String>
+
+    <!--图表-->
+    <sys:String x:Key="Chart_TypeChartTip">View type statistics</sys:String>
+    <sys:String x:Key="Chart_VisitorRankChartTip">Visitor statistics</sys:String>
 
 </ResourceDictionary>

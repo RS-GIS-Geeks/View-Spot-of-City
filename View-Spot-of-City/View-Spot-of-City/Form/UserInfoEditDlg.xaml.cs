@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using static System.Configuration.ConfigurationManager;
@@ -159,7 +150,6 @@ namespace View_Spot_of_City.Form
                 }
                 else if (qury_result != "true")
                 {
-                    //用户已注册
                     MessageboxMaster.Show(LanguageDictionaryHelper.GetString("UserInfoEdit_EditError"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
                     return;
                 }
@@ -168,7 +158,6 @@ namespace View_Spot_of_City.Form
                     CurrentApp.CurrentUser = _CurrentUser_Copy;
                     _IsClickFork = false;
                     HaveEdited = false;
-                    MessageboxMaster.Show(LanguageDictionaryHelper.GetString("UserInfoEdit_EditSuccess"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
                     return;
                 }
             }

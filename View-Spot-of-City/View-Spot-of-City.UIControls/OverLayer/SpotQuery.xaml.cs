@@ -293,7 +293,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
         private void ShowStatisticsCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ViewSpot param = e.Parameter as ViewSpot;
-            SpotStatistics spotStatistics = new SpotStatistics();
+            SpotStatistics spotStatistics = new SpotStatistics(param.id);
             spotStatistics.Show();
             ViewMaster.DataItemListView.SelectedIndex = -1;
         }

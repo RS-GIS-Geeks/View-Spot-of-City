@@ -74,11 +74,13 @@
 
         <material:ColorZone Background="White" Grid.Row="4" VerticalAlignment="Stretch" Padding="0"
 							material:ShadowAssist.ShadowDepth="Depth1" Visibility="{Binding PanelVisibility, ElementName=mainControl}">
-            <Grid>
-                <control:SpotViewerMaster x:Name="ViewMaster" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}"/>
-                <control:SpotViewerDetail x:Name="ViewDetail" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}"/>
-                <control:SpotViewerDisscuss x:Name="ViewComment" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=2}"/>
-            </Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <control:SpotViewerMaster x:Name="ViewMaster" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=0}"/>
+                    <control:SpotViewerDetail x:Name="ViewDetail" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=1}"/>
+                    <control:SpotViewerDisscuss x:Name="ViewComment" Visibility="{Binding CurrentGrid, ElementName=mainControl, Converter={StaticResource panel2visibility}, ConverterParameter=2}"/>
+                </Grid>
+            </ScrollViewer>
         </material:ColorZone>
     </Grid>
 </UserControl>

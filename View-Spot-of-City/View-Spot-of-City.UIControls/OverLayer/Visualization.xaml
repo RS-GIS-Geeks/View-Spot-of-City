@@ -8,6 +8,7 @@
              xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:visualcontrols="clr-namespace:View_Spot_of_City.UIControls.VisualizationControl"
              xmlns:control="clr-namespace:View_Spot_of_City.UIControls.UIcontrol"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -69,5 +70,17 @@
 									  Foreground="{DynamicResource PrimaryHueMidBrush}" Padding="0,0" Width="20" Height="20" Click="SettingBtn_ClickAsync">
             <material:PackIcon Kind="Settings" Width="20" Height="20"/>
         </Button>
+        <material:PopupBox Grid.Row="2" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Margin="0,0,30,0" Width="28">
+            <StackPanel>
+                <Button ToolTip="{DynamicResource Chart_TypeChartTip}" Click="TypeButton_Click">
+                    <material:PackIcon Kind="ChartPie" Height="20" Width="20" />
+                </Button>
+                <Button ToolTip="{DynamicResource Chart_VisitorRankChartTip}" Background="{DynamicResource SecondaryAccentBrush}"
+                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}" Click="VisitorButton_Click">
+                    <material:PackIcon Kind="ChartPie" Height="20" Width="20" />
+                </Button>
+            </StackPanel>
+        </material:PopupBox>
     </Grid>
 </UserControl>

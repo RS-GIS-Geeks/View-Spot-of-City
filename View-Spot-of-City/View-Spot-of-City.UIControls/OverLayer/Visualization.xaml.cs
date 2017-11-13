@@ -114,6 +114,7 @@ namespace View_Spot_of_City.UIControls.OverLayer
             InitializeComponent();
 
             DateForShow.DisplayDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            DateForShow.Visibility = Visibility.Collapsed;
 
             ChangeSliderTimer.Tick += new EventHandler(ChangeSliderTimer_Tick);
             ChangeSliderTimer.Interval = new TimeSpan(0, 0, 1);
@@ -233,8 +234,9 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
                 if(VisitorsByMonthAndPlace.Count >= 1)
                 {
-                    ArcGISSceneCommands.AddVisitorsData.Execute(VisitorsByMonthAndPlace[0], Application.Current.MainWindow);
+                    ArcGISSceneCommands.AddVisitorsData.Execute(VisitorsByMonthAndPlace, Application.Current.MainWindow);
                     DateForShow.DisplayDate = StartDate;
+                    DateForShow.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -294,6 +296,16 @@ namespace View_Spot_of_City.UIControls.OverLayer
             ChangeSliderTimer.Stop();
             PauseBtn.IsChecked = false;
             MonthSlider.Value = MonthSlider.Minimum;
+        }
+
+        private void TypeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void VisitorButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

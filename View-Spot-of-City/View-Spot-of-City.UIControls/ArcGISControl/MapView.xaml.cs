@@ -192,10 +192,9 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
             //清除回调框
             mapView.DismissCallout();
 
-            //清除图层
+            //清除图层和属性
             PointOverlay.Graphics.Clear();
-            LineOverlay.Graphics.Clear();
-            PolygonOverlay.Graphics.Clear();
+            GraphicsAttributes.Clear();
             ClearViewSpotArounds();
         }
 
@@ -204,6 +203,8 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         private void ClearViewSpotArounds()
         {
+            LineOverlay.Graphics.Clear();
+            PolygonOverlay.Graphics.Clear();
             GasStationOverlay.Graphics.Clear();
             TrafficStationOverlay.Graphics.Clear();
             RestaurantOverlay.Graphics.Clear();
