@@ -300,12 +300,12 @@ namespace View_Spot_of_City.UIControls.OverLayer
 
         private void TypeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            (new ViewTypeForm()).Show();
         }
 
         private void VisitorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            (new VisitorsForm()).Show();
         }
     }
 }

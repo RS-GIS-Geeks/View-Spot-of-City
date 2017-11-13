@@ -134,6 +134,12 @@
     <Compile Include="Form\SpotStatistics.xaml.cs">
       <DependentUpon>SpotStatistics.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\ViewTypeForm.xaml.cs">
+      <DependentUpon>ViewTypeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\VisitorsForm.xaml.cs">
+      <DependentUpon>VisitorsForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\VisualizationParamsPicker.xaml.cs">
       <DependentUpon>VisualizationParamsPicker.xaml</DependentUpon>
     </Compile>
@@ -142,7 +148,6 @@
     <Compile Include="Helper\GraphHooperHelper.cs" />
     <Compile Include="Helper\IconDictionaryHelper.cs" />
     <Compile Include="Helper\RoutingHelper.cs" />
-    <Compile Include="Helper\SpeechRecognition.cs" />
     <Compile Include="Helper\ValidateCodeHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\LoginDlgMaster.cs" />
@@ -236,6 +241,9 @@
     <Compile Include="VisualizationControl\HistogramOfType.xaml.cs">
       <DependentUpon>HistogramOfType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualizationControl\VisitorFlow.xaml.cs">
+      <DependentUpon>VisitorFlow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisualizationControl\VisitorsByMonth.xaml.cs">
       <DependentUpon>VisitorsByMonth.xaml</DependentUpon>
     </Compile>
@@ -292,6 +300,14 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Form\SpotStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\ViewTypeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\VisitorsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -447,6 +463,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VisualizationControl\VisitorFlow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="VisualizationControl\VisitorsByMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -468,17 +488,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\conversion_pre.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="SpeechLib">
-      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>4</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\logo_blue.png" />

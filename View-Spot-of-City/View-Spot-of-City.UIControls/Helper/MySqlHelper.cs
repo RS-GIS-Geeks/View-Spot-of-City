@@ -71,7 +71,7 @@ namespace View_Spot_of_City.UIControls.Helper
 
                 return dataReader;
             }
-            catch(Exception ex)
+            catch
             {
                 return null;
             }
@@ -100,7 +100,7 @@ namespace View_Spot_of_City.UIControls.Helper
 
                 return dataReader;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }

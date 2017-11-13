@@ -286,7 +286,7 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void mapView_GeoViewDoubleTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        private void mapView_GeoViewDoubleTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //if (routeStops == null || routeStops.Count <= 1)
             //    return;

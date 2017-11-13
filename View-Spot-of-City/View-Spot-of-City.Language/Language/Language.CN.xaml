@@ -195,5 +195,5 @@
     <!--图表-->
     <sys:String x:Key="Chart_TypeChartTip">景点类型统计</sys:String>
     <sys:String x:Key="Chart_VisitorRankChartTip">人流量统计</sys:String>
-    
+
 </ResourceDictionary>

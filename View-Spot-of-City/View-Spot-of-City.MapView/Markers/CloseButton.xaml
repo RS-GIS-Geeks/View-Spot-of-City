@@ -1,6 +1,0 @@
-﻿<UserControl x:Class="View_Spot_of_City.MapView.Markers.CloseButton"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	         Height="40" Width="30" Opacity="10" Cursor="Hand">
-	<Image Name="icon" Source="pack://application:,,,/View_Spot_of_City.MapView;component/Icon/叉.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
-</UserControl>
