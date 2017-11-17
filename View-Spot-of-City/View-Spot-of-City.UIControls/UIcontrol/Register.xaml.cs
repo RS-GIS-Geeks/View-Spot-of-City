@@ -129,6 +129,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             {
                 Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                LogManager.LogManager.Error(GetString("Config_File_Error"), ex);
                 return;
             }
         }
@@ -200,6 +201,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             {
                 Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                LogManager.LogManager.Error(GetString("Config_File_Error"), ex);
                 return;
             }
         }

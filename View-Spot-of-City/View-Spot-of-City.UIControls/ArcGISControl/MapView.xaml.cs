@@ -600,9 +600,10 @@ namespace View_Spot_of_City.UIControls.ArcGISControl
                     routeStops.Clear();
                     AddNavigateRouteToGraphicsOverlay(LineOverlay, stopList, SimpleLineSymbolStyle.Dash, Colors.Blue, 5);
                 }
-                catch
+                catch(Exception ex)
                 {
                     MessageboxMaster.Show(LanguageDictionaryHelper.GetString("ShowSpot_FailedToGetRoute"), LanguageDictionaryHelper.GetString("MessageBox_Tip_Title"));
+                    LogManager.LogManager.Error(LanguageDictionaryHelper.GetString("ShowSpot_FailedToGetRoute"), ex);
                 }
             }
             else

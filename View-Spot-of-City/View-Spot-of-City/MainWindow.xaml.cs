@@ -39,6 +39,7 @@ namespace View_Spot_of_City
         /// 当前应用程序实例
         /// </summary>
         App _currentApp = null;
+
         /// <summary>
         /// 当前应用程序实例
         /// </summary>
@@ -85,7 +86,6 @@ namespace View_Spot_of_City
         /// <summary>
         /// 圆形启动界面
         /// </summary>
-        //static CircleProgressBox circleProgressBox = null;
         CircleProgressAsync circleProgressBox = new CircleProgressAsync();
 
         /// <summary>
@@ -313,6 +313,7 @@ namespace View_Spot_of_City
         {
             if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
                 return;
+            LogManager.LogManager.Info("用户[" + CurrentApp.CurrentUser.Mail + "]注销");
             string mail = CurrentApp.CurrentUser.Mail;
             (Application.Current as App).CurrentUser = UserInfo.NoBody;
 
@@ -337,6 +338,7 @@ namespace View_Spot_of_City
 
         private void mainWindow_Closed(object sender, EventArgs e)
         {
+            LogManager.LogManager.Info("关闭软件");
             Environment.Exit(0);
             //Application.Current.Shutdown();
         }

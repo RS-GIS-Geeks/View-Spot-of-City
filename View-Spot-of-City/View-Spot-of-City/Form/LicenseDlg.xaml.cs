@@ -131,6 +131,7 @@ namespace View_Spot_of_City.Form
             if (this.txtFieldName.Text == resultNow || this.txtFieldName.Text == resultLast || this.txtFieldName.Text == resultDevelop)
             {
                 IsCorrect = true;
+                LogManager.LogManager.Info("注册软件");
             }
             else
             {

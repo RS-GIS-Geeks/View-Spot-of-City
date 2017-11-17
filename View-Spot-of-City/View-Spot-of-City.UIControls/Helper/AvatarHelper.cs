@@ -65,9 +65,10 @@ namespace View_Spot_of_City.UIControls.Helper
                     ms.Dispose();
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 bitmap = new BitmapImage(new Uri(@"pack://application:,,,/View-Spot-of-City;component/Icon/logo.png"));
+                LogManager.LogManager.Error("头像加载错误", ex);
             }
 
             return bitmap;
