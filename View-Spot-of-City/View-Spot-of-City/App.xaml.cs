@@ -17,6 +17,7 @@ using View_Spot_of_City.Form;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.Language.Language;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace View_Spot_of_City
 {
     /// <summary>

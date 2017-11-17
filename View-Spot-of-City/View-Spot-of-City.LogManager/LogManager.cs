@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace View_Spot_of_City.LogManager
 {
     /// <summary>
