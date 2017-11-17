@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 using System.Windows.Media.Imaging;
 
 namespace View_Spot_of_City.UIControls.Helper
@@ -17,7 +15,13 @@ namespace View_Spot_of_City.UIControls.Helper
         public static BitmapImage GetAvatarByEmail(string mail)
         {
             string userInputMail = (mail == null || mail == string.Empty) ? "rsgisgeeks@qq.com" : mail;
-            return new BitmapImage(new Uri(GravatarHelper.NetStandard.Gravatar.GetGravatarImageUrl(userInputMail)));
+            BitmapImage bitmap = new BitmapImage();
+
+            var c = new WebClient();
+            var bytes = c.DownloadData(GravatarHelper.NetStandard.Gravatar.GetSecureGravatarImageUrl(userInputMail));
+            bitmap = GetImage(bytes);
+
+            return bitmap;
         }
 
         /// <summary>
@@ -31,6 +35,43 @@ namespace View_Spot_of_City.UIControls.Helper
             avatarSize = avatarSize < 10 ? 10 : (avatarSize > 500 ? 500 : avatarSize);
             string userInputMail = (mail == null || mail == string.Empty) ? "rsgisgeeks@qq.com" : mail;
             return new BitmapImage(new Uri(GravatarHelper.NetStandard.Gravatar.GetGravatarImageUrl(userInputMail, avatarSize)));
+        }
+
+        /// <summary>
+        /// 通过byte流加载图片
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        private static BitmapImage GetImage(byte[] buffer)
+        {
+            if (buffer == null || buffer.Length <= 0)
+                return null;
+
+            BitmapImage bitmap = null;
+            try
+            {
+                bitmap = new BitmapImage();
+                bitmap.DecodePixelHeight = 200; // 确定解码高度，宽度不同时设置
+                bitmap.BeginInit();
+
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+
+                using (Stream ms = new MemoryStream(buffer))
+                {
+                    bitmap.StreamSource = ms;
+                    bitmap.EndInit();
+                    bitmap.Freeze();
+
+                    ms.Dispose();
+                }
+            }
+            catch(Exception ex)
+            {
+                bitmap = new BitmapImage(new Uri(@"pack://application:,,,/View-Spot-of-City;component/Icon/logo.png"));
+                LogManager.LogManager.Error("头像加载错误", ex);
+            }
+
+            return bitmap;
         }
     }
 }

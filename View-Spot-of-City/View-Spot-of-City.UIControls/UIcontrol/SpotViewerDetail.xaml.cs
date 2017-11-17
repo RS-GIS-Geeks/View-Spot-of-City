@@ -9,13 +9,14 @@ using static System.Configuration.ConfigurationManager;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
+using Esri.ArcGISRuntime.Geometry;
+
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Command;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.Language.Language;
 using static View_Spot_of_City.UIControls.Command.ArcGISMapCommands;
-using Esri.ArcGISRuntime.Geometry;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
 {

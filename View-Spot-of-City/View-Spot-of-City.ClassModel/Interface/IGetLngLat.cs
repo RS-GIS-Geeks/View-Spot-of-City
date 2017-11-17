@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace View_Spot_of_City.ClassModel.Interface
+﻿namespace View_Spot_of_City.ClassModel.Interface
 {
     /// <summary>
     /// 获取经纬度接口

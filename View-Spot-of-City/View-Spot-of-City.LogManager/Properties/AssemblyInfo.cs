@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("View-Spot-of-City.ClassModel")]
+[assembly: AssemblyTitle("View-Spot-of-City.LogManager")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("View-Spot-of-City.ClassModel")]
+[assembly: AssemblyProduct("View-Spot-of-City.LogManager")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("b0d8c76f-2723-4a36-97fc-65b69e3bd973")]
+[assembly: Guid("abcb9e94-22cc-4b65-87d7-6e5a7f1f9d09")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

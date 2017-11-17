@@ -20,7 +20,6 @@ using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.Language.Language;
 using System.Windows.Input;
-using View_Spot_of_City.UIControls.VisualizationControl;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {

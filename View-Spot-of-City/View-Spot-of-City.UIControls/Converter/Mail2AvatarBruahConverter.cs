@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
+
 using View_Spot_of_City.UIControls.Helper;
 
 namespace View_Spot_of_City.UIControls.Converter

@@ -1,7 +1,4 @@
-﻿using LiveCharts;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
@@ -10,7 +7,11 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using static System.Configuration.ConfigurationManager;
 
+using LiveCharts;
 using LiveCharts.Wpf;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Language.Language;
@@ -22,7 +23,7 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
     /// <summary>
     /// VisitorsByYear.xaml 的交互逻辑
     /// </summary>
-    public partial class VisitorsByYear : UserControl, INotifyPropertyChanged
+    public partial class VisitorsByYear : VisualizationControlBase, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,6 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using View_Spot_of_City.ClassModel.Interface;
 
@@ -37,8 +35,7 @@ namespace View_Spot_of_City.ClassModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
             }
         }
-
-
+        
         string _Type = string.Empty;
         [DataMember]
         public string Type

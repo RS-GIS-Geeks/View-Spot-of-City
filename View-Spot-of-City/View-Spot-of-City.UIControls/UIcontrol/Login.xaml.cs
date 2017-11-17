@@ -166,6 +166,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
                 ControlVisibity = Visibility.Collapsed;
                 CommandForMainWindow.ChangeCurrentUserCommand.Execute(user_obiect, this);
                 LoginDlgCommands.OKAndCloseFormCommand.Execute(null, this);
+                LogManager.LogManager.Info("用户[" + user_obiect.Mail + "]登录");
             }
             else
             {

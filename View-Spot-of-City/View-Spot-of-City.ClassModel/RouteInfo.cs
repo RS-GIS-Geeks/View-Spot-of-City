@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Esri.ArcGISRuntime.Geometry;
-
-using View_Spot_of_City.ClassModel.Base;
 
 namespace View_Spot_of_City.ClassModel
 {
