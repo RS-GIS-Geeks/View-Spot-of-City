@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using View_Spot_of_City.Helper;
 using System.Runtime.Serialization.Formatters.Binary;
+
+using View_Spot_of_City.Helper;
 
 namespace View_Spot_of_City.Form
 {
@@ -140,6 +131,7 @@ namespace View_Spot_of_City.Form
             if (this.txtFieldName.Text == resultNow || this.txtFieldName.Text == resultLast || this.txtFieldName.Text == resultDevelop)
             {
                 IsCorrect = true;
+                LogManager.LogManager.Info("注册软件");
             }
             else
             {

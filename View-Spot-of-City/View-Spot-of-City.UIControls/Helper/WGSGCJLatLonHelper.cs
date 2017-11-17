@@ -1,9 +1,6 @@
-﻿using Esri.ArcGISRuntime.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+
+using Esri.ArcGISRuntime.Geometry;
 
 namespace View_Spot_of_City.UIControls.Helper
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Net.Mail;
-using static System.Configuration.ConfigurationManager;
 using System.Text.RegularExpressions;
+using static System.Configuration.ConfigurationManager;
 
 namespace View_Spot_of_City.UIControls.Helper
 {

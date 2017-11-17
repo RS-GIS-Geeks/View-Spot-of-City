@@ -15,7 +15,6 @@ using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Language.Language;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
-using View_Spot_of_City.UIControls.Command;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {

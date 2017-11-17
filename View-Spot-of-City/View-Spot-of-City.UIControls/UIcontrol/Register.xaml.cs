@@ -2,14 +2,14 @@
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using static System.Configuration.ConfigurationManager;
 
 using View_Spot_of_City.UIControls.Command;
 using View_Spot_of_City.UIControls.Helper;
+using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
 using static View_Spot_of_City.UIControls.Helper.EmailHelper;
-using System.Windows.Threading;
-using View_Spot_of_City.UIControls.Form;
 using static View_Spot_of_City.UIControls.Helper.LoginDlgMaster;
 
 namespace View_Spot_of_City.UIControls.UIcontrol
@@ -129,6 +129,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             {
                 Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                LogManager.LogManager.Error(GetString("Config_File_Error"), ex);
                 return;
             }
         }
@@ -200,6 +201,7 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             {
                 Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(GetString("Config_File_Error"), GetString("MessageBox_Error_Title"));
+                LogManager.LogManager.Error(GetString("Config_File_Error"), ex);
                 return;
             }
         }

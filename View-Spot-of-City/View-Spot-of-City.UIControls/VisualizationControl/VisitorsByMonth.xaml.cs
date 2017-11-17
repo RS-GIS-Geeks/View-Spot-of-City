@@ -1,29 +1,13 @@
-﻿using LiveCharts;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Configuration.ConfigurationManager;
+
+using LiveCharts;
+using LiveCharts.Wpf;
 
 using View_Spot_of_City.ClassModel;
-using View_Spot_of_City.UIControls.Helper;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using View_Spot_of_City.Language.Language;
-using View_Spot_of_City.UIControls.Form;
-using LiveCharts.Wpf;
 using System.ComponentModel;
 
 namespace View_Spot_of_City.UIControls.VisualizationControl
@@ -31,7 +15,7 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
     /// <summary>
     /// VisitorsByMonth.xaml 的交互逻辑
     /// </summary>
-    public partial class VisitorsByMonth : UserControl, INotifyPropertyChanged
+    public partial class VisitorsByMonth : VisualizationControlBase, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

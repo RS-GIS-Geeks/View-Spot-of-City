@@ -6,7 +6,6 @@ using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Json;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using static System.Configuration.ConfigurationManager;
 
 using Newtonsoft.Json;
@@ -48,6 +47,10 @@ namespace View_Spot_of_City
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            log4net.Config.XmlConfigurator.Configure();
+
+            LogManager.LogManager.Info("启动软件");
+
             //应用程序关闭时，才 System.Windows.Application.Shutdown 调用
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
@@ -121,6 +124,7 @@ namespace View_Spot_of_City
             {
                 Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Server_Connect_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                LogManager.LogManager.Warn(LanguageDictionaryHelper.GetString("Server_Connect_Error"), ex);
                 return;
             }
 

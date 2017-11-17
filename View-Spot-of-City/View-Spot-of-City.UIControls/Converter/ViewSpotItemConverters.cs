@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Data;
-using System.Collections.ObjectModel;
-
-using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Language.Language;
 
 namespace View_Spot_of_City.UIControls.Converter

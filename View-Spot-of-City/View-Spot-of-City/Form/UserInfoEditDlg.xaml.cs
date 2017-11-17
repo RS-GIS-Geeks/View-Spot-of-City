@@ -151,6 +151,7 @@ namespace View_Spot_of_City.Form
                 else if (qury_result != "true")
                 {
                     MessageboxMaster.Show(LanguageDictionaryHelper.GetString("UserInfoEdit_EditError"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                    LogManager.LogManager.Error(LanguageDictionaryHelper.GetString("UserInfoEdit_EditError"));
                     return;
                 }
                 else
@@ -163,8 +164,8 @@ namespace View_Spot_of_City.Form
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 MessageboxMaster.Show(LanguageDictionaryHelper.GetString("Config_File_Error"), LanguageDictionaryHelper.GetString("MessageBox_Error_Title"));
+                LogManager.LogManager.Warn(LanguageDictionaryHelper.GetString("Config_File_Error"), ex);
                 return;
             }
         }

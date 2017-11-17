@@ -4,18 +4,19 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
-using View_Spot_of_City.UIControls.Form;
-using View_Spot_of_City.Language.Language;
-using View_Spot_of_City.UIControls.Helper;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.Windows.Threading;
 using static System.Configuration.ConfigurationManager;
+
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.UIControls.Command;
-using System.Windows.Threading;
+using View_Spot_of_City.UIControls.Form;
+using View_Spot_of_City.Language.Language;
+using View_Spot_of_City.UIControls.Helper;
 
 namespace View_Spot_of_City.UIControls.OverLayer
 {
