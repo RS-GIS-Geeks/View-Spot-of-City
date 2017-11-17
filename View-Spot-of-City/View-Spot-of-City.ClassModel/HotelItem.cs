@@ -35,8 +35,7 @@ namespace View_Spot_of_City.ClassModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
             }
         }
-
-
+        
         string _Type = string.Empty;
         [DataMember]
         public string Type
