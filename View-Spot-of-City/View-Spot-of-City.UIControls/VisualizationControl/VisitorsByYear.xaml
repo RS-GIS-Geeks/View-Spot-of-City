@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="View_Spot_of_City.UIControls.VisualizationControl.VisitorsByYear"
+﻿<local:VisualizationControlBase x:Class="View_Spot_of_City.UIControls.VisualizationControl.VisitorsByYear"
              x:Name="manControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -18,4 +18,4 @@
             </lvc:CartesianChart.AxisX>
         </lvc:CartesianChart>
     </Grid>
-</UserControl>
+</local:VisualizationControlBase>

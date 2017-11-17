@@ -1,25 +1,16 @@
-﻿using Esri.ArcGISRuntime.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+
+using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using View_Spot_of_City.ClassModel;
-using View_Spot_of_City.UIControls.Command;
-using View_Spot_of_City.UIControls.Helper;
 using View_Spot_of_City.UIControls.UIcontrol;
 using static System.Configuration.ConfigurationManager;
 

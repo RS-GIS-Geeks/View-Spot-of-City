@@ -1,12 +1,9 @@
-﻿using MahApps.Metro;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+
+using MahApps.Metro;
 
 namespace View_Spot_of_City.UIControls.Theme
 {

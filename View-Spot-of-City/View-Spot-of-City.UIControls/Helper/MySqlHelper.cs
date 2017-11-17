@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
-using System.Data;
 
 namespace View_Spot_of_City.UIControls.Helper
 {

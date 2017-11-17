@@ -1,26 +1,19 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using static System.Configuration.ConfigurationManager;
+
 using LiveCharts;
 using LiveCharts.Wpf;
-using static System.Configuration.ConfigurationManager;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Language.Language;
@@ -32,7 +25,7 @@ namespace View_Spot_of_City.UIControls.VisualizationControl
     /// <summary>
     /// HistogramOfType.xaml 的交互逻辑
     /// </summary>
-    public partial class HistogramOfType : UserControl, INotifyPropertyChanged
+    public partial class HistogramOfType : VisualizationControlBase, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

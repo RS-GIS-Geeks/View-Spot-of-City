@@ -1,38 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+
 using LiveCharts;
 using LiveCharts.Wpf;
-using static System.Configuration.ConfigurationManager;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Language.Language;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Helper;
+
 namespace View_Spot_of_City.UIControls.VisualizationControl
 {
     /// <summary>
     /// VisitorFlow.xaml 的交互逻辑
     /// </summary>
-    public partial class VisitorFlow : UserControl
+    public partial class VisitorFlow : VisualizationControlBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<VisitorItem> _VisitorflowList;

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Threading;
 using System.Windows.Threading;
@@ -14,6 +12,7 @@ using Config = System.Configuration.ConfigurationManager;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Symbology;
+using Esri.ArcGISRuntime.Mapping;
 
 using View_Spot_of_City.ViewModel;
 using View_Spot_of_City.UIControls.Helper;
@@ -25,10 +24,7 @@ using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.UIControls.Command;
 using static View_Spot_of_City.Converter.Enum2UIControl;
 using static View_Spot_of_City.Language.Language.LanguageDictionaryHelper;
-using Esri.ArcGISRuntime.Mapping;
 using static View_Spot_of_City.UIControls.Command.ArcGISMapCommands;
-using View_Spot_of_City.UIControls.UIcontrol;
-using System.Windows.Controls.Primitives;
 
 namespace View_Spot_of_City
 {

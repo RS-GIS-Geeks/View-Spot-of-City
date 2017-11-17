@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace View_Spot_of_City.UIControls.Helper
@@ -17,7 +13,16 @@ namespace View_Spot_of_City.UIControls.Helper
         public static BitmapImage GetAvatarByEmail(string mail)
         {
             string userInputMail = (mail == null || mail == string.Empty) ? "rsgisgeeks@qq.com" : mail;
-            return new BitmapImage(new Uri(GravatarHelper.NetStandard.Gravatar.GetGravatarImageUrl(userInputMail)));
+            BitmapImage bitmap = null;
+            try
+            {
+                bitmap = new BitmapImage(new Uri(GravatarHelper.NetStandard.Gravatar.GetSecureGravatarImageUrl(userInputMail)));
+            }
+            catch
+            {
+                bitmap = new BitmapImage(new Uri(@"pack://application:,,,/View-Spot-of-City;component/Icon/logo.png"));
+            }
+            return bitmap;
         }
 
         /// <summary>

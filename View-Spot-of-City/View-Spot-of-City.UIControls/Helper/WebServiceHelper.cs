@@ -1,9 +1,7 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+
+using RestSharp;
 
 using static System.Configuration.ConfigurationManager;
 

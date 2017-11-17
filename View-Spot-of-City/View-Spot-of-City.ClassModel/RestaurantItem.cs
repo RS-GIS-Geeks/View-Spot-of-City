@@ -1,6 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using View_Spot_of_City.ClassModel.Interface;
 
