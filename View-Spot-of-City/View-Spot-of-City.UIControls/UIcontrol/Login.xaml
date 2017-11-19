@@ -20,17 +20,17 @@
             <StackPanel>
                 <Label Content="{DynamicResource LoginUserText}" Margin="10,1,10,3"/>
                 <Grid Margin="10,0">
-                    <TextBox Name="mailTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False" LostFocus="mailTextBox_LostFocus"/>
+                    <TextBox Name="mailTextBox" Margin="3" MaxLength="20" AcceptsTab="False" AcceptsReturn="False" LostFocus="mailTextBox_LostFocus" InputMethod.PreferredImeState="Off"/>
                 </Grid>
                 <Label Content="{DynamicResource LoginPasswordText}" Margin="10,3"/>
                 <Grid Margin="10,0">
-                    <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20"/>
+                    <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="20" InputMethod.PreferredImeState="Off"/>
                 </Grid>
                 <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
                 <Grid Margin="10,0">
                     <Image x:Name="validateImage" Margin="5,3,130,3" ToolTip="{DynamicResource RegisterCodeButtonTipText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                        MouseLeftButtonDown="validateImage_MouseLeftButtonDown"/>
-                    <TextBox Name="validateCodeTextBox" Margin="130,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False"/>
+                    <TextBox Name="validateCodeTextBox" Margin="130,3,3,3" MaxLength="4" AcceptsTab="False" AcceptsReturn="False" InputMethod.PreferredImeState="Off"/>
                 </Grid>
             </StackPanel>
             <Grid Margin="0,0,0,2">
