@@ -17,9 +17,17 @@ namespace View_Spot_of_City.UIControls.Helper
             string userInputMail = (mail == null || mail == string.Empty) ? "rsgisgeeks@qq.com" : mail;
             BitmapImage bitmap = new BitmapImage();
 
-            var c = new WebClient();
-            var bytes = c.DownloadData(GravatarHelper.NetStandard.Gravatar.GetSecureGravatarImageUrl(userInputMail));
-            bitmap = GetImage(bytes);
+            try
+            {
+                var c = new WebClient();
+                var bytes = c.DownloadData(GravatarHelper.NetStandard.Gravatar.GetSecureGravatarImageUrl(userInputMail));
+                bitmap = GetImage(bytes);
+            }
+            catch(Exception ex)
+            {
+                bitmap = new BitmapImage(new Uri(@"pack://application:,,,/View-Spot-of-City;component/Icon/Transparent.png"));
+                LogManager.LogManager.Error("网络错误，头像获取失败", ex);
+            }
 
             return bitmap;
         }
@@ -67,7 +75,7 @@ namespace View_Spot_of_City.UIControls.Helper
             }
             catch(Exception ex)
             {
-                bitmap = new BitmapImage(new Uri(@"pack://application:,,,/View-Spot-of-City;component/Icon/logo.png"));
+                bitmap = new BitmapImage(new Uri(@"pack://application:,,,/View-Spot-of-City;component/Icon/Transparent.png"));
                 LogManager.LogManager.Error("头像加载错误", ex);
             }
 

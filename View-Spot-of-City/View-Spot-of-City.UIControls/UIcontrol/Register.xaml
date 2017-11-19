@@ -16,19 +16,19 @@
         <StackPanel Grid.Row="0">
             <Label Content="{DynamicResource RegisterText}" Margin="10,8,10,3"/>
             <Grid Margin="10,0">
-                <TextBox Name="mailTextBox" Margin="3" MaxLength="30" AcceptsTab="False" AcceptsReturn="False"/>
+                <TextBox Name="mailTextBox" Margin="3" MaxLength="30" AcceptsTab="False" AcceptsReturn="False" InputMethod.PreferredImeState="Off"/>
             </Grid>
             <Label Content="{DynamicResource RegisterPasswordText}" Margin="10,3"/>
             <Grid Margin="10,0">
-                <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="16"/>
+                <PasswordBox PasswordChar="●" Name="passwordTextBox" Margin="3" MaxLength="16" InputMethod.PreferredImeState="Off"/>
             </Grid>
             <Label Content="{DynamicResource RegisterPassword1Text}" Margin="10,3"/>
             <Grid Margin="10,0">
-                <PasswordBox PasswordChar="●" Name="password1TextBox" Margin="3" MaxLength="16"/>
+                <PasswordBox PasswordChar="●" Name="password1TextBox" Margin="3" MaxLength="16" InputMethod.PreferredImeState="Off"/>
             </Grid>
             <Label Content="{DynamicResource RegisterCodeText}" Margin="10,3"/>
             <Grid Margin="10,0">
-                <TextBox Name="validateCodeTextBox" Margin="3,3,130,3" MaxLength="6" AcceptsTab="False" AcceptsReturn="False"/>
+                <TextBox Name="validateCodeTextBox" Margin="3,3,130,3" MaxLength="6" AcceptsTab="False" AcceptsReturn="False" InputMethod.PreferredImeState="Off"/>
                 <Button Name="btnGetValidateCode" FontSize="12" Height="auto" Width="110"
                     HorizontalAlignment="Right" Margin="0,3,3,3" IsDefault="True" Click="btnGetValidateCode_Click"/>
             </Grid>

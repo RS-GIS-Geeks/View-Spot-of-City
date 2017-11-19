@@ -118,7 +118,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource UserInfoEdit_TextBlock}" Text="{DynamicResource UserInfoEdit_Mail}"/>
-                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged" IsReadOnly="True"
+                <TextBox Style="{StaticResource UserInfoEdit_TextBox}" TextChanged="TextBox_TextChanged" IsReadOnly="True" InputMethod.PreferredImeState="Off"
                          Text="{Binding ElementName=mainWindow, Path=CurrentUser_Copy.Mail, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
             </StackPanel>
         </StackPanel>
