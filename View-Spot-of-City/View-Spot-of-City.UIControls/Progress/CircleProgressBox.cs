@@ -31,7 +31,6 @@ namespace View_Spot_of_City.UIControls.Progress
         /// </summary>
         public void ShowPregress()
         {
-            m_thread.IsBackground = true;
             m_thread = new Thread(Show)
             {
                 IsBackground = true
@@ -56,7 +55,7 @@ namespace View_Spot_of_City.UIControls.Progress
                 Thread.Sleep(10);
             Thread.Sleep(10);
             m_frmProgressBox.RequestStop();
-            m_thread.Join();
+            //m_thread.Join();
         }
 
         /// <summary>
@@ -78,20 +77,31 @@ namespace View_Spot_of_City.UIControls.Progress
             {
                 Thread.Sleep(10);
             }
+            //string prefixText = GetString("ProgressText") as string;
+            //string[] text = new string[] {
+            //    prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
+            //    prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
+            //    prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
+            //    prefixText + "", prefixText + ".", prefixText + "..", prefixText + "..."};
+            //int i = 0;
+            //Random r = new Random();
+            //int ran = r.Next(8, 14);
+            //while(i < ran)
+            //{
+            //    m_frmProgressBox.SetDefaultDescriptionAsync(text[i]);
+            //    Thread.Sleep(300);
+            //    i++;
+            //}
+
             string prefixText = GetString("ProgressText") as string;
-            string[] text = new string[] {
-                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
-                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
-                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "...",
-                prefixText + "", prefixText + ".", prefixText + "..", prefixText + "..."};
+            string[] text = new string[] { "", ".", "..", "..." };
             int i = 0;
-            Random r = new Random();
-            int ran = r.Next(8, 14);
-            while(i < ran)
+            while (true)
             {
-                m_frmProgressBox.SetDefaultDescriptionAsync(text[i]);
-                Thread.Sleep(300);
                 i++;
+                i %= 4;
+                m_frmProgressBox.SetDefaultDescriptionAsync(prefixText + text[i]);
+                Thread.Sleep(300);
             }
         }
     }

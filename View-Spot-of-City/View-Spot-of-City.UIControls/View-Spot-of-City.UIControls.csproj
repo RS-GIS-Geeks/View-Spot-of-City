@@ -173,9 +173,10 @@
     <Compile Include="OverLayer\Visualization.xaml.cs">
       <DependentUpon>Visualization.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Progress\CircleProgressAsync.xaml.cs">
-      <DependentUpon>CircleProgressAsync.xaml</DependentUpon>
+    <Compile Include="Progress\CircleProgress.xaml.cs">
+      <DependentUpon>CircleProgress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Progress\CircleProgressBox.cs" />
     <Compile Include="Progress\FromProgressBox.xaml.cs">
       <DependentUpon>FromProgressBox.xaml</DependentUpon>
     </Compile>
@@ -338,9 +339,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Progress\CircleProgressAsync.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Progress\CircleProgress.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Progress\FromProgressBox.xaml">
       <SubType>Designer</SubType>

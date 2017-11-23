@@ -84,11 +84,6 @@ namespace View_Spot_of_City
         public OverlayerItemViewModel ShareOverlay { get; internal set; }
 
         /// <summary>
-        /// 圆形启动界面
-        /// </summary>
-        CircleProgressAsync circleProgressBox = new CircleProgressAsync();
-
-        /// <summary>
         /// 用于关闭启动进度条的定时器
         /// </summary>
         DispatcherTimer closeCircleTimer = new DispatcherTimer();
@@ -145,11 +140,11 @@ namespace View_Spot_of_City
         /// </summary>
         public void ShowCircleProgressBox()
         {
-            Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin))
-            {
-                IsBackground = true
-            };
-            thread.Start();
+            //Thread thread = new Thread(new ThreadStart(circleProgressBox.Begin))
+            //{
+            //    IsBackground = true
+            //};
+            //thread.Start();
         }
 
         /// <summary>
@@ -245,8 +240,8 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void CloseCircleTimer_Tick(object sender, EventArgs e)
         {
-            if (circleProgressBox != null)
-                circleProgressBox.CloseProgress();
+            if ((Application.Current as App).circleProgressBox != null)
+                (Application.Current as App).circleProgressBox.CloseProgress();
             closeCircleTimer.Stop();
             ArcGISMapView.SetScaleAndLoction(new MapPoint(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), SpatialReferences.Wgs84), Convert.ToDouble(Config.AppSettings["ARCGIS_MAP_ZOOM"]));
             ArcGISSceneView.SetScaleAndLoction(new Camera(Convert.ToDouble(Config.AppSettings["MAP_CENTER_LAT"]), Convert.ToDouble(Config.AppSettings["MAP_CENTER_LNG"]), Convert.ToDouble(Config.AppSettings["ARCGIS_SENCE_HEADING"]), 0, 0, 0));

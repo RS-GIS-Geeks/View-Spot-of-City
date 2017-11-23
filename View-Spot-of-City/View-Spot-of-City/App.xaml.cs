@@ -16,6 +16,7 @@ using View_Spot_of_City.ClassModel;
 using View_Spot_of_City.Form;
 using View_Spot_of_City.UIControls.Form;
 using View_Spot_of_City.Language.Language;
+using View_Spot_of_City.UIControls.Progress;
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace View_Spot_of_City
@@ -46,6 +47,11 @@ namespace View_Spot_of_City
         /// </summary>
         public ObservableCollection<ViewSpot> ViewSpotList { get; private set; }
 
+        /// <summary>
+        /// 圆形启动界面
+        /// </summary>
+        public CircleProgressBox circleProgressBox = new CircleProgressBox();
+
         protected override void OnStartup(StartupEventArgs e)
         {
             log4net.Config.XmlConfigurator.Configure();
@@ -63,6 +69,8 @@ namespace View_Spot_of_City
             bool? loginDlgResult = (new LoginDlg(AppSettings["DEFAULT_USER_MAIL"])).ShowDialog();
             if (!loginDlgResult.HasValue || !loginDlgResult.Value)
                 this.Shutdown();
+
+            circleProgressBox.ShowPregress();
 
             base.OnStartup(e);
         }
