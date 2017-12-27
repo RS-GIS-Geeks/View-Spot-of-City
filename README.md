@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/badge/license-Apche%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![license](https://img.shields.io/badge/chat-Github%20issues-blue.svg)](https://github.com/RS-GIS-Geeks/View-Spot-of-City/issues) [![license](https://img.shields.io/badge/Maint-yes-red.svg)](https://github.com/RS-GIS-Geeks/View-Spot-of-City)
+[![Build Status](https://travis-ci.org/CS-Tao/View-Spot-of-City.svg?branch=master)](https://travis-ci.org/CS-Tao/View-Spot-of-City) [![license](https://img.shields.io/badge/license-Apche%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![license](https://img.shields.io/badge/chat-Github%20issues-blue.svg)](https://github.com/RS-GIS-Geeks/View-Spot-of-City/issues) [![license](https://img.shields.io/badge/Maint-yes-red.svg)](https://github.com/RS-GIS-Geeks/View-Spot-of-City)
 # View-Spot-of-City
 城市景点推荐系统
 
