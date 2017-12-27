@@ -1,0 +1,10 @@
+version: 1.2.2.{build}
+pull_requests:
+  do_not_increment_build_number: true
+image: Visual Studio 2017
+platform: Any CPU
+before_build:
+- cmd: nuget restore View-Spot-of-City/View-Spot-of-City.sln
+build:
+  project: View-Spot-of-City/View-Spot-of-City.sln
+  verbosity: minimal
