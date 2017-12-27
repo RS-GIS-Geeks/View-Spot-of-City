@@ -46,6 +46,7 @@ namespace View_Spot_of_City.UIControls.Helper
         /// </summary>
         /// <param name="necessityStops">必须到达的站点</param>
         /// <returns>站点链表</returns>
+        [Obsolete("已弃用")]
         public static List<Stop> GetRouteStops(List<MapPoint> necessityStops)
         {
             throw new NotImplementedException();
