@@ -1,5 +1,0 @@
-install:
-  - dnvm upgrade -r clr
-  - dnu restore
-build:
-  verbosity: minimal
