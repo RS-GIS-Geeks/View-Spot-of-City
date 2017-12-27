@@ -1,6 +1,0 @@
-language: csharp
-solution: View-Spot-of-City/View-Spot-of-City.sln
-mono: none
-dotnet: 4.5.2
-script:
- - dotnet restore View-Spot-of-City/View-Spot-of-City.sln
