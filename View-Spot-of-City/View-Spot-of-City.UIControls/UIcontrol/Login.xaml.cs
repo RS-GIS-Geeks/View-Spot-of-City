@@ -79,10 +79,10 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             validateCode = CreatFourRandomChar();
             validateImage.Source = CreateValidateCodeImage(validateCode);
 
-            #region 测试
-            //passwordTextBox.Password = "19970108";
-            //validateCodeTextBox.Text = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
-            #endregion
+#if DEBUG
+            passwordTextBox.Password = "19970108";
+            validateCodeTextBox.Text = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
+#endif
         }
         
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -180,6 +180,9 @@ namespace View_Spot_of_City.UIControls.UIcontrol
             //生成验证码
             validateCode = CreatFourRandomChar();
             validateImage.Source = CreateValidateCodeImage(validateCode);
+#if DEBUG
+            validateCodeTextBox.Text = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(validateCode));
+#endif
         }
 
         private void mailTextBox_LostFocus(object sender, RoutedEventArgs e)

@@ -306,8 +306,10 @@ namespace View_Spot_of_City
         /// <param name="e"></param>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+#if !DEBUG
             if (MessageboxMaster.DialogResults.Yes != MessageboxMaster.Show(GetString("Logout_Tip"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
                 return;
+#endif
             LogManager.LogManager.Info("用户[" + CurrentApp.CurrentUser.Mail + "]注销");
             string mail = CurrentApp.CurrentUser.Mail;
             (Application.Current as App).CurrentUser = UserInfo.NoBody;
@@ -320,6 +322,7 @@ namespace View_Spot_of_City
 
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
+#if !DEBUG
             if (MessageboxMaster.DialogResults.Yes == MessageboxMaster.Show(GetString("MainWindowCloseConfirm"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
             {
                 ArcGISMapView.ChangeLoctionDisplayEnable(false);
@@ -329,6 +332,7 @@ namespace View_Spot_of_City
             {
                 e.Cancel = true;
             }
+#endif
         }
 
         private void mainWindow_Closed(object sender, EventArgs e)
