@@ -83,6 +83,7 @@ namespace View_Spot_of_City.Form
 
         private void loginDlg_Closing(object sender, CancelEventArgs e)
         {
+#if !DEBUG
             if(!_ClickButton)
             {
                 if (MessageboxMaster.DialogResults.Yes == MessageboxMaster.Show(GetString("MainWindowCloseConfirm"), GetString("MessageBox_Tip_Title"), MessageboxMaster.MyMessageBoxButtons.YesNo, MessageboxMaster.MyMessageBoxButton.Yes))
@@ -90,6 +91,7 @@ namespace View_Spot_of_City.Form
                 else
                     e.Cancel = true;
             }
+#endif
         }
     }
 }
